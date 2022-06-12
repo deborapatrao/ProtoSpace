@@ -24,11 +24,13 @@ $text-color: #063554;
       ul {
         list-style: none;
         padding-left: 0;
-
-        a {
-          text-decoration: none;
-          color: $text-color;
-          font-size: 1rem;
+        li {
+          margin-bottom: 16px;
+          a {
+            text-decoration: none;
+            color: $text-color;
+            font-size: 1rem;
+          }
         }
       }
     }
