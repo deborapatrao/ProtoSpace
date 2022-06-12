@@ -1,6 +1,5 @@
 import './styles/index.scss'
-import Footer from "./components/footer/Index"
-
+import Footer from './components/Footer';
 
 function App() {
   return (
