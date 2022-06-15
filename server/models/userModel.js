@@ -1,4 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
+
     return sequelize.define("users", {
         name: {
             type: Sequelize.STRING,
@@ -20,16 +21,12 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
-        active: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
         photo: {
             type: Sequelize.STRING
         },
 
-        last_login:{
-          type: Sequelize.DATE
+        last_login: {
+            type: Sequelize.DATE
         }
-    });
+    })
 };
