@@ -1,17 +1,25 @@
-require("../controller/userController");
-module.exports = app => {
-    const User = require("../controller/userController");
-    let router = require("express").Router();
+const {authJwt} = require("../middleware");
+const controller = require("../controller/userController");
+module.exports = function (app) {
+    app.use(function (req, res, next) {
+        res.header(
+            "Access-Control-Allow-Headers",
+            "x-access-token, Origin, Content-Type, Accept"
+        );
+        next();
+    });
+/*
+    app.get(
+        "/api/role/student",
+        [authJwt.verifyToken],
+        controller.studentAccess
+    );
+    app.get(
+        "/api/role/teacher",
+        [authJwt.verifyToken],
+        controller.teacherAccess
+    );
+*/
 
-    /* Creating a new user. */
-    router.post("/", User.create);
-    /* This is a get request that will return a user with a specific id. */
-    router.get("/:id", User.findOne);
-    /* This is a get request that will return all users. */
-    router.get("/", User.findAll);
-    /* This is a put request that will update a user with a specific id. */
-    router.put("/:id", User.update);
-
-    app.use('/api/users', router);
-
+    app.get("/api/users", controller.findAll);
 };
