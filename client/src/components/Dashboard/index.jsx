@@ -1,14 +1,22 @@
 import React from 'react';
-import {
-    Outlet
-} from "react-router-dom";
+
+import Header from './Header'
+import Sidebar from './Sidebar'
+import Workspace from './Workspace'
+
 
 const Dashboard = () => {
     return (
-        <div>
-            Dashboard (Header + Sidebar + Workspace)
-            <Outlet />
-        </div>
+        <div className='container'>
+      <div className='container__navbar'>
+        <Header />
+      </div>
+
+      <div className='container__dashboard'>
+        <Sidebar />
+        <Workspace />
+      </div>
+    </div>
     );
 }
 
