@@ -1,13 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-const Workspace = () => {
+const Protocols = () => {
     return (
-        <div className='workspace'>
-            Workspace
+        <div >
+            Protocols
             <Outlet />
         </div>
     );
 }
 
-export default Workspace;
+export default Protocols;
