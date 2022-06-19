@@ -21,7 +21,6 @@ exports.register = (req, res) => {
         password: req.body.password,
         college_number: req.body.college_number,
         role: req.body.role,
-        active: req.body.active,
         photo: req.body.photo,
 
     };
