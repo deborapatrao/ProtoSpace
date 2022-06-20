@@ -1,9 +1,47 @@
 import React from 'react';
+import {
+    useLocation,
+    Link,
+} from "react-router-dom";
+import PersonIcon from '@mui/icons-material/Person';
+import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 
 const Sidebar = () => {
+    let location = useLocation();
+
     return (
         <div className='sidebar'>
-            Sidebar
+            {
+                location.pathname.includes('/protocols') ?
+
+                    <div className='sidebar__container'>
+                        <div className='sidebar__btn'>
+                            <Link to={`/protocols/description`}>Description</Link>
+                        </div>
+                        <div className='sidebar__btn'>
+                            <Link to="/protocols/guidelines">Guidelines</Link>
+                        </div>
+                        <div className='sidebar__btn'>
+                            <Link to={`/protocols/materials`}>Materials</Link>
+                        </div>
+                        <div className='sidebar__btn'>
+                            <Link to={`/protocols/steps`}>Steps</Link>
+                        </div>
+                    </div>
+
+                    :
+
+                    <div className='sidebar__container'>
+                        <div className='sidebar__btn'>
+                            <PersonIcon />
+                            <div>Shared with you</div>
+                        </div>
+                        <div className='sidebar__btn'>
+                            <CreateNewFolderIcon />
+                            <div>My workspace</div>
+                        </div>
+                    </div>
+            }
         </div>
     );
 }
