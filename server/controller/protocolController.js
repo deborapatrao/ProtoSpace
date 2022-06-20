@@ -4,7 +4,7 @@ const Protocol = db.protocol
 const Workspace = db.workspace
 // const WorkspaceProtocol = db.workspace_protocol
 
-exports.createProtocolDescription = async (req, res) => {
+exports.createProtocol = async (req, res) => {
 
     const data = {
         name: req.body.name,

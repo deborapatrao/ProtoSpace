@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
 
-    return sequelize.define("users", {
+    return sequelize.define("protocol", {
         name: {
             type: Sequelize.STRING,
             validate:{
