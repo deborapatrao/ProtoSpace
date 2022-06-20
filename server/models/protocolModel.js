@@ -4,50 +4,38 @@ module.exports = (sequelize, Sequelize) => {
         name: {
             type: Sequelize.STRING,
             validate:{
-                allowNull: false,
-                isAlpha:true
+                allowNull:false
             }
         },
-        email: {
+        abstract: {
             type: Sequelize.STRING,
             validate:{
-                allowNull: false,
-                isEmail: true
+                allowNull:false
             }
         },
-        password: {
+        disclaimer: {
             type: Sequelize.STRING,
             validate:{
-                allowNull: false,
-
+                allowNull:false
             }
         },
-        college_number: {
-            type: Sequelize.INTEGER,
-            validate:{
-                allowNull: false
-            }
-        },
-        role: {
+        author:{
             type: Sequelize.STRING,
             validate:{
-                allowNull: false
+                allowNull:false
             }
         },
-        photo: {
-            type: Sequelize.STRING
-        },
-
-        last_login: {
-            type: Sequelize.DATE,
+        external_link: {
+            type: Sequelize.STRING,
             validate:{
-                isDate: true
+                allowNull:false,
+                isUrl: true,
             }
         },
         guideline: {
             type: Sequelize.STRING,
             validate:{
-                allowNull: false
+                allowNull:false
             }
         },
         before_start: {
@@ -58,4 +46,3 @@ module.exports = (sequelize, Sequelize) => {
         }
     })
 };
-
