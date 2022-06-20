@@ -1,9 +1,10 @@
-const db = require("../models");
+const db = require("../models")
+// const { where } = require("sequelize/types")
 const Protocol = db.protocol
 const Workspace = db.workspace
-const WorkspaceProtocol = db.workspace_protocol
+// const WorkspaceProtocol = db.workspace_protocol
 
-exports.createProtocol = async (req, res) => {
+exports.createProtocolDescription = async (req, res) => {
 
     const data = {
         name: req.body.name,
@@ -20,6 +21,34 @@ exports.createProtocol = async (req, res) => {
         const protocolCreated = await Protocol.create(data);
 
         await workspaceID.addProtocol(protocolCreated, workspaceID).then(data => res.send(data)).catch(error => console.log(error))
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+exports.createProtocolGuideline = async (req, res) => {
+
+    const data = {
+        guideline: req.body.guideline,
+        before_start: req.body.before_start,
+        safety_warning: req.body.safety_warning
+    }
+
+    try {
+
+
+        const protocol = req.body.protocol_id
+
+        await Protocol.update(data, {where: {id: protocol}})
+            .then(data => res.send(data))
+            .catch(error=> {
+                res.send({
+                    message:
+                    error.message
+                })
+            });
 
     } catch (error) {
         console.log(error)

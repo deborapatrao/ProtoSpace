@@ -1,24 +1,61 @@
 module.exports = (sequelize, Sequelize) => {
 
-    return sequelize.define("protocol", {
+    return sequelize.define("users", {
         name: {
             type: Sequelize.STRING,
-
+            validate:{
+                allowNull: false,
+                isAlpha:true
+            }
         },
-        description_id: {
-            type: Sequelize.INTEGER,
-
+        email: {
+            type: Sequelize.STRING,
+            validate:{
+                allowNull: false,
+                isEmail: true
+            }
         },
-        guideline_id: {
-            type: Sequelize.INTEGER,
+        password: {
+            type: Sequelize.STRING,
+            validate:{
+                allowNull: false,
 
+            }
         },
-        materials_id: {
+        college_number: {
             type: Sequelize.INTEGER,
+            validate:{
+                allowNull: false
+            }
+        },
+        role: {
+            type: Sequelize.STRING,
+            validate:{
+                allowNull: false
+            }
+        },
+        photo: {
+            type: Sequelize.STRING
+        },
 
+        last_login: {
+            type: Sequelize.DATE,
+            validate:{
+                isDate: true
+            }
         },
-        step_id: {
-            type: Sequelize.INTEGER,
+        guideline: {
+            type: Sequelize.STRING,
+            validate:{
+                allowNull: false
+            }
+        },
+        before_start: {
+            type: Sequelize.STRING
+        },
+        safety_warning: {
+            type: Sequelize.STRING
         }
     })
 };
+
