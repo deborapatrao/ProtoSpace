@@ -21,6 +21,7 @@ const Steps = () => {
 
         // console.log(newArr);
     }
+
     return (
         <div>
             {steps ? steps.map((item, index) => {

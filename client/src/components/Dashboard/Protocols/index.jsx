@@ -8,10 +8,16 @@ const Protocols = () => {
         materials: ''
     });
 
+    const handleDataChange = (newValue, type) => {
+        let newObj = { ...data };
+        newObj[type] = newValue
+        setData(newObj)
+    }
+
     return (
         <div >
             Protocols
-            <Outlet />
+            <Outlet context={{data, handleDataChange}}/>
         </div>
     );
 }
