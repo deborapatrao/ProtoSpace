@@ -1,11 +1,13 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
+
 
 const Workspace = () => {
     return (
         <div className='workspace'>
             Workspace
             <Outlet />
+            <Link to={"/protocols/description"}>Create protocol</Link>
         </div>
     );
 }
