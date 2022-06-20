@@ -1,3 +1,4 @@
+const controller = require("../controller/protocolController");
 
 module.exports = function (app) {
 
@@ -5,6 +6,8 @@ module.exports = function (app) {
     let router = require("express").Router();
 
     router.post("/", controller.createProtocol);
+    router.post("/guideline", controller.createProtocolGuideline);
+
 
     app.use('/api/protocol', router);
 };
