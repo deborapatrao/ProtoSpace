@@ -3,30 +3,46 @@ module.exports = (sequelize, Sequelize) => {
     return sequelize.define("users", {
         name: {
             type: Sequelize.STRING,
-            allowNull: false
+            validate: {
+                allowNull: false,
+                isAlpha: true
+            }
         },
         email: {
             type: Sequelize.STRING,
-            allowNull: false
+            validate: {
+                allowNull: false,
+                isEmail: true
+            }
         },
         password: {
             type: Sequelize.STRING,
-            allowNull: false
+            validate: {
+                allowNull: false,
+
+            }
         },
         college_number: {
             type: Sequelize.INTEGER,
-            allowNull: false
+            validate: {
+                allowNull: false
+            }
         },
         role: {
             type: Sequelize.STRING,
-            allowNull: false
+            validate: {
+                allowNull: false
+            }
         },
         photo: {
             type: Sequelize.STRING
         },
 
         last_login: {
-            type: Sequelize.DATE
+            type: Sequelize.DATE,
+            validate: {
+                isDate: true
+            }
         }
     })
 };

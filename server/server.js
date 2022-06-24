@@ -10,17 +10,16 @@ const PORT = process.env.PORT || 8080;
 
 /* This is a middleware that allows the server to accept requests from a different origin. */
 const corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "*"
 };
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
-/* This is importing the Routes  and passing the app object to it. */
-require("./routes/userRoutes.js")(app);
-require('./routes/authRoute')(app);
 
+/* This is importing the routes from the routes folder. */
+require('./routes')(app);
 
 
 /* Listening to the port that is set in the environment. */
