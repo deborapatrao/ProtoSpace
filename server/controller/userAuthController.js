@@ -4,6 +4,8 @@ const Users = db.users;
 const Op = db.Sequelize.Op;
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const Raw = db.sequelize;
+const WorkspaceProtocol = db.workspace_protocol
 
 exports.register = (req, res) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
@@ -49,7 +51,12 @@ exports.login = (req, res) => {
             email: req.body.email
         }
     })
-        .then(user => {
+        .then(async user => {
+            const query = `select user_workspace.id as workspaceId
+                           from user_workspace
+                                    join users u on u.id = user_workspace.user_id
+                           where user_id = ${user.id}`
+            const workspaceId = await Raw.query(query)
             if (!user) {
                 return res.status(404).send({message: "User Not found."});
             }
@@ -66,15 +73,19 @@ exports.login = (req, res) => {
                 });
             }
 
+
             let token = jwt.sign({id: user.id}, config.secret, {
                 expiresIn: 86400 // 24 hours
             });
+
             res.status(200).send({
                 id: user.id,
                 name: user.name,
                 email: user.email,
                 roles: user.role,
-                accessToken: token
+                accessToken: token,
+                workspaceId
+
             });
 
 
