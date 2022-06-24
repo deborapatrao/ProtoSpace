@@ -3,39 +3,38 @@ module.exports = (sequelize, Sequelize) => {
     return sequelize.define("protocol", {
         name: {
             type: Sequelize.STRING,
-            validate:{
-                allowNull:false
+            validate: {
+                // allowNull: false
             }
         },
         abstract: {
             type: Sequelize.STRING,
-            validate:{
-                allowNull:false
+            validate: {
+                // allowNull: false
             }
         },
         disclaimer: {
             type: Sequelize.STRING,
-            validate:{
-                allowNull:false
+            validate: {
+                // allowNull: false
             }
         },
-        author:{
+        author: {
             type: Sequelize.STRING,
-            validate:{
-                allowNull:false
+            validate: {
+                // allowNull: false
             }
         },
         external_link: {
             type: Sequelize.STRING,
-            validate:{
-                allowNull:false,
-                isUrl: true,
+            validate: {
+                // isUrl: true,
             }
         },
         guideline: {
             type: Sequelize.STRING,
-            validate:{
-                allowNull:false
+            validate: {
+                // allowNull: false
             }
         },
         before_start: {
@@ -43,6 +42,12 @@ module.exports = (sequelize, Sequelize) => {
         },
         safety_warning: {
             type: Sequelize.STRING
-        }
+        },
+        materials: {
+            type: Sequelize.STRING
+        },
+        published: {
+            type: Sequelize.STRING
+        },
     })
 };

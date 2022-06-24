@@ -1,3 +1,4 @@
+const {authJwt} = require("../middleware");
 module.exports = function (app) {
 
     const controller = require("../controller/workspaceController");
@@ -5,6 +6,6 @@ module.exports = function (app) {
 
     router.post("/", controller.userWorkspace);
 
-    app.use('/api/workspace', router);
+    app.use('/api/workspace', [authJwt.verifyToken], router);
 };
 

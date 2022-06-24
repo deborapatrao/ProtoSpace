@@ -1,4 +1,5 @@
 const controller = require("../controller/protocolController");
+const {authJwt} = require("../middleware");
 
 module.exports = function (app) {
 
@@ -6,9 +7,11 @@ module.exports = function (app) {
     let router = require("express").Router();
 
     router.post("/", controller.createProtocol);
-    router.post("/guideline", controller.createProtocolGuideline);
 
+    router.post('/find/', controller.findProtocol);
 
-    app.use('/api/protocol', router);
+    router.post('/find/byworkspace/', controller.findProtocolWorkspace);
+
+    app.use('/api/protocol', [authJwt.verifyToken], router);
 };
 
