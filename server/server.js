@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8080;
 
 /* This is a middleware that allows the server to accept requests from a different origin. */
 const corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "*"
 };
 app.use(cors(corsOptions));
 app.use(express.json());
