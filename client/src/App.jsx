@@ -8,6 +8,7 @@ import Description from './components/Dashboard/Protocols/Description';
 import Guidelines from './components/Dashboard/Protocols/Guidelines';
 import Materials from './components/Dashboard/Protocols/Materials';
 import Steps from './components/Dashboard/Protocols/Steps';
+import Preview from "./components/Dashboard/Protocols/Preview";
 
 import Dashboard from './components/Dashboard';
 import Protocols from './components/Dashboard/Protocols';
@@ -22,6 +23,7 @@ function App() {
             <Route path="guidelines" element={<Guidelines />} />
             <Route path="materials" element={<Materials />} />
             <Route path="steps" element={<Steps />} />
+            <Route path="preview" element={<Preview />} />
           </Route>
         </Route>
       </Routes>
