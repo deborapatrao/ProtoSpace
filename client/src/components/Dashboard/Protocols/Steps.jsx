@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import SingleStep from "./SingleStep";
 import Button from '@mui/material/Button';
+import {Link} from "react-router-dom";
 
 const Steps = () => {
     const [steps, setSteps] = useState([{ id: 1, name: 'step1', text: '' }]);
@@ -28,6 +29,11 @@ const Steps = () => {
                 return <SingleStep key={index} step={item} index={index} handleTextChange={handleTextChange} />
             }) : ''}
             <Button onClick={handleDataChange}>Add Step</Button>
+            <div>
+                <Link to={"/protocols/materials"}>Materials</Link>
+            </div>
+
+            <Link className={'previewBtn'} to={"/protocols/preview"}>Preview</Link>
         </div>
     );
 }
