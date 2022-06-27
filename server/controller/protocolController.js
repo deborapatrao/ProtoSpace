@@ -3,7 +3,7 @@ const Raw = db.sequelize;
 const Protocol = db.protocol
 const Workspace = db.workspace
 const User = db.users
-const WorkspaceProtocol = db.workspace_protocol
+
 
 
 exports.findProtocol = (req, res) => {
