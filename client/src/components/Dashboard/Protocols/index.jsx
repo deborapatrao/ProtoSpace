@@ -3,10 +3,17 @@ import { Outlet } from 'react-router-dom';
 
 const Protocols = () => {
     const [data, setData] = useState({
-        description: '',
-        guidelines: '',
+        protocol:'',
+        abstract:'',
+        author:'',
+        disclaimer:'',
+        guideline:'',
+        before_start:'',
+        safety_warning:'',
         materials: ''
     });
+
+    const [steps, setSteps] = useState([{ id: 1, name: 'step1', text: '' }]);
 
     const handleDataChange = (newValue, type) => {
         let newObj = { ...data };
@@ -17,7 +24,7 @@ const Protocols = () => {
     return (
         <div >
             Protocols
-            <Outlet context={{data, handleDataChange}}/>
+            <Outlet context={{data, handleDataChange, steps, setSteps}}/>
         </div>
     );
 }

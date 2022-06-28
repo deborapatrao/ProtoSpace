@@ -9,11 +9,11 @@ import {
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const SingleStep = ({ step, index, handleTextChange }) => {
+const SingleStep = ({ step, index, handleTextChange, steps }) => {
     const  [ expanded, setExpanded] = useState(false);
 
     return (
-        <div>
+        <section>
             <Accordion key={index} expanded={expanded} onChange={() => setExpanded(!expanded)}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -30,9 +30,14 @@ const SingleStep = ({ step, index, handleTextChange }) => {
                     <button>Add photo</button>
                     <h4>Components</h4>
                     <div>There's no components to show</div>
+                    {/*<ul className={"addedComponentsList"}>*/}
+                    {/*     */}
+                    {/*    */}
+                    {/*    */}
+                    {/*</ul>*/}
                 </AccordionDetails>
             </Accordion>
-        </div>
+        </section>
     );
 }
 

@@ -9,30 +9,47 @@ const Description = () => {
     const { data, handleDataChange } = useOutletContext();
     
     return (
-        <div>
+        <section>
+            {/*
+            changes:
+            main div to section
+            remove br
+            */}
             <div>
                 <h2>Description</h2>
+                <div><span className={"mandatory"}>*</span> This section need to be filled</div>
             </div>
-            <div><span className={"mandatory"}>*</span> This section need to be filled</div>
-            <label>Protocol Name<span className={"mandatory"}>*</span></label>
-            <br/>
-            <TextField type={'text'} value={data.protocol} onChange={(e) => handleDataChange(e.target.value, 'protocol')} placeholder={'Enter protocol name'}/>
-            <br/>
-            <label>Abstract<span className={"mandatory"}>*</span></label>
-            <br/>
-            <TextField type={'text'} value={data.abstract} onChange={(e) => handleDataChange(e.target.value, 'abstract')} placeholder={'Write here'}/>
-            <br/>
-            <label>Author<span className={"mandatory"}>*</span></label>
-            <br/>
-            <TextField type={'text'} value={data.author} onChange={(e) => handleDataChange(e.target.value, 'author')} placeholder={'Enter names separated by commas'}/>
-            <br/>
-            <label>Disclaimer</label>
-            <br/>
-            <TextField type={'text'} value={data.disclaimer} onChange={(e) => handleDataChange(e.target.value, 'disclaimer')} placeholder={'Write here'}/>
-            <br/>
+
+            <div>
+                <label>Protocol Name<span className={"mandatory"}>*</span></label>
+                <TextField type={'text'} value={data.protocol}
+                           onChange={(e) => handleDataChange(e.target.value, 'protocol')}
+                           placeholder={'Enter protocol name'}/>
+            </div>
+
+            <div>
+                <label>Abstract<span className={"mandatory"}>*</span></label>
+                <TextField type={'text'} value={data.abstract}
+                           onChange={(e) => handleDataChange(e.target.value, 'abstract')}
+                           placeholder={'Write here'}/>
+            </div>
+
+            <div>
+                <label>Author<span className={"mandatory"}>*</span></label>
+                <TextField type={'text'} value={data.author}
+                           onChange={(e) => handleDataChange(e.target.value, 'author')}
+                           placeholder={'Enter names separated by commas'}/>
+            </div>
+
+            <div>
+                <label>Disclaimer</label>
+                <TextField type={'text'} value={data.disclaimer}
+                           onChange={(e) => handleDataChange(e.target.value, 'disclaimer')} placeholder={'Write here'}/>
+            </div>
+
             <Link to={"/protocols/guidelines"}>Guidelines</Link>
 
-        </div>
+        </section>
     );
 }
 
