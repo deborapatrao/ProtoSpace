@@ -25,6 +25,7 @@ db.workspace = require("./workspaceModel.js")(sequelize, Sequelize);
 db.protocol = require("./protocolModel.js")(sequelize, Sequelize);
 db.workspace_protocol =  require("./workspaceProtocolModel")(sequelize, Sequelize);
 db.user_protocol = require('./userProtocolModel')(sequelize, Sequelize);
+db.step_protocol = require('./protocolStepModel')(sequelize, Sequelize);
 
 db.protocol.belongsToMany(db.workspace,{through: db.workspace_protocol, as: 'user_workspace', foreignKey: 'protocol_id'})
 db.workspace.belongsToMany(db.protocol,{through: db.workspace_protocol, as:'protocol', foreignKey: 'workspace_id'})
