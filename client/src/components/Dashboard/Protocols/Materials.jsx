@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Link,
     useOutletContext
 } from "react-router-dom";
 import { TextField } from '@mui/material';
@@ -7,9 +8,21 @@ import { TextField } from '@mui/material';
 const Materials = () => {
     const { data, handleDataChange } = useOutletContext();
     return (
-        <div>
-            <TextField type={'text'} value={data.materials} onChange={(e) => handleDataChange(e.target.value, 'materials')} placeholder={'Materials'}/>
-        </div>
+        <section>
+            <div>
+                <h2>Material</h2>
+                <div><span className={"mandatory"}>*</span> This section need to be filled</div>
+            </div>
+            <div>
+                <label>List of materials<span className={"mandatory"}>*</span></label>
+                <TextField type={'text'} value={data.materials} onChange={(e) => handleDataChange(e.target.value, 'materials')} placeholder={'Materials'}/>
+            </div>
+
+            <div>
+                <Link to={"/protocols/guidelines"}>Guidelines</Link>
+                <Link to={"/protocols/steps"}>Steps</Link>
+            </div>
+        </section>
     );
 }
 
