@@ -3,7 +3,7 @@ const Raw = db.sequelize;
 const Protocol = db.protocol
 const Workspace = db.workspace
 const User = db.users
-
+const Step = db.step_protocol
 
 
 exports.findProtocol = (req, res) => {
@@ -60,6 +60,7 @@ exports.createProtocol = async (req, res) => {
         safety_warning: req.body.safety_warning,
         materials: req.body.materials
     }
+    const stepsRequest = req.body.steps;
 
     try {
 
@@ -69,7 +70,14 @@ exports.createProtocol = async (req, res) => {
         const protocolCreated = await Protocol.create(data)
 
         // await userId.addProtocol(protocolCreated.id, userId.id).then(data => res.send(data)).catch(error => console.log(error))
-
+        for (const step of stepsRequest) {
+            const step_data = {
+                step_number: step.step_number,
+                description: step.description,
+                protocol_id: protocolCreated.id
+            }
+            await Step.create(step_data)
+        }
         await workspaceId.addProtocol(protocolCreated, workspaceId).then(data => res.send(data)).catch(error => console.log(error))
 
     } catch (error) {
