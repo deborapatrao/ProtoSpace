@@ -34,19 +34,17 @@ exports.findProtocolWorkspace = async (req, res) => {
                             right join workspace_protocol wp on protocol.id = wp.protocol_id
                    where wp.workspace_id = ${req.body.workspaceId}`
 
-
     try {
         const [results, metadata] = await Raw.query(query);
         /* Checking if the results are not empty. If it is not empty, it will send the results. */
         if (results) {
             res.status(200).send(results);
         }
-
     } catch (error) {
         console.log(error)
     }
-
 }
+
 exports.createProtocol = async (req, res) => {
 
     const data = {
@@ -69,7 +67,7 @@ exports.createProtocol = async (req, res) => {
 
         const protocolCreated = await Protocol.create(data)
 
-        // await userId.addProtocol(protocolCreated.id, userId.id).then(data => res.send(data)).catch(error => console.log(error))
+
         for (const step of stepsRequest) {
             const step_data = {
                 step_number: step.step_number,
@@ -78,9 +76,47 @@ exports.createProtocol = async (req, res) => {
             }
             await Step.create(step_data)
         }
+        // await userId.addProtocol(protocolCreated.id, userId.id).then(data => res.send(data)).catch(error => console.log(error))
         await workspaceId.addProtocol(protocolCreated, workspaceId).then(data => res.send(data)).catch(error => console.log(error))
 
     } catch (error) {
         console.log(error)
+    }
+}
+exports.startStep = async (req, res) => {
+
+    try {
+        // await Step.findByPk( req.body.step_id)
+        await Step.update({
+                start_run: Date()
+            },
+            {
+                where:
+                    {id: req.body.step_id}
+            })
+            .then(data => {
+                res.status(200).send('Step started!')
+            }).catch(error => res.send(error))
+    } catch (e) {
+        res.send(e)
+    }
+}
+
+exports.endStep = async (req, res) => {
+
+    try {
+        // await Step.findByPk( req.body.step_id)
+        await Step.update({
+                end_run: Date()
+            },
+            {
+                where:
+                    {id: req.body.step_id}
+            })
+            .then(data => {
+                res.status(200).send('Step ended!')
+            }).catch(error => res.send(error))
+    } catch (e) {
+        res.send(e)
     }
 }
