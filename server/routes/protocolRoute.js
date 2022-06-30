@@ -12,6 +12,9 @@ module.exports = function (app) {
 
     router.post('/find/byworkspace/', controller.findProtocolWorkspace);
 
+    router.post('/step/start/', controller.startStep);
+    router.post('/step/end/', controller.endStep);
+
     app.use('/api/protocol', [authJwt.verifyToken], router);
 };
 
