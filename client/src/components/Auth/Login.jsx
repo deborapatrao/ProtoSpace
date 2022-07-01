@@ -1,17 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, FormControl, FormHelperText, InputLabel, Input, Button } from '@mui/material';
+import { FormControl, FormHelperText, InputLabel, Input, Button, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { reset, login } from '../../features/auth/useSlice';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const dispatch = useDispatch();
+    const { user, loading, error, response } = useSelector((state) => state.auth)
+
+    useEffect(() => {
+        if (error) {
+            console.log('Error: ', response);
+        }
+
+        dispatch(reset())
+
+    }, [user, error, dispatch, response])
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const userData = {
+            email,
+            password
+        }
+
+        dispatch(login(userData));
     }
 
-    return (
+    return (loading ? <CircularProgress /> :
         <form style={{ display: 'flex', flexDirection: 'column', gap: 10 }} onSubmit={handleSubmit}>
             <FormControl >
                 <InputLabel htmlFor="email-login">Email</InputLabel>
@@ -28,6 +49,7 @@ const Login = () => {
                 <Link to={'/register'}>Sign up</Link>
             </div>
         </form>
+
     );
 }
 

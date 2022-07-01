@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, FormControl, FormHelperText, InputLabel, Input, Button } from '@mui/material';
-import { Link } from 'react-router-dom'
+import { FormControl, FormHelperText, InputLabel, Input, Button, CircularProgress } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { register, reset } from '../../features/auth/useSlice';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -9,6 +11,18 @@ const Register = () => {
     const [password2, setPassword2] = useState('');
     const [collegeNumber, setCollegeNumber] = useState('');
     const [role, setRole] = useState('S');
+
+    const dispatch = useDispatch();
+    const { user, loading, error, response } = useSelector((state) => state.auth)
+
+    useEffect(() => {
+        if (error) {
+            console.log('Error: ', response);
+        }
+
+        dispatch(reset())
+
+    }, [user, error, dispatch, response])
 
 
     const handleSubmit = (e) => {
@@ -22,10 +36,12 @@ const Register = () => {
             role: role
         }
 
+        dispatch(register(userData))
+
         console.log(userData);
     }
 
-    return (
+    return (loading ? <CircularProgress /> :
         <form style={{ display: 'flex', flexDirection: 'column', gap: 10 }} onSubmit={handleSubmit}>
             <FormControl >
                 <InputLabel htmlFor="name-register">Name</InputLabel>
