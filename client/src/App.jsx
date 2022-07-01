@@ -4,25 +4,31 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Dashboard from './components/Dashboard';
+import Protocols from './components/Dashboard/Protocols';
 import Description from './components/Dashboard/Protocols/Description';
 import Guidelines from './components/Dashboard/Protocols/Guidelines';
 import Materials from './components/Dashboard/Protocols/Materials';
 import Steps from './components/Dashboard/Protocols/Steps';
 import Preview from "./components/Dashboard/Protocols/Preview";
 
-import Dashboard from './components/Dashboard';
-import Protocols from './components/Dashboard/Protocols';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
+import { useSelector } from 'react-redux';
+
 
 function App() {
+  const { user } = useSelector((state) => state.auth)
+
+
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/">
+
+        <Route path="/">
           <Route index element={<Login />} />
           <Route path='/register' element={<Register />} />
-        </Route> */}
+        </Route>
 
         <Route path="/" element={<Dashboard />}>
           <Route path='protocols' element={<Protocols />}>
@@ -33,6 +39,7 @@ function App() {
             <Route path="preview" element={<Preview />} />
           </Route>
         </Route>
+
       </Routes>
     </BrowserRouter>
   );
