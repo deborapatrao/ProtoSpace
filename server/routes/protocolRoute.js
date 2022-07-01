@@ -1,10 +1,8 @@
 const controller = require("../controller/protocolController");
 const {authJwt} = require("../middleware");
+let router = require("express").Router();
 
 module.exports = function (app) {
-
-    const controller = require("../controller/protocolController");
-    let router = require("express").Router();
 
     router.post("/", controller.createProtocol);
 
