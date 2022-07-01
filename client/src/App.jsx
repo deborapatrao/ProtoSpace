@@ -25,10 +25,10 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        <Route path="/">
+        {/* <Route path="/">
           <Route index element={<Login />} />
           <Route path='/register' element={<Register />} />
-        </Route>
+        </Route> */}
 
         <Route path="/" element={<Dashboard />}>
           <Route path='protocols' element={<Protocols />}>
