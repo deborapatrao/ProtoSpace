@@ -1,15 +1,15 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 const Protocols = () => {
     const [data, setData] = useState({
-        protocol:'',
-        abstract:'',
-        author:'',
-        disclaimer:'',
-        guideline:'',
-        before_start:'',
-        safety_warning:'',
+        name: '',
+        abstract: '',
+        author: '',
+        disclaimer: '',
+        guideline: '',
+        before_start: '',
+        safety_warning: '',
         materials: ''
     });
 
@@ -24,7 +24,7 @@ const Protocols = () => {
     return (
         <div >
             Protocols
-            <Outlet context={{data, handleDataChange, steps, setSteps}}/>
+            <Outlet context={{ data, handleDataChange, steps, setSteps }} />
         </div>
     );
 }
