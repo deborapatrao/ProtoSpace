@@ -11,6 +11,7 @@ import Guidelines from './components/Dashboard/Protocols/Guidelines';
 import Materials from './components/Dashboard/Protocols/Materials';
 import Steps from './components/Dashboard/Protocols/Steps';
 import Preview from "./components/Dashboard/Protocols/Preview";
+import TableComponent from './components/Dashboard/Workspace/Table';
 
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
@@ -31,6 +32,9 @@ function App() {
         </Route> */}
 
         <Route path="/" element={<Dashboard />}>
+
+          <Route index element={<TableComponent />} />
+
           <Route path='protocols' element={<Protocols />}>
             <Route path="description" element={<Description />} />
             <Route path="guidelines" element={<Guidelines />} />
@@ -38,6 +42,7 @@ function App() {
             <Route path="steps" element={<Steps />} />
             <Route path="preview" element={<Preview />} />
           </Route>
+
         </Route>
 
       </Routes>

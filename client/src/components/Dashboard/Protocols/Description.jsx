@@ -7,7 +7,7 @@ import { TextField } from '@mui/material';
 
 const Description = () => {
     const { data, handleDataChange } = useOutletContext();
-    
+
     return (
         <section>
             {/*
@@ -23,28 +23,28 @@ const Description = () => {
             <div>
                 <label>Protocol Name<span className={"mandatory"}>*</span></label>
                 <TextField type={'text'} value={data.protocol}
-                           onChange={(e) => handleDataChange(e.target.value, 'protocol')}
-                           placeholder={'Enter protocol name'}/>
+                    onChange={(e) => handleDataChange(e.target.value, 'name')}
+                    placeholder={'Enter protocol name'} />
             </div>
 
             <div>
                 <label>Abstract<span className={"mandatory"}>*</span></label>
                 <TextField type={'text'} value={data.abstract}
-                           onChange={(e) => handleDataChange(e.target.value, 'abstract')}
-                           placeholder={'Write here'}/>
+                    onChange={(e) => handleDataChange(e.target.value, 'abstract')}
+                    placeholder={'Write here'} />
             </div>
 
             <div>
                 <label>Author<span className={"mandatory"}>*</span></label>
                 <TextField type={'text'} value={data.author}
-                           onChange={(e) => handleDataChange(e.target.value, 'author')}
-                           placeholder={'Enter names separated by commas'}/>
+                    onChange={(e) => handleDataChange(e.target.value, 'author')}
+                    placeholder={'Enter names separated by commas'} />
             </div>
 
             <div>
                 <label>Disclaimer</label>
                 <TextField type={'text'} value={data.disclaimer}
-                           onChange={(e) => handleDataChange(e.target.value, 'disclaimer')} placeholder={'Write here'}/>
+                    onChange={(e) => handleDataChange(e.target.value, 'disclaimer')} placeholder={'Write here'} />
             </div>
 
             <Link to={"/protocols/guidelines"}>Guidelines</Link>
