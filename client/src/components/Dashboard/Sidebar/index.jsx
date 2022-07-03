@@ -5,6 +5,8 @@ import {
 } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import CustomLink from './CustomLink';
+
 
 const Sidebar = () => {
     let location = useLocation();
@@ -16,16 +18,16 @@ const Sidebar = () => {
 
                     <div className='sidebar__container'>
                         <div className='sidebar__btn'>
-                            <Link to={`/protocols/description`}>Description</Link>
+                            <CustomLink to={`/protocols/description`}>Description</CustomLink>
                         </div>
                         <div className='sidebar__btn'>
-                            <Link to="/protocols/guidelines">Guidelines</Link>
+                            <CustomLink to="/protocols/guidelines">Guidelines</CustomLink>
                         </div>
                         <div className='sidebar__btn'>
-                            <Link to={`/protocols/materials`}>Materials</Link>
+                            <CustomLink to={`/protocols/materials`}>Materials</CustomLink>
                         </div>
                         <div className='sidebar__btn'>
-                            <Link to={`/protocols/steps`}>Steps</Link>
+                            <CustomLink to={`/protocols/steps`}>Steps</CustomLink>
                         </div>
                     </div>
 
