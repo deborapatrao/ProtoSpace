@@ -1,21 +1,22 @@
-header{
+header {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
+    padding: 0 1rem;
 
-    .header-navigation{
+    .header-navigation {
         display: flex;
         justify-content: flex-end;
         align-items: center;
         gap: 1rem;
 
-        button{
+        button {
             text-align: center;
         }
     }
 }
 
-.container__navbar{
+.container__navbar {
     display: grid;
     align-items: center;
 }
