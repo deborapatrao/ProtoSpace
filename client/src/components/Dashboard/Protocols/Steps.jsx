@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import SingleStep from "./SingleStep";
 import Button from '@mui/material/Button';
-import {Link, useOutletContext} from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 const Steps = () => {
     const { steps, setSteps } = useOutletContext();
 
     const handleDataChange = () => {
-        let newArr = [...steps, { id: steps.length + 1, name: `step${steps.length + 1}`, text: '' }];
+        let newArr = [...steps, { step_number: steps.length + 1, description: '' }];
 
         setSteps(newArr)
 
@@ -16,7 +16,7 @@ const Steps = () => {
     const handleTextChange = (txt, index) => {
         let newArr = [...steps];
 
-        newArr[index].text = txt;
+        newArr[index].description = txt;
 
         setSteps(newArr)
 

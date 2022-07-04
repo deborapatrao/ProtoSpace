@@ -4,7 +4,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Home from './pages/Home/index';
+// import Home from './pages/Home/index';
 import Dashboard from './components/Dashboard';
 import Protocols from './components/Dashboard/Protocols';
 import Description from './components/Dashboard/Protocols/Description';
@@ -31,7 +31,7 @@ function App() {
           <Route index element={<Login />} />
           <Route path='/register' element={<Register />} />
         </Route> */}
-        <Route path='/home' element={<Home/>} />
+        {/* <Route path='/home' element={<Home/>} /> */}
         <Route path="/" element={<Dashboard />}>
 
           <Route index element={<TableComponent />} />

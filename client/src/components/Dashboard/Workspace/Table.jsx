@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import axios from 'axios';
 
 const TableComponent = () => {
     // Example data from API:
-    const [protocols, setProtocols] = useState([{
+    const [protocols, setProtocols] = useState([]);
+
+    const [example, setExample] = useState([{
         name: 'protocol 1',
         abstract: '',
         author: 'author name',
@@ -15,6 +18,42 @@ const TableComponent = () => {
         steps: [{ id: 1, name: 'step1', text: '' }, { id: 1, name: 'step1', text: '' }],
         created_at: '2022-07-03T04:38:50.000Z'
     }]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const user = JSON.parse(localStorage.getItem('user'));
+
+            const params = {
+                // user_id: user.id,
+                workspaceId: user.workspaceId[0][0].workspaceId
+            }
+
+            const headers = {
+                "x-access-token": user.accessToken
+            }
+
+
+
+            console.log(JSON.stringify(params));
+            console.log(JSON.stringify(headers));
+
+            try {
+                const resp = await axios.post('http://localhost:8080/api/protocol/find/byworkspace', {
+                    ...params
+                }, {
+                    headers: {
+                        "x-access-token": user.accessToken
+                    }
+                });
+
+                console.log(resp);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchData();
+    }, [])
 
     return (
         <>

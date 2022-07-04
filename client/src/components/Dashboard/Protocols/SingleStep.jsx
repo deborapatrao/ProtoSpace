@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
     TextareaAutosize,
     Accordion,
@@ -10,7 +10,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const SingleStep = ({ step, index, handleTextChange, steps }) => {
-    const  [ expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     return (
         <section>
@@ -19,12 +19,12 @@ const SingleStep = ({ step, index, handleTextChange, steps }) => {
                     expandIcon={<ExpandMoreIcon />}
                 >
                     <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                        {step.name}
+                        {`Step ${index + 1}`}
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <h4>Description</h4>
-                    <TextareaAutosize key={step.name} placeholder={step.name} style={{ width: '100%', height: 100 }} value={step.text} onChange={(e) => handleTextChange(e.target.value, index)} />
+                    <TextareaAutosize key={step.name} placeholder={`Step ${index + 1}`} style={{ width: '100%', height: 100 }} value={step.description} onChange={(e) => handleTextChange(e.target.value, index)} />
                     {/*<button value={data.image} onClick={(e) => handleTextChange(e.target.value, index)}> add photo</button>*/}
                     <h4>Photos</h4>
                     <button>Add photo</button>
