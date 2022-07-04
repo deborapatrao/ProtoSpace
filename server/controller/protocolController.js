@@ -64,9 +64,8 @@ exports.createProtocol = async (req, res) => {
 
         const workspaceId = await Workspace.findByPk(req.body.workspaceId)
         // const userId = await User.findByPk(req.body.userId)
-
         const protocolCreated = await Protocol.create(data)
-        let i = 0
+
         for (const step of stepsRequest) {
 
             const stepData = {
@@ -74,24 +73,26 @@ exports.createProtocol = async (req, res) => {
                 description: step.step_description,
                 protocol_id: protocolCreated.id
             }
-            console.log(i)
 
-            const StepCreate = await Step.create(stepData)
+            if (stepData) {
 
-            const componentData = {
-                name: step.component_name,
-                information: step.component_information,
-                value: step.component_value,
-                step_id: StepCreate.id,
-                unit_id: step.unit_id,
-                component_id: step.component_id
+                const StepCreate = await Step.create(stepData)
+
+                const componentData = {
+                    name: step.component_name,
+                    information: step.component_information,
+                    value: step.component_value,
+                    step_id: StepCreate.id,
+                    unit_id: step.unit_id,
+                    component_id: step.component_id
+                }
+
+                if (StepCreate) {
+                    await StepComponents.create(componentData)
+                }
             }
-            const stepCreate = await StepComponents.create(componentData)
 
-            console.log(stepCreate)
         }
-
-        await StepComponents.create()
 
         // await userId.addProtocol(protocolCreated, userId)
         await workspaceId.addProtocol(protocolCreated, workspaceId).then(data => res.send(data)).catch(error => console.log(error))
