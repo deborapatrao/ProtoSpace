@@ -15,7 +15,7 @@ const Protocols = () => {
         materials: ''
     });
 
-    const [steps, setSteps] = useState([{ step_number: 1, description: 'step1' }]);
+    const [steps, setSteps] = useState([{ step_number: 1, description: 'step1', components: [{ unit_id: 1, component_id: 1, component_information: "info", component_name: "name", component_value: "value" }] }]);
 
     const handleDataChange = (newValue, type) => {
         let newObj = { ...data };

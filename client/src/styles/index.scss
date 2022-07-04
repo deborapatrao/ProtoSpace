@@ -101,3 +101,14 @@ body {
     text-decoration: none;
     color: black;
 }
+
+// Section STEPS: components
+.section-steps {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+
+    ul {
+        list-style-type: none;
+    }
+}
