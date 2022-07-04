@@ -10,7 +10,7 @@ const sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.passw
         freezeTableName: true
     },
     pool: {
-        max: 5,
+        max: 50,
         min: 0,
         acquire: 30000,
         idle: 10000
@@ -26,6 +26,11 @@ db.protocol = require("./protocolModel.js")(sequelize, Sequelize);
 db.workspace_protocol =  require("./workspaceProtocolModel")(sequelize, Sequelize);
 db.user_protocol = require('./userProtocolModel')(sequelize, Sequelize);
 db.step_protocol = require('./protocolStepModel')(sequelize, Sequelize);
+db.components = require('./componentModel')(sequelize, Sequelize);
+db.unit = require('./unitModel')(sequelize, Sequelize);
+db.step_component = require('./stepComponentModel')(sequelize, Sequelize);
+
+
 
 db.protocol.belongsToMany(db.workspace,{through: db.workspace_protocol, as: 'user_workspace', foreignKey: 'protocol_id'})
 db.workspace.belongsToMany(db.protocol,{through: db.workspace_protocol, as:'protocol', foreignKey: 'workspace_id'})
