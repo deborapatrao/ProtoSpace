@@ -47,6 +47,9 @@ const TableComponent = () => {
                 });
 
                 console.log(resp);
+
+                setProtocols(resp.data)
+
             } catch (error) {
                 console.log(error);
             }
