@@ -9,11 +9,10 @@ const SocialMedia = props => {
         <div className="social-container">
             <div>Follow Us</div>
             <div className="social-icons">
-                <a href=""><FacebookIcon /></a>
-                <a href=""><InstagramIcon /></a>
-                {/*<a href=""><FontAwesomeIcon icon="fa-brands fa-twitch" /></a>  // Can I use  fontawesome? */}
-                <a href=""><TwitterIcon /></a>
-                <a href=""><YouTubeIcon /></a>
+                <a href="ProtoSpace/client/src/pages/Footer/Social"><FacebookIcon /></a>
+                <a href="ProtoSpace/client/src/pages/Footer/Social"><InstagramIcon /></a>
+                <a href="ProtoSpace/client/src/pages/Footer/Social"><TwitterIcon /></a>
+                <a href="ProtoSpace/client/src/pages/Footer/Social"><YouTubeIcon /></a>
             </div>
         </div>
     </>
