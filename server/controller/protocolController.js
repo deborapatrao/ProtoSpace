@@ -77,18 +77,18 @@ exports.createProtocol = async (req, res) => {
             if (stepData) {
 
                 const StepCreate = await Step.create(stepData)
-
-                const componentData = {
-                    name: step.component_name,
-                    information: step.component_information,
-                    value: step.component_value,
-                    step_id: StepCreate.id,
-                    unit_id: step.unit_id,
-                    component_id: step.component_id
-                }
-
-                if (StepCreate) {
-                    await StepComponents.create(componentData)
+                for(components of step.components){
+                    const componentData = {
+                        name: components.component_name,
+                        information: components.component_information,
+                        value: components.component_value,
+                        step_id: StepCreate.id,
+                        unit_id: components.unit_id,
+                        component_id: components.component_id
+                    }
+                    if (StepCreate) {
+                        await StepComponents.create(componentData)
+                    }
                 }
             }
 
