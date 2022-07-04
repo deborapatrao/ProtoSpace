@@ -3,21 +3,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import axios from 'axios';
 
 const TableComponent = () => {
-    // Example data from API:
     const [protocols, setProtocols] = useState([]);
-
-    const [example, setExample] = useState([{
-        name: 'protocol 1',
-        abstract: '',
-        author: 'author name',
-        disclaimer: '',
-        guideline: '',
-        before_start: '',
-        safety_warning: '',
-        materials: '',
-        steps: [{ id: 1, name: 'step1', text: '' }, { id: 1, name: 'step1', text: '' }],
-        created_at: '2022-07-03T04:38:50.000Z'
-    }]);
 
     useEffect(() => {
         async function fetchData() {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     TextareaAutosize,
     Accordion,
@@ -9,12 +9,17 @@ import {
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const SingleStep = ({ step, index, handleTextChange, steps }) => {
+const SingleStep = ({ step, index, handleTextChange, steps, setActiveStep, activeStep }) => {
     const [expanded, setExpanded] = useState(false);
 
+
+    const handleClick = (e, index) => {
+        setActiveStep(index)
+    }
+
     return (
-        <section>
-            <Accordion key={index} expanded={expanded} onChange={() => setExpanded(!expanded)}>
+        <section onClick={(e) => handleClick(e, index)}>
+            <Accordion sx={{ border: activeStep === index ? 1 : 0, borderColor: activeStep === index ? 'red' : 'none' }} key={index} expanded={expanded} onChange={() => setExpanded(!expanded)}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                 >
@@ -29,7 +34,13 @@ const SingleStep = ({ step, index, handleTextChange, steps }) => {
                     <h4>Photos</h4>
                     <button>Add photo</button>
                     <h4>Components</h4>
-                    <div>There's no components to show</div>
+                    <ul>
+                        {step.components ? step.components.map((item, index) => {
+                            return (
+                                <li key={index}>{item.component_name}</li>
+                            )
+                        }) : 'There are no components'}
+                    </ul>
                     {/*<ul className={"addedComponentsList"}>*/}
                     {/*     */}
                     {/*    */}
