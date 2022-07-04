@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const TableComponent = () => {
     const [protocols, setProtocols] = useState([]);
@@ -10,18 +11,15 @@ const TableComponent = () => {
             const user = JSON.parse(localStorage.getItem('user'));
 
             const params = {
-                // user_id: user.id,
                 workspaceId: user.workspaceId[0][0].workspaceId
             }
 
-            const headers = {
-                "x-access-token": user.accessToken
-            }
+            // const headers = {
+            //     "x-access-token": user.accessToken
+            // }
 
-
-
-            console.log(JSON.stringify(params));
-            console.log(JSON.stringify(headers));
+            // console.log(JSON.stringify(params));
+            // console.log(JSON.stringify(headers));
 
             try {
                 const resp = await axios.post('http://localhost:8080/api/protocol/find/byworkspace', {
@@ -60,9 +58,9 @@ const TableComponent = () => {
                         {protocols ? protocols.map((item, index) => {
                             return (
                                 <TableRow key={index}>
-                                    <TableCell align="left">{item.name}</TableCell>
+                                    <TableCell align="left"><Link to={'#'}>{item.name}</Link></TableCell>
                                     <TableCell align="left">{item.author}</TableCell>
-                                    <TableCell align="left">{item.created_at}</TableCell>
+                                    <TableCell align="left">{new Date(item.created_at).toLocaleString("en-US")}</TableCell>
                                     <TableCell align="left">v1.0</TableCell>
                                 </TableRow>
                             )
