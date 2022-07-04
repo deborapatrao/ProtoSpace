@@ -14,7 +14,7 @@ exports.findProtocol = (req, res) => {
 }
 exports.findProtocolWorkspace = async (req, res) => {
 
-    /* A query to find the protocol that is associated with the workspace. */
+    /* A query to find the protocol that is associated with thäe workspace. */
     const query = `select name,
                           abstract,
                           disclaimer,

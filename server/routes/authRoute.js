@@ -1,4 +1,4 @@
-const {authJwt} = require("../middleware");
+
 module.exports = function (app) {
 
     const {verifySignUp} = require("../middleware");
