@@ -21,13 +21,13 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.users = require("./userModel.js")(sequelize, Sequelize);
-db.workspace = require("./workspaceModel.js")(sequelize, Sequelize);
-db.protocol = require("./protocolModel.js")(sequelize, Sequelize);
-db.workspace_protocol =  require("./workspaceProtocolModel")(sequelize, Sequelize);
 db.user_protocol = require('./userProtocolModel')(sequelize, Sequelize);
-db.step_protocol = require('./protocolStepModel')(sequelize, Sequelize);
+db.workspace = require("./workspaceModel.js")(sequelize, Sequelize);
+db.workspace_protocol =  require("./workspaceProtocolModel")(sequelize, Sequelize);
+db.protocol = require("./protocolModel.js")(sequelize, Sequelize);
 db.components = require('./componentModel')(sequelize, Sequelize);
 db.unit = require('./unitModel')(sequelize, Sequelize);
+db.step_protocol = require('./protocolStepModel')(sequelize, Sequelize);
 db.step_component = require('./stepComponentModel')(sequelize, Sequelize);
 
 
