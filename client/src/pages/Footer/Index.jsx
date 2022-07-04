@@ -8,13 +8,14 @@ import icon from "./icon.jpg";
 const Footer = props => {
     return <>
         <div className='Footer'>
-            <img src={icon} alt="logo" className="logo"/>
             <div className="links-footer">
-            <List />
-            <SocialMedia />
+                <img src={icon} alt="logo" className="logo"/>
+                <CopyRight />
+                <List />
             </div>
+            <div className="request-demo">
 
-            <CopyRight />
+            </div>
         </div>
 
     </>
