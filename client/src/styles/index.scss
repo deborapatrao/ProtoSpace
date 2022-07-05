@@ -109,3 +109,8 @@ body {
         list-style-type: none;
     }
 }
+
+.section__protocols {
+    display: flex;
+    flex-direction: column;
+}

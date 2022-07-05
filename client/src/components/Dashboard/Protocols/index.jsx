@@ -23,6 +23,8 @@ const Protocols = () => {
     const publishWarning = () => toast.error("Fill all required fields!");
     const publishSuccess = () => toast.success("Protocol published!");
 
+    const conditionState = data.name && data.abstract && data.author && data.guideline && data.before_start && data.safety_warning && data.materials ? true : false;
+
 
     const handleDataChange = (newValue, type) => {
         let newObj = { ...data };
@@ -73,10 +75,18 @@ const Protocols = () => {
     }
 
     return (
-        <div >
-            Protocols
-            <Outlet context={{ data, handleDataChange, steps, setSteps }} />
-            <Button onClick={handlePublish}>Publish</Button>
+        <div className="section__protocols">
+            <div className="btns__container" style={{ display: 'flex', gap: 10, alignSelf: 'flex-end', marginBottom: 30 }}>
+                <Button variant="text" sx={{ color: 'red' }}>Delete</Button>
+                <Button variant="outlined">Export</Button>
+                <Button variant="outlined">Preview</Button>
+                <Button variant="outlined">Save Draft</Button>
+                <Button variant="contained" disabled={conditionState ? false : true}>Publish</Button>
+            </div>
+            <div>
+                <Outlet context={{ data, handleDataChange, steps, setSteps }} />
+                <Button onClick={handlePublish}>Publish</Button>
+            </div>
             <ToastContainer />
         </div>
     );
