@@ -1,0 +1,36 @@
+@use '../../../styles/variables.scss' as v;
+
+.sidebar{
+
+    a{
+        text-decoration: none;
+        
+    }
+
+    &__btn{
+        
+        margin-bottom: 1rem;
+
+        & .active-sidebar{
+            background-color: v.$main-dark;
+            padding: 1rem .7rem;
+            border-radius: 6px;
+            width: 100%;
+            
+            a{
+                color: white;
+            }
+        }
+
+        & .inactive-sidebar{
+            background-color: transparent;
+            padding: 1rem .7rem;
+            border-radius: 6px;
+            width: 100%;
+            
+            a{
+                color: v.$gray-dark;
+            }
+        }
+    }
+}

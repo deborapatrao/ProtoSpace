@@ -1,0 +1,17 @@
+@use '../../../styles/variables.scss' as v;
+
+.workspace{
+    &__body{
+        padding-top: 2rem;
+        display: grid;
+        justify-items: center;
+    }
+    button{
+        border-color: v.$main-medium;
+        text-transform: capitalize;
+
+        a{
+            color: v.$main-medium;
+        }
+    }
+}

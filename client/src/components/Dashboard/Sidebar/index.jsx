@@ -10,6 +10,8 @@ import CustomLink from './CustomLink';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../../features/auth/useSlice';
 
+import './sidebar.scss'
+
 
 const Sidebar = () => {
     let location = useLocation();

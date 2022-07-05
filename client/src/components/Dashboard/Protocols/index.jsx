@@ -1,3 +1,4 @@
+import "./protocolsi.scss";
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Button } from '@mui/material';
