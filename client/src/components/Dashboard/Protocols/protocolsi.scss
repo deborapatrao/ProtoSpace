@@ -1,8 +1,9 @@
 .mandatory {
   color: #FF4D4F;
 }
-.section-header{
-  .materials-title{
+
+.section-header {
+  .materials-title {
     width: 1044px;
     height: 65px;
     left: 348px;
@@ -10,6 +11,7 @@
     background: #F4F7F9;
     border-radius: 6px;
     margin-bottom: 32px;
+
     h2 {
       font-family: 'Noto Sans';
       font-style: normal;
@@ -21,6 +23,7 @@
       padding-top: 16px;
     }
   }
+
   .mandatory-desc {
     font-family: 'Noto Sans';
     font-style: normal;
@@ -31,12 +34,14 @@
     margin-bottom: 16px;
   }
 }
-.materials-fields{
+
+.materials-fields {
   display: flex;
   flex-flow: column nowrap;
   gap: 4px;
   margin-bottom: 32px;
-  label{
+
+  label {
     margin-left: 16px;
     font-family: 'Noto Sans';
     font-style: normal;
@@ -45,37 +50,44 @@
     line-height: 24px;
     color: #063554;
   }
-  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
     width: 1044px;
     height: 326px;
     text-align: left;
   }
 }
-.navigation-links{
+
+.navigation-links {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  .link-guideline{
+
+  .link-guideline {
     display: flex;
     flex-flow: row;
     align-items: center;
     color: #249CF3;
-    svg{
+
+    svg {
       width: 16px;
       height: 16px;
     }
   }
-  .link-step{
+
+  .link-step {
     display: flex;
     flex-flow: row;
     align-items: center;
     color: #249CF3;
-    svg{
+
+    svg {
       width: 16px;
       height: 16px;
     }
   }
-  a{
+
+  a {
     font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 400;
@@ -85,18 +97,22 @@
     color: #249CF3;
   }
 }
+
 section.single-step {
   margin-bottom: 32px;
 
   .css-1174zjj-MuiPaper-root-MuiAccordion-root:last-of-type {
     border: solid thin #9DB9CA;
   }
+
   .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
     min-height: 59px;
     background: #F4F7F9;
     border-radius: 6px 6px 0px 0px;
+
     .css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
       margin: 0;
+
       p {
         font-family: 'Noto Sans';
         font-style: normal;
@@ -106,12 +122,14 @@ section.single-step {
         color: #063554;
       }
     }
-    svg{
-      color:#063554;
+
+    svg {
+      color: #063554;
       width: 24px;
       height: 24px;
     }
-   }
+  }
+
   .MuiCollapse-root.MuiCollapse-vertical.MuiCollapse-entered.css-pwcg7p-MuiCollapse-root {
     h4 {
       font-family: 'Noto Sans';
@@ -122,14 +140,17 @@ section.single-step {
       color: #063554;
 
     }
-    textarea{
+
+    textarea {
       border: solid thin #CDD8DF;
       border-radius: 6px;
-      ::placeholder{
+
+      ::placeholder {
         color: #CDD8DF;
       }
     }
   }
+
   .css-1m4ljmh-MuiTypography-root {
     font-family: 'Noto Sans';
     font-style: normal;
@@ -138,10 +159,12 @@ section.single-step {
     line-height: 27px;
     color: #063554;
   }
+
   .photo-container {
     display: flex;
     flex-flow: row wrap;
     gap: 20px;
+
     .photo-btn {
       width: 144.25px;
       height: 144.25px;
@@ -182,12 +205,14 @@ section.single-step {
 
   }
 }
+
 .components-container {
   width: 332px;
   height: 567px;
   background-color: #F4F7F9;
   padding: 20px 16px;
-  h3{
+
+  h3 {
     font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 600;
@@ -196,6 +221,7 @@ section.single-step {
     color: #063554;
     margin-bottom: 32px;
   }
+
   .buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -212,20 +238,24 @@ section.single-step {
       border: solid thin #CDD8E0;
       border-radius: 6px;
       gap: 8px;
-      svg{
+      cursor: pointer;
+
+      svg {
         width: 24px;
         height: 24px;
         color: #063554;
       }
-      button{
+
+      button {
         border: none;
         background-color: white;
-        color:#063554;
+        color: #063554;
       }
     }
   }
 
 }
+
 .add-step-btn {
   border: dashed 2px #249CF3 !important;
   width: 680px;
