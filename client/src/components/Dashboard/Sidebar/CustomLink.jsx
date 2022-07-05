@@ -12,14 +12,16 @@ const CustomLink = ({ children, to, ...props }) => {
 
     return (
         <>
-            <Link
-                // style={{ color: match ? "red" : "black" }}
-                to={to}
-                {...props}
-            >
-                {children}
-            </Link>
-            {match && " (active)"}
+            <div className={match ? 'active-sidebar' : 'inactive-sidebar'}>
+                <Link 
+                    // style={{ color: match ? "red" : "black" }}
+                    to={to}
+                    {...props}
+                >
+                    {children}
+                </Link>
+                
+            </div>
         </>
     );
 }

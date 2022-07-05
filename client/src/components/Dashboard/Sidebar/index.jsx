@@ -7,6 +7,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import CustomLink from './CustomLink';
 
+import './sidebar.scss'
+
 
 const Sidebar = () => {
     let location = useLocation();
