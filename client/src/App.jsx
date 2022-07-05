@@ -3,8 +3,9 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate
 } from "react-router-dom";
-// import Home from './pages/Home/index';
+import Home from './pages/Home/index';
 import Dashboard from './components/Dashboard';
 import Protocols from './components/Dashboard/Protocols';
 import Description from './components/Dashboard/Protocols/Description';
@@ -27,24 +28,33 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        {/* <Route path="/">
-          <Route index element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Route> */}
-        {/* <Route path='/home' element={<Home/>} /> */}
-        <Route path="/" element={<Dashboard />}>
+        {!user ?
+          <>
+            <Route path="/" element={<Home />}>
+              <Route index element={<Login />} />
+              <Route path='/register' element={<Register />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </>
 
-          <Route index element={<TableComponent />} />
 
-          <Route path='protocols' element={<Protocols />}>
-            <Route path="description" element={<Description />} />
-            <Route path="guidelines" element={<Guidelines />} />
-            <Route path="materials" element={<Materials />} />
-            <Route path="steps" element={<Steps />} />
-            <Route path="preview" element={<Preview />} />
+          :
+
+          <Route path="/" element={<Dashboard />}>
+
+            <Route index element={<TableComponent />} />
+
+            <Route path='protocols' element={<Protocols />}>
+              <Route path="description" element={<Description />} />
+              <Route path="guidelines" element={<Guidelines />} />
+              <Route path="materials" element={<Materials />} />
+              <Route path="steps" element={<Steps />} />
+              <Route path="preview" element={<Preview />} />
+            </Route>
+
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
-
-        </Route>
+        }
 
       </Routes>
     </BrowserRouter>
