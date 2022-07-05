@@ -5,11 +5,22 @@ import {
 } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import { Button } from '@mui/material';
 import CustomLink from './CustomLink';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../../features/auth/useSlice';
+
+import './sidebar.scss'
 
 
 const Sidebar = () => {
     let location = useLocation();
+    const dispatch = useDispatch();
+
+
+    const handleLogout = () => {
+        dispatch(logout())
+    }
 
     return (
         <div className='sidebar'>
@@ -36,7 +47,7 @@ const Sidebar = () => {
                     <div className='sidebar__container'>
                         <div className='sidebar__btn'>
                             <PersonIcon />
-                            <div>Shared with you</div>
+                            <div>Shared with me</div>
                         </div>
                         <div className='sidebar__btn'>
                             <CreateNewFolderIcon />
@@ -44,6 +55,10 @@ const Sidebar = () => {
                         </div>
                     </div>
             }
+
+            <div>
+                <Button type='outlined' onClick={handleLogout}>Log out</Button>
+            </div>
         </div>
     );
 }

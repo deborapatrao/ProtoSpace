@@ -1,6 +1,7 @@
 @use './variables.scss';
-
 @use './typography.scss';
+@use './buttons.scss';
+@use './mixins.scss';
 
 body {
     padding: 0;
@@ -46,12 +47,8 @@ body {
             justify-content: space-between;
 
             &__btn {
-                background-color: #0765A9;
-                margin-bottom: 1rem;
-                border-radius: 6px;
-                color: white;
-                padding: 1rem .7rem;
 
+                color: white;
                 display: flex;
                 align-items: center;
                 gap: 5px;
@@ -111,4 +108,9 @@ body {
     ul {
         list-style-type: none;
     }
+}
+
+.section__protocols {
+    display: flex;
+    flex-direction: column;
 }
