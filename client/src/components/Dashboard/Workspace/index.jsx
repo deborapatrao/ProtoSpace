@@ -1,13 +1,19 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import './workspace.scss'
 
 
 const Workspace = () => {
     return (
         <div className='workspace'>
-            Workspace
+            <h1>My Workspace</h1>
             <Outlet />
-            <Link to={"/protocols/description"}>Create protocol</Link>
+            <div className="workspace__body">
+                <Button variant="outlined">
+                    <Link to={"/protocols/description"}>+ Create protocol</Link>
+                </Button>
+            </div>
         </div>
     );
 }
