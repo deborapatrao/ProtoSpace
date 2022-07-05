@@ -7,13 +7,14 @@ import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import Menu from './Menu';
+import { Link } from 'react-router-dom';
 
 import './header.scss'
 
 const Header = props => {
 
-  const [state, setState] = useState (
-    {right: false}
+  const [state, setState] = useState(
+    { right: false }
   )
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -24,33 +25,33 @@ const Header = props => {
     setState({ ...state, [anchor]: open });
   };
 
-  
+
 
   return <>
-  
-  <header>
-    <div className='site-identity'>
-      <img src={Logo} alt='logo'/>
-    </div>
 
-    <div className='header-search'>
+    <header>
+      <div className='site-identity'>
+        <Link to={'/'}><img src={Logo} alt='logo' /></Link>
+      </div>
 
-    </div>
+      <div className='header-search'>
 
-    <div className='header-navigation'>
-      <NotificationsIcon />
-      <Avatar />
-      <Button startIcon={<MenuIcon />} onClick={toggleDrawer('right', true)}/>
-      <Drawer 
-        anchor='right'
-        open={state['right']}
-        onClose={toggleDrawer('right', false)}
-      >
-        <Menu toggleDrawer={toggleDrawer}/>
-      
-      </Drawer>
-    </div>
-  </header>
+      </div>
+
+      <div className='header-navigation'>
+        <NotificationsIcon />
+        <Avatar />
+        <Button startIcon={<MenuIcon />} onClick={toggleDrawer('right', true)} />
+        <Drawer
+          anchor='right'
+          open={state['right']}
+          onClose={toggleDrawer('right', false)}
+        >
+          <Menu toggleDrawer={toggleDrawer} />
+
+        </Drawer>
+      </div>
+    </header>
 
   </>
 }

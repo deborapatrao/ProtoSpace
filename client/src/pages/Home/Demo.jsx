@@ -1,5 +1,6 @@
 import "./home.scss";
 import React from 'react';
+import hero from './hero-image.png'
 
 
 const Demo = () => {
@@ -8,11 +9,12 @@ const Demo = () => {
         <section className={"demo-container"}>
 
             <div className={"demo-description"}>
+                <h2>Accelerate laboratory learning platform in one place</h2>
                 <p>Our protocol-sharing platform helps institutions accelerate laboratory work with method development for all research disciplines, documented step-by-step experiments, and progress tools – all in one place.</p>
                 <button className={"demo-btn-body"}>Book a demo</button>
             </div>
-            <div>
-                <img />
+            <div className={"demo-hero"}>
+                <img src={hero} alt='Protospace dashboard' />
             </div>
         </section>
     );

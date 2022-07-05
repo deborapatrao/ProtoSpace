@@ -41,7 +41,7 @@ const Login = () => {
             </FormControl>
             <FormControl >
                 <InputLabel htmlFor="password-login">Password</InputLabel>
-                <Input id="password-login" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Input type='password' id="password-login" value={password} onChange={(e) => setPassword(e.target.value)} />
             </FormControl>
             <Button type='submit' variant="contained" style={{ alignSelf: 'center' }}>Login</Button>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
