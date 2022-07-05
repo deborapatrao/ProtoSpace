@@ -122,49 +122,49 @@ const Steps = () => {
                 <ul className={"buttons"}>
                     {components ? components.map((item, index) => {
                         return <li key={index}>
-                            <div className={`components-btn`}>
+                            <div onClick={() => handleAddComponent(item, activeStep)} className={`components-btn`}>
                                 {(() => {
                                     if (item.name == "Length") {
                                         return (
-                                            <SquareFootIcon/>
+                                            <SquareFootIcon />
                                         )
                                     } else if (item.name == "volume") {
                                         return (
-                                            <LocalDrinkIcon/>
+                                            <LocalDrinkIcon />
                                         )
                                     } else if (item.name == "Mass") {
                                         return (
-                                            <ScaleIcon/>
+                                            <ScaleIcon />
                                         )
                                     } else if (item.name == "Temperature") {
                                         return (
-                                            <DeviceThermostatIcon/>
+                                            <DeviceThermostatIcon />
                                         )
                                     } else if (item.name == "Concentration") {
                                         return (
-                                            <HubIcon/>
+                                            <HubIcon />
                                         )
                                     } else if (item.name == "Pressure") {
                                         return (
-                                            <SpeedIcon/>
+                                            <SpeedIcon />
                                         )
                                     } else if (item.name == "Time") {
                                         return (
-                                            <SquareFootIcon/>
+                                            <SquareFootIcon />
                                         )
                                     } else if (item.name == "Others") {
                                         return (
-                                            <AddIcon/>
+                                            <AddIcon />
                                         )
                                     }
-                                  }
+                                }
                                 )()}
-                            <button onClick={() => handleAddComponent(item, activeStep)}>{item.name}</button>
+                                <button>{item.name}</button>
                             </div>
                         </li>
-                }) : ''}
-            </ul>
-        </div>
+                    }) : ''}
+                </ul>
+            </div>
 
         </section>
     );
