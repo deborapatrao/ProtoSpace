@@ -327,5 +327,93 @@ section.single-step {
     line-height: 22px;
     text-decoration: none;
     color: #249CF3;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+      a {
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        text-decoration: none;
+        color: #249CF3;
+    }
+}
+.section-header-guidelines{
+  .guidelines-title{
+    width: 1044px;
+    height: 65px;
+    left: 348px;
+    top: 258px;
+    background: #F4F7F9;
+    border-radius: 6px;
+    margin-bottom: 32px;
+    h2 {
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 33px;
+      color: black;
+      padding-left: 16px;
+      padding-top: 16px;
+    }
+  }
+}
+.guidelines-fields{
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 4px;
+  margin-bottom: 32px;
+  label{
+    margin-left: 16px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #063554;
+  }
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+    width: 1044px;
+    height: 326px;
+    text-align: left;
+  }
+}
+.navigation-links-guidelines{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  .link-description{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    color: #249CF3;
+    svg{
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .link-materials{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    color: #249CF3;
+    svg{
+      width: 16px;
+      height: 16px;
+    }
+  }
+  a{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    text-decoration: none;
+    color: #249CF3;
   }
 }
