@@ -84,5 +84,150 @@
     text-decoration: none;
     color: #249CF3;
   }
+}
+section.single-step {
+  margin-bottom: 32px;
 
+  .css-1174zjj-MuiPaper-root-MuiAccordion-root:last-of-type {
+    border: solid thin #9DB9CA;
+  }
+  .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
+    min-height: 59px;
+    background: #F4F7F9;
+    border-radius: 6px 6px 0px 0px;
+    .css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
+      margin: 0;
+      p {
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 27px;
+        color: #063554;
+      }
+    }
+    svg{
+      color:#063554;
+      width: 24px;
+      height: 24px;
+    }
+   }
+  .MuiCollapse-root.MuiCollapse-vertical.MuiCollapse-entered.css-pwcg7p-MuiCollapse-root {
+    h4 {
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      color: #063554;
+
+    }
+    textarea{
+      border: solid thin #CDD8DF;
+      border-radius: 6px;
+      ::placeholder{
+        color: #CDD8DF;
+      }
+    }
+  }
+  .css-1m4ljmh-MuiTypography-root {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    color: #063554;
+  }
+  .photo-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    .photo-btn {
+      width: 144.25px;
+      height: 144.25px;
+      background-color: white;
+      border: solid thin #9DB9CA;
+      border-radius: 6px;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+
+      .label-photo {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+      }
+
+      svg {
+        width: 32px;
+        height: 32px;
+        color: #249CF3;
+      }
+
+      span {
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: #249CF3;
+      }
+
+      .hidden {
+        display: none;
+      }
+    }
+
+  }
+}
+.components-container {
+  width: 332px;
+  height: 567px;
+  background-color: #F4F7F9;
+  padding: 20px 16px;
+  h3{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    color: #063554;
+    margin-bottom: 32px;
+  }
+  .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    .components-btn {
+      width: 142px;
+      height: 94px;
+      background-color: white;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      border: solid thin #CDD8E0;
+      border-radius: 6px;
+      gap: 8px;
+      svg{
+        width: 24px;
+        height: 24px;
+        color: #063554;
+      }
+      button{
+        border: none;
+        background-color: white;
+        color:#063554;
+      }
+    }
+  }
+
+}
+.add-step-btn {
+  border: dashed 2px #249CF3 !important;
+  width: 680px;
+  height: 59px;
 }
