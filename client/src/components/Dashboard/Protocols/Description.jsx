@@ -18,7 +18,7 @@ const Description = () => {
             */}
             <div className={"section-header-desc"}>
                 <div className={"description-title"}>
-                <h2>Description</h2>
+                    <h2>Description</h2>
                 </div>
                 <div><span className={"mandatory"}>*</span> This section need to be filled</div>
             </div>
@@ -50,7 +50,7 @@ const Description = () => {
                     onChange={(e) => handleDataChange(e.target.value, 'disclaimer')} placeholder={'Write here'} />
             </div>
 
-            <div className={"link-guideline"}><Link to={"/protocols/guidelines"}>Guidelines</Link><ArrowForwardIosIcon /></div>
+            <div style={{ float: 'right' }} className={"link-guideline"}><Link to={"/protocols/guidelines"}>Guidelines</Link><ArrowForwardIosIcon /></div>
 
         </section>
     );
