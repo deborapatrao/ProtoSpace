@@ -3,15 +3,15 @@ import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import {Link} from "@mui/material";
 import PopUp from "../../components/PopUp/PopUp";
-import icon from "./icon.jpg";
+import icon from "./Logo.png";
 
 
 const HeaderNav = () => {
 
 
 
-    return (
-        <section className={"header-container"}>
+    return (<>
+        {/* // <section className={"header-container"}> */}
         <div>
             <img src={icon} alt="logo" className="logo"/>
         </div>
@@ -36,7 +36,9 @@ const HeaderNav = () => {
             </ul>
         </nav>
 
-        </section>
+        {/* // </section> */}
+
+        </>
     );
 }
 
