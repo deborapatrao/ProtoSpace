@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -44,6 +44,7 @@ const TableComponent = () => {
 
     return (
         <>
+            <h1>My Workspace</h1>
             {protocols.length > 0 ?
                 <TableContainer component={Paper}>
                     <Table aria-label="simple table">
@@ -71,6 +72,11 @@ const TableComponent = () => {
                     </Table>
                 </TableContainer>
                 : ''}
+            <div className="workspace__body">
+                <Button variant="outlined">
+                    <Link to={"/protocols/description"}>+ Create protocol</Link>
+                </Button>
+            </div>
         </>
     );
 }

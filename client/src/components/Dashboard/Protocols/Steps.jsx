@@ -8,7 +8,7 @@ const Steps = () => {
     const { steps, setSteps } = useOutletContext();
     const [components, setComponents] = useState([]);
 
-    const [activeStep, setActiveStep] = useState(0);
+    const [activeStep, setActiveStep] = useState(null);
     // const [activeState, setActiveState] = useState('black');
 
     // useEffect(() => {
@@ -64,26 +64,29 @@ const Steps = () => {
     // Adding new components
     const handleAddComponent = (item, activeStep) => {
         // console.log(index);
-        const stepNum = activeStep;
-        let newArr = [...steps];
-        let newArrComponents = [...newArr[stepNum].components, {
-            unit_id: newArr[stepNum].components.length + 1,
-            component_id: newArr[stepNum].components.length + 1,
-            component_information: '',
-            component_name: item.name,
-            component_value: '',
-        }];
-        // newArrComponents.unit_id = newArrComponents.length;
-        // newArrComponents.component_id = newArrComponents.length;
-        // newArrComponents.component_information = '';
-        // newArrComponents.component_name = item.name;
-        // newArrComponents.component_value = '';
+        if (activeStep != null) {
 
-        newArr[stepNum].components = newArrComponents;
-        // console.log(newArr[stepNum].components);
-        // console.log(newArr[stepNum]);
-        console.log(steps);
-        setSteps(newArr)
+            const stepNum = activeStep;
+            let newArr = [...steps];
+            let newArrComponents = [...newArr[stepNum].components, {
+                unit_id: newArr[stepNum].components.length + 1,
+                component_id: newArr[stepNum].components.length + 1,
+                component_information: '',
+                component_name: item.name,
+                component_value: '',
+            }];
+            // newArrComponents.unit_id = newArrComponents.length;
+            // newArrComponents.component_id = newArrComponents.length;
+            // newArrComponents.component_information = '';
+            // newArrComponents.component_name = item.name;
+            // newArrComponents.component_value = '';
+
+            newArr[stepNum].components = newArrComponents;
+            // console.log(newArr[stepNum].components);
+            // console.log(newArr[stepNum]);
+            console.log(steps);
+            setSteps(newArr)
+        }
     }
 
     return (

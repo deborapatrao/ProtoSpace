@@ -47,7 +47,7 @@ const Sidebar = () => {
                     <div className='sidebar__container'>
                         <div className='sidebar__btn'>
                             <PersonIcon />
-                            <div>Shared with you</div>
+                            <div>Shared with me</div>
                         </div>
                         <div className='sidebar__btn'>
                             <CreateNewFolderIcon />
