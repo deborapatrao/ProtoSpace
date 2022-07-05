@@ -1,15 +1,16 @@
+@use '../../styles/variables.scss' as v;
+
 .header-container{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding-top: 22px;
-  padding-bottom: 22px;
-  color: #0765A9;
+  padding: 22px;
+  color: v.$main-dark;
   font-size: 16px;
   font-weight: 600;
-  font-family: Noto Sans;
-  gap: 462px;
+  
+
   ul{
     list-style: none;
     display: flex;
@@ -23,14 +24,14 @@
       .MuiAvatar-root {
         width: 24px;
         height: 24px;
-        background-color: #0765A9;
+        background-color: v.$main-dark;
       }
     }
     .demo-header{
       padding: 12px 20px;
-      width: 131px;
+      width: 100%;
       height: 44px;
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #0765A9;
+      background: v.$main-dark;
       border-radius: 6px !important;
       color: white;
       border: none;

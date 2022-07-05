@@ -1,25 +1,41 @@
+@use '../../styles/variables.scss' as v;
+@use '../../styles/mixins.scss' as mi;
+
 .demo-container{
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  background-color: #F2F9FF;
-  height: 500px;
-  padding-left: 10%;
-  padding-right: 10%;
+  background: linear-gradient(120deg, #0085FF, #00E0FF);
+  min-height: 60vh;
+  padding: 1rem 2%;
   align-items: center;
+  color: white;
+  text-align: center;
+
+  h2{
+    margin-bottom: 1rem;
+  }
+
 
   .demo-btn-body{
     padding: 12px 20px;
-    width: 131px;
     height: 44px;
-    background: #249CF3;
-    border-radius: 6px !important;
+    background: white;
+    border-radius: 6px;
     border: none;
-    color: white;
+    color: v.$main-dark;
   }
   .demo-description{
+    order: 2;
     p{
       padding-bottom: 31px;
       line-height: 26px;
+    }
+  }
+
+  .demo-hero{
+    order: 0;
+
+    img{
+      max-width: 100%;
     }
   }
 }
@@ -32,7 +48,7 @@
   h2{
     padding-top: 70px;
     padding-bottom: 20px;
-    font-family: 'Inter';
+    
     font-style: normal;
     font-weight: 700;
     font-size: 35px;
@@ -41,149 +57,67 @@
     color: #249CF3;
   }
   p{
-    font-family: 'Inter';
+    
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 26px;
     text-align: center;
     color: #000000;
-    width: 541px;
+    
     margin-left: auto;
     margin-right: auto;
   }
   .sign-un-btn{
-    width: 329px;
+    
     height: 44px;
     font-size: 14px;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #0765A9;
+    background: v.$main-dark;
     border-radius: 6px;
-    border: none !important;
+    border: none;
     color: white;
     margin-top: 26px;
   }
 }
 .main-feature-container{
-  .share{
-    width: 1440px;
-    height: 685px;
-    text-align: center;
-  }
+  text-align: center;
+
+  
   .main-feature-details{
-    width: 774px;
-    height: 546px;
+    padding: 3rem 2%;
     margin-left: auto;
     margin-right: auto;
-    .share{
-      padding-top: 68px;
-      padding-bottom: 71px;
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+
+    .main-feature-image{
+      margin: auto;
     }
+
+    .main-feature-icon{
+      padding: 2rem;
+    }
+
     h2{
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 35px;
-      line-height: 42px;
-      text-align: center;
-      color: #249CF3;
+      color: v.$main-dark;
     }
+
     p{
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 26px;
-      text-align: center;
-      color: #000000;
       padding-top: 20px;
       padding-bottom: 48px;
     }
   }
   .run-explore{
-    height: 579px;
-    width: 100%;
-    background: #F4F4F4;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    padding-left: 10%;
-    padding-right: 10%;
-    align-items: center;
+    background: v.$gray-lightest;
 
-    .run-explore-details{
-      h2{
-        text-align: left;
-      }
-      p{
-        text-align: justify;
-      }
-    }
   }
-  .monitor-progress{
-    height: 538px;
-    width: 100%;
-    background: #F8F8F8;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-left: 10%;
-    padding-right: 10%;
-    align-items: center;
-    .monitor-progress-details{
-      grid-column: 2;
-      width: 416px;
-      justify-self: right;
-      h2{
-        text-align: right;
-      }
+  
+  .support{
+    background: v.$gray-lightest;
 
-      p{
-        text-align: right;
-      }
-    }
-  }
-  .social-responsibility{
-    height: 764px;
-    width: 100%;
-    background: white;
-    padding-top: 70px;
-    .social-responsibility-details{
-      h2{
-        font-weight: 700;
-        font-size: 35px;
-        line-height: 42px;
-        color: #249CF3;
-      }
-      p{
-        padding-top: 20px;
-      }
-    }
-    .sr-info{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: 100%;
-      padding-left: 10%;
-      padding-right: 10%;
-      .sr-info-details{
-        justify-self: right;
-        h3{
-          font-family: 'Inter';
-          font-style: normal;
-          font-weight: 700;
-          font-size: 24px;
-          line-height: 26px;
-          color: #000000;
-        }
-        p{
-          font-family: 'Inter';
-          font-style: normal;
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 26px;
-          color: #000000;
-          padding-top: 28px;
-          width: 484px;
-          text-align: left;
-        }
-      }
+    h2{
+      margin-top: 2rem;
     }
   }
 }

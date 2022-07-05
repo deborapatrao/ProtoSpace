@@ -3,6 +3,15 @@ import SingleStep from "./SingleStep";
 import Button from '@mui/material/Button';
 import { Link, useOutletContext } from "react-router-dom";
 import axios from 'axios';
+import SquareFootIcon from '@mui/icons-material/SquareFoot';
+import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
+import ScaleIcon from '@mui/icons-material/Scale';
+import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
+import HubIcon from '@mui/icons-material/Hub';
+import SpeedIcon from '@mui/icons-material/Speed';
+import AddIcon from '@mui/icons-material/Add';
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const Steps = () => {
     const { steps, setSteps } = useOutletContext();
@@ -97,28 +106,65 @@ const Steps = () => {
                     return <SingleStep activeStep={activeStep} setActiveStep={setActiveStep} key={index} step={item} index={index} handleTextChange={handleTextChange} steps={steps} />
                 }) : ''}
 
-                <Button onClick={handleDataChange}>Add Step</Button>
+                <Button onClick={handleDataChange} className={"add-step-btn"}>+ New Step</Button>
+
 
                 <div>
-                    <Link to={"/protocols/materials"}>Materials</Link>
+                    <Link to={"/protocols/materials"}><ArrowBackIosNewIcon />Materials</Link>
                 </div>
 
-                <Link className={'previewBtn'} to={"/protocols/preview"}>Preview</Link>
+                <Link className={'previewBtn'} to={"/protocols/preview"}>Preview<ArrowForwardIosIcon /></Link>
             </div>
 
 
-            <div>
+            <div className={"components-container"}>
                 <h3>Components</h3>
                 <ul className={"buttons"}>
                     {components ? components.map((item, index) => {
-                        return (
-                            <li key={index}>
-                                <button onClick={() => handleAddComponent(item, activeStep)}>{item.name}</button>
-                            </li>
-                        )
-                    }) : ''}
-                </ul>
-            </div>
+                        return <li key={index}>
+                            <div className={`components-btn`}>
+                                {(() => {
+                                    if (item.name == "Length") {
+                                        return (
+                                            <SquareFootIcon/>
+                                        )
+                                    } else if (item.name == "volume") {
+                                        return (
+                                            <LocalDrinkIcon/>
+                                        )
+                                    } else if (item.name == "Mass") {
+                                        return (
+                                            <ScaleIcon/>
+                                        )
+                                    } else if (item.name == "Temperature") {
+                                        return (
+                                            <DeviceThermostatIcon/>
+                                        )
+                                    } else if (item.name == "Concentration") {
+                                        return (
+                                            <HubIcon/>
+                                        )
+                                    } else if (item.name == "Pressure") {
+                                        return (
+                                            <SpeedIcon/>
+                                        )
+                                    } else if (item.name == "Time") {
+                                        return (
+                                            <SquareFootIcon/>
+                                        )
+                                    } else if (item.name == "Others") {
+                                        return (
+                                            <AddIcon/>
+                                        )
+                                    }
+                                  }
+                                )()}
+                            <button onClick={() => handleAddComponent(item, activeStep)}>{item.name}</button>
+                            </div>
+                        </li>
+                }) : ''}
+            </ul>
+        </div>
 
         </section>
     );
