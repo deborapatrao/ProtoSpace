@@ -261,3 +261,71 @@ section.single-step {
   width: 680px;
   height: 59px;
 }
+
+.section-header-desc {
+  .description-title {
+    width: 1044px;
+    height: 65px;
+    left: 348px;
+    top: 258px;
+    background: #F4F7F9;
+    border-radius: 6px;
+    margin-bottom: 32px;
+
+    h2 {
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 33px;
+      color: black;
+      padding-left: 16px;
+      padding-top: 16px;
+    }
+  }
+}
+
+.description-fields {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 4px;
+  margin-bottom: 32px;
+
+  label {
+    margin-left: 16px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #063554;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    width: 1044px;
+    height: 326px;
+    text-align: left;
+  }
+}
+
+.link-guideline {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  color: #249CF3;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  a {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    text-decoration: none;
+    color: #249CF3;
+  }
+}
