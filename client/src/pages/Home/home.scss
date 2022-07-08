@@ -1,0 +1,123 @@
+@use '../../styles/variables.scss' as v;
+@use '../../styles/mixins.scss' as mi;
+
+.demo-container{
+  display: grid;
+  background: linear-gradient(120deg, #0085FF, #00E0FF);
+  min-height: 60vh;
+  padding: 1rem 2%;
+  align-items: center;
+  color: white;
+  text-align: center;
+
+  h2{
+    margin-bottom: 1rem;
+  }
+
+
+  .demo-btn-body{
+    padding: 12px 20px;
+    height: 44px;
+    background: white;
+    border-radius: 6px;
+    border: none;
+    color: v.$main-dark;
+  }
+  .demo-description{
+    order: 2;
+    p{
+      padding-bottom: 31px;
+      line-height: 26px;
+    }
+  }
+
+  .demo-hero{
+    order: 0;
+
+    img{
+      max-width: 100%;
+    }
+  }
+}
+.sign-up-container{
+  height: 337px;
+  background: #EDEDED;
+  text-align: center;
+
+
+  h2{
+    padding-top: 70px;
+    padding-bottom: 20px;
+    
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 55px;
+    text-align: center;
+    color: #249CF3;
+  }
+  p{
+    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+    color: #000000;
+    
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sign-un-btn{
+    
+    height: 44px;
+    font-size: 14px;
+    background: v.$main-dark;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    margin-top: 26px;
+  }
+}
+.main-feature-container{
+  text-align: center;
+
+  
+  .main-feature-details{
+    padding: 3rem 2%;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+
+    .main-feature-image{
+      margin: auto;
+    }
+
+    .main-feature-icon{
+      padding: 2rem;
+    }
+
+    h2{
+      color: v.$main-dark;
+    }
+
+    p{
+      padding-top: 20px;
+      padding-bottom: 48px;
+    }
+  }
+  .run-explore{
+    background: v.$gray-lightest;
+
+  }
+  
+  .support{
+    background: v.$gray-lightest;
+
+    h2{
+      margin-top: 2rem;
+    }
+  }
+}

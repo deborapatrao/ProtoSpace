@@ -1,21 +1,30 @@
-import React, { useState, useEffect} from 'react';
+import "./protocolsi.scss";
+import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Button } from '@mui/material';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Protocols = () => {
     const [data, setData] = useState({
-        name:'',
-        abstract:'',
-        author:'',
-        disclaimer:'',
-        guideline:'',
-        before_start:'',
-        safety_warning:'',
+        name: '',
+        abstract: '',
+        author: '',
+        disclaimer: '',
+        guideline: '',
+        before_start: '',
+        safety_warning: '',
         materials: ''
     });
 
-    const [steps, setSteps] = useState([{ step_number: 1, description: 'step1' }]);
+    const [steps, setSteps] = useState([{ step_number: 1, description: 'step1', components: [{ unit_id: 1, component_id: 1, component_information: "info", component_name: "name", component_value: "value" }] }]);
+
+    const publishWarning = () => toast.error("Fill all required fields!");
+    const publishSuccess = () => toast.success("Protocol published!");
+
+    const conditionState = data.name && data.abstract && data.author && data.guideline && data.before_start && data.safety_warning && data.materials ? true : false;
+
 
     const handleDataChange = (newValue, type) => {
         let newObj = { ...data };
@@ -24,42 +33,61 @@ const Protocols = () => {
     }
 
     const handlePublish = async () => {
-        const user = JSON.parse(localStorage.getItem('user'));
+        const condition = data.name && data.abstract && data.author && data.guideline && data.before_start && data.safety_warning && data.materials ? true : false;
+        console.log(condition);
 
-        const params = {
-            user_id: user.id,
-            workspaceId: user.workspaceId[0][0].workspaceId,
-            ...data,
-            steps: steps
-        }
+        if (condition) {
 
-        const headers = {
-            "x-access-token": user.accessToken
-        }
+            const user = JSON.parse(localStorage.getItem('user'));
 
-        console.log(JSON.stringify(params));
-        console.log(JSON.stringify(headers));
+            const params = {
+                user_id: user.id,
+                workspaceId: user.workspaceId[0][0].workspaceId,
+                ...data,
+                steps: steps
+            }
 
-        try {
-            const resp = await axios.post('http://localhost:8080/api/protocol/', {
-                ...params
-            }, {
-                headers: {
-                    "x-access-token": user.accessToken
-                }
-            });
+            const headers = {
+                "x-access-token": user.accessToken
+            }
 
-            console.log(resp);
-        } catch (error) {
-            console.log(error);
+            console.log(JSON.stringify(params));
+            console.log(JSON.stringify(headers));
+
+            try {
+                const resp = await axios.post('http://localhost:8080/api/protocol/', {
+                    ...params
+                }, {
+                    headers: {
+                        "x-access-token": user.accessToken
+                    }
+                });
+
+                publishSuccess();
+
+                console.log(resp);
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            publishWarning();
         }
     }
 
     return (
-        <div >
-            Protocols
-            <Outlet context={{data, handleDataChange, steps, setSteps}}/>
-            <Button onClick={handlePublish}>Publish</Button>
+        <div className="section__protocols">
+            <div className="btns__container" style={{ display: 'flex', gap: 10, alignSelf: 'flex-end', marginBottom: 30 }}>
+                <Button variant="text" sx={{ color: 'red' }}>Delete</Button>
+                <Button variant="outlined">Export</Button>
+                <Button variant="outlined">Preview</Button>
+                <Button variant="outlined">Save Draft</Button>
+                <Button variant="contained" disabled={conditionState ? false : true}>Publish</Button>
+            </div>
+            <div>
+                <Outlet context={{ data, handleDataChange, steps, setSteps }} />
+                <Button onClick={handlePublish}>Publish</Button>
+            </div>
+            <ToastContainer />
         </div>
     );
 }

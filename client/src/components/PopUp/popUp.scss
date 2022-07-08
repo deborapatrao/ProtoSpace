@@ -1,0 +1,34 @@
+
+.popup-content{
+  background-color: white;
+  position: absolute;
+  top: 25% !important;
+  font-size: 18px;
+  right: 25% !important;
+  left: 25% !important;
+  width: auto;
+  .pop-up-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 596px;
+
+    .image-container{
+      background-color: #92d1fe;
+      background-image: radial-gradient( white -9%, #92d1fe 89%);
+      border-radius: 15px 0 0 15px !important;
+    }
+    .info-container{
+      background-color: white;
+    }
+  }
+}
+
+.login-btn{
+  border-radius: 0 !important;
+  border: none;
+  background: none;
+  color: #0765A9;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Noto Sans;
+}
