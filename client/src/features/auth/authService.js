@@ -1,8 +1,8 @@
 import axios from "axios"
+import { HOST_URL } from "../../data/data"
 
-const HOST = 'http://localhost:8080';
-const API_URL_REGISTER = `${HOST}/api/auth/register`
-const API_URL_LOGIN = `${HOST}/api/auth/login`
+const API_URL_REGISTER = `${HOST_URL}/api/auth/register`
+const API_URL_LOGIN = `${HOST_URL}/api/auth/login`
 
 const register = async (userData) => {
     const response = await axios.post(API_URL_REGISTER, userData)
