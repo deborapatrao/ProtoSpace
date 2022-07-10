@@ -12,6 +12,7 @@ import SpeedIcon from '@mui/icons-material/Speed';
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { HOST_URL } from '../../../data/data';
 
 const Steps = () => {
     const { steps, setSteps } = useOutletContext();
@@ -33,7 +34,7 @@ const Steps = () => {
             }
 
             try {
-                const resp = await axios.post('http://localhost:8080/api/component', {
+                const resp = await axios.post(`${HOST_URL}/api/component`, {
                     ...params
                 }, {
                     headers: {
