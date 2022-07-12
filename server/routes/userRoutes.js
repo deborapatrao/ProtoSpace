@@ -26,5 +26,7 @@ module.exports = function (app) {
     */
 
     router.get("/", controller.findAll);
+    router.post("/profile/", controller.findOne);
+
     app.use('/api/users', [authJwt.verifyToken], router);
 };

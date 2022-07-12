@@ -15,7 +15,7 @@ exports.findAll = (req, res) => {
     const name = req.query.name;
     let condition = name ? {name: {[Op.like]: `%${name}%`}} : null;
     Users.findAll({where: condition})
-        .then(data => {
+    unit     .then(data => {
             res.send(data);
         })
         .catch(err => {
@@ -26,3 +26,22 @@ exports.findAll = (req, res) => {
     });
 };
 
+exports.findOne = async (req, res) => {
+    const user = Users.findOne({
+        attributes: { exclude: [
+            'id',
+            'last_login',
+            'created_at'
+            ]},
+        where: {
+            id: req.body.id
+        }})
+            .then(result => {
+                res.send(result);
+            })
+            .catch(err =>{
+                res.status(500).send({
+                    message: err.message
+                })
+            })
+}
