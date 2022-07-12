@@ -3,20 +3,17 @@ import List from "./List";
 import SocialMedia from "./Social";
 import CopyRight from "./Copyright";
 import "./footer.scss";
-import icon from "./icon.jpg";
+import logo from "./logo.png";
 
 const Footer = props => {
     return <>
-        <div className='Footer'>
-            <div className="links-footer">
-                <img src={icon} alt="logo" className="logo"/>
-                <CopyRight />
+        <footer>
+            <div className="footer__main">
+                <img src={logo} alt="logo" className="logo"/>
                 <List />
             </div>
-            <div className="request-demo">
-
-            </div>
-        </div>
+                <CopyRight />   
+        </footer>
 
     </>
 }
