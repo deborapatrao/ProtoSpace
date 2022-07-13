@@ -9,6 +9,8 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 const Description = () => {
     const { data, handleDataChange } = useOutletContext();
 
+
+
     return (
         <section>
             {/*

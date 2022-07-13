@@ -6,7 +6,6 @@ import { Outlet } from 'react-router-dom';
 const PopUp = () => {
 
 
-
     return (
         <Popup trigger={<button className={"login-btn"}>Login</button>} position="right center">
             <div className={"pop-up-container"} >
