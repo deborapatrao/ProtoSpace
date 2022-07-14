@@ -1,18 +1,72 @@
 import React from 'react';
+import './profile.scss';
 import {
     Link
 } from "react-router-dom";
 import { TextField } from '@mui/material';
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import InputAdornment from '@mui/material/InputAdornment';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import IconButton from '@mui/material/IconButton';
+import InputLabel from '@mui/material/InputLabel';
 import Button from '@mui/material/Button';
-import {useEffect} from "react";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import {useEffect, useState} from "react";
 import axios from "axios";
+
 import {HOST_URL} from "../../data/data";
 
 
 const Profile = () => {
 
+    const [ userInfo, setUserInfo] = useState ({
+        name:'',
+        email:'',
+        updated_at:'',
+        password:'',
+        photo:''
+    });
+    const [newPassword, setNewPassword] = useState({
+        password:'',
+        showPass: false,
+    });
+    const [newPasswordConf, setNewPasswordConf] = useState({
+        password:'',
+        showPass2: false,
+    });
+
+
+        const handleChangeN = (prop) => (event) => {
+        setNewPassword({ ...newPassword, [prop]: event.target.value });
+    };
+
+    const handleClickShowPasswordN = () => {
+        setNewPassword({
+            ...newPassword,
+            showPass: !newPassword.showPass,
+        });
+    };
+    const handleChangeN2 = (prop) => (event) => {
+        setNewPasswordConf({ ...newPasswordConf, [prop]: event.target.value });
+    };
+
+    const handleClickShowPasswordN2 = () => {
+        setNewPasswordConf({
+            ...newPasswordConf,
+            showPass2: !newPasswordConf.showPass2,
+        });
+    };
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
+    const fileSelectedHandler = (event) => {
+        console.log(event.target.files[0]);
+    };
+    const fileUploadHandler = event =>{
+
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -31,7 +85,7 @@ const Profile = () => {
                     }
                 });
 
-                console.log(resp);
+                setUserInfo(resp.data);
 
             } catch (error) {
                 console.log(error);
@@ -44,47 +98,87 @@ const Profile = () => {
 
 
     return <>
-        <section>
-            <h1>Profile</h1>
+        <section className={"profile-container"}>
+            <h2>Your Profile</h2>
+            <form action={"/"} method={"POST"}>
             <div className={"image-container"}>
-                <img src={"user.image"} />
-                <button><CameraAltIcon /> Change profile </button>
+                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} onChange={fileSelectedHandler} src={userInfo.photo} />
+                {/*<button><CameraAltIcon /> Change profile </button>*/}
             </div>
             <div className={"user-info-container"}>
-                <h3>Your information</h3>
-                <div>Last Update: <span>{"user.update_at"}</span></div>
-                <div><span className={"mandatory"}>*</span> This section need to be filled</div>
+                <div className={"container-header"}>
+                    <h4>Account Information</h4>
+                    <div className={"updated-container"}>Last Update: <span>{userInfo.updated_at.slice(0,10)}</span></div>
+                    <div className={"mandatory-def"}><span className={"mandatory"}>*</span> This section need to be filled</div>
+                </div>
                 <div className={"user-info-fields"}>
                     <div>
-                        <label>First Name<span className={"mandatory-desc"}>*</span></label>
-                        <TextField type={'text'} value={"user.name"}/>
+                        <label>Name<span className={"mandatory"}>*</span></label>
+                        <TextField type={'text'} value={userInfo.name}/>
                     </div>
+
                     <div>
-                        <label>Last Name<span className={"mandatory-desc"}>*</span></label>
-                        <TextField type={'text'} value={"user.name"}/>
-                    </div>
-                    <div>
-                        <label>Email<span className={"mandatory-desc"}>*</span></label>
-                        <TextField type={'text'} value={"user.email"}/>
+                        <label>Email<span className={"mandatory"}>*</span></label>
+                        <TextField type={'text'} value={userInfo.email}/>
                     </div>
                 </div>
                 <div className={"password-fields"}>
+                    <h4>Password</h4>
                     <div>
-                        <label>Password<span className={"mandatory-desc"}>*</span></label>
-                        <TextField type={'password'} value={"user.password"}/>
+                        <label>Password</label>
+                        <OutlinedInput
+                            id="outlined-adornment-password-current"
+                            type={'password'}
+                            value={userInfo.password}
+                        />
                     </div>
                     <div>
-                        <label>New Password<span className={"mandatory-desc"}>*</span></label>
-                        <TextField type={'password'} value={"user.password"}/>
+                        <InputLabel htmlFor="outlined-adornment-password" >New Password<span className={"mandatory"}>*</span></InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password-new"
+                            type={newPassword.showPass ? 'text' : 'password'}
+                            onChange={handleChangeN('password')}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPasswordN}
+                                        onMouseDown={handleMouseDownPassword}
+                                        edge="end"
+                                    >
+                                        {newPassword.showPass ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
                     </div>
                     <div>
-                        <label>Confirm New Password<span className={"mandatory-desc"}>*</span></label>
-                        <TextField type={'password'} value={"user.password"}/>
+                        <InputLabel htmlFor="outlined-adornment-password">Confirm New Password<span className={"mandatory"}>*</span></InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password-new-confirm"
+                            type={newPasswordConf.showPass2 ? 'text' : 'password'}
+                            onChange={handleChangeN2('password')}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPasswordN2}
+                                        onMouseDown={handleMouseDownPassword}
+                                        edge="end"
+                                    >
+                                        {newPasswordConf.showPass2 ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
                     </div>
                 </div>
             </div>
-            <Button variant={"contained"}>Cancel</Button>
-            <Button variant={"outlined"}>Update</Button>
+            <div className={"buttons"}>
+                <Button variant={"text"} className={"cancel-btn"} type={"reset"}>Cancel</Button>
+                <Button variant={"contained"}className={"update-btn"} type={"submit"}>Update</Button>
+            </div>
+            </form>
         </section>
     </>
 }

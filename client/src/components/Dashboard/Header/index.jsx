@@ -40,7 +40,7 @@ const Header = props => {
 
       <div className='header-navigation'>
         <NotificationsIcon />
-        <Avatar />
+        <Link to={'/profile'}><Avatar /></Link>
         <Button startIcon={<MenuIcon />} onClick={toggleDrawer('right', true)} />
         <Drawer
           anchor='right'
