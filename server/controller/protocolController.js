@@ -28,6 +28,7 @@ exports.findProtocolWorkspace = async (req, res) => {
                           published,
                           workspace_id,
                           protocol_id,
+                          
                           created_at,
                           updated_at
                    from protocol
