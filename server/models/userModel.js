@@ -4,6 +4,7 @@ module.exports = (sequelize, Sequelize) => {
         name: {
             type: Sequelize.STRING,
             allowNull: false,
+            unique: true,
             validate: {
                 isAlpha: true
             }
@@ -22,7 +23,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         college_number: {
             type: Sequelize.INTEGER,
-            allowNull: false,
+            allowNull: true,
             unique: true,
 
         },

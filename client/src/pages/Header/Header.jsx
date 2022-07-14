@@ -12,8 +12,9 @@ const HeaderNav = () => {
 
     return (<>
         {/* // <section className={"header-container"}> */}
-        <div>
+        <div className="site-identity">
             <img src={icon} alt="logo" className="logo"/>
+            <h1 className="site-title">ProtoSpace</h1>
         </div>
         <nav>
             <ul>
