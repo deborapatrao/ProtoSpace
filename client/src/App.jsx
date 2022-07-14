@@ -18,6 +18,7 @@ import TableComponent from './components/Dashboard/Workspace/Table';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import { useSelector } from 'react-redux';
+import Profile from "./components/Profile/Profile";
 
 
 function App() {
@@ -51,7 +52,7 @@ function App() {
               <Route path="steps" element={<Steps />} />
               <Route path="preview" element={<Preview />} />
             </Route>
-
+            <Route path="profile" element={<Profile />}/>
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         }
