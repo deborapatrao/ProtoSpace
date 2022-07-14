@@ -15,7 +15,7 @@ exports.findAll = (req, res) => {
     const name = req.query.name;
     let condition = name ? {name: {[Op.like]: `%${name}%`}} : null;
     Users.findAll({where: condition})
-    unit     .then(data => {
+        .then(data => {
             res.send(data);
         })
         .catch(err => {
