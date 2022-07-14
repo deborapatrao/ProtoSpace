@@ -5,8 +5,9 @@ import HeaderNav from "./Header";
 
 const Header = () =>{
     return(
-
-        <HeaderNav />
+                <div className="header-container">
+                    <HeaderNav />
+                </div>
     );
 
 }
