@@ -1,13 +1,17 @@
 @use '../../styles/variables.scss' as v;
 @use '../../styles/mixins.scss' as mi;
 
-.header-container{
+
+.home header{  
+  .header-container{
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2%;
   color: v.$main-dark;
+  max-width: 1200px;
+  margin: auto;
 
   ul{
     list-style: none;
@@ -53,4 +57,5 @@
     }
   }
 
+}
 }

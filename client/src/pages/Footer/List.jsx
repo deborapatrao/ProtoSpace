@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 
 const List = props => {
     return <>
-    <div className="footer-container">
+    <div className="footer__container">
         <div className="list-container">
             <div className='left-list'>
                 <ul>

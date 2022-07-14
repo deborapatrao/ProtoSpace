@@ -1,15 +1,24 @@
 @use '../../styles/variables.scss' as v;
 @use '../../styles/mixins.scss' as mi;
 
-footer{
+.home footer{
+  .footer__container{
+    @include mi.mediaQuery(mi.$desktop){
+      display: flex;
+      justify-content: space-between;
+    }
+  }
   .footer__main{
     padding: 3rem 2%;
+    max-width: 1200px;
+    margin: auto;
   }
 
   .list-container{
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       justify-content: center;
+      gap: 3rem;
 
     ul {
       list-style: none;
