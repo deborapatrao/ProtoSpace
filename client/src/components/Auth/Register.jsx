@@ -43,8 +43,7 @@ const Register = () => {
 
     return (loading ? <CircularProgress /> :
         <form style={{ display: 'flex', flexDirection: 'column', gap: 10 }} onSubmit={handleSubmit}>
-
-            <FormControl>
+            <FormControl >
                 <InputLabel htmlFor="name-register">Name</InputLabel>
                 <Input id="name-register" value={name} onChange={(e) => setName(e.target.value)} />
             </FormControl>
@@ -54,11 +53,11 @@ const Register = () => {
             </FormControl>
             <FormControl >
                 <InputLabel htmlFor="password-register">Password</InputLabel>
-                <Input type="password" id="password-register" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Input id="password-register" value={password} onChange={(e) => setPassword(e.target.value)} />
             </FormControl>
             <FormControl >
                 <InputLabel htmlFor="password2-register">Confirm Password</InputLabel>
-                <Input type="password" id="password2-register" value={password2} onChange={(e) => setPassword2(e.target.value)} />
+                <Input id="password2-register" value={password2} onChange={(e) => setPassword2(e.target.value)} />
             </FormControl>
             <FormControl >
                 <InputLabel htmlFor="collegeNumber-register">College Number</InputLabel>
@@ -69,13 +68,11 @@ const Register = () => {
                 <Input id="role-register" value={role} onChange={(e) => setRole(e.target.value)} />
             </FormControl>
 
-            <Button type='submit' variant="contained" style={{ alignSelf: 'center' }}>Register</Button>
-
+            <Button type='submit' variant="contained" style={{ alignSelf: 'center' }}>Login</Button>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <p>Already have an account?</p>
                 <Link to={'/'}>Login</Link>
             </div>
-
         </form>
     );
 }
