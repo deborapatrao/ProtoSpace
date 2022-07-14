@@ -26,3 +26,22 @@ exports.findAll = (req, res) => {
     });
 };
 
+exports.findOne = async (req, res) => {
+    const user = Users.findOne({
+        attributes: { exclude: [
+            'id',
+            'last_login',
+            'created_at'
+            ]},
+        where: {
+            id: req.body.id
+        }})
+            .then(result => {
+                res.send(result);
+            })
+            .catch(err =>{
+                res.status(500).send({
+                    message: err.message
+                })
+            })
+}
