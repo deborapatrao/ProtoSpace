@@ -45,3 +45,24 @@ exports.findOne = async (req, res) => {
                 })
             })
 }
+exports.update = async (req,res) =>{
+    const update = Users.update(
+        {
+        name: req.body.name,
+        photo: req.body.photo,
+        password: req.body.password
+        },
+        {
+        where:{
+            id: req.body.id
+        }
+    })
+        .then(result => {
+            res.send(result);
+        })
+        .catch(err =>{
+            res.status(500).send({
+                message: err.message
+            })
+        })
+}
