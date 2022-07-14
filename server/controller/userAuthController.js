@@ -21,9 +21,6 @@ exports.register = (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        college_number: req.body.college_number,
-        role: req.body.role,
-        photo: req.body.photo,
 
     };
     // Save Users in the database

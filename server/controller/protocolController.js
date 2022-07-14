@@ -28,7 +28,6 @@ exports.findProtocolWorkspace = async (req, res) => {
                           published,
                           workspace_id,
                           protocol_id,
-                          
                           created_at,
                           updated_at
                    from protocol
@@ -44,6 +43,26 @@ exports.findProtocolWorkspace = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
+}
+
+exports.runProtocol = async = (req, res) => {
+
+    try {
+        Protocol.update({
+                start_run: Date()
+            },
+            {
+                where:
+                    {id: req.body.protocolId}
+            })
+            .then(data => {
+                res.status(200).send('Step started!')
+            }).catch(error => res.send(error))
+
+    } catch (e) {
+        res.status(500).send(e)
+    }
+
 }
 
 exports.createProtocol = async (req, res) => {
@@ -78,7 +97,7 @@ exports.createProtocol = async (req, res) => {
             if (stepData) {
 
                 const StepCreate = await Step.create(stepData)
-                for(components of step.components){
+                for (components of step.components) {
                     const componentData = {
                         name: components.component_name,
                         information: components.component_information,
