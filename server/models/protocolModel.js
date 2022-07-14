@@ -37,5 +37,8 @@ module.exports = (sequelize, Sequelize) => {
         published: {
             type: Sequelize.STRING
         },
+        start_run: {
+            type: Sequelize.DATE
+        },
     })
 };

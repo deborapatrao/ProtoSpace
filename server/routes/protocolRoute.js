@@ -8,10 +8,9 @@ module.exports = function (app) {
 
     router.post('/find/', controller.findProtocol);
 
-    router.post('/find/byworkspace/', controller.findProtocolWorkspace);
+    router.post('/run/', controller.runProtocol);
 
-    router.post('/step/start/', controller.startStep);
-    router.post('/step/end/', controller.endStep);
+    router.post('/find/byworkspace/', controller.findProtocolWorkspace);
 
     app.use('/api/protocol', [authJwt.verifyToken], router);
 };
