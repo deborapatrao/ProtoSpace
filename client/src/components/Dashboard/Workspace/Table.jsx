@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { HOST_URL } from '../../../data/data';
 
 const TableComponent = () => {
     const [protocols, setProtocols] = useState([]);
@@ -22,7 +23,7 @@ const TableComponent = () => {
             // console.log(JSON.stringify(headers));
 
             try {
-                const resp = await axios.post('http://localhost:8080/api/protocol/find/byworkspace', {
+                const resp = await axios.post(`${HOST_URL}/api/protocol/find/byworkspace`, {
                     ...params
                 }, {
                     headers: {

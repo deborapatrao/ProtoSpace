@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors")
 const app = express();
 const db = require("./models");
-db.sequelize.sync();
+// db.sequelize.sync();
 const PORT = process.env.PORT || 8080;
 
 

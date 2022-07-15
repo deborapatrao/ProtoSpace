@@ -5,6 +5,8 @@ import { Button } from '@mui/material';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { HOST_URL } from '../../../data/data';
+
 
 const Protocols = () => {
     const [data, setData] = useState({
@@ -55,7 +57,7 @@ const Protocols = () => {
             console.log(JSON.stringify(headers));
 
             try {
-                const resp = await axios.post('http://localhost:8080/api/protocol/', {
+                const resp = await axios.post(`${HOST_URL}/api/protocol/`, {
                     ...params
                 }, {
                     headers: {

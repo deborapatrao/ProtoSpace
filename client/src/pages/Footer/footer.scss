@@ -1,41 +1,51 @@
-$text-color: #063554;
+@use '../../styles/variables.scss' as v;
+@use '../../styles/mixins.scss' as mi;
 
-.Footer{
-  height: 361px;
-  width: 100%;
-  background: #063554;
-  .left-list {
-   margin-left: 10%;
-    ul {
+.home footer{
+  .footer__container{
+    @include mi.mediaQuery(mi.$desktop){
       display: flex;
-      flex-flow: row;
+      justify-content: space-between;
+    }
+  }
+  .footer__main{
+    padding: 3rem 2%;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .list-container{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      justify-content: center;
+      gap: 3rem;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
       li {
-        list-style: none;
-        :nth-child(odd){
-          border-left: thin solid white;
-        }
+        padding: .5rem 0;
+
         a {
           text-decoration: none;
-
-          padding: 0px 10px 0px 10px;
-          color: white;
+          color: v.$main-dark;
         }
       }
     }
   }
-  .logo{
-    padding-left: 10%;
-    margin-top: 64px;
-    }
+
+  .footer__demo{
+    margin-top: 2rem;
+    grid-column: 1/-1;
+    color: v.$main-dark;
+    font-weight: 600;
   }
+}
   .copy-right-container {
-    background-color: $text-color;
-    padding-top: 22px;
-    padding-bottom: 20px;
-    bottom: 0;
-    width: 100%;
-    p {
-      margin-left: 10%;
-      color: white;
-    }
+    background-color: v.$main-dark;
+    color: white;
+    padding: 1rem 2%;
+    text-align: center;
   }
