@@ -6,13 +6,11 @@ const Step = db.step_protocol
 exports.findStepsProtocol = async (req, res) => {
 
     /* A query to find the steps of a protocol. */
-    const query = `select step_id     as step_id,
+    const query = `select id          as step_id,
                           description as step_description,
                           note        as step_note,
                           step_number
-
                    from step_protocol
-                            join step_component sc on step_protocol.id = sc.step_id
                    where protocol_id = ${req.body.protocolId}`
     try {
         const [results] = await Raw.query(query);
@@ -21,7 +19,7 @@ exports.findStepsProtocol = async (req, res) => {
             res.status(200).send(results);
         }
     } catch (error) {
-       res.status(501).send(error)
+        res.status(501).send(error)
     }
 }
 
