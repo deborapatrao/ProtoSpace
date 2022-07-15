@@ -58,7 +58,12 @@ exports.update = async (req,res) =>{
         }
     })
         .then(result => {
-            res.send(result);
+            if(result.password === Users.password) {
+                res.send(result);
+            }
+            return {
+                message:  "incorrect  current password"
+            }
         })
         .catch(err =>{
             res.status(500).send({
