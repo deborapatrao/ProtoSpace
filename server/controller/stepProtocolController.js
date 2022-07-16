@@ -1,6 +1,8 @@
 const db = require("../models")
 const Raw = db.sequelize;
 const Step = db.step_protocol
+const uploadImg = require('../config/uploadImg')
+const getImg = require('../config/getImageUrl')
 
 
 exports.findStepsProtocol = async (req, res) => {
@@ -37,4 +39,49 @@ exports.stepNote = async (req, res) => {
         res.send('Step not found!')
     }
 
+}
+
+exports.startStep = async (req, res) => {
+
+    try {
+        // await Step.findByPk( req.body.step_id)
+        await Step.update({
+                start_run: Date()
+            },
+            {
+                where:
+                    {id: req.body.step_id}
+            })
+            .then(data => {
+                res.status(200).send('Step started!')
+            }).catch(error => res.send(error))
+    } catch (e) {
+        res.send(e)
+    }
+}
+
+exports.endStep = async (req, res) => {
+
+    try {
+        // await Step.findByPk( req.body.step_id)
+        await Step.update({
+                end_run: Date()
+            },
+            {
+                where:
+                    {id: req.body.step_id}
+            })
+            .then(data => {
+                res.status(200).send('Step ended!')
+            }).catch(error => res.send(error))
+    } catch (e) {
+        res.send(e)
+    }
+}
+
+exports.uploadImg = async ( req,res) => {
+    uploadImg(req.body.path, req.body.img).then(data =>{
+        res.send(data)
+    })
+        .catch(err => res.send(err))
 }
