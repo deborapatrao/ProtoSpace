@@ -7,7 +7,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import { Button } from '@mui/material';
 import CustomLink from './CustomLink';
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { logout } from '../../../features/auth/useSlice';
 
 import './sidebar.scss'

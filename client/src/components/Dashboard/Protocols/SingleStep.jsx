@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     TextareaAutosize,
     Accordion,
@@ -9,7 +9,7 @@ import {
 import ImageIcon from '@mui/icons-material/Image';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const SingleStep = ({ step, index, handleTextChange, steps, setActiveStep, activeStep }) => {
+const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep }) => {
     const [expanded, setExpanded] = useState(false);
 
 

@@ -15,13 +15,6 @@ const TableComponent = () => {
                 workspaceId: user.workspaceId[0][0].workspaceId
             }
 
-            // const headers = {
-            //     "x-access-token": user.accessToken
-            // }
-
-            // console.log(JSON.stringify(params));
-            // console.log(JSON.stringify(headers));
-
             try {
                 const resp = await axios.post(`${HOST_URL}/api/protocol/find/byworkspace`, {
                     ...params
