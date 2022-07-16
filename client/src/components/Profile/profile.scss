@@ -1,0 +1,105 @@
+@use '../../styles/variables.scss' as v;
+@use '../../styles/typography' as t ;
+
+.profile-container {
+  color: v.$sec-dark;
+
+  h1 {
+    font-size: 32px;
+  }
+
+  form{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    .container-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      .updated-container{
+        color: v.$sec-medium;
+        font-family: 'Noto Sans';
+        font-weight: 400;
+        font-size: 12px;
+        text-align: right;
+      }
+      .mandatory-def{
+        margin-top: 32px;
+        margin-bottom: 16px;
+        font-family: 'Noto Sans';
+        font-weight: 400;
+        font-size: 12px;
+      }
+    }
+
+    h2 {
+      font-size: 22px;
+    }
+    label{
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .user-info-container {
+      fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+        border: thin solid #CDD8E0;
+      }
+      input{
+        background: #FFFFFF;
+        border: unset;
+        border-radius: 6px;
+        width: 378px;
+        height: 42px;
+        margin: 0;
+        padding: 0 16px;
+      }
+      .user-info-fields {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        padding-bottom: 48px;
+        border-bottom: 1.5px solid #CDD8E0;
+        div{
+          display: inherit;
+        }
+      }
+    }
+    .password-fields{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 25px;
+      row-gap: 25px;
+      h4 {
+        padding: 48px 0 7px;
+        grid-column: 1/-1;
+      }
+      label{
+        color: v.$sec-dark;
+        margin-bottom: 4px;
+      }
+      div:first-of-type{
+        grid-column: 1/-1;
+        inline-size: min-content;
+        label{
+          margin-bottom: 4px;
+        }
+      }
+    }
+    .buttons {
+      grid-column: 2;
+      justify-self: self-end;
+      margin-top: 48px;
+      .cancel-btn{
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        color: v.$main-medium;
+        margin-right: 20px;
+        padding: 12px 26px;
+      }
+      .update-btn{
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 12px 20px;
+      }
+    }
+  }
+}

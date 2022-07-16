@@ -1,4 +1,5 @@
 const {authJwt} = require("../middleware");
+const controller = require("../controller/userController");
 module.exports = function (app) {
 
     const {authJwt} = require("../middleware");
@@ -26,5 +27,8 @@ module.exports = function (app) {
     */
 
     router.get("/", controller.findAll);
+    router.post("/profile/", controller.findOne);
+    router.post("/profiles/", controller.update);
+
     app.use('/api/users', [authJwt.verifyToken], router);
 };

@@ -1,18 +1,30 @@
 @use '../../styles/variables.scss' as v;
 @use '../../styles/mixins.scss' as mi;
 
-.demo-container{
-  display: grid;
+.home{
+  .demo-container{
   background: linear-gradient(120deg, #0085FF, #00E0FF);
   min-height: 60vh;
-  padding: 1rem 2%;
-  align-items: center;
+  padding: 2rem 2% 3rem 2%;
+  
   color: white;
   text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
 
-  @include mi.mediaQuery(mi.$desktop){
-    grid-template-columns: 1fr 2fr;
+  & .container{
+    display: grid;
+    align-items: center;
+    margin: auto;
+    max-width: 1200px;
+
+    @include mi.mediaQuery(mi.$desktop){
+      grid-template-columns: 1fr 2fr;
+    }
   }
+
+  
 
   h2{
     margin-bottom: 1rem;
@@ -68,18 +80,32 @@
 }
 .main-feature-container{
   text-align: center;
-
+}
   
   .main-feature-details{
+
+    & .container{
     padding: 3rem 2%;
     margin-left: auto;
     margin-right: auto;
     display: grid;
     gap: 2rem;
     align-items: center;
+    max-width: 1200px;
 
     @include mi.mediaQuery(mi.$desktop){
       grid-template-columns: repeat(2, 1fr);
+    }
+    }
+
+    &:nth-of-type(even){
+      background-color: v.$gray-lightest;
+    }
+
+    @include mi.mediaQuery(mi.$desktop){
+      &:nth-child(even) .main-feature-image{
+        order: 2;
+      }
     }
 
     .main-feature-image{
@@ -109,6 +135,12 @@
 
     h2{
       margin-top: 2rem;
+    }
+  }
+
+  .sign-up{
+    @include mi.mediaQuery(mi.$desktop){
+      text-align: left;
     }
   }
 }
