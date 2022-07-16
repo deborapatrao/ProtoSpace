@@ -1,3 +1,4 @@
+require('dotenv').config();
 module.exports = {
-    secret: "protopsace-team-uranus-is-the-best-team"
+    secret: process.env.ACCESS_TOKEN_SECRET
 };

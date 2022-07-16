@@ -121,40 +121,6 @@ exports.createProtocol = async (req, res) => {
         console.log(error)
     }
 }
-exports.startStep = async (req, res) => {
+exports.shareProtocol = async (req, res) => {
 
-    try {
-        // await Step.findByPk( req.body.step_id)
-        await Step.update({
-                start_run: Date()
-            },
-            {
-                where:
-                    {id: req.body.step_id}
-            })
-            .then(data => {
-                res.status(200).send('Step started!')
-            }).catch(error => res.send(error))
-    } catch (e) {
-        res.send(e)
-    }
-}
-
-exports.endStep = async (req, res) => {
-
-    try {
-        // await Step.findByPk( req.body.step_id)
-        await Step.update({
-                end_run: Date()
-            },
-            {
-                where:
-                    {id: req.body.step_id}
-            })
-            .then(data => {
-                res.status(200).send('Step ended!')
-            }).catch(error => res.send(error))
-    } catch (e) {
-        res.send(e)
-    }
 }
