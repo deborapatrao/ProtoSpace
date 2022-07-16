@@ -29,7 +29,7 @@ const Header = props => {
 
   return <>
 
-    <header>
+    <header className='workspace-header'>
       <div className='site-identity'>
         <Link to={'/'}><img src={Logo} alt='logo' /></Link>
       </div>
