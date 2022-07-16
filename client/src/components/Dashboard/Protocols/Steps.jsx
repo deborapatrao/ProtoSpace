@@ -55,7 +55,7 @@ const Steps = () => {
     }, [])
 
     const handleDataChange = () => {
-        let newArr = [...steps, { step_number: steps.length + 1, description: '', components: [] }];
+        let newArr = [...steps, { step_number: steps.length + 1, step_description: '', components: [] }];
 
         setSteps(newArr)
 
@@ -64,7 +64,7 @@ const Steps = () => {
     const handleTextChange = (txt, index) => {
         let newArr = [...steps];
 
-        newArr[index].description = txt;
+        newArr[index].step_description = txt;
 
         setSteps(newArr)
 
