@@ -15,6 +15,14 @@ import Steps from './components/Dashboard/Protocols/Steps';
 import Preview from "./components/Dashboard/Protocols/Preview";
 import TableComponent from './components/Dashboard/Workspace/Table';
 
+import ProtocolRun from './components/Dashboard/Protocols/Run';
+import PreviewRun from './components/Dashboard/Protocols/Run/PreviewRun';
+import DescriptionRun from './components/Dashboard/Protocols/Run/DescriptionRun';
+import GuidelinesRun from './components/Dashboard/Protocols/Run/GuidelinesRun';
+import MaterialsRun from './components/Dashboard/Protocols/Run/MaterialsRun';
+import StepsRun from './components/Dashboard/Protocols/Run/StepsRun';
+
+
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import { useSelector } from 'react-redux';
@@ -51,6 +59,16 @@ function App() {
               <Route path="materials" element={<Materials />} />
               <Route path="steps" element={<Steps />} />
               <Route path="preview" element={<Preview />} />
+
+              <Route path='run'>
+                <Route path=':protocolId' element={<ProtocolRun />}>
+                  <Route index element={<PreviewRun />} />
+                  <Route path="description" element={<DescriptionRun />} />
+                  <Route path="guidelines" element={<GuidelinesRun />} />
+                  <Route path="materials" element={<MaterialsRun />} />
+                  <Route path="steps" element={<StepsRun />} />
+                </Route>
+              </Route>
             </Route>
             <Route path="profile" element={<Profile />}/>
             <Route path="*" element={<Navigate to="/" replace />} />

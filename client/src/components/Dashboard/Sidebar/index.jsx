@@ -1,13 +1,13 @@
 import React from 'react';
 import {
     useLocation,
-    Link,
+    useParams
 } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import { Button } from '@mui/material';
 import CustomLink from './CustomLink';
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { logout } from '../../../features/auth/useSlice';
 
 import './sidebar.scss'
@@ -16,6 +16,7 @@ import './sidebar.scss'
 const Sidebar = () => {
     let location = useLocation();
     const dispatch = useDispatch();
+    const { protocolId } = useParams();
 
 
     const handleLogout = () => {
@@ -29,18 +30,20 @@ const Sidebar = () => {
 
                     <div className='sidebar__container'>
                         <div className='sidebar__btn'>
-                            <CustomLink to={`/protocols/description`}>Description</CustomLink>
+                            <CustomLink to={location.pathname.includes('/protocols/run') ? `/protocols/run/${protocolId}/description` : `/protocols/description`}>Description</CustomLink>
                         </div>
                         <div className='sidebar__btn'>
-                            <CustomLink to="/protocols/guidelines">Guidelines</CustomLink>
+                            <CustomLink to={location.pathname.includes('/protocols/run') ? `/protocols/run/${protocolId}/guidelines` : `/protocols/guidelines`}>Guidelines</CustomLink>
+
                         </div>
                         <div className='sidebar__btn'>
-                            <CustomLink to={`/protocols/materials`}>Materials</CustomLink>
+                            <CustomLink to={location.pathname.includes('/protocols/run') ? `/protocols/run/${protocolId}/materials` : `/protocols/materials`}>Materials</CustomLink>
                         </div>
                         <div className='sidebar__btn'>
-                            <CustomLink to={`/protocols/steps`}>Steps</CustomLink>
+                            <CustomLink to={location.pathname.includes('/protocols/run') ? `/protocols/run/${protocolId}/steps` : `/protocols/steps`}>Steps</CustomLink>
                         </div>
                     </div>
+
 
                     :
 
