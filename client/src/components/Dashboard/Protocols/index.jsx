@@ -1,5 +1,5 @@
 import "./protocolsi.scss";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Button } from '@mui/material';
 import axios from 'axios';
@@ -20,7 +20,7 @@ const Protocols = () => {
         materials: ''
     });
 
-    const [steps, setSteps] = useState([{ step_number: 1, description: 'step1', components: [{ unit_id: 1, component_id: 1, component_information: "info", component_name: "name", component_value: "value" }] }]);
+    const [steps, setSteps] = useState([{ step_number: 1, step_description: '', components: [] }]);
 
     const publishWarning = () => toast.error("Fill all required fields!");
     const publishSuccess = () => toast.success("Protocol published!");

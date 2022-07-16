@@ -3,6 +3,7 @@ const db = require("../models");
 const Users = db.users;
 const Op = db.Sequelize.Op;
 
+
 /*exports.studentAccess = (req, res) => {
     res.status(200).send("Student Content.");
 };
@@ -15,7 +16,7 @@ exports.findAll = (req, res) => {
     const name = req.query.name;
     let condition = name ? {name: {[Op.like]: `%${name}%`}} : null;
     Users.findAll({where: condition})
-    unit     .then(data => {
+        .then(data => {
             res.send(data);
         })
         .catch(err => {
@@ -44,12 +45,15 @@ exports.findOne = async (req, res) => {
                     message: err.message
                 })
             })
-}
+};
+
 exports.update = async (req,res) =>{
+    const user = await Users.findByPk(req.body.id);
     const update = Users.update(
         {
         name: req.body.name,
         photo: req.body.photo,
+        passwordC: req.body.passwordC,
         password: req.body.password
         },
         {
@@ -58,7 +62,14 @@ exports.update = async (req,res) =>{
         }
     })
         .then(result => {
-            res.send(result);
+
+            if(req.body.passwordC !== user.password) {
+                return res.status(401).send({
+                    message: `Incorrect current password!`
+                });
+            }else {
+                res.send(result);
+            }
         })
         .catch(err =>{
             res.status(500).send({
