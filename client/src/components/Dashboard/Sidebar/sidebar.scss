@@ -57,4 +57,38 @@
     }
 }
 
-.sidebarMobile {}
+.sidebarMobile {
+    &__container{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        
+    .sidebarMobile__btn{
+        width: 100%;
+        text-align: center;
+        position: relative;
+    }    
+        .active-sidebar{
+            
+            &::before{
+                content: '';
+                width: 100%;
+                height: 2px;
+                background-color: v.$sec-dark;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+
+            a{
+                color: v.$sec-dark;
+            }
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: v.$gray-dark;
+    }
+
+
+}

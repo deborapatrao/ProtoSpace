@@ -1,79 +1,85 @@
-.mandatory {
-  color: #FF4D4F;
+@use '../../../styles/variables.scss' as v;
+@use '../../../styles/mixins.scss' as mi;
+
+.workspace{
+  .mandatory {
+  color: v.$support-red;
 }
 
 .section-header {
-  .materials-title {
-    width: 1044px;
-    height: 65px;
-    left: 348px;
-    top: 258px;
-    background: #F4F7F9;
+  margin: 1rem;
+  .section-title {
+    background: v.$gray-light;
+    margin-bottom: 1rem;
+    padding: 1rem;
     border-radius: 6px;
-    margin-bottom: 32px;
+  }  
+}
 
-    h2 {
-      font-family: 'Noto Sans';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 22px;
-      line-height: 33px;
-      color: black;
-      padding-left: 16px;
-      padding-top: 16px;
+  .section-body{
+    margin: 1rem;
+    display: grid;
+    grid-gap: 1.5rem;
+
+    .section-field{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+
+    textarea, .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+      border: 1px solid v.$gray-dark;
+      border-radius: 6px;     
+      padding: 16.5px 14px;
+    }
+
     }
   }
 
-  .mandatory-desc {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 18px;
-    color: #063554;
-    margin-bottom: 16px;
-  }
-}
-
-.materials-fields {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 4px;
-  margin-bottom: 32px;
-
-  label {
-    margin-left: 16px;
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    color: #063554;
-  }
-
-  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-    width: 1044px;
-    height: 326px;
-    text-align: left;
-  }
-}
-
-.navigation-links {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-
-  .link-guideline {
+  .navigation-links{
     display: flex;
-    flex-flow: row;
-    align-items: center;
-    color: #249CF3;
+    justify-content: space-between;
+    margin: 1rem;
 
-    svg {
+    .link-next, .link-previous{
+    position: relative;
+
+    a{
+      color: v.$main-medium;
+      text-decoration: none;
+    }
+    svg{
+      fill: v.$main-medium;
       width: 16px;
       height: 16px;
+      position: absolute;
     }
   }
+
+  .link-previous {
+    a{
+      padding-left: 16px;
+    }
+
+    svg{
+      bottom: 4px;
+      left: 0;
+    }
+  }
+
+  .link-next {
+    a{
+      padding-right: 16px;
+    }
+
+    svg{
+      bottom: 4px;
+      right: 0;
+    }
+  }
+
+
+
+
 
   .link-step {
     display: flex;
@@ -257,32 +263,9 @@ section.single-step {
 
 .add-step-btn {
   border: dashed 2px #249CF3 !important;
-  width: 680px;
-  height: 59px;
+
 }
 
-.section-header-desc {
-  .description-title {
-    width: 1044px;
-    height: 65px;
-    left: 348px;
-    top: 258px;
-    background: #F4F7F9;
-    border-radius: 6px;
-    margin-bottom: 32px;
-
-    h2 {
-      font-family: 'Noto Sans';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 22px;
-      line-height: 33px;
-      color: black;
-      padding-left: 16px;
-      padding-top: 16px;
-    }
-  }
-}
 
 .description-fields {
   display: flex;
@@ -290,15 +273,6 @@ section.single-step {
   gap: 4px;
   margin-bottom: 32px;
 
-  label {
-    margin-left: 16px;
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    color: #063554;
-  }
 
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
     width: 1044px;
@@ -413,4 +387,5 @@ section.single-step {
     text-decoration: none;
     color: #249CF3;
   }
+}
 }

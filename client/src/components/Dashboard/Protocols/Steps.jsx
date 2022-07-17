@@ -96,13 +96,13 @@ const Steps = () => {
 
     return (
         <section className='section-steps'>
-            <div>
+            <div className='section-body'>
                 {steps ? steps.map((item, index) => {
                     // console.log(index);
                     return <SingleStep activeStep={activeStep} setActiveStep={setActiveStep} key={index} step={item} index={index} handleTextChange={handleTextChange} steps={steps} setSteps={setSteps} />
                 }) : ''}
 
-                <Button onClick={handleDataChange} className={"add-step-btn"}>+ New Step</Button>
+                <div className="section-body"><Button onClick={handleDataChange} className={"add-step-btn"}>+ New Step</Button></div>
 
 
                 <div>
