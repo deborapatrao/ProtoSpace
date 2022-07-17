@@ -48,7 +48,7 @@ const TableComponent = () => {
             <h1>My Workspace</h1>
             {protocols.length > 0 ?
                 <TableContainer component={Paper}>
-                    <Table aria-label="simple table">
+                    <Table aria-label="simple table" className='dashboard__table'>
                         <TableHead>
                             <TableRow>
                                 <TableCell align="left">Name</TableCell>
