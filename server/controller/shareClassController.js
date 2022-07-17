@@ -43,7 +43,6 @@ exports.shareProtocol = async (req, res) => {
             res.status(500)
         }
     } else {
-
         res.status(500).send('Parsed field wrong!')
     }
 }
