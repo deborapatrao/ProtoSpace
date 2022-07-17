@@ -3,7 +3,7 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import './workspace.scss'
 import Sidebar from '../Sidebar';
-import Breadcrumbs from '../../Breadcrumbs';
+import FolderBreadcrumbs from '../../FolderBreadcrumbs';
 
 
 const Workspace = ({ width }) => {
@@ -11,7 +11,7 @@ const Workspace = ({ width }) => {
 
     return (
         <div className='workspace'>
-            <Breadcrumbs />
+            <FolderBreadcrumbs />
             {location.pathname === '/' ? <h1>My Workspace</h1> : ''}
             <Outlet context={{ width }} />
         </div>
