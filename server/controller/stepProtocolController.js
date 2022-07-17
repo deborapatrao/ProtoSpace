@@ -1,8 +1,8 @@
 const db = require("../models")
 const Raw = db.sequelize;
 const Step = db.step_protocol
-const uploadImg = require('../../images/uploadImg')
-const getImg = require('../../images/getImageUrl')
+const uploadImg = require('../images/uploadImg')
+const getImg = require('../images/getImageUrl')
 const StepUserProtocol = db.step_user_protocol
 
 exports.findStepsProtocol = async (req, res) => {
@@ -39,7 +39,7 @@ exports.stepNote = async (req, res) => {
             protocol_id: findStep.protocol_id,
             note: req.body.note
         }
-        await StepUserProtocol.create(data)
+        await StepUserProtocol.update(data, {where:{id: req.body.step_id}})
         res.send(findStep)
 
     } else {
@@ -52,8 +52,8 @@ exports.startStep = async (req, res) => {
 
     try {
         // await Step.findByPk( req.body.step_id)
-        await Step.update({
-                start_run: Date()
+        await StepUserProtocol.update({
+                start_step: Date()
             },
             {
                 where:
@@ -71,15 +71,15 @@ exports.endStep = async (req, res) => {
 
     try {
         // await Step.findByPk( req.body.step_id)
-        await Step.update({
-                end_run: Date()
+        await StepUserProtocol.update({
+                end_step: Date()
             },
             {
                 where:
                     {id: req.body.step_id}
             })
             .then(data => {
-                res.status(200).send(data)
+                res.status(200).send('Step Ended!')
             }).catch(error => res.send(error))
     } catch (e) {
         res.send(e)
