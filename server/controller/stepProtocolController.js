@@ -72,7 +72,7 @@ exports.endStep = async (req, res) => {
                     {id: req.body.step_id}
             })
             .then(data => {
-                res.status(200).send('Step ended!')
+                res.status(200).send(data)
             }).catch(error => res.send(error))
     } catch (e) {
         res.send(e)

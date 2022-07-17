@@ -121,6 +121,3 @@ exports.createProtocol = async (req, res) => {
         console.log(error)
     }
 }
-exports.shareProtocol = async (req, res) => {
-
-}
