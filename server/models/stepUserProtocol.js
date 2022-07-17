@@ -7,6 +7,9 @@ module.exports = (sequelize, Sequelize) => {
         step_protocol_id: {
             type: Sequelize.INTEGER,
         },
+        workspace_id: {
+            type: Sequelize.INTEGER,
+        },
         note: {
             type: Sequelize.STRING,
         },

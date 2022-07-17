@@ -113,7 +113,8 @@ exports.createProtocol = async (req, res) => {
                 }
                 const stepUserData = {
                     step_protocol_id: StepCreate.id,
-                    protocol_id: protocolCreated.id
+                    protocol_id: protocolCreated.id,
+                    workspace_id: workspaceId.id
                 }
                 await StepUserProtocol.create(stepUserData)
             }
