@@ -29,6 +29,7 @@ db.components = require('./componentModel')(sequelize, Sequelize);
 db.unit = require('./unitModel')(sequelize, Sequelize);
 db.step_protocol = require('./protocolStepModel')(sequelize, Sequelize);
 db.step_component = require('./stepComponentModel')(sequelize, Sequelize);
+db.step_user_protocol = require('./step_user_protocol')(sequelize, Sequelize);
 
 
 

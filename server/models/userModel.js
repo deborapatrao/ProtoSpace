@@ -29,7 +29,6 @@ module.exports = (sequelize, Sequelize) => {
         },
         role: {
             type: Sequelize.STRING,
-            allowNull: false
 
         },
         photo: {
