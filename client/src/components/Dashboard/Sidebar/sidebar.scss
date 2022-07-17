@@ -1,10 +1,11 @@
 @use '../../../styles/variables.scss' as v;
 
 .sidebar{
+    max-width: 300px;
+
 
     a{
         text-decoration: none;
-        
     }
 
     &__btn{
