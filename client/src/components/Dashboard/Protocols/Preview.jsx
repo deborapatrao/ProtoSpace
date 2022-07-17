@@ -3,44 +3,48 @@ import React from 'react';
 const Preview = ({ protocolInfo }) => {
     return (
         <>
+        <section className={"preview"}>
             <div className={'sectionTitle'}>
-                <h2>Description</h2>
+                <h4>Description</h4>
             </div>
             <div className={'description'}>
-                <label>Protocol Name</label>
+                <h6>Protocol Name</h6>
                 <p type={'text'}>{protocolInfo.name}</p>
-                <label>Abstract</label>
+                <h6>Abstract</h6>
                 <p type={'text'}>{protocolInfo.abstract}</p>
-                <label>Author</label>
+                <h6>Author</h6>
                 <p type={'text'}>{protocolInfo.author}</p>
-                <label>Disclaimer</label>
+                <h6>Disclaimer</h6>
                 <p type={'text'}>{protocolInfo.disclaimer}</p>
             </div>
 
             <div className={'sectionTitle'}>
-                <h2>Guidelines</h2>
+                <h4>Guidelines</h4>
             </div>
             <div className={'guidelines'}>
-                <label>Guidelines</label>
+                <h6>Guidelines</h6>
                 <p type={'text'}>{protocolInfo.guideline}</p>
-                <label>Before start</label>
+                <h6>Before start</h6>
                 <p type={'text'}>{protocolInfo.before_start}</p>
-                <label>Safety warnings</label>
+                <h6>Safety warnings</h6>
                 <p type={'text'}>{protocolInfo.safety_warning}</p>
-                <label>
+                <h6>
                     Confidentially policy
-                </label>
-                <span>Sensitive content warning</span>
-                <span>Confidential</span>
+                </h6>
+                <div className={"confidentially-options"}>
+                    <span>Sensitive content warning</span>
+                    <span>Confidential</span>
+                </div>
             </div>
 
             <div className={'sectionTitle'}>
-                <h2>Material</h2>
+                <h4>Material</h4>
             </div>
             <div className={'materials'}>
-                <label>List of materials</label>
+                <h6>List of materials</h6>
                 <p type={'text'}>{protocolInfo.materials}</p>
             </div>
+        </section>
         </>
     );
 }
