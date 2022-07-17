@@ -1,37 +1,60 @@
 @use '../../../styles/variables.scss' as v;
 
-.sidebar{
+.sidebarDesktop {
     max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #063554;
+
+    &__btn {
+
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    &__trash {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #9DB9CA;
+
+    }
 
 
-    a{
+    a {
         text-decoration: none;
     }
 
-    &__btn{
-        
+    &__btn {
+
         margin-bottom: 1rem;
 
-        & .active-sidebar{
+        & .active-sidebar {
             background-color: v.$main-dark;
             padding: 1rem .7rem;
             border-radius: 6px;
             width: 100%;
-            
-            a{
+
+            a {
                 color: white;
             }
         }
 
-        & .inactive-sidebar{
+        & .inactive-sidebar {
             background-color: transparent;
             padding: 1rem .7rem;
             border-radius: 6px;
             width: 100%;
-            
-            a{
+
+            a {
                 color: v.$gray-dark;
             }
-        } 
+        }
     }
 }
+
+.sidebarMobile {}
