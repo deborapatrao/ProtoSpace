@@ -30,7 +30,7 @@ exports.shareProtocol = async (req, res) => {
                 const data = {
                     protocol_id: protocol,
                     workspace_id: workspace.workspace_id,
-                    shared: 'S'
+                    shared: 1
                 }
                 WorspaceProtocol.create(data)
                     .then(data => {
