@@ -1,6 +1,6 @@
 const fs = require('fs');
 // const AWS = require('aws-sdk');
-const s3Bucket = require('../server/config/aws')
+const s3Bucket = require('../config/aws')
 
 const imageUpload = (path, buffer) =>{
     const data = {
