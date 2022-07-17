@@ -16,18 +16,6 @@ module.exports = (sequelize, Sequelize) => {
 
 
         },
-        note: {
-            type: Sequelize.STRING,
 
-        },
-        start_run: {
-            type: Sequelize.DATE,
-
-        },
-        end_run: {
-            type: Sequelize.DATE,
-
-
-        }
     },{  timestamps: false})
 };

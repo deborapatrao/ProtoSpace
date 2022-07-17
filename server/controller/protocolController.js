@@ -5,6 +5,7 @@ const Workspace = db.workspace
 const User = db.users
 const Step = db.step_protocol
 const StepComponents = db.step_component
+const StepUserProtocol = db.step_user_protocol
 
 exports.findProtocol = (req, res) => {
     Protocol.findByPk(req.body.protocolId)
@@ -110,6 +111,12 @@ exports.createProtocol = async (req, res) => {
                         await StepComponents.create(componentData)
                     }
                 }
+                const stepUserData = {
+                    step_protocol_id: StepCreate.id,
+                    protocol_id: protocolCreated.id,
+                    workspace_id: workspaceId.id
+                }
+                await StepUserProtocol.create(stepUserData)
             }
 
         }

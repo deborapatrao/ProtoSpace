@@ -1,11 +1,12 @@
 import "./protocolsi.scss";
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useOutletContext } from 'react-router-dom';
 import { Button } from '@mui/material';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { HOST_URL } from '../../../data/data';
+import Sidebar from "../Sidebar";
 
 
 const Protocols = () => {
@@ -21,6 +22,8 @@ const Protocols = () => {
     });
 
     const [steps, setSteps] = useState([{ step_number: 1, step_description: '', components: [] }]);
+
+    const { width } = useOutletContext();
 
     const publishWarning = () => toast.error("Fill all required fields!");
     const publishSuccess = () => toast.success("Protocol published!");
@@ -84,6 +87,9 @@ const Protocols = () => {
                 <Button variant="outlined">Preview</Button>
                 <Button variant="outlined">Save Draft</Button>
                 <Button variant="contained" disabled={conditionState ? false : true}>Publish</Button>
+            </div>
+            <div>
+                {width > 1000 ? '' : <Sidebar width={width} />}
             </div>
             <div>
                 <Outlet context={{ data, handleDataChange, steps, setSteps }} />

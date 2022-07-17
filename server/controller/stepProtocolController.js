@@ -1,19 +1,22 @@
 const db = require("../models")
 const Raw = db.sequelize;
 const Step = db.step_protocol
-const uploadImg = require('../config/uploadImg')
-const getImg = require('../config/getImageUrl')
-
+const uploadImg = require('../images/uploadImg')
+const getImg = require('../images/getImageUrl')
+const StepUserProtocol = db.step_user_protocol
 
 exports.findStepsProtocol = async (req, res) => {
 
     /* A query to find the steps of a protocol. */
-    const query = `select id          as step_id,
+    const query = `select sp.id       as step_id,
                           description as step_description,
-                          note        as step_note,
+                          sup.note    as step_note,
                           step_number
-                   from step_protocol
-                   where protocol_id = ${req.body.protocolId}`
+
+                   from step_user_protocol sup
+                            join protocol p on p.id = sup.protocol_id
+                            join step_protocol sp on sp.id = sup.step_protocol_id
+                   where p.id = ${req.body.protocolId}`
     try {
         const [results] = await Raw.query(query);
 
@@ -30,10 +33,13 @@ exports.stepNote = async (req, res) => {
     const findStep = await Step.findOne({where: {id: req.body.step_id}})
 
     if (findStep) {
-
-        await Step.update({note: req.body.note}, {where: {id: req.body.step_id}}).then(response => {
-            res.status(200).send('Step note Updated')
-        })
+        const data = {
+            step_protocol_id: findStep.id,
+            protocol_id: findStep.protocol_id,
+            note: req.body.note
+        }
+        await StepUserProtocol.update(data, {where:{id: req.body.step_id}})
+        res.send(findStep)
 
     } else {
         res.send('Step not found!')
@@ -45,8 +51,8 @@ exports.startStep = async (req, res) => {
 
     try {
         // await Step.findByPk( req.body.step_id)
-        await Step.update({
-                start_run: Date()
+        await StepUserProtocol.update({
+                start_step: Date()
             },
             {
                 where:
@@ -64,23 +70,23 @@ exports.endStep = async (req, res) => {
 
     try {
         // await Step.findByPk( req.body.step_id)
-        await Step.update({
-                end_run: Date()
+        await StepUserProtocol.update({
+                end_step: Date()
             },
             {
                 where:
                     {id: req.body.step_id}
             })
             .then(data => {
-                res.status(200).send(data)
+                res.status(200).send('Step Ended!')
             }).catch(error => res.send(error))
     } catch (e) {
         res.send(e)
     }
 }
 
-exports.uploadImg = async ( req,res) => {
-    uploadImg(req.body.path, req.body.img).then(data =>{
+exports.uploadImg = async (req, res) => {
+    uploadImg(req.body.path, req.body.img).then(data => {
         res.send(data)
     })
         .catch(err => res.send(err))

@@ -29,31 +29,11 @@ body {
 
     &__dashboard {
         display: grid;
-        grid-template-columns: 300px 3fr;
         height: 93vh;
         gap: 2rem;
 
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 1rem;
-
-            &__btn {
-
-                color: white;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-            }
-
-            &__trash {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                color: #9DB9CA;
-
-            }
+        @media screen and (min-width: 1000px) {
+            grid-template-columns: 300px 3fr;
         }
 
         .workspace {
@@ -69,10 +49,6 @@ body {
 
 }
 
-
-.sidebar {
-    background-color: #063554;
-}
 
 .workspace {
     background-color: white;

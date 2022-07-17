@@ -38,7 +38,6 @@ const TableComponent = () => {
 
     return (
         <>
-            <h1>My Workspace</h1>
             {protocols.length > 0 ?
                 <TableContainer component={Paper}>
                     <Table aria-label="simple table" className='dashboard__table'>
