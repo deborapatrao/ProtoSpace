@@ -11,13 +11,12 @@ exports.findStepsProtocol = async (req, res) => {
     const query = `select sp.id       as step_id,
                           description as step_description,
                           sup.note    as step_note,
-                          step_number,
-                          sp.step_number
+                          step_number
 
                    from step_user_protocol sup
                             join protocol p on p.id = sup.protocol_id
                             join step_protocol sp on sp.id = sup.step_protocol_id
-                   where sup.id = ${req.body.protocolId}`
+                   where p.id = ${req.body.protocolId} and sup.workspace_id= ${req.body.workspace_id}`
     try {
         const [results] = await Raw.query(query);
 

@@ -9,8 +9,6 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
-    const [collegeNumber, setCollegeNumber] = useState('');
-    const [role, setRole] = useState('S');
 
     const dispatch = useDispatch();
     const { user, loading, error, response } = useSelector((state) => state.auth)
@@ -31,9 +29,7 @@ const Register = () => {
         const userData = {
             name: name,
             email: email,
-            password: password,
-            college_number: collegeNumber,
-            role: role
+            password: password
         }
 
         dispatch(register(userData))
@@ -58,14 +54,6 @@ const Register = () => {
             <FormControl >
                 <InputLabel htmlFor="password2-register">Confirm Password</InputLabel>
                 <Input id="password2-register" value={password2} onChange={(e) => setPassword2(e.target.value)} />
-            </FormControl>
-            <FormControl >
-                <InputLabel htmlFor="collegeNumber-register">College Number</InputLabel>
-                <Input id="collegeNumber-register" value={collegeNumber} onChange={(e) => setCollegeNumber(e.target.value)} />
-            </FormControl>
-            <FormControl >
-                <InputLabel htmlFor="role-register">Role</InputLabel>
-                <Input id="role-register" value={role} onChange={(e) => setRole(e.target.value)} />
             </FormControl>
 
             <Button type='submit' variant="contained" style={{ alignSelf: 'center' }}>Login</Button>
