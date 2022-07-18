@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, useOutletContext, useParams} from 'react-router-dom';
+import { Link, useOutletContext, useParams } from 'react-router-dom';
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const DescriptionRun = () => {
@@ -15,9 +15,9 @@ const DescriptionRun = () => {
     return (<>
         <h2>{protocolInfo.name}</h2>
         <section>
-                <div className={"description-title"}>
-                    <h4>Description</h4>
-                </div>
+            <div className={"description-title"}>
+                <h4>Description</h4>
+            </div>
 
             <div className={"description-fields"}>
                 <h6>Protocol Name</h6>
@@ -39,13 +39,18 @@ const DescriptionRun = () => {
                 <p>{protocolInfo.disclaimer}</p>
             </div>
 
-            <div style={{ float: 'right' }} className={"link-guideline"}>
+            {/* <div style={{ float: 'right' }} className={"link-guideline"}>
                 <Link to={`/protocols/run/${params.protocolId}/guidelines`}>Guidelines</Link>
                 <ArrowForwardIosIcon />
+            </div> */}
+            <div className="navigation-links">
+                <div className='link-next'>
+                    <Link className={'previewBtn'} to={`/protocols/run/${params.protocolId}/guidelines`}>Guidelines<ArrowForwardIosIcon /></Link>
+                </div>
             </div>
 
         </section>
-        </>
+    </>
     );
 }
 

@@ -39,7 +39,8 @@ const StepsRun = () => {
                     }
                 });
 
-                console.log(resp.data);
+                // console.log(resp.data);
+                // console.log(protocolInfo);
 
                 setSteps(resp.data);
 
@@ -56,14 +57,14 @@ const StepsRun = () => {
 
     return (
         <section className='stepsRun'>
-            {showSummary ? <div style={{ marginBottom: 30, paddingLeft: 30 }}>
+            {showSummary ? <div style={{ marginBottom: 30, paddingLeft: 30, paddingTop: 30 }}>
                 <div className={"description-title"}>
                     <h4 >Summary</h4>
                 </div>
-                <div>Date run: </div>
+                <div>Date run: {new Date().toDateString()}</div>
                 <div>Time: </div>
-                <div>Run by: </div>
-                <div>Owner: </div>
+                <div>Run by: {JSON.parse(localStorage.getItem('user')).name}</div>
+                <div>Owner: {protocolInfo.author}</div>
                 <div>
                     {/* <Button onClick={() => print('a', 'forPdf')}>Export submission</Button> */}
                     {/* <Button onClick={handleExport}>Export submission</Button> */}
@@ -76,7 +77,7 @@ const StepsRun = () => {
             <div>
 
             </div>
-            <div ref={componentRef} id={'forPdf'} style={{ paddingLeft: 30 }}>
+            <div ref={componentRef} id={'forPdf'} style={{ paddingLeft: 30, paddingTop: 50 }}>
                 {showSummary ?
                     <>
                         <section className={"preview-section"}>
