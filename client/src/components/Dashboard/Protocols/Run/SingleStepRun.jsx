@@ -13,8 +13,9 @@ import SingleComponentRun from './SingleComponentRun';
 import axios from 'axios';
 import { HOST_URL } from '../../../../data/data';
 
-const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt }) => {
+const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setShowSummary }) => {
     const [loading, setLoading] = useState(false)
+
 
     const handleGoBack = () => {
         setActiveStep(activeStep - 1)
@@ -44,6 +45,11 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt }) => 
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const handleSubmit = () => {
+        setShowSummary(true);
+        window.scrollTo(0, 0)
     }
 
     return (
@@ -98,7 +104,7 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt }) => 
                     <TextareaAutosize placeholder={`Note`} style={{ width: '100%', height: 100 }} />
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         {activeStep > 0 ? <Button onClick={handleGoBack}>Go back</Button> : <div></div>}
-                        {activeStep < stepsQnt - 1 ? <Button onClick={handleFinish}>Finish step</Button> : <Button>Handle total finish</Button>}
+                        {activeStep < stepsQnt - 1 ? <Button onClick={handleFinish}>Finish step</Button> : <Button onClick={handleSubmit}>Submit protocol</Button>}
 
                     </div>
                 </AccordionDetails>

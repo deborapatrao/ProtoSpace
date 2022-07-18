@@ -1,6 +1,6 @@
 import "./protocolsi.scss";
 import React, { useState } from 'react';
-import { Outlet, useOutletContext } from 'react-router-dom';
+import { Outlet, useOutletContext, useLocation } from 'react-router-dom';
 import { Button } from '@mui/material';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,6 +10,8 @@ import Sidebar from "../Sidebar";
 
 
 const Protocols = () => {
+    let location = useLocation();
+
     const [data, setData] = useState({
         name: '',
         abstract: '',
@@ -81,13 +83,15 @@ const Protocols = () => {
 
     return (
         <div className="section__protocols">
-            <div className="btns__container" style={{ display: 'flex', gap: 10, alignSelf: 'flex-end', marginBottom: 30 }}>
-                <Button variant="text" sx={{ color: 'red' }}>Delete</Button>
-                <Button variant="outlined">Export</Button>
-                <Button variant="outlined">Preview</Button>
-                <Button variant="outlined">Save Draft</Button>
-                <Button variant="contained" disabled={conditionState ? false : true}>Publish</Button>
-            </div>
+            {!location.pathname.includes('protocols/run/') ?
+                <div className="btns__container" style={{ display: 'flex', gap: 10, alignSelf: 'flex-end', marginBottom: 30 }}>
+                    <Button variant="text" sx={{ color: 'red' }}>Delete</Button>
+                    <Button variant="outlined">Export</Button>
+                    <Button variant="outlined">Preview</Button>
+                    <Button variant="outlined">Save Draft</Button>
+                    <Button variant="contained" disabled={conditionState ? false : true}>Publish</Button>
+                </div>
+                : ''}
             <div>
                 {width > 1000 ? '' : <Sidebar width={width} />}
             </div>

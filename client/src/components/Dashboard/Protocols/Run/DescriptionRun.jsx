@@ -1,23 +1,51 @@
 import React from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
+import {Link, useOutletContext, useParams} from 'react-router-dom';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const DescriptionRun = () => {
+
+    const { protocolId } = useParams();
+
+    const params = {
+        protocolId: protocolId
+    }
+
     const { protocolInfo } = useOutletContext();
 
-    return (
+    return (<>
+        <h2>{protocolInfo.name}</h2>
         <section>
-            <div className={"section-header-desc"}>
                 <div className={"description-title"}>
-                    <h2>Description</h2>
+                    <h4>Description</h4>
                 </div>
-                <div><span className={"mandatory"}>*</span> This section need to be filled</div>
+
+            <div className={"description-fields"}>
+                <h6>Protocol Name</h6>
+                <p>{protocolInfo.name}</p>
             </div>
-            <div>
-                Name: {protocolInfo.name}
-                Author: {protocolInfo.author}
+
+            <div className={"description-fields"}>
+                <h6>Abstract</h6>
                 <p>{protocolInfo.abstract}</p>
             </div>
+
+            <div className={"description-fields"}>
+                <h6>Author</h6>
+                <p>{protocolInfo.author}</p>
+            </div>
+
+            <div className={"description-fields"}>
+                <h6>Disclaimer</h6>
+                <p>{protocolInfo.disclaimer}</p>
+            </div>
+
+            <div style={{ float: 'right' }} className={"link-guideline"}>
+                <Link to={`/protocols/run/${params.protocolId}/guidelines`}>Guidelines</Link>
+                <ArrowForwardIosIcon />
+            </div>
+
         </section>
+        </>
     );
 }
 
