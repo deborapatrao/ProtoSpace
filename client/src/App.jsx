@@ -22,6 +22,7 @@ import GuidelinesRun from './components/Dashboard/Protocols/Run/GuidelinesRun';
 import MaterialsRun from './components/Dashboard/Protocols/Run/MaterialsRun';
 import StepsRun from './components/Dashboard/Protocols/Run/StepsRun';
 
+import DataVisualization from './components/Dashboard/DataVisual';
 
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
@@ -70,7 +71,9 @@ function App() {
                 </Route>
               </Route>
             </Route>
-            <Route path="profile" element={<Profile />}/>
+            <Route path="profile" element={<Profile />} />
+            <Route path="data-visualization" element={<DataVisualization />} />
+
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         }

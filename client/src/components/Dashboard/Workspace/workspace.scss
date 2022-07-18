@@ -1,7 +1,11 @@
 @use '../../../styles/variables.scss' as v;
+@use '../../../styles/mixins.scss' as mi;
 
 .workspace{
-    padding: 2rem 2rem 0 0;
+    @include mi.mediaQuery(mi.$desktop){
+        padding: 2rem 2rem 0 0;
+    }
+    
 
     h1{
         margin-bottom: 2rem;

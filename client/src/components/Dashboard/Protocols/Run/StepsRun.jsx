@@ -55,7 +55,7 @@ const StepsRun = () => {
 
 
     return (
-        <section>
+        <section className='stepsRun'>
             {showSummary ? <div style={{ marginBottom: 30, paddingLeft: 30 }}>
                 <div className={"description-title"}>
                     <h4 >Summary</h4>

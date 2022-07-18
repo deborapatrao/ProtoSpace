@@ -1,80 +1,94 @@
 @use '../../../../styles/variables.scss' as v;
-@use '../../../../styles/typography' as t ;
+@use '../../../../styles/typography' as t;
 
-h2{
-  color: v.$sec-dark;
-}
-.description-title {
+.section-protocol-run {
+
+  h2 {
+    color: v.$sec-dark;
+  }
+
+  .description-title {
     background: #F4F7F9;
     border-radius: 6px;
     padding: 16px;
     margin-bottom: 32px;
-  h4{
-    font-size: 22px;
-    color: v.$sec-dark;
-  }
-}
-.description-fields{
-  h6{
-    font-size: 16px;
-    color: v.$sec-dark;
-    margin-bottom: 8px;
-  }
-  p{
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: v.$sec-dark;
-  }
-}
-.guidelines-title {
-  background: #F4F7F9;
-  border-radius: 6px;
-  padding: 16px;
-  margin-bottom: 32px;
-  h4{
-    font-size: 22px;
-  }
-}
-.guidelines-fields{
-  h6{
-    font-size: 16px;
-    color: v.$sec-dark;
-    margin-bottom: 8px;
-  }
-  p{
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #063554;
-  }
-}
-.materials-title {
-  background: #F4F7F9;
-  border-radius: 6px;
-  padding: 16px;
-  margin-bottom: 32px;
-  h4{
-    font-size: 22px;
-  }
-}
-.materials-fields{
-  h6{
-    font-size: 16px;
-    color: v.$sec-dark;
-    margin-bottom: 8px;
-  }
-  p{
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #063554;
-  }
-}
 
+    h4 {
+      font-size: 22px;
+      color: v.$sec-dark;
+    }
+  }
+
+  .description-fields {
+    h6 {
+      font-size: 16px;
+      color: v.$sec-dark;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: v.$sec-dark;
+    }
+  }
+
+  .guidelines-title {
+    background: #F4F7F9;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 32px;
+
+    h4 {
+      font-size: 22px;
+    }
+  }
+
+  .guidelines-fields {
+    h6 {
+      font-size: 16px;
+      color: v.$sec-dark;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #063554;
+    }
+  }
+
+  .materials-title {
+    background: #F4F7F9;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 32px;
+
+    h4 {
+      font-size: 22px;
+    }
+  }
+
+  .materials-fields {
+    h6 {
+      font-size: 16px;
+      color: v.$sec-dark;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #063554;
+    }
+  }
+}
