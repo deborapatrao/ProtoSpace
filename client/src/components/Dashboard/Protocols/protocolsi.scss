@@ -30,13 +30,13 @@
       border: 1px solid v.$gray-dark;
       border-radius: 6px;     
       padding: 16.5px 14px;
-    }
-
+      }
     }
   }
 
   .navigation-links{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     justify-content: space-between;
     margin: 1rem;
 
@@ -56,6 +56,8 @@
   }
 
   .link-previous {
+    grid-column: 1/2;
+    justify-self: start;
     a{
       padding-left: 16px;
     }
@@ -67,6 +69,8 @@
   }
 
   .link-next {
+    grid-column: 2/-1;
+    justify-self: end;
     a{
       padding-right: 16px;
     }
@@ -76,316 +80,180 @@
       right: 0;
     }
   }
-
-
-
-
-
-  .link-step {
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-    color: #249CF3;
-
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-  }
-
-  a {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 22px;
-    text-decoration: none;
-    color: #249CF3;
-  }
 }
 
-section.single-step {
-  margin-bottom: 32px;
+.steps{
+  max-width: 100%;
 
-  .css-1174zjj-MuiPaper-root-MuiAccordion-root:last-of-type {
-    border: solid thin #9DB9CA;
+  @include mi.mediaQuery(mi.$desktop){
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: repeat(4, auto);
+
+    .section-body{
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+
+    .navigation-links{
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
+
+    .components-container{
+      grid-column: 2/-1;
+      grid-row: 1/-1;
+    }
   }
 
-  .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
-    min-height: 59px;
-    background: #F4F7F9;
-    border-radius: 6px 6px 0px 0px;
-
-    .css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
-      margin: 0;
-
-      p {
-        font-family: 'Noto Sans';
-        font-style: normal;
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 27px;
-        color: #063554;
-      }
-    }
+  .single-step{
 
     svg {
-      color: #063554;
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  .MuiCollapse-root.MuiCollapse-vertical.MuiCollapse-entered.css-pwcg7p-MuiCollapse-root {
-    h4 {
-      font-family: 'Noto Sans';
-      font-style: normal;
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 24px;
-      color: #063554;
-
+      color: v.$sec-dark;
     }
 
-    textarea {
-      border: solid thin #CDD8DF;
-      border-radius: 6px;
+    .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
+      background: v.$gray-light;
+      border-radius: 6px 6px 0px 0px; 
+    }
+    
+    .css-1174zjj-MuiPaper-root-MuiAccordion-root:last-of-type{
+      border: 1px solid v.$gray-dark;
+      box-shadow: none;
+    }  
 
-      ::placeholder {
-        color: #CDD8DF;
+    h4 {    
+      color: v.$sec-dark;
+    }
+
+    &__body{
+      display: grid;
+      grid-gap: 2rem;
+    }
+
+    &__inner-container{
+      textarea{
+        padding: .8rem;
+        border: 1px solid v.$gray-dark;
+        border-radius: 6px;
+      }
+    }
+    .photo-container {
+      display: flex;
+      flex-flow: row wrap;
+      gap: 20px;
+  
+      .photo-btn {
+        width: 144.25px;
+        height: 144.25px;
+        border: solid 1px v.$gray-dark;
+        border-radius: 6px;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+  
+        .label-photo {
+          display: flex;
+          flex-flow: column nowrap;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+        }
+  
+        svg {
+          width: 32px;
+          height: 32px;
+          color: v.$main-medium;
+        }
+  
+        span {
+          color: v.$main-medium;
+        }
+  
+        .hidden {
+          display: none;
+        }
       }
     }
   }
 
-  .css-1m4ljmh-MuiTypography-root {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 27px;
-    color: #063554;
+  .add-step-btn {
+    border: dashed 2px v.$main-medium;
+    max-width: 100%;
+    border-radius: 6px;
+    font-weight: 400;
+    padding: 1rem;
   }
 
-  .photo-container {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 20px;
+  .components-container{
 
-    .photo-btn {
-      width: 144.25px;
-      height: 144.25px;
-      background-color: white;
-      border: solid thin #9DB9CA;
+    .components{
       border-radius: 6px;
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
+    background-color: v.$gray-light;
+    padding: 2rem 1rem 3rem 1rem;
+    }
+    
 
-      .label-photo {
+    h3{
+      color: v.$sec-dark;
+      margin-bottom: 1rem;
+    }
+
+    ul{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+  
+      .components-btn {
+        width: 142px;
+        height: 94px;
+        background-color: white;
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
+        border: solid 1px v.$gray-medium;
+        border-radius: 6px;
         gap: 8px;
-      }
-
-      svg {
-        width: 32px;
-        height: 32px;
-        color: #249CF3;
-      }
-
-      span {
-        font-family: 'Noto Sans';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 22px;
-        color: #249CF3;
-      }
-
-      .hidden {
-        display: none;
+  
+        svg {
+          width: 24px;
+          height: 24px;
+          color: v.$sec-dark;
+        }
+  
+        button {
+          border: none;
+          background-color: white;
+          color: v.$sec-dark;
+        }
       }
     }
-
   }
 }
+
 
 .components-container {
-  width: 332px;
-  height: 567px;
-  background-color: #F4F7F9;
-  padding: 20px 16px;
 
-  h3 {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 27px;
-    color: #063554;
-    margin-bottom: 32px;
-  }
 
-  .buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-
-    .components-btn {
-      width: 142px;
-      height: 94px;
-      background-color: white;
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
-      align-items: center;
-      border: solid thin #CDD8E0;
-      border-radius: 6px;
-      gap: 8px;
-
-      svg {
-        width: 24px;
-        height: 24px;
-        color: #063554;
-      }
-
-      button {
-        border: none;
-        background-color: white;
-        color: #063554;
-      }
-    }
-  }
-
-}
-
-.add-step-btn {
-  border: dashed 2px #249CF3 !important;
+  
 
 }
 
 
-.description-fields {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 4px;
-  margin-bottom: 32px;
-
-
-  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-    width: 1044px;
-    height: 326px;
-    text-align: left;
-  }
+  // .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  //   width: 1044px;
+  //   height: 326px;
+  //   text-align: left;
+  // }
 }
 
-.link-guideline {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  color: #249CF3;
 
-  svg {
-    width: 16px;
-    height: 16px;
-  }
 
-  a {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 22px;
-    text-decoration: none;
-    color: #249CF3;
-  }
-}
 
-.section-header-guidelines {
-  .guidelines-title {
-    width: 1044px;
-    height: 65px;
-    left: 348px;
-    top: 258px;
-    background: #F4F7F9;
-    border-radius: 6px;
-    margin-bottom: 32px;
-
-    h2 {
-      font-family: 'Noto Sans';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 22px;
-      line-height: 33px;
-      color: black;
-      padding-left: 16px;
-      padding-top: 16px;
-    }
-  }
-}
-
-.guidelines-fields {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 4px;
-  margin-bottom: 32px;
-
-  label {
-    margin-left: 16px;
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    color: #063554;
-  }
-
-  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-    width: 1044px;
-    height: 326px;
-    text-align: left;
-  }
-}
-
-.navigation-links-guidelines {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-
-  .link-description {
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-    color: #249CF3;
-
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-  }
-
-  .link-materials {
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-    color: #249CF3;
-
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-  }
-
-  a {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 22px;
-    text-decoration: none;
-    color: #249CF3;
-  }
-}
-}

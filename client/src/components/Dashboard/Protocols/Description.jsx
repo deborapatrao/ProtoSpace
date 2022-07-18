@@ -51,7 +51,9 @@ const Description = () => {
                 </div>
             </div>
 
-            <div className={"link-next"}><Link to={"/protocols/guidelines"}>Guidelines</Link><ArrowForwardIosIcon /></div>
+            <div className="navigation-links">
+                <div className={"link-next"}><Link to={"/protocols/guidelines"}>Guidelines</Link><ArrowForwardIosIcon /></div>
+            </div>
 
         </section>
     );
