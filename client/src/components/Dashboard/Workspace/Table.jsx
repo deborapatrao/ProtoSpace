@@ -56,6 +56,7 @@ const TableComponent = () => {
                                         <TableCell align="left"><Link to={`protocols/run/${item.protocol_id}`}>{item.name}</Link></TableCell>
                                         <TableCell align="left">{item.author}</TableCell>
                                         <TableCell align="left">{new Date(item.created_at).toLocaleString("en-US")}</TableCell>
+                                        <TableCell align="left"><Link to={'/data-visualization'}>Chart</Link></TableCell>
                                         <TableCell align="left">v1.0</TableCell>
                                     </TableRow>
                                 )
