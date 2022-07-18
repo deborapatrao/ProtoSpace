@@ -240,6 +240,143 @@
     }
   }
 
+  .stepsRun {
+    max-width: 100%;
+
+    .single-step {
+
+      svg {
+        color: v.$sec-dark;
+      }
+
+      .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
+        background: v.$gray-light;
+        border-radius: 6px 6px 0px 0px;
+      }
+
+      .css-1174zjj-MuiPaper-root-MuiAccordion-root:last-of-type {
+        border: 1px solid v.$gray-dark;
+        box-shadow: none;
+      }
+
+      h4 {
+        color: v.$sec-dark;
+      }
+
+      &__body {
+        display: grid;
+        grid-gap: 2rem;
+      }
+
+      &__inner-container {
+        textarea {
+          padding: .8rem;
+          border: 1px solid v.$gray-dark;
+          border-radius: 6px;
+        }
+      }
+
+      .photo-container {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 20px;
+
+        .photo-btn {
+          width: 144.25px;
+          height: 144.25px;
+          border: solid 1px v.$gray-dark;
+          border-radius: 6px;
+          display: flex;
+          flex-flow: column nowrap;
+          justify-content: center;
+
+          .label-photo {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+          }
+
+          svg {
+            width: 32px;
+            height: 32px;
+            color: v.$main-medium;
+          }
+
+          span {
+            color: v.$main-medium;
+          }
+
+          .hidden {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .add-step-btn {
+      border: dashed 2px v.$main-medium;
+      max-width: 100%;
+      border-radius: 6px;
+      font-weight: 400;
+      padding: 1rem;
+    }
+
+    .components-container {
+
+      .components {
+        border-radius: 6px;
+        background-color: v.$gray-light;
+        padding: 2rem 1rem 3rem 1rem;
+      }
+
+
+      h3 {
+        color: v.$sec-dark;
+        margin-bottom: 1rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+
+        .components-btn {
+          width: 142px;
+          height: 94px;
+          background-color: white;
+          display: flex;
+          flex-flow: column nowrap;
+          justify-content: center;
+          align-items: center;
+          border: solid 1px v.$gray-medium;
+          border-radius: 6px;
+          gap: 8px;
+
+          svg {
+            width: 24px;
+            height: 24px;
+            color: v.$sec-dark;
+          }
+
+          button {
+            border: none;
+            background-color: white;
+            color: v.$sec-dark;
+          }
+        }
+      }
+    }
+  }
+
+
 
 
   .components-container {
