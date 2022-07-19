@@ -11,7 +11,7 @@ import Sidebar from "../Sidebar";
 
 const Protocols = () => {
     let location = useLocation();
-
+    console.log(location.pathname.includes('/summary'));
     const [data, setData] = useState({
         name: '',
         abstract: '',
@@ -93,7 +93,7 @@ const Protocols = () => {
                 </div>
                 : ''}
             <div>
-                {width > 1000 ? '' : <Sidebar width={width} />}
+                {width < 1000 && !location.pathname.includes('/summary') ? <Sidebar width={width} /> : ''}
             </div>
             <div>
                 <Outlet context={{ data, handleDataChange, steps, setSteps, handlePublish, conditionState }} />

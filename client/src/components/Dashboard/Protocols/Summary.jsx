@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useOutletContext, Link } from 'react-router-dom';
 import axios from 'axios';
 import { HOST_URL } from '../../../data/data';
+import './protocolsi.scss'
+import SingleStep from './Run/SingleStepRun';
 
 
 const Summary = () => {
     const { protocolId } = useParams();
     const [protocolInfo, setProtocolInfo] = useState('');
+    const [steps, setSteps] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
@@ -28,6 +31,19 @@ const Summary = () => {
                 console.log(resp.data);
                 setProtocolInfo(resp.data);
 
+                const respSteps = await axios.post(`${HOST_URL}/api/step`, {
+                    protocolId: protocolId,
+                    workspace_id: user.workspaceId[0][0].workspaceId
+                }, {
+                    headers: {
+                        "x-access-token": user.accessToken
+                    }
+                });
+                console.log(respSteps.data);
+
+                setSteps(respSteps.data)
+
+
             } catch (error) {
                 console.log(error);
             }
@@ -38,8 +54,7 @@ const Summary = () => {
 
     return (
         <section className={"preview"}>
-            summary
-            <div style={{ marginBottom: 30, paddingLeft: 30, paddingTop: 30 }}>
+            <div style={{ marginBottom: 30, paddingTop: 30 }}>
                 <div className={"description-title"}>
                     <h4 >Summary</h4>
                 </div>
@@ -88,7 +103,10 @@ const Summary = () => {
             <div className={'materials'}>
                 <h6>List of materials</h6>
                 <p type={'text'}>{protocolInfo.materials}</p>
-            </div>    {/* */}
+            </div>
+            {steps ? steps.map((item, index) => {
+                return <SingleStep key={index} step={item} disabled={false} />
+            }) : ''}
         </section>
     );
 }
