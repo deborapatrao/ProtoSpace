@@ -71,13 +71,15 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                         </div>
                     </div>
 
-                    <h4>Components</h4>
-                    <div>
-                        {step.components ? step.components.map((item, index) => {
-                            return (
-                                <SingleComponent key={index} componentIndex={index} component={item} activeStep={activeStep} steps={steps} setSteps={setSteps} />
-                            )
-                        }) : 'There are no components'}
+                    <div className="single-step__inner-container">
+                        <h4>Components</h4>
+                        <div className='single-component__wrapper'>
+                            {step.components ? step.components.map((item, index) => {
+                                return (
+                                    <SingleComponent key={index} componentIndex={index} component={item} activeStep={activeStep} steps={steps} setSteps={setSteps} />
+                                )
+                            }) : 'There are no components'}
+                        </div>
                     </div>
 
                 </AccordionDetails>
