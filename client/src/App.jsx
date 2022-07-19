@@ -28,6 +28,7 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import { useSelector } from 'react-redux';
 import Profile from "./components/Profile/Profile";
+import Demo from "./pages/Demo/index";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             <Route path="/" element={<Home />}>
               <Route index element={<Login />} />
               <Route path='/register' element={<Register />} />
+              <Route path='/demo' element={<Demo />}/>
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
           </>
