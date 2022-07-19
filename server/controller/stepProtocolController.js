@@ -39,7 +39,7 @@ exports.stepNote = async (req, res) => {
             protocol_id: findStep.protocol_id,
             note: req.body.note
         }
-        await StepUserProtocol.update(data, {where: {id: req.body.step_id}})
+        await StepUserProtocol.update(data, {where: {step_protocol_id: req.body.step_id}})
         res.send(findStep)
 
     } else {
@@ -58,7 +58,7 @@ exports.startStep = async (req, res) => {
             },
             {
                 where:
-                    {id: req.body.step_id}
+                    {step_protocol_id: req.body.step_id}
             })
             .then(data => {
                 res.status(200).send('Step started!')
@@ -78,7 +78,7 @@ exports.endStep = async (req, res) => {
             },
             {
                 where:
-                    {id: req.body.step_id}
+                    {step_protocol_id: req.body.step_id}
             })
             .then(data => {
                 res.status(200).send('Step Ended!')
