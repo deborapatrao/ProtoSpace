@@ -27,11 +27,13 @@ const ContactForm = () => {
                         </button>
                         <button>
                             <Link to='#'>Get a quote </Link>
+
                             <span>We’ll help you find the right plans and pricing for you.</span>
                             <ArrowForwardIosIcon />
                         </button>
                         <button>
                             <Link to='#'>Partnership with us</Link>
+
                             <span>We’d love to talk about how we can work together.</span>
                             <ArrowForwardIosIcon />
                         </button>
@@ -56,6 +58,7 @@ const ContactForm = () => {
                         <label>
                             Phone number<span className={"mandatory"}>*</span>
                         </label>
+
                             <div className={"phone-number-inputs"}>
                                 <select>
                                     <option value={"Canada"}>Canada</option>
@@ -64,6 +67,7 @@ const ContactForm = () => {
                                     <option value={"Russia"}>Russia</option>
                                     <option value={"Mexico"}>Mexico</option>
                                 </select>
+
                                 <input type={"tel"} name={"phone-number"} className={"phone-number-input"} placeholder={"123456789"}/>
                             </div>
 
@@ -73,6 +77,7 @@ const ContactForm = () => {
                             <textarea type={"text"} name={"message"} className={"message-input"}placeholder={"Write here"}/>
 
                        <input type="submit" value="Send" className={"submit-btn"}/>
+
                     </form>
                     </div>
                 </div>
