@@ -38,30 +38,44 @@ const Register = () => {
     }
 
     return (loading ? <CircularProgress /> :
-        <form style={{ display: 'flex', flexDirection: 'column', gap: 10 }} onSubmit={handleSubmit}>
-            <FormControl >
-                <InputLabel htmlFor="name-register">Name</InputLabel>
-                <Input id="name-register" value={name} onChange={(e) => setName(e.target.value)} />
-            </FormControl>
-            <FormControl >
-                <InputLabel htmlFor="email-register">Email</InputLabel>
-                <Input id="email-register" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </FormControl>
-            <FormControl >
-                <InputLabel htmlFor="password-register">Password</InputLabel>
-                <Input id="password-register" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </FormControl>
-            <FormControl >
-                <InputLabel htmlFor="password2-register">Confirm Password</InputLabel>
-                <Input id="password2-register" value={password2} onChange={(e) => setPassword2(e.target.value)} />
-            </FormControl>
+            <form style={{ display: 'flex', flexDirection: 'column', gap: 10 }} onSubmit={handleSubmit}>
+                <h2>Sign up</h2>
+                <p className={"welcome Sign-up"}>Accelerating the most efficient laboratory learning platform</p>
+                <FormControl >
+                    <label>
+                        Name<span className={"mandatory"}>*</span>
+                    </label>
+                    {/*<InputLabel htmlFor="name-register">Name</InputLabel>*/}
+                    <input id="name-register" value={name} onChange={(e) => setName(e.target.value)} placeholder={"Name"} />
+                </FormControl>
+                <FormControl >
+                    <label>
+                        Email<span className={"mandatory"}>*</span>
+                    </label>
+                    {/*<InputLabel htmlFor="email-register">Email</InputLabel>*/}
+                    <input id="email-register" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={"Email"} />
+                </FormControl>
+                <FormControl >
+                    <label>
+                        Password<span className={"mandatory"}>*</span>
+                    </label>
+                    {/*<InputLabel htmlFor="password-register">Password</InputLabel>*/}
+                    <input id="password-register" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"Password"}/>
+                </FormControl>
+                <FormControl >
+                    <label>
+                        Confirm Password<span className={"mandatory"}>*</span>
+                    </label>
+                    {/*<InputLabel htmlFor="password2-register">Confirm Password</InputLabel>*/}
+                    <input id="password2-register" value={password2} onChange={(e) => setPassword2(e.target.value)} placeholder={"Confirm Password"}/>
+                </FormControl>
 
-            <Button type='submit' variant="contained" style={{ alignSelf: 'center' }}>Login</Button>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <p>Already have an account?</p>
-                <Link to={'/'}>Login</Link>
-            </div>
-        </form>
+                <Button type='submit' variant="contained" style={{ alignSelf: 'center' }}>Sign up</Button>
+                <div style={{ display: 'flex', justifyContent: 'center' }} className={"login-container"}>
+                    <p>Already have an account?</p>
+                    <Link to={'/'}>Login</Link>
+                </div>
+            </form>
     );
 }
 
