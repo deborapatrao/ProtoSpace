@@ -8,6 +8,7 @@ import {
 import Home from './pages/Home/index';
 import About from './pages/About/index';
 import Demo from './pages/Demo/index';
+import Contact from "./pages/Contact/index";
 import Dashboard from './components/Dashboard';
 import Protocols from './components/Dashboard/Protocols';
 import Description from './components/Dashboard/Protocols/Description';
@@ -50,6 +51,7 @@ function App() {
             </Route>
             <Route path='about' element={<About />} />
             <Route path='demo' element={<Demo />}/>
+            <Route path='contact' element={<Contact />}/>
             <Route path="*" element={<Navigate to="/" replace />} />
           </>
 

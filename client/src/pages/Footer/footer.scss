@@ -1,7 +1,7 @@
 @use '../../styles/variables.scss' as v;
 @use '../../styles/mixins.scss' as mi;
 
-.home footer{
+footer{
   .footer__container{
     @include mi.mediaQuery(mi.$desktop){
       display: flex;

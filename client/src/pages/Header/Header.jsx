@@ -1,7 +1,7 @@
 import "./header.scss";
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
-import {Link} from "@mui/material";
+import { Link } from 'react-router-dom';
 import PopUp from "../../components/PopUp/PopUp";
 import icon from "./Logo.png";
 
@@ -19,16 +19,16 @@ const HeaderNav = () => {
         <nav>
             <ul>
                 <li>
-                    Home
+                    <Link to={"/"}>Home</Link>
                 </li>
                 <li>
-                     About
+                    <Link to={"/about"}>About</Link>
                 </li>
                 <li>
-                    Contact
+                    <Link to={"/contact"}>Contact</Link>
                 </li>
                 <li>
-                    <button className={"demo-header"}>Book a Demo</button>
+                    <button className={"demo-header"}><Link to={"/demo"}>Book a Demo</Link></button>
                 </li>
                 <li className={"login"}>
                     <Avatar src="/broken-image.jpg" />
