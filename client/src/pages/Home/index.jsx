@@ -9,9 +9,9 @@ const Home = () => {
 
     return ( <>
         <div className="home">
-            <header>
+            <div>
                 <HeaderNav />
-            </header>
+            </div>
             <section className={"body-container"}>
                 <Demo />
                 <Body />
