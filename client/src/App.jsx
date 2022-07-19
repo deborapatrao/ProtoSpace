@@ -75,7 +75,11 @@ function App() {
                 </Route>
               </Route>
 
-              <Route path='summary' element={<Summary />} />
+
+              <Route path=':protocolId'>
+                <Route path='summary' element={<Summary />} />
+              </Route>
+
             </Route>
             <Route path="profile" element={<Profile />} />
             <Route path="data-visualization" element={<DataVisualization />} />

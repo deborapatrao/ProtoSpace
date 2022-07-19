@@ -13,9 +13,12 @@ import SingleComponentRun from './SingleComponentRun';
 import axios from 'axios';
 import { HOST_URL } from '../../../../data/data';
 import '../protocolsi.scss';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setShowSummary }) => {
     const [loading, setLoading] = useState(false)
+    const { protocolId } = useParams();
+    let navigate = useNavigate();
 
 
     const handleGoBack = () => {
@@ -50,6 +53,10 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
 
     const handleSubmit = () => {
         setShowSummary(true);
+        const userName = JSON.parse(localStorage.getItem('user')).name;
+        const protocolsRun = localStorage.getItem('protocolsRun') ? JSON.parse(localStorage.getItem('protocolsRun')) : [];
+        localStorage.setItem('protocolsRun', JSON.stringify([...protocolsRun, { userName: userName, protocolId: protocolId }]))
+        navigate(`/protocols/${protocolId}/summary`)
         window.scrollTo(0, 0)
     }
 

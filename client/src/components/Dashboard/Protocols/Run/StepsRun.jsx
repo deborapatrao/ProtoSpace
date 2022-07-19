@@ -57,7 +57,7 @@ const StepsRun = () => {
 
     return (
         <section className='stepsRun'>
-            {showSummary ? <div style={{ marginBottom: 30, paddingLeft: 30, paddingTop: 30 }}>
+            {/* {showSummary ? <div style={{ marginBottom: 30, paddingLeft: 30, paddingTop: 30 }}>
                 <div className={"description-title"}>
                     <h4 >Summary</h4>
                 </div>
@@ -66,19 +66,17 @@ const StepsRun = () => {
                 <div>Run by: {JSON.parse(localStorage.getItem('user')).name}</div>
                 <div>Owner: {protocolInfo.author}</div>
                 <div>
-                    {/* <Button onClick={() => print('a', 'forPdf')}>Export submission</Button> */}
-                    {/* <Button onClick={handleExport}>Export submission</Button> */}
                     <ReactToPrint
                         trigger={() => <Button>Export submission</Button>}
                         content={() => componentRef.current}
                     />
                 </div>
-            </div> : ''}
+            </div> : ''} */}
             <div>
 
             </div>
             <div ref={componentRef} id={'forPdf'} style={{ paddingLeft: 30, paddingTop: 50 }}>
-                {showSummary ?
+                {/* {showSummary ?
                     <>
                         <section className={"preview-section"}>
 
@@ -90,10 +88,10 @@ const StepsRun = () => {
                     </>
 
                     :
-                    steps ? steps.map((item, index) => {
-                        return <SingleStepRun stepsQnt={steps.length} disabled={activeStep === index ? false : true} key={index} step={item} activeStep={activeStep} setActiveStep={setActiveStep} setShowSummary={setShowSummary} />
-                    }) : ''
-                }
+                } */}
+                {steps ? steps.map((item, index) => {
+                    return <SingleStepRun stepsQnt={steps.length} disabled={activeStep === index ? false : true} key={index} step={item} activeStep={activeStep} setActiveStep={setActiveStep} setShowSummary={setShowSummary} />
+                }) : ''}
             </div>
         </section>
     );

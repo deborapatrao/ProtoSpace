@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useOutletContext, Link } from 'react-router-dom';
 import axios from 'axios';
 import { HOST_URL } from '../../../data/data';
 
@@ -38,6 +38,17 @@ const Summary = () => {
 
     return (
         <section className={"preview"}>
+            summary
+            {/* <div style={{ marginBottom: 30, paddingLeft: 30, paddingTop: 30 }}>
+                <div className={"description-title"}>
+                    <h4 >Summary</h4>
+                </div>
+                <div>Date run: {new Date().toDateString()}</div>
+                <div>Time: </div>
+                <div>Run by: {JSON.parse(localStorage.getItem('user')).name}</div>
+                <div>Owner: {protocolInfo.author}</div>
+            </div>
+
             <div className={'sectionTitle'}>
                 <h4>Description</h4>
             </div>
@@ -77,7 +88,7 @@ const Summary = () => {
             <div className={'materials'}>
                 <h6>List of materials</h6>
                 <p type={'text'}>{protocolInfo.materials}</p>
-            </div>
+            </div> */}
         </section>
     );
 }
