@@ -31,7 +31,7 @@ const BodyDemo = () => {
                             <div className={"phone-number-inputs"}>
                             <select>
                                 <option value={"Canada"}>Canada</option>
-                                <option value={"Philippines"}>philippines</option>
+                                <option value={"Philippines"}>Philippines</option>
                                 <option value={"Brazil"}>Brazil</option>
                                 <option value={"Russia"}>Russia</option>
                                 <option value={"Mexico"}>Mexico</option>

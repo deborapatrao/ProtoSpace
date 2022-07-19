@@ -6,6 +6,7 @@ import {
   Navigate
 } from "react-router-dom";
 import Home from './pages/Home/index';
+import Demo from './pages/Demo/index';
 import Dashboard from './components/Dashboard';
 import Protocols from './components/Dashboard/Protocols';
 import Description from './components/Dashboard/Protocols/Description';
@@ -28,7 +29,6 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import { useSelector } from 'react-redux';
 import Profile from "./components/Profile/Profile";
-import Demo from "./pages/Demo/index";
 
 
 function App() {
@@ -45,8 +45,8 @@ function App() {
             <Route path="/" element={<Home />}>
               <Route index element={<Login />} />
               <Route path='/register' element={<Register />} />
-              <Route path='/demo' element={<Demo />}/>
             </Route>
+            <Route path='demo' element={<Demo />}/>
             <Route path="*" element={<Navigate to="/" replace />} />
           </>
 
