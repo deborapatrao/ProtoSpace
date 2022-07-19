@@ -1,0 +1,54 @@
+@use '../../styles/variables.scss' as v;
+@use '../../styles/mixins.scss' as mi;
+
+.about-page{
+
+    section{
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem 2%;
+        text-align: center;
+    }
+
+    img{
+        max-width: 100%;
+    }
+
+    h2{
+        color: v.$sec-dark;
+        margin-bottom: 1rem;
+    }
+
+    .hero{
+        padding-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .content-section{
+        &:nth-of-type(even){
+            background-color: v.$gray-light;
+        }
+
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        img{
+            border-radius: 6px;
+        }
+    }
+
+    .team-profiles{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        gap: 1rem;
+        
+        .team-member{
+            flex-basis: 45%;
+        }
+    }
+}

@@ -13,10 +13,13 @@ import SingleComponentRun from './SingleComponentRun';
 import axios from 'axios';
 import { HOST_URL } from '../../../../data/data';
 import '../protocolsi.scss';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setShowSummary }) => {
     const [loading, setLoading] = useState(false)
-
+    const { protocolId } = useParams();
+    let navigate = useNavigate();
+    const [note, setNote] = useState('')
 
     const handleGoBack = () => {
         setActiveStep(activeStep - 1)
@@ -26,8 +29,11 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
         const user = JSON.parse(localStorage.getItem('user'));
 
         const params = {
-            step_id: step.step_id
+            step_id: step.step_id,
+            note: note
         }
+
+        console.log(params);
 
         try {
             const resp = await axios.post(`${HOST_URL}/api/step/end`, {
@@ -38,7 +44,7 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
                 }
             });
 
-            // console.log(resp);
+            console.log(resp);
 
             setActiveStep(activeStep + 1)
 
@@ -50,6 +56,10 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
 
     const handleSubmit = () => {
         setShowSummary(true);
+        const userName = JSON.parse(localStorage.getItem('user')).name;
+        const protocolsRun = localStorage.getItem('protocolsRun') ? JSON.parse(localStorage.getItem('protocolsRun')) : [];
+        localStorage.setItem('protocolsRun', JSON.stringify([...protocolsRun, { userName: userName, protocolId: protocolId }]))
+        navigate(`/protocols/${protocolId}/summary`)
         window.scrollTo(0, 0)
     }
 
@@ -102,7 +112,7 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
 
                     <h4>Components</h4>
                     <SingleComponentRun stepId={step.step_id} />
-                    <TextareaAutosize placeholder={`Note`} style={{ width: '100%', height: 100 }} />
+                    <TextareaAutosize placeholder={`Note`} style={{ width: '100%', height: 100 }} name={step.step_id} value={step.step_note ? step.step_note : note} onChange={(e) => setNote(e.target.value)} />
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         {activeStep > 0 ? <Button onClick={handleGoBack}>Go back</Button> : <div></div>}
                         {activeStep < stepsQnt - 1 ? <Button onClick={handleFinish}>Finish step</Button> : <Button onClick={handleSubmit}>Submit protocol</Button>}

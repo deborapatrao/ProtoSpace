@@ -30,7 +30,7 @@ const SingleComponentRun = ({ stepId }) => {
                     }
                 });
 
-                // console.log(resp.data);
+                // console.log('Step: ', resp.data);
 
                 setComponents(resp.data);
 

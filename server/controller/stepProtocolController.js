@@ -16,7 +16,8 @@ exports.findStepsProtocol = async (req, res) => {
                    from step_user_protocol sup
                             join protocol p on p.id = sup.protocol_id
                             join step_protocol sp on sp.id = sup.step_protocol_id
-                   where p.id = ${req.body.protocolId} and sup.workspace_id= ${req.body.workspace_id}`
+                   where p.id = ${req.body.protocolId}
+                     and sup.workspace_id = ${req.body.workspace_id}`
     try {
         const [results] = await Raw.query(query);
 
@@ -38,7 +39,7 @@ exports.stepNote = async (req, res) => {
             protocol_id: findStep.protocol_id,
             note: req.body.note
         }
-        await StepUserProtocol.update(data, {where:{id: req.body.step_id}})
+        await StepUserProtocol.update(data, {where: {step_protocol_id: req.body.step_id}})
         res.send(findStep)
 
     } else {
@@ -52,11 +53,12 @@ exports.startStep = async (req, res) => {
     try {
         // await Step.findByPk( req.body.step_id)
         await StepUserProtocol.update({
-                start_step: Date()
+                start_step: Date(),
+                note: req.body.note
             },
             {
                 where:
-                    {id: req.body.step_id}
+                    {step_protocol_id: req.body.step_id}
             })
             .then(data => {
                 res.status(200).send('Step started!')
@@ -71,11 +73,12 @@ exports.endStep = async (req, res) => {
     try {
         // await Step.findByPk( req.body.step_id)
         await StepUserProtocol.update({
-                end_step: Date()
+                end_step: Date(),
+                note: req.body.note
             },
             {
                 where:
-                    {id: req.body.step_id}
+                    {step_protocol_id: req.body.step_id}
             })
             .then(data => {
                 res.status(200).send('Step Ended!')
