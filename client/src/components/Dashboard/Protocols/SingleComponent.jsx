@@ -96,7 +96,7 @@ const SingleComponent = ({ component, activeStep, componentIndex, steps, setStep
             </div>
 
             <div className='single-component'>
-                <label htmlFor='info'>Additional info: </label>
+                <label htmlFor='info' className=''>Additional info: </label>
                 <TextField
                     id="info"
                     variant="standard"
