@@ -2,7 +2,7 @@
 @use '../../styles/mixins.scss' as mi;
 
 
-.home header{  
+.static-header{
   .header-container{
   display: flex;
   flex-flow: row nowrap;

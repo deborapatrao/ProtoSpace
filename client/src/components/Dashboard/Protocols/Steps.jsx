@@ -15,7 +15,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { HOST_URL } from '../../../data/data';
 
 const Steps = () => {
-    const { steps, setSteps } = useOutletContext();
+    const { steps, setSteps, handlePublish, conditionState } = useOutletContext();
     const [components, setComponents] = useState([]);
 
     const [activeStep, setActiveStep] = useState(null);
@@ -95,71 +95,83 @@ const Steps = () => {
     }
 
     return (
-        <section className='section-steps'>
-            <div>
+        <section className='steps'>
+            <div className='section-body'>
                 {steps ? steps.map((item, index) => {
                     // console.log(index);
                     return <SingleStep activeStep={activeStep} setActiveStep={setActiveStep} key={index} step={item} index={index} handleTextChange={handleTextChange} steps={steps} setSteps={setSteps} />
                 }) : ''}
 
                 <Button onClick={handleDataChange} className={"add-step-btn"}>+ New Step</Button>
+            </div>
 
-
-                <div>
+            <div className="navigation-links">
+                <div className='link-previous'>
                     <Link to={"/protocols/materials"}><ArrowBackIosNewIcon />Materials</Link>
                 </div>
-
-                <Link className={'previewBtn'} to={"/protocols/preview"}>Preview<ArrowForwardIosIcon /></Link>
+                <div className='link-next'>
+                    <Link className={'previewBtn'} to={"/protocols/preview"}>Preview<ArrowForwardIosIcon /></Link>
+                </div>
             </div>
 
 
+
+
+
             <div className={"components-container"}>
-                <h3>Components</h3>
-                <ul className={"buttons"}>
-                    {components ? components.map((item, index) => {
-                        return <li key={index}>
-                            <div onClick={() => handleAddComponent(item, activeStep)} className={`components-btn`}>
-                                {(() => {
-                                    if (item.name == "Length") {
-                                        return (
-                                            <SquareFootIcon />
-                                        )
-                                    } else if (item.name == "volume") {
-                                        return (
-                                            <LocalDrinkIcon />
-                                        )
-                                    } else if (item.name == "Mass") {
-                                        return (
-                                            <ScaleIcon />
-                                        )
-                                    } else if (item.name == "Temperature") {
-                                        return (
-                                            <DeviceThermostatIcon />
-                                        )
-                                    } else if (item.name == "Concentration") {
-                                        return (
-                                            <HubIcon />
-                                        )
-                                    } else if (item.name == "Pressure") {
-                                        return (
-                                            <SpeedIcon />
-                                        )
-                                    } else if (item.name == "Time") {
-                                        return (
-                                            <SquareFootIcon />
-                                        )
-                                    } else if (item.name == "Others") {
-                                        return (
-                                            <AddIcon />
-                                        )
+                <div className="components">
+                    <h3>Components</h3>
+                    <ul className={"buttons"}>
+                        {components ? components.map((item, index) => {
+                            return <li key={index}>
+                                <div onClick={() => handleAddComponent(item, activeStep)} className={`components-btn`}>
+                                    {(() => {
+                                        if (item.name == "Length") {
+                                            return (
+                                                <SquareFootIcon />
+                                            )
+                                        } else if (item.name == "volume") {
+                                            return (
+                                                <LocalDrinkIcon />
+                                            )
+                                        } else if (item.name == "Mass") {
+                                            return (
+                                                <ScaleIcon />
+                                            )
+                                        } else if (item.name == "Temperature") {
+                                            return (
+                                                <DeviceThermostatIcon />
+                                            )
+                                        } else if (item.name == "Concentration") {
+                                            return (
+                                                <HubIcon />
+                                            )
+                                        } else if (item.name == "Pressure") {
+                                            return (
+                                                <SpeedIcon />
+                                            )
+                                        } else if (item.name == "Time") {
+                                            return (
+                                                <SquareFootIcon />
+                                            )
+                                        } else if (item.name == "Others") {
+                                            return (
+                                                <AddIcon />
+                                            )
+                                        }
                                     }
-                                }
-                                )()}
-                                <button>{item.name}</button>
-                            </div>
-                        </li>
-                    }) : ''}
-                </ul>
+                                    )()}
+                                    <button>{item.name}</button>
+                                </div>
+                            </li>
+                        }) : ''}
+                    </ul>
+                </div>
+
+            </div>
+            <div className='btns'>
+                <Button className='btn_left' variant='outlined'>Preview</Button>
+                <Button className='btn_right' variant='contained' onClick={handlePublish} disabled={conditionState ? false : true}>Publish</Button>
             </div>
 
         </section>
