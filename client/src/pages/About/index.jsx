@@ -6,7 +6,7 @@ import MeetTeam from './MeetTeam';
 import OurStory from './OurStory';
 import Team from './Team';
 
-export default function About() {
+const  About = () => {
   return (
     <div className='about-page'>
         <HeaderNav />
@@ -22,3 +22,5 @@ export default function About() {
     </div>
   )
 }
+
+export default About;

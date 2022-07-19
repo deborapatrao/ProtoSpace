@@ -3,7 +3,7 @@ import AlexImg from './alex-orlov.jpg'
 import AngelineImg from './angeline-espiritu.jpg'
 import DeboraImg from './debora-correia.jpg'
 import GabrielImg from './gabriel-cordeiro.jpg'
-import MarkImg from './mar-eco.jpg'
+import MarkImg from './mark-eco.jpg'
 import PhatImg from './phat-thuan-nguyen.jpg'
 import SiulyImg from './siuly-tamex.jpg'
 
