@@ -1,36 +1,94 @@
 @use '../../../styles/variables.scss' as v;
 
-.sidebar{
+.sidebarDesktop {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #063554;
 
-    a{
-        text-decoration: none;
-        
+    &__btn {
+
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 5px;
     }
 
-    &__btn{
-        
+    &__trash {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #9DB9CA;
+
+    }
+
+
+    a {
+        text-decoration: none;
+    }
+
+    &__btn {
+
         margin-bottom: 1rem;
 
-        & .active-sidebar{
+        & .active-sidebar {
             background-color: v.$main-dark;
             padding: 1rem .7rem;
             border-radius: 6px;
             width: 100%;
-            
-            a{
+
+            a {
                 color: white;
             }
         }
 
-        & .inactive-sidebar{
+        & .inactive-sidebar {
             background-color: transparent;
             padding: 1rem .7rem;
             border-radius: 6px;
             width: 100%;
-            
-            a{
+
+            a {
                 color: v.$gray-dark;
             }
-        } 
+        }
     }
+}
+
+.sidebarMobile {
+    &__container{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        
+    .sidebarMobile__btn{
+        width: 100%;
+        text-align: center;
+        position: relative;
+    }    
+        .active-sidebar{
+            
+            &::before{
+                content: '';
+                width: 100%;
+                height: 2px;
+                background-color: v.$sec-dark;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+
+            a{
+                color: v.$sec-dark;
+            }
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: v.$gray-dark;
+    }
+
+
 }

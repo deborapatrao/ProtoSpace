@@ -1,6 +1,17 @@
 @use '../../../styles/variables.scss' as v;
+@use '../../../styles/mixins.scss' as mi;
 
 .workspace{
+    @include mi.mediaQuery(mi.$desktop){
+        padding: 2rem 2rem 0 0;
+    }
+    
+
+    h1{
+        margin-bottom: 2rem;
+        color: v.$main-dark;
+    }
+
     &__body{
         padding-top: 2rem;
         display: grid;

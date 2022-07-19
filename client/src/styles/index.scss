@@ -16,10 +16,9 @@ body {
 }
 
 .container {
-    // height: 100vh;
 
     &__navbar {
-        height: 10vh;
+        height: 7vh;
         min-height: 60px;
         border-bottom: 2px solid grey;
 
@@ -29,38 +28,12 @@ body {
     }
 
     &__dashboard {
-        // display: flex;
         display: grid;
-        grid-template-columns: 1fr 3fr;
-        // flex: 1;
-        height: 90vh;
+        height: 93vh;
+        gap: 2rem;
 
-        .sidebar,
-        .workspace {
-            padding: 1rem;
-        }
-
-        .sidebar {
-            // flex-basis: 30%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            &__btn {
-
-                color: white;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-            }
-
-            &__trash {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                color: #9DB9CA;
-
-            }
+        @media screen and (min-width: 1000px) {
+            grid-template-columns: 300px 3fr;
         }
 
         .workspace {
@@ -76,10 +49,6 @@ body {
 
 }
 
-
-.sidebar {
-    background-color: #063554;
-}
 
 .workspace {
     background-color: white;

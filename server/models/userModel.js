@@ -4,7 +4,6 @@ module.exports = (sequelize, Sequelize) => {
         name: {
             type: Sequelize.STRING,
             allowNull: false,
-            unique: true,
             validate: {
                 isAlpha: true
             }
@@ -29,7 +28,6 @@ module.exports = (sequelize, Sequelize) => {
         },
         role: {
             type: Sequelize.STRING,
-            allowNull: false
 
         },
         photo: {

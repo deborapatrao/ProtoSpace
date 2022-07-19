@@ -1,0 +1,233 @@
+@use '../../styles/variables.scss' as v;
+@use '../../styles/typography' as t;
+@use '../../styles/mixins.scss' as mi;
+
+.contact-page{
+  .body-container {
+    h1, h2, h5 {
+      color: #005694;
+    }
+    h1 {
+      text-align: left;
+    }
+    p {
+      color: v.$sec-dark;
+    }
+    section {
+      padding: 0 5vw;
+    }
+    .mandatory {
+      color: v.$support-red;
+    }
+    .banner-container {
+      background-color: v.$gray-lightest;
+      display: flex;
+      flex-flow: column-reverse;
+      img{
+        width: 100%;
+      }
+      .banner-description {
+        h1, p {
+          text-align: center;
+        }
+        padding-bottom: 40px;
+      }
+    }
+    .contact-us-header {
+      text-align: center;
+      padding: 40px 0 32px 0;
+
+      h2 {
+        padding-bottom: 12px;
+      }
+    }
+      .buttons-container {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 32px;
+        justify-self: center;
+        align-items: center;
+        margin-bottom: 64px;
+        button {
+          padding: 24px;
+          width: 100%;
+          height: 121px;
+          background: #FFFFFF;
+          box-shadow: -4px 4px 15px rgba(6, 53, 84, 0.15);
+          border-radius: 6px;
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          font-family: 'Noto Sans';
+          font-style: normal;
+
+          a{
+            text-decoration: none;
+            text-align: left;
+            color: #005694;
+            font-weight: 600;
+            font-size: 18px;
+
+          }
+
+          span {
+            grid-column: 1;
+            text-align: left;
+            font-weight: 400;
+            font-size: 16px;
+            color: #063554;
+          }
+
+          svg.MuiSvgIcon-root {
+            grid-column: 2;
+            justify-self: self-end;
+          }
+        }
+      }
+
+      form {
+        display: flex;
+        flex-flow: column;
+
+        input {
+          padding: 9px 333px 9px 16px;
+          width: 100%;
+          height: 42px;
+          background: #FFFFFF;
+          border: 1.5px solid #CDD8E0;
+          border-radius: 6px;
+          margin-bottom: 34px;
+        }
+
+        label {
+          color: v.$sec-dark;
+          padding-bottom: 4px;
+          font-weight: 600;
+        }
+
+        .phone-number-inputs {
+          input {
+            width: 70%;
+            height: 44px;
+            margin-left: 5%;
+            padding: 10px;
+          }
+
+          select {
+            padding: 0px 10px;
+            gap: 8px;
+            width: 25%;
+            height: 44px;
+            background: #FFFFFF;
+            border: 1.5px solid #CDD8E0;
+            border-radius: 6px;
+          }
+        }
+
+        .submit-btn {
+          padding: 12px 40px;
+          width: 114px;
+          height: 44px;
+          background: v.$main-medium;
+          border-radius: 6px;
+          color: v.$main-light;
+        }
+
+        .message-input {
+          padding: 20px 16px;
+          background: #FFFFFF;
+          border: 1.5px solid #CDD8E0;
+          border-radius: 6px;
+          width: 100%;
+          height: 282px;
+          margin-bottom: 40px;
+        }
+      }
+
+    .office-container {
+      background-color: v.$gray-lightest;
+      padding-top: 64px;
+      .office-location {
+        align-self: center;
+
+        h2 {
+          margin-bottom: 48px;
+          text-align: left;
+        }
+
+        h5 {
+          font-size: 18px;
+        }
+
+        ul {
+          list-style: none;
+
+          li {
+            line-height: 3;
+            font-size: 16px;
+          }
+        }
+      }
+
+      .office-map {
+        iframe {
+          width: 100%;
+          height: 504px;
+        }
+      }
+    }
+    @include mi.mediaQuery(mi.$desktop) {
+      section {
+        padding: 0 10vw;
+      }
+      .banner-container {
+        background-color: v.$gray-lightest;
+        display: flex;
+        flex-flow: row;
+        gap: 171px;
+
+        .banner-description {
+          h1 {
+            margin-bottom: 31px;
+          }
+
+          align-self: center;
+        }
+
+        .banner-image {
+          align-self: center;
+
+          img {
+            width: 585px;
+            height: 585px;
+          }
+        }
+      }
+      .contact-us-container {
+        .contact-us-header {
+          padding: 80px 0 48px 0;
+          h2 {
+            padding-bottom: 16px;
+          }
+          p {
+            max-width: 451px;
+            margin: auto;
+          }
+        }
+        .buttons-container {
+          margin-bottom: unset;
+        }
+        .contact-us-form-input {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 218px;
+        }
+      }
+      .office-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 50px;
+        padding: 64px 10vw 64px;
+      }
+    }
+  }
+}

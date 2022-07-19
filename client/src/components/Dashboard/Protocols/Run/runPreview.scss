@@ -1,0 +1,98 @@
+@use '../../../../styles/variables.scss' as v;
+@use '../../../../styles/typography' as t;
+
+.section-protocol-run {
+
+  .header-preview {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    a {
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    button.MuiButton-root {
+      background-color: v.$main-medium;
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 600;
+      padding: 12px 20px;
+    }
+  }
+
+  h2 {
+    margin-bottom: 64px;
+
+    span {
+      font-weight: 400;
+    }
+  }
+
+  .preview-section {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+
+    .sectionTitle {
+      background: #F4F7F9;
+      border-radius: 6px;
+      margin-bottom: 32px;
+      padding: 16px;
+      color: v.$sec-dark;
+
+      h4 {
+        font-size: 22px;
+      }
+    }
+
+    h6 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: v.$sec-dark;
+    }
+
+    p {
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #063554;
+      margin-bottom: 32px;
+      color: v.$sec-dark;
+    }
+
+    .confidentially-options {
+      display: flex;
+      flex-flow: column nowrap;
+      margin-bottom: 32px;
+    }
+  }
+
+  .navigation-links-preview {
+    grid-row: 2;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+
+    a {
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      text-decoration: none;
+      color: #249CF3;
+    }
+
+    button.MuiButton-root {
+      background-color: v.$main-medium;
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 600;
+      padding: 12px 20px;
+    }
+  }
+}

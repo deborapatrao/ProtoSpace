@@ -1,14 +1,17 @@
 import "./protocolsi.scss";
-import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Outlet, useOutletContext, useLocation } from 'react-router-dom';
 import { Button } from '@mui/material';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { HOST_URL } from '../../../data/data';
+import Sidebar from "../Sidebar";
 
 
 const Protocols = () => {
+    let location = useLocation();
+    console.log(location.pathname.includes('/summary'));
     const [data, setData] = useState({
         name: '',
         abstract: '',
@@ -20,7 +23,9 @@ const Protocols = () => {
         materials: ''
     });
 
-    const [steps, setSteps] = useState([{ step_number: 1, description: 'step1', components: [{ unit_id: 1, component_id: 1, component_information: "info", component_name: "name", component_value: "value" }] }]);
+    const [steps, setSteps] = useState([{ step_number: 1, step_description: '', components: [] }]);
+
+    const { width } = useOutletContext();
 
     const publishWarning = () => toast.error("Fill all required fields!");
     const publishSuccess = () => toast.success("Protocol published!");
@@ -78,16 +83,21 @@ const Protocols = () => {
 
     return (
         <div className="section__protocols">
-            <div className="btns__container" style={{ display: 'flex', gap: 10, alignSelf: 'flex-end', marginBottom: 30 }}>
-                <Button variant="text" sx={{ color: 'red' }}>Delete</Button>
-                <Button variant="outlined">Export</Button>
-                <Button variant="outlined">Preview</Button>
-                <Button variant="outlined">Save Draft</Button>
-                <Button variant="contained" disabled={conditionState ? false : true}>Publish</Button>
+            {!location.pathname.includes('protocols/run/') ?
+                <div className="btns__container" style={{ display: 'flex', gap: 10, alignSelf: 'flex-end', marginBottom: 30 }}>
+                    <Button variant="text" sx={{ color: 'red' }}>Delete</Button>
+                    <Button variant="outlined">Export</Button>
+                    <Button variant="outlined">Preview</Button>
+                    <Button variant="outlined">Save Draft</Button>
+                    <Button variant="contained" disabled={conditionState ? false : true} onClick={handlePublish}>Publish</Button>
+                </div>
+                : ''}
+            <div>
+                {width < 1000 && !location.pathname.includes('/summary') ? <Sidebar width={width} /> : ''}
             </div>
             <div>
-                <Outlet context={{ data, handleDataChange, steps, setSteps }} />
-                <Button onClick={handlePublish}>Publish</Button>
+                <Outlet context={{ data, handleDataChange, steps, setSteps, handlePublish, conditionState }} />
+                {/* <Button onClick={handlePublish}>Publish</Button> */}
             </div>
             <ToastContainer />
         </div>

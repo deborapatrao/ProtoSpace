@@ -5,9 +5,11 @@ import HeaderNav from "./Header";
 
 const Header = () =>{
     return(
-                <div className="header-container">
-                    <HeaderNav />
-                </div>
+                <header className="static-header">
+                    <div className="header-container">
+                        <HeaderNav />
+                    </div>
+                </header>
     );
 
 }
