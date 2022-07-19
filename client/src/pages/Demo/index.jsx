@@ -7,10 +7,8 @@ const Demo = () => {
 
     return ( <>
             <div className="demo">
-                <header>
                     <HeaderNav />
-                </header>
-                <section className={"body-container"}>
+                    <section className={"body-container"}>
                     <BodyDemo />
                 </section>
                 <section className={"footer-container"}>
