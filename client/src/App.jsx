@@ -21,6 +21,7 @@ import DescriptionRun from './components/Dashboard/Protocols/Run/DescriptionRun'
 import GuidelinesRun from './components/Dashboard/Protocols/Run/GuidelinesRun';
 import MaterialsRun from './components/Dashboard/Protocols/Run/MaterialsRun';
 import StepsRun from './components/Dashboard/Protocols/Run/StepsRun';
+import Summary from './components/Dashboard/Protocols/Summary';
 
 import DataVisualization from './components/Dashboard/DataVisual';
 
@@ -71,6 +72,8 @@ function App() {
                   <Route path="steps" element={<StepsRun />} />
                 </Route>
               </Route>
+
+              <Route path='summary' element={<Summary />} />
             </Route>
             <Route path="profile" element={<Profile />} />
             <Route path="data-visualization" element={<DataVisualization />} />
