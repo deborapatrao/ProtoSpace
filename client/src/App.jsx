@@ -6,6 +6,7 @@ import {
   Navigate
 } from "react-router-dom";
 import Home from './pages/Home/index';
+import About from './pages/About/index';
 import Demo from './pages/Demo/index';
 import Dashboard from './components/Dashboard';
 import Protocols from './components/Dashboard/Protocols';
@@ -46,6 +47,7 @@ function App() {
               <Route index element={<Login />} />
               <Route path='/register' element={<Register />} />
             </Route>
+            <Route path='about' element={<About />} />
             <Route path='demo' element={<Demo />}/>
             <Route path="*" element={<Navigate to="/" replace />} />
           </>
