@@ -1,15 +1,17 @@
 require('dotenv').config();
-const AWS = require("aws-sdk")
-// const getImgBuffer = require("getImgBuffer")
-const bucketName = 'protospace-app'
-const {AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY} = process.env
+const S3 = require("aws-sdk/clients/s3")
 
-AWS.config.update({
+
+
+const {AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_REGION, AWS_S3_BUCKET_NAME} = process.env
+
+
+const s3 = new S3({
     accessKeyId: AWS_ACCESS_KEY_ID,
     secretAccessKey: AWS_SECRET_ACCESS_KEY,
-    region: 'us-west-1'
+    region: AWS_S3_BUCKET_REGION
 })
 
-const s3Bucket = new AWS.S3({params: {Bucket: bucketName}})
+module.exports =  s3
 
-module.exports = s3Bucket   
+
