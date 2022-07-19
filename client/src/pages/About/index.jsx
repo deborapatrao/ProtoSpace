@@ -5,6 +5,7 @@ import Hero from './Hero';
 import MeetTeam from './MeetTeam';
 import OurStory from './OurStory';
 import Team from './Team';
+import './about.scss'
 
 const  About = () => {
   return (
