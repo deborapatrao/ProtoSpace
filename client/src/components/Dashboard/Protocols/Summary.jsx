@@ -6,7 +6,7 @@ import { HOST_URL } from '../../../data/data';
 
 const Summary = () => {
     const { protocolId } = useParams();
-    const [protocolInfo, setProtocolInfo] = useState();
+    const [protocolInfo, setProtocolInfo] = useState('');
 
     useEffect(() => {
         async function fetchData() {
@@ -25,7 +25,7 @@ const Summary = () => {
                     }
                 });
 
-
+                console.log(resp.data);
                 setProtocolInfo(resp.data);
 
             } catch (error) {
@@ -39,14 +39,14 @@ const Summary = () => {
     return (
         <section className={"preview"}>
             summary
-            {/* <div style={{ marginBottom: 30, paddingLeft: 30, paddingTop: 30 }}>
+            <div style={{ marginBottom: 30, paddingLeft: 30, paddingTop: 30 }}>
                 <div className={"description-title"}>
                     <h4 >Summary</h4>
                 </div>
                 <div>Date run: {new Date().toDateString()}</div>
                 <div>Time: </div>
                 <div>Run by: {JSON.parse(localStorage.getItem('user')).name}</div>
-                <div>Owner: {protocolInfo.author}</div>
+                <div>Owner: {protocolInfo.author ? protocolInfo.author : ''}</div>
             </div>
 
             <div className={'sectionTitle'}>
@@ -54,13 +54,13 @@ const Summary = () => {
             </div>
             <div className={'description'}>
                 <h6>Protocol Name</h6>
-                <p type={'text'}>{protocolInfo.name}</p>
+                <p type={'text'}>{protocolInfo.name ? protocolInfo.name : ''}</p>
                 <h6>Abstract</h6>
-                <p type={'text'}>{protocolInfo.abstract}</p>
+                <p type={'text'}>{protocolInfo.abstract ? protocolInfo.abstract : ''}</p>
                 <h6>Author</h6>
-                <p type={'text'}>{protocolInfo.author}</p>
+                <p type={'text'}>{protocolInfo.author ? protocolInfo.author : ''}</p>
                 <h6>Disclaimer</h6>
-                <p type={'text'}>{protocolInfo.disclaimer}</p>
+                <p type={'text'}>{protocolInfo.disclaimer ? protocolInfo.disclaimer : ''}</p>
             </div>
 
             <div className={'sectionTitle'}>
@@ -68,11 +68,11 @@ const Summary = () => {
             </div>
             <div className={'guidelines'}>
                 <h6>Guidelines</h6>
-                <p type={'text'}>{protocolInfo.guideline}</p>
+                <p type={'text'}>{protocolInfo.guideline ? protocolInfo.guideline : ''}</p>
                 <h6>Before start</h6>
-                <p type={'text'}>{protocolInfo.before_start}</p>
+                <p type={'text'}>{protocolInfo.before_start ? protocolInfo.before_start : ''}</p>
                 <h6>Safety warnings</h6>
-                <p type={'text'}>{protocolInfo.safety_warning}</p>
+                <p type={'text'}>{protocolInfo.safety_warning ? protocolInfo.safety_warning : ''}</p>
                 <h6>
                     Confidentially policy
                 </h6>
@@ -88,7 +88,7 @@ const Summary = () => {
             <div className={'materials'}>
                 <h6>List of materials</h6>
                 <p type={'text'}>{protocolInfo.materials}</p>
-            </div> */}
+            </div>    {/* */}
         </section>
     );
 }

@@ -24,7 +24,7 @@ const StepsRun = () => {
 
         async function fetchData() {
             const user = JSON.parse(localStorage.getItem('user'));
-
+            console.log(user.workspaceId[0][0].workspaceId);
             const params = {
                 protocolId: protocolId,
                 workspace_id: user.workspaceId[0][0].workspaceId
@@ -39,7 +39,7 @@ const StepsRun = () => {
                     }
                 });
 
-                // console.log(resp.data);
+                console.log('Steps: ', resp.data);
                 // console.log(protocolInfo);
 
                 setSteps(resp.data);
