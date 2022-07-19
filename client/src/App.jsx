@@ -51,7 +51,7 @@ function App() {
             </Route>
             <Route path='about' element={<About />} />
             <Route path='demo' element={<Demo />}/>
-            <Route path='contacts' element={<Contact />}/>
+            <Route path='contact' element={<Contact />}/>
             <Route path="*" element={<Navigate to="/" replace />} />
           </>
 

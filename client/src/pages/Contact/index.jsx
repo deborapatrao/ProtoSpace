@@ -1,3 +1,5 @@
+import './contact.scss';
+import '../Footer/footer.scss';
 import React from 'react';
 import HeaderNav from "../Header/index";
 import Footer from "../Footer/Index";
