@@ -12,11 +12,13 @@ const TableComponent = () => {
     useEffect(() => {
         const protocolsLocal = JSON.parse(localStorage.getItem('protocolsRun'));
         let newArr = [];
+        if (protocolsLocal) {
+            protocolsLocal.map((item, index) => {
+                newArr.push(Number(item.protocolId))
+            })
 
-        protocolsLocal.map((item, index) => {
-            newArr.push(Number(item.protocolId))
-        })
-        setProtocolsRun(newArr)
+            setProtocolsRun(newArr)
+        }
 
     }, [])
 
