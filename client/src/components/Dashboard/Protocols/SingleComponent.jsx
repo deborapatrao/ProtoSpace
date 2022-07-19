@@ -60,21 +60,42 @@ const SingleComponent = ({ component, activeStep, componentIndex, steps, setStep
     }
 
     return (
-        <div style={{ backgroundColor: 'lightgrey', marginBottom: 10, width: '80%' }}>
-            <div>Name: {component.component_name}</div>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor='value'>Value: </label>
-                <TextField
-                    id="value"
-                    type="number"
-                    variant="standard"
-                    name='component_value'
-                    value={component.component_value}
-                    onChange={(e) => handleDataChange(e)}
-                />
+        <div className='single-component__container'>
+            <div className="single-component">Name: {component.component_name}</div>
+        
 
+            <div className="single-component__value">
+                <div className='single-component'>
+                    <label htmlFor='value'>Value: </label>
+                    <TextField
+                        id="value"
+                        type="number"
+                        variant="standard"
+                        name='component_value'
+                        value={component.component_value}
+                        onChange={(e) => handleDataChange(e)}
+                    />
+                </div>
+                <div className='single-component'>
+                    <label htmlFor='unit'>Unit: </label>
+                    <NativeSelect
+                        defaultValue={component.unit_id != null ? component.unit_id : ''}
+                        inputProps={{
+                            name: 'unit_id',
+                            id: 'unit',
+                        }}
+                        onChange={(e) => handleDataChange(e)}
+                    >
+                        <option value={''} disabled hidden></option>
+                        {units && units.length > 0 ? units.map((item, index) => {
+                            // console.log(item.id);
+                            return <option key={index} value={item.id}>{item.name}</option>
+                        }) : ''}
+                    </NativeSelect>
+                </div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+
+            <div className='single-component'>
                 <label htmlFor='info'>Additional info: </label>
                 <TextField
                     id="info"
@@ -85,24 +106,7 @@ const SingleComponent = ({ component, activeStep, componentIndex, steps, setStep
                 />
 
             </div>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor='unit'>Unit: </label>
-                <NativeSelect
-                    defaultValue={component.unit_id != null ? component.unit_id : ''}
-                    inputProps={{
-                        name: 'unit_id',
-                        id: 'unit',
-                    }}
-                    onChange={(e) => handleDataChange(e)}
-                >
-                    <option value={''} disabled hidden></option>
-                    {units && units.length > 0 ? units.map((item, index) => {
-                        // console.log(item.id);
-                        return <option key={index} value={item.id}>{item.name}</option>
-                    }) : ''}
-
-                </NativeSelect>
-            </div>
+            
             {/* <button onClick={handleDataChange}>check</button> */}
         </div>
     );

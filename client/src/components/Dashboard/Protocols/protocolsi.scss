@@ -134,6 +134,7 @@
 
       h4 {
         color: v.$sec-dark;
+        margin-bottom: .5rem;
       }
 
       &__body {
@@ -385,19 +386,31 @@
     }
   }
 
+  .single-component{
+    color: v.$sec-dark;
 
+    &__wrapper{
+      display: grid;
+      grid-gap: 1rem;
+    }
 
+    &__container{
+    padding: .7rem .5rem;
+    background-color: v.$gray-light;
+    border-radius: 6px;
+    }
 
-  .components-container {
-    // .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-    //   width: 1044px;
-    //   height: 326px;
-    //   text-align: left;
-    // }
+    &__value{
+      @include mi.mediaQuery(mi.$desktop){
+        display: flex;
+        gap: .75rem;
+      }
+    }
+
+    label{
+      vertical-align: bottom;
+    }
+
   }
-
-
-
-
 
 }
