@@ -15,7 +15,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { HOST_URL } from '../../../data/data';
 
 const Steps = () => {
-    const { steps, setSteps } = useOutletContext();
+    const { steps, setSteps, handlePublish, conditionState } = useOutletContext();
     const [components, setComponents] = useState([]);
 
     const [activeStep, setActiveStep] = useState(null);
@@ -105,14 +105,17 @@ const Steps = () => {
                 <Button onClick={handleDataChange} className={"add-step-btn"}>+ New Step</Button>
             </div>
 
-                <div className="navigation-links">
-                    <div className='link-previous'>
-                        <Link to={"/protocols/materials"}><ArrowBackIosNewIcon />Materials</Link>
-                    </div>
+            <div className="navigation-links">
+                <div className='link-previous'>
+                    <Link to={"/protocols/materials"}><ArrowBackIosNewIcon />Materials</Link>
                 </div>
+                <div className='link-next'>
+                    <Link className={'previewBtn'} to={"/protocols/preview"}>Preview<ArrowForwardIosIcon /></Link>
+                </div>
+            </div>
 
-                <Link className={'previewBtn'} to={"/protocols/preview"}>Preview<ArrowForwardIosIcon /></Link>
-            
+
+
 
 
             <div className={"components-container"}>
@@ -164,6 +167,11 @@ const Steps = () => {
                         }) : ''}
                     </ul>
                 </div>
+
+            </div>
+            <div className='btns'>
+                <Button className='btn_left' variant='outlined'>Preview</Button>
+                <Button className='btn_right' variant='contained' onClick={handlePublish} disabled={conditionState ? false : true}>Publish</Button>
             </div>
 
         </section>

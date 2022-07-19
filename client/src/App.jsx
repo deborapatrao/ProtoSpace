@@ -6,13 +6,15 @@ import {
   Navigate
 } from "react-router-dom";
 import Home from './pages/Home/index';
+import About from './pages/About/index';
+import Demo from './pages/Demo/index';
 import Dashboard from './components/Dashboard';
 import Protocols from './components/Dashboard/Protocols';
 import Description from './components/Dashboard/Protocols/Description';
 import Guidelines from './components/Dashboard/Protocols/Guidelines';
 import Materials from './components/Dashboard/Protocols/Materials';
 import Steps from './components/Dashboard/Protocols/Steps';
-import Preview from "./components/Dashboard/Protocols/Preview";
+import PreviewCreate from "./components/Dashboard/Protocols/PreviewCreate";
 import TableComponent from './components/Dashboard/Workspace/Table';
 
 import ProtocolRun from './components/Dashboard/Protocols/Run';
@@ -32,6 +34,7 @@ import Profile from "./components/Profile/Profile";
 
 function App() {
   const { user } = useSelector((state) => state.auth)
+  console.log(user);
 
 
   return (
@@ -44,6 +47,8 @@ function App() {
               <Route index element={<Login />} />
               <Route path='/register' element={<Register />} />
             </Route>
+            <Route path='about' element={<About />} />
+            <Route path='demo' element={<Demo />}/>
             <Route path="*" element={<Navigate to="/" replace />} />
           </>
 
@@ -59,7 +64,7 @@ function App() {
               <Route path="guidelines" element={<Guidelines />} />
               <Route path="materials" element={<Materials />} />
               <Route path="steps" element={<Steps />} />
-              <Route path="preview" element={<Preview />} />
+              <Route path="preview" element={<PreviewCreate />} />
 
               <Route path='run'>
                 <Route path=':protocolId' element={<ProtocolRun />}>
