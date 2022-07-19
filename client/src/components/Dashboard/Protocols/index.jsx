@@ -89,15 +89,15 @@ const Protocols = () => {
                     <Button variant="outlined">Export</Button>
                     <Button variant="outlined">Preview</Button>
                     <Button variant="outlined">Save Draft</Button>
-                    <Button variant="contained" disabled={conditionState ? false : true}>Publish</Button>
+                    <Button variant="contained" disabled={conditionState ? false : true} onClick={handlePublish}>Publish</Button>
                 </div>
                 : ''}
             <div>
                 {width > 1000 ? '' : <Sidebar width={width} />}
             </div>
             <div>
-                <Outlet context={{ data, handleDataChange, steps, setSteps }} />
-                <Button onClick={handlePublish}>Publish</Button>
+                <Outlet context={{ data, handleDataChange, steps, setSteps, handlePublish, conditionState }} />
+                {/* <Button onClick={handlePublish}>Publish</Button> */}
             </div>
             <ToastContainer />
         </div>

@@ -11,6 +11,7 @@ const Workspace = ({ width }) => {
 
     return (
         <div className='workspace'>
+
             <FolderBreadcrumbs />
             {location.pathname === '/' ? <h1>My Workspace</h1> : ''}
             <Outlet context={{ width }} />
