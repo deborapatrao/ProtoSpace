@@ -104,6 +104,15 @@
       .components-container {
         grid-column: 2/-1;
         grid-row: 1/-1;
+
+      }
+
+      .btns {
+        display: flex;
+        padding: 1rem;
+        gap: 1rem;
+        justify-content: flex-end;
+        align-items: flex-end;
       }
     }
 

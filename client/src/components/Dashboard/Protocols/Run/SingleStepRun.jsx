@@ -12,6 +12,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SingleComponentRun from './SingleComponentRun';
 import axios from 'axios';
 import { HOST_URL } from '../../../../data/data';
+import '../protocolsi.scss';
 
 const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setShowSummary }) => {
     const [loading, setLoading] = useState(false)
@@ -37,7 +38,7 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
                 }
             });
 
-            console.log(resp);
+            // console.log(resp);
 
             setActiveStep(activeStep + 1)
 
