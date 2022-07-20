@@ -1,17 +1,8 @@
 const db = require("../models");
-
+const upload = require('../images/uploadImages')
 const Users = db.users;
 const Op = db.Sequelize.Op;
 
-
-/*exports.studentAccess = (req, res) => {
-    res.status(200).send("Student Content.");
-};
-exports.teacherAccess = (req, res) => {
-    res.status(200).send("Teacher Content.");
-};*/
-
-/* Find all Users */
 exports.findAll = (req, res) => {
     const name = req.query.name;
     let condition = name ? {name: {[Op.like]: `%${name}%`}} : null;
@@ -47,14 +38,19 @@ exports.findOne = async (req, res) => {
             })
 };
 
-exports.update = async (req,res) =>{
+exports.update = async (req, res) => {
+    const file = req.file;
+    const fileName = req.body.fileName;
+
+    const photo = await upload.profilePhoto(file, fileName)
+
     const user = await Users.findByPk(req.body.id);
-    const update = Users.update(
+    Users.update(
         {
-        name: req.body.name,
-        photo: req.body.photo,
-        passwordC: req.body.passwordC,
-        password: req.body.password
+            name: req.body.name,
+            photo: photo,
+            passwordC: req.body.passwordC,
+            password: req.body.password
         },
         {
         where:{

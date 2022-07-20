@@ -1,5 +1,8 @@
 const {authJwt} = require("../middleware");
 const controller = require("../controller/userController");
+const multer = require("multer");
+const upload = multer({dest: 'temp/'})
+
 module.exports = function (app) {
 
     const {authJwt} = require("../middleware");
@@ -13,22 +16,11 @@ module.exports = function (app) {
         );
         next();
     });
-    /*
-        app.get(
-            "/api/role/student",
-            [authJwt.verifyToken],
-            controller.studentAccess
-        );
-        app.get(
-            "/api/role/teacher",
-            [authJwt.verifyToken],
-            controller.teacherAccess
-        );
-    */
+
 
     router.get("/", controller.findAll);
     router.post("/profile", controller.findOne);
-    router.post("/profile/update", controller.update);
+    router.post("/profile/update",  upload.single('image'), controller.update);
 
     app.use('/api/users', [authJwt.verifyToken], router);
 };

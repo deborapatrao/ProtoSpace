@@ -28,7 +28,7 @@ exports.register = (req, res) => {
         Users.create(User)
             .then(data => {
                 console.log('data saved')
-                res.send(data);
+                res.status(200).send(data);
             })
             .catch(err => {
                 res.status(500).send({

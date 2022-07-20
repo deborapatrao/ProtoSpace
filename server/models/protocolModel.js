@@ -17,6 +17,9 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
 
         },
+        status: {
+            type: Sequelize.STRING,
+        },
         external_link: {
             type: Sequelize.STRING,
 

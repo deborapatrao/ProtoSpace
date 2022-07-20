@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useOutletContext, Link } from 'react-router-dom';
 import axios from 'axios';
 import { HOST_URL } from '../../../data/data';
 import './protocolsi.scss'
 import SingleStep from './Run/SingleStepRun';
+import { Button } from '@mui/material';
+import ReactToPrint from "react-to-print";
 
 
 const Summary = () => {
     const { protocolId } = useParams();
     const [protocolInfo, setProtocolInfo] = useState('');
     const [steps, setSteps] = useState([]);
+    const componentRef = useRef();
 
     useEffect(() => {
         async function fetchData() {
@@ -53,15 +56,21 @@ const Summary = () => {
     }, [])
 
     return (
-        <section className={"preview"}>
+        <section className={"preview"} ref={componentRef}>
             <div style={{ marginBottom: 30, paddingTop: 30 }}>
                 <div className={"description-title"}>
                     <h4 >Summary</h4>
                 </div>
                 <div>Date run: {new Date().toDateString()}</div>
-                <div>Time: </div>
+                {/* <div>Time: </div> */}
                 <div>Run by: {JSON.parse(localStorage.getItem('user')).name}</div>
                 <div>Owner: {protocolInfo.author ? protocolInfo.author : ''}</div>
+                <div>
+                    <ReactToPrint
+                        trigger={() => <Button>Export submission</Button>}
+                        content={() => componentRef.current}
+                    />
+                </div>
             </div>
 
             <div className={'sectionTitle'}>

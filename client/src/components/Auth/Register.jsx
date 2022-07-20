@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl, FormHelperText, InputLabel, Input, Button, CircularProgress } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { register, reset } from '../../features/auth/useSlice';
 
@@ -9,6 +9,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
+    let navigate = useNavigate();
 
     const dispatch = useDispatch();
     const { user, loading, error, response } = useSelector((state) => state.auth)
@@ -33,6 +34,8 @@ const Register = () => {
         }
 
         dispatch(register(userData))
+        // popup: you are registered! congrats!
+        navigate('/');
 
         console.log(userData);
     }
