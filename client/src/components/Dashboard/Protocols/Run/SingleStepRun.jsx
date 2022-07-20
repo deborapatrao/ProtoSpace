@@ -55,10 +55,10 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
     }
 
     const handleSubmit = () => {
-        handleFinish();
         setShowSummary(true);
         window.scrollTo(0, 0);
         if (window.confirm('Are you sure you want to submit protocol?')) {
+            handleFinish();
             const userName = JSON.parse(localStorage.getItem('user')).name;
             const protocolsRun = localStorage.getItem('protocolsRun') ? JSON.parse(localStorage.getItem('protocolsRun')) : [];
             localStorage.setItem('protocolsRun', JSON.stringify([...protocolsRun, { userName: userName, protocolId: protocolId }]))
