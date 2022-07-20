@@ -6,12 +6,14 @@ module.exports = function (app) {
 
     router.post("/", controller.createProtocol);
 
-    router.post('/find/', controller.findProtocol);
+    router.post('/find', controller.findProtocol);
 
-    router.post('/run/', controller.runProtocol);
+    router.post('/run', controller.runProtocol);
 
-    router.post('/find/byworkspace/', controller.findProtocolWorkspace);
+    router.post('/status', controller.statusProtocol);
 
-    app.use('/api/protocol', [authJwt.verifyToken], router);
+    router.post('/find/byworkspace', controller.findProtocolWorkspace);
+
+    app.use('/api/protocol', [authJwt.verifyToken],  router);
 };
 
