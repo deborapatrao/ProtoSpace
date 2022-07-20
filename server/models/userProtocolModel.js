@@ -10,6 +10,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
 
         },
+        run_protocol: {
+            type: Sequelize.DATE,
+
+        },
     },{  timestamps: false})
 
 }

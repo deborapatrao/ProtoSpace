@@ -1,8 +1,6 @@
 const db = require("../models")
 const Raw = db.sequelize;
 const Step = db.step_protocol
-const uploadImg = require('../images/uploadImg')
-const getImg = require('../images/getImageUrl')
 const StepUserProtocol = db.step_user_protocol
 
 exports.findStepsProtocol = async (req, res) => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl, FormHelperText, InputLabel, Input, Button, CircularProgress } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { register, reset } from '../../features/auth/useSlice';
 
@@ -9,6 +9,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
+    let navigate = useNavigate();
 
     const dispatch = useDispatch();
     const { user, loading, error, response } = useSelector((state) => state.auth)
@@ -33,6 +34,8 @@ const Register = () => {
         }
 
         dispatch(register(userData))
+        // popup: you are registered! congrats!
+        navigate('/');
 
         console.log(userData);
     }
@@ -49,14 +52,14 @@ const Register = () => {
             </FormControl>
             <FormControl >
                 <InputLabel htmlFor="password-register">Password</InputLabel>
-                <Input id="password-register" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Input id="password-register" type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
             </FormControl>
             <FormControl >
                 <InputLabel htmlFor="password2-register">Confirm Password</InputLabel>
-                <Input id="password2-register" value={password2} onChange={(e) => setPassword2(e.target.value)} />
+                <Input id="password2-register" type='password' value={password2} onChange={(e) => setPassword2(e.target.value)} />
             </FormControl>
 
-            <Button type='submit' variant="contained" style={{ alignSelf: 'center' }}>Login</Button>
+            <Button type='submit' variant="contained" style={{ alignSelf: 'center' }}>Register</Button>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <p>Already have an account?</p>
                 <Link to={'/'}>Login</Link>

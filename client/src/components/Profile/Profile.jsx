@@ -114,7 +114,7 @@ const Profile = () => {
                 <div className={"user-info-container"}>
                     <div className={"container-header"}>
                         <h4>Account Information</h4>
-                        <div className={"updated-container"}>Last Update: <span>{userInfo.updated_at.slice(0, 10)}</span></div>
+                        {userInfo.updated_at ? <div className={"updated-container"}>Last Update: <span> {userInfo.updated_at.slice(0, 10)} </span></div> : ''}
                         <div className={"mandatory-def"}><span className={"mandatory"}>*</span> This section need to be filled</div>
                     </div>
                     <div className={"user-info-fields"}>

@@ -2,7 +2,7 @@ const db = require("../models")
 const Raw = db.sequelize;
 const Protocol = db.protocol
 const Workspace = db.workspace
-const User = db.users
+const UserProtocol = db.user_protocol
 const Step = db.step_protocol
 const StepComponents = db.step_component
 const StepUserProtocol = db.step_user_protocol
@@ -15,7 +15,7 @@ exports.findProtocol = (req, res) => {
 }
 exports.findProtocolWorkspace = async (req, res) => {
 
-    /* A query to find the protocol that is associated with thäe workspace. */
+    /* A query to find the protocol that is associated with the workspace. */
     const query = `select name,
                           abstract,
                           disclaimer,
@@ -33,7 +33,9 @@ exports.findProtocolWorkspace = async (req, res) => {
                           updated_at
                    from protocol
                             right join workspace_protocol wp on protocol.id = wp.protocol_id
-                   where wp.workspace_id = ${req.body.workspaceId}`
+                   where 1 = 1
+                     and status = 'A'
+                     and wp.workspace_id = ${req.body.workspaceId}`
 
     try {
         const [results, metadata] = await Raw.query(query);
@@ -49,15 +51,13 @@ exports.findProtocolWorkspace = async (req, res) => {
 exports.runProtocol = async = (req, res) => {
 
     try {
-        Protocol.update({
-                start_run: Date()
-            },
-            {
-                where:
-                    {id: req.body.protocolId}
-            })
+        UserProtocol.create({
+            protocol_id: req.body.protocol_id,
+            user_id: req.body.user_id,
+            run_protocol: Date()
+        })
             .then(data => {
-                res.status(200).send('Step started!')
+                res.status(200).send(data.run_protocol)
             }).catch(error => res.send(error))
 
     } catch (e) {
@@ -127,4 +127,18 @@ exports.createProtocol = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
+}
+
+exports.statusProtocol = async (req, res) => {
+const status = req.body.status;
+    const data = {
+        status:status
+    }
+    try {
+        await Protocol.update(data, {where: {id: req.body.protocol_id}})
+            .then(res.status(200).send(`${status === "A" ? "Protocol Activated" : "Protocol Inactivated"  }`))
+    } catch (e) {
+        res.status(501).send('Something went wrong!')
+    }
+
 }
