@@ -1,4 +1,5 @@
 const db = require("../models")
+const {findOne} = require("./userController");
 const Raw = db.sequelize;
 const Protocol = db.protocol
 const Workspace = db.workspace
@@ -67,6 +68,8 @@ exports.runProtocol = async = (req, res) => {
 }
 
 exports.createProtocol = async (req, res) => {
+    const protocol_id = req.body.protocol_id
+    const publish = req.body.published;
 
     const data = {
         name: req.body.name,
@@ -79,64 +82,127 @@ exports.createProtocol = async (req, res) => {
         safety_warning: req.body.safety_warning,
         materials: req.body.materials
     }
+    if (publish) {
+        data.published = publish
+    }
+
     const stepsRequest = req.body.steps;
+
+    const workspaceId = await Workspace.findByPk(req.body.workspaceId);
 
     try {
 
-        const workspaceId = await Workspace.findByPk(req.body.workspaceId)
-        // const userId = await User.findByPk(req.body.userId)
-        const protocolCreated = await Protocol.create(data)
+        if (protocol_id) {
 
-        for (const step of stepsRequest) {
+            const findProtocol = await Protocol.findByPk(protocol_id)
 
-            const stepData = {
-                step_number: step.step_number,
-                description: step.step_description,
-                protocol_id: protocolCreated.id
-            }
+            if (findProtocol) {
+                try {
 
-            if (stepData) {
 
-                const StepCreate = await Step.create(stepData)
-                for (components of step.components) {
-                    const componentData = {
-                        name: components.component_name,
-                        information: components.component_information,
-                        value: components.component_value,
-                        step_id: StepCreate.id,
-                        unit_id: components.unit_id,
-                        component_id: components.component_id
+                     await Protocol.update(data, {where: {id: protocol_id}});
+
+                    for (const step of stepsRequest) {
+
+                        const stepData = {
+                            description: step.step_description
+                        }
+
+                        const stepUpdate = await Step.update(stepData, {
+                            where: {
+                                protocol_id: protocol_id,
+                                step_number: step.step_number
+                            }
+                        });
+
+                        let stepFind = await Step.findOne(
+                            {attributes: ['id']},
+                            {
+                                where: {
+                                    protocol_id: protocol_id,
+                                    step_number: step.step_number
+                                }
+                            });
+
+                        for (components of step.components) {
+                            const componentData = {
+                                name: components.component_name,
+                                information: components.component_information,
+                                value: components.component_value,
+                                step_id: stepFind.id,
+                                unit_id: components.unit_id,
+                                component_id: components.component_id
+                            }
+
+                            if (stepUpdate) {
+                                await StepComponents.update(componentData, {where: {step_id: stepFind.id}})
+                            }
+                        }
                     }
-                    if (StepCreate) {
-                        await StepComponents.create(componentData)
-                    }
-                }
-                const stepUserData = {
-                    step_protocol_id: StepCreate.id,
-                    protocol_id: protocolCreated.id,
-                    workspace_id: workspaceId.id
-                }
-                await StepUserProtocol.create(stepUserData)
-            }
 
+                    res.status(200).send('Protocol Updated!');
+                } catch (error) {
+                    res.status(500).send(error)
+                }
+            }
+        } else {
+            try {
+
+                const protocolCreated = await Protocol.create(data)
+
+                for (const step of stepsRequest) {
+
+                    const stepData = {
+                        step_number: step.step_number,
+                        description: step.step_description,
+                        protocol_id: protocolCreated.id
+                    }
+
+                    if (stepData) {
+
+                        const StepCreate = await Step.create(stepData)
+                        for (components of step.components) {
+                            const componentData = {
+                                name: components.component_name,
+                                information: components.component_information,
+                                value: components.component_value,
+                                step_id: StepCreate.id,
+                                unit_id: components.unit_id,
+                                component_id: components.component_id
+                            }
+                            if (StepCreate) {
+                                await StepComponents.create(componentData)
+                            }
+                        }
+                        const stepUserData = {
+                            step_protocol_id: StepCreate.id,
+                            protocol_id: protocolCreated.id,
+                            workspace_id: workspaceId.id
+                        }
+                        await StepUserProtocol.create(stepUserData)
+                    }
+
+                }
+
+                await workspaceId.addProtocol(protocolCreated, workspaceId).then(data => res.status(200).send(data)).catch(error => res.status(500).send(error))
+            } catch (error) {
+                res.status(500).send(error)
+            }
         }
-
-        // await userId.addProtocol(protocolCreated, userId)
-        await workspaceId.addProtocol(protocolCreated, workspaceId).then(data => res.send(data)).catch(error => console.log(error))
-
     } catch (error) {
-        console.log(error)
+        res.status(500).send(error)
     }
+
 }
 
 exports.statusProtocol = async (req, res) => {
-const status = req.body.status;
+    const status = req.body.status;
     const data = {
-        status:status
+        status: status
     }
     try {
         await Protocol.update(data, {where: {id: req.body.protocol_id}})
-            .then(res.status(200).send(`${status === "A" ? "Protocol Activated" : "Protocol Inactivated"  }`))
+            .then(res.status(200).send(`${status === "A" ? "Protocol Activated" : "Protocol Inactivated"}`))
     } catch (e) {
         res.status(501).send('Something went wrong!')
     }
