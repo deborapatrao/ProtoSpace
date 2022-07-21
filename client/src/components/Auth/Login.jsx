@@ -33,22 +33,34 @@ const Login = () => {
     }
 
     return (loading ? <CircularProgress /> :
-        <form style={{ display: 'flex', flexDirection: 'column', gap: 10 }} onSubmit={handleSubmit}>
-            <FormControl >
-                <InputLabel htmlFor="email-login">Email</InputLabel>
-                <Input id="email-login" aria-describedby="helper-text" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <FormHelperText id="helper-text">Helper text.</FormHelperText>
-            </FormControl>
-            <FormControl >
-                <InputLabel htmlFor="password-login">Password</InputLabel>
-                <Input type='password' id="password-login" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </FormControl>
-            <Button type='submit' variant="contained" style={{ alignSelf: 'center' }}>Login</Button>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <p>Don't have an account?</p>
-                <Link to={'/register'}>Sign up</Link>
-            </div>
-        </form>
+
+            <form style={{ display: 'flex', flexDirection: 'column', gap: 10 }} onSubmit={handleSubmit}>
+                <h2>Login</h2>
+                <p className={"welcome"}>Welcome to the most efficient laboratory learning platform</p>
+
+                <FormControl >
+                    <label>
+                        Email<span className={"mandatory"}>*</span>
+                    </label>
+                    <input id="email-login" type={"email"} aria-describedby="helper-text" value={email} onChange={(e) => setEmail(e.target.value)}  placeholder={"Email"}/>
+
+                    {/*<FormHelperText id="helper-text">Helper text.</FormHelperText>*/}
+                </FormControl>
+                <FormControl >
+                    <label>
+                        Password<span className={"mandatory"}>*</span>
+                    </label>
+
+                    {/*<InputLabel htmlFor="password-login">Password</InputLabel>*/}
+                    <input type='password' id="password-login" value={password} onChange={(e) => setPassword(e.target.value)}  placeholder={"Password"}/>
+
+                </FormControl>
+                <Button type='submit' variant="contained" style={{ alignSelf: 'center' }}>Login</Button>
+                <div style={{ display: 'flex', justifyContent: 'center' }} className={"sign-up-container"}>
+                    <p>Don't have an account?</p>
+                    <Link to={'/register'}>Sign up</Link>
+                </div>
+            </form>
 
     );
 }
