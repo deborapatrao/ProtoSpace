@@ -1,0 +1,84 @@
+@use '../../styles/variables.scss' as v;
+@use '../../styles/mixins.scss' as mi;
+
+.demo{
+    .main-feature-container{
+        background-color: v.$gray-lightest;
+
+        .image-container{
+            padding: 2rem 2%;
+            margin: auto;
+            text-align: center;
+            img{
+                max-width: 100%;
+            }
+        }
+
+        .form-container{
+            padding: 2rem 2%;
+
+            h2{
+                color: v.$sec-dark;
+                margin: .75rem 0;
+            }
+
+            h2, p{
+                text-align: center;
+            }
+            form {
+                display: flex;
+                flex-flow: column;
+                margin-top: 2rem;
+
+                input {
+                    margin-bottom: 1rem;
+                    display: block;
+                    width: 100%;
+                    height: 44px;
+                    background: #FFFFFF;
+                    border: 1.5px solid v.$gray-medium;
+                    border-radius: 6px;
+                }
+        
+                label {
+                  color: v.$sec-dark;
+                  padding-bottom: 4px;
+                  font-weight: 600;
+                  box-sizing: border-box;
+                }
+
+                .phone-number-inputs {
+                   display: flex;
+                   gap: 1rem;
+                   width: 100%;
+
+                   input {
+                    flex-grow: 1;
+                    height: 44px;
+                    padding: 10px;
+                  }
+        
+                  select {
+                    padding: 0px 10px;
+                    gap: 8px;
+
+                    height: 44px;
+                    background: #FFFFFF;
+                    border: 1.5px solid #CDD8E0;
+                    border-radius: 6px;
+                  }
+                  }
+
+                  .submit-btn {
+                    padding: 12px 40px;
+                    height: 44px;
+                    background: v.$main-medium;
+                    border-radius: 6px;
+                    color: v.$main-light;
+                    width: 100%;
+                    margin-top: 2rem;
+                  }
+            }
+        }
+    }
+}

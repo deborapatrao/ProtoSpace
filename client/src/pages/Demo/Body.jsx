@@ -10,21 +10,21 @@ const BodyDemo = () => {
                 <div className={"image-container"}>
                     <img src={demoImg} alt={"demo"} className={"main-feature-image"}/>
                 </div>
-                <div>
+                <div className='form-container'>
+                    <h2>Tell us your story</h2>
+                    <p>Whether you have a question about features, trials, pricing, or anything else, our team is ready to answer all of your questions.</p>
                     <form>
-                        <h1>Tell us your story</h1>
-                        <p>Whether you have a question about features, trials, pricing, or anything else, our team is ready to answer all of your questions.</p>
                         <label>
                             Your business email <span className={"mandatory"}>*</span>
-                            <input type={"email"} name={"business-email"} />
+                            <input type={"email"} name={"business-email"} placeholder="Please provide your business email" />
                         </label>
                         <label>
                             First name<span className={"mandatory"}>*</span>
-                            <input type={"text"} name={"first-name"} />
+                            <input type={"text"} name={"first-name"} placeholder="First name"/>
                         </label>
                         <label>
                             Last name<span className={"mandatory"}>*</span>
-                            <input type={"text"} name={"first-name"} />
+                            <input type={"text"} name={"first-name"} placeholder="Last name"/>
                         </label>
                         <label>
                             Phone number<span className={"mandatory"}>*</span>
@@ -36,31 +36,31 @@ const BodyDemo = () => {
                                 <option value={"Russia"}>Russia</option>
                                 <option value={"Mexico"}>Mexico</option>
                             </select>
-                            <input type={"number"} name={"first-name"} />
+                            <input type={"tel"} name={"first-name"} placeholder="123456789"/>
                             </div>
                         </label>
                         <label>
                             Organization
-                            <input type={"text"} name={"organization-name"} />
+                            <input type={"text"} name={"organization-name"} placeholder="Business name"/>
                         </label>
                         <label>
                            Job title
-                            <input type={"text"} name={"job-title"} />
+                            <input type={"text"} name={"job-title"} placeholder="Your job title"/>
                         </label>
                         <div className={"company-info"}>
                             <label>
-                                Company site
-                                <input type={"text"} name={"company-site"} />
+                                Company size
+                                <input type={"text"} name={"company-size"} />
                             </label>
                             <label>
                                 Industry<span className={"mandatory"}>*</span>
                                 <input type={"text"} name={"job-title"} />
                             </label>
-                        </div>
+                        </div> 
 
-                        <input type="submit" value="Submit" />
+                        <input type="submit" value="Ask for a demo"  className='submit-btn'/>
                     </form>
-                </div>
+                </div> 
             </div>
         </section>
     );
