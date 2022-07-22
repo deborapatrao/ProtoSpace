@@ -18,14 +18,16 @@ const BodyDemo = () => {
                             Your business email <span className={"mandatory"}>*</span>
                             <input type={"email"} name={"business-email"} placeholder="Please provide your business email" />
                         </label>
-                        <label>
-                            First name<span className={"mandatory"}>*</span>
-                            <input type={"text"} name={"first-name"} placeholder="First name"/>
-                        </label>
-                        <label>
-                            Last name<span className={"mandatory"}>*</span>
-                            <input type={"text"} name={"first-name"} placeholder="Last name"/>
-                        </label>
+                        <div className="name-inputs">
+                            <label>
+                                First name<span className={"mandatory"}>*</span>
+                                <input type={"text"} name={"first-name"} placeholder="First name"/>
+                            </label>
+                            <label>
+                                Last name<span className={"mandatory"}>*</span>
+                                <input type={"text"} name={"first-name"} placeholder="Last name"/>
+                            </label>
+                        </div>
                         <label>
                             Phone number<span className={"mandatory"}>*</span>
                             <div className={"phone-number-inputs"}>

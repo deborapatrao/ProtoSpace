@@ -5,6 +5,15 @@
     .main-feature-container{
         background-color: v.$gray-lightest;
 
+        .main-feature-details{
+            max-width: 1200px;
+            margin: auto;
+            @include mi.mediaQuery(mi.$desktop){
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         .image-container{
             padding: 2rem 2%;
             margin: auto;
@@ -24,6 +33,10 @@
 
             h2, p{
                 text-align: center;
+
+                @include mi.mediaQuery(mi.$desktop){
+                    text-align: left;
+                }
             }
             form {
                 display: flex;
@@ -77,6 +90,18 @@
                     color: v.$main-light;
                     width: 100%;
                     margin-top: 2rem;
+
+                    @include mi.mediaQuery(mi.$desktop){
+                        width: fit-content;
+                    }
+                  }
+
+                  .name-inputs, .company-info{
+                    @include mi.mediaQuery(mi.$desktop){
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 1rem;
+                    }
                   }
             }
         }
