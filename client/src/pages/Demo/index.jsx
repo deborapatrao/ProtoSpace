@@ -2,6 +2,7 @@ import React from 'react';
 import HeaderNav from "../Header/index";
 import Footer from "../Footer/Index";
 import BodyDemo from "../Demo/Body";
+import './demo.scss'
 
 const Demo = () => {
 
