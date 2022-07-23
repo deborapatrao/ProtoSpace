@@ -1,0 +1,90 @@
+@use '../../../../styles/variables.scss' as v;
+@use '../../../../styles/typography' as t ;
+
+header{
+  padding: 16px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  border-bottom: 1px solid #CDD8E0;
+  align-self: center;
+  h5{
+    font-size: 18px;
+    color: v.$sec-dark;
+  }
+  button{
+    background-color: unset!important;
+    border: none;
+    width: 24px !important;
+      margin-top: 0 !important;
+  }
+}
+  .modal-container {
+    .mandatory {
+      color: v.$support-red;
+      padding-left: 12px;
+    }
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 510px !important;
+    height: 319px !important;
+    background-color: white;
+    border-radius: 6px;
+    border-color: unset;
+    .modal-info{
+      padding: 40px 16px;
+    }
+    .publish-modal-info{
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 24px;
+      color: v.$sec-dark;
+    }
+    .bottom-btn {
+      text-align: right;
+      padding-right: 16px;
+      .close-btn {
+        margin: 16px;
+        font-size: 14px;
+        border: none;
+        color: v.$main-medium;
+        background-color: unset;
+      }
+    }
+  }
+.child-modal{
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 510px !important;
+  height: 527px !important;
+  background-color: white;
+  border-radius: 6px;
+  border-color: unset;
+  .child-modal-info {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    .upload-image{
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+  }
+  button{
+    background-color: v.$main-medium;
+    border-radius: 6px;
+    color: white;
+    margin-top: 24px;
+    text-transform: lowercase;
+    display: unset;
+    width: 311px;
+    img{
+      padding-right: 10px;
+    }
+    .dashboard-btn{
+      background-color: white;
+      color: v.$main-medium;
+    }
+  }
+}

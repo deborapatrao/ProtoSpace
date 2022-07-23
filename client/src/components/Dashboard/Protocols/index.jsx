@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { HOST_URL } from '../../../data/data';
 import Sidebar from "../Sidebar";
+import FirstModal from "../Utils/Modal/NestedModal";
+import ChildModal from "../Utils/Modal/Modal";
 
 
 const Protocols = () => {
@@ -80,6 +82,10 @@ const Protocols = () => {
             publishWarning();
         }
     }
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
 
     return (
         <div className="section__protocols">
@@ -89,7 +95,31 @@ const Protocols = () => {
                     <Button variant="outlined">Export</Button>
                     <Button variant="outlined">Preview</Button>
                     <Button variant="outlined">Save Draft</Button>
-                    <Button variant="contained" disabled={conditionState ? false : true} onClick={handlePublish}>Publish</Button>
+                    {/*<Button variant="contained" disabled={conditionState ? false : true} onClick={handlePublish}>Publish</Button>*/}
+                    <FirstModal
+                        disInfo={conditionState ? false : true}
+                        clickAction={handleOpen}
+                        variantType={'contained'}
+                        buttonName={'Publish'}
+                        modalHeader={'Publish Protocol'}
+                        modalInfo=
+                            {
+                                <div className={'publish-modal-info'}>
+                                    <label>
+                                        <input type={"checkbox"} required />
+                                        <span className={"mandatory"}>*</span> I confirm that my co-authors and supervisor agree to publish this protocol
+                                    </label>
+                                    <label>
+                                        <input type={"checkbox"} required />
+                                        <span className={"mandatory"}>*</span> I understand that by sharing to others, I am making this protocol permanently available
+                                    </label>
+                                </div>
+                            }
+
+                    >
+                    </FirstModal>
+
+
                 </div>
                 : ''}
             <div>
