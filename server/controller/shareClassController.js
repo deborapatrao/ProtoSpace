@@ -24,7 +24,6 @@ exports.usersShareProtocol = async (req, res) => {
 exports.shareProtocol = async (req, res) => {
     const protocol = req.body.protocol_id;
     const workspaces = req.body.workspaces;
-    const workspaceUser = req.body.workspace_id;
     const steps = req.body.steps;
 
     if (protocol !== undefined) {
@@ -36,7 +35,7 @@ exports.shareProtocol = async (req, res) => {
                     workspace_id: workspace.workspace_id,
                     shared: 1
                 }
-                const sharedProtocol = WorspaceProtocol.create(data);
+               await WorspaceProtocol.create(data);
                 for (const step of steps) {
 
                     const stepUserData = {
@@ -44,14 +43,10 @@ exports.shareProtocol = async (req, res) => {
                         step_protocol_id: step.step_id,
                         workspace_id: workspace.workspace_id
                     }
-                    StepUserProtocol.create(stepUserData);
+                   await StepUserProtocol.create(stepUserData);
                 }
-
             }
-
-
-            res.send('shared')
-            // res.status(200).statusMessage('sahred')
+            res.status(200).send('shared')
         } catch (e) {
             res.status(500)
         }

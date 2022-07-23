@@ -1,12 +1,13 @@
 const db = require("../models")
-const {findOne} = require("./userController");
 const Raw = db.sequelize;
 const Protocol = db.protocol
-const Workspace = db.workspace
-const UserProtocol = db.user_protocol
 const Step = db.step_protocol
+const Workspace = db.workspace
+const StepImages = db.step_images
+const UserProtocol = db.user_protocol
 const StepComponents = db.step_component
 const StepUserProtocol = db.step_user_protocol
+const UploadImage = require('../images/uploadImages')
 
 exports.findProtocol = (req, res) => {
     Protocol.findByPk(req.body.protocolId)
@@ -70,6 +71,8 @@ exports.runProtocol = async = (req, res) => {
 exports.createProtocol = async (req, res) => {
     const protocol_id = req.body.protocol_id
     const publish = req.body.published;
+    const file = req.files;
+    const fileName = req.body.fileName;
 
     const data = {
         name: req.body.name,
@@ -89,9 +92,11 @@ exports.createProtocol = async (req, res) => {
     const stepsRequest = req.body.steps;
 
     const workspaceId = await Workspace.findByPk(req.body.workspaceId);
-
+    let steps_ids = []
     try {
 
+        /* This is checking if the protocol_id is not null. If it is not null, it will find the protocol by the
+        protocol_id. If it is found, it will update the protocol. */
         if (protocol_id) {
 
             const findProtocol = await Protocol.findByPk(protocol_id)
@@ -99,8 +104,7 @@ exports.createProtocol = async (req, res) => {
             if (findProtocol) {
                 try {
 
-
-                     await Protocol.update(data, {where: {id: protocol_id}});
+                    await Protocol.update(data, {where: {id: protocol_id}});
 
                     for (const step of stepsRequest) {
 
@@ -145,6 +149,7 @@ exports.createProtocol = async (req, res) => {
                     res.status(500).send(error)
                 }
             }
+            /* This is creating a new protocol. */
         } else {
             try {
 
@@ -161,6 +166,10 @@ exports.createProtocol = async (req, res) => {
                     if (stepData) {
 
                         const StepCreate = await Step.create(stepData)
+                        // const photo = await UploadImage.profilePhoto(file, fileName, protocolCreated.id)
+                        steps_ids.push({"step_id": StepCreate.id})
+                        const stepImage = {}
+                        await StepImages.create()
                         for (components of step.components) {
                             const componentData = {
                                 name: components.component_name,
@@ -184,7 +193,7 @@ exports.createProtocol = async (req, res) => {
 
                 }
 
-                await workspaceId.addProtocol(protocolCreated, workspaceId).then(data => res.status(200).send(data)).catch(error => res.status(500).send(error))
+                await workspaceId.addProtocol(protocolCreated, workspaceId).then(data => res.status(200).send( [...data, ...steps_ids])).catch(error => res.status(500).send(error))
             } catch (error) {
                 res.status(500).send(error)
             }
