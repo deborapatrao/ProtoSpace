@@ -106,7 +106,7 @@ exports.createProtocol = async (req, res) => {
             if (findProtocol) {
                 try {
 
-                    await Protocol.update(data, {where: {id: protocol_id}});
+                    await Protocol.update(data, { where: { id: protocol_id } });
 
                     for (const step of stepsRequest) {
 
@@ -122,7 +122,7 @@ exports.createProtocol = async (req, res) => {
                         });
 
                         let stepFind = await Step.findOne(
-                            {attributes: ['id']},
+                            { attributes: ['id'] },
                             {
                                 where: {
                                     protocol_id: protocol_id,
@@ -141,7 +141,7 @@ exports.createProtocol = async (req, res) => {
                             }
 
                             if (stepUpdate) {
-                                await StepComponents.update(componentData, {where: {step_id: stepFind.id}})
+                                await StepComponents.update(componentData, { where: { step_id: stepFind.id } })
                             }
                         }
                     }
@@ -169,9 +169,9 @@ exports.createProtocol = async (req, res) => {
 
                         const StepCreate = await Step.create(stepData)
                         // const photo = await UploadImage.profilePhoto(file, fileName, protocolCreated.id)
-                        steps_ids.push({"step_id": StepCreate.id})
+                        steps_ids.push({ "step_id": StepCreate.id })
                         const stepImage = {}
-                        await StepImages.create()
+                        // await StepImages.create()
                         for (components of step.components) {
                             const componentData = {
                                 name: components.component_name,
@@ -195,8 +195,14 @@ exports.createProtocol = async (req, res) => {
 
                 }
 
-                await workspaceId.addProtocol(protocolCreated, workspaceId).then(data => res.status(200).send( [...data, [...steps_ids]])).catch(error => res.status(500).send(error))
+                workspaceId.addProtocol(protocolCreated, workspaceId)
+                    .then(data => res.status(200).send([...data, [...steps_ids]]))
+                    .catch(error => {
+                        console.log('this: ', error);
+                        res.status(500).send(error)
+                    })
             } catch (error) {
+                console.log('that: ', error);
                 res.status(500).send(error)
             }
         }
@@ -212,7 +218,7 @@ exports.statusProtocol = async (req, res) => {
         status: status
     }
     try {
-        await Protocol.update(data, {where: {id: req.body.protocol_id}})
+        await Protocol.update(data, { where: { id: req.body.protocol_id } })
             .then(res.status(200).send(`${status === "A" ? "Protocol Activated" : "Protocol Inactivated"}`))
     } catch (e) {
         res.status(501).send('Something went wrong!')
