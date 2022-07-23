@@ -93,6 +93,8 @@ exports.createProtocol = async (req, res) => {
 
     const workspaceId = await Workspace.findByPk(req.body.workspaceId);
     let steps_ids = []
+
+
     try {
 
         /* This is checking if the protocol_id is not null. If it is not null, it will find the protocol by the
@@ -193,7 +195,7 @@ exports.createProtocol = async (req, res) => {
 
                 }
 
-                await workspaceId.addProtocol(protocolCreated, workspaceId).then(data => res.status(200).send( [...data, ...steps_ids])).catch(error => res.status(500).send(error))
+                await workspaceId.addProtocol(protocolCreated, workspaceId).then(data => res.status(200).send( [...data, [...steps_ids]])).catch(error => res.status(500).send(error))
             } catch (error) {
                 res.status(500).send(error)
             }
