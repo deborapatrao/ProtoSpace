@@ -36,7 +36,7 @@ const style = {
 
 const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, steps, setSteps, publishedProtocol }) => {
     const [expanded, setExpanded] = useState(false);
-    const [openModal, setOpenModal] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
     const [chosenUsers, setChosenUsers] = useState([]);
     const [users, setUsers] = useState([]);
 
@@ -263,7 +263,7 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                                 labelId="demo-multiple-checkbox-label"
                                 id="demo-multiple-checkbox"
                                 multiple
-                                value={chosenUsers}
+                                value={chosenUsers.map(item => item.user_name)}
                                 onChange={handleChange}
                                 input={<OutlinedInput label="Tag" />}
                                 renderValue={(selected) => selected.join(', ')}
