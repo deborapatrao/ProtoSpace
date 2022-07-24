@@ -2,12 +2,9 @@ const {authJwt} = require("../middleware");
 const controller = require("../controller/userController");
 const multer = require("multer");
 const upload = multer({dest: 'temp/'})
+let router = require("express").Router();
 
 module.exports = function (app) {
-
-    const {authJwt} = require("../middleware");
-    const controller = require("../controller/userController");
-    let router = require("express").Router();
 
     app.use(function (req, res, next) {
         res.header(

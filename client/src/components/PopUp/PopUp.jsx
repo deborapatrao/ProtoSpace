@@ -11,7 +11,7 @@ const PopUp = () => {
         <Popup trigger={<button className={"login-btn"}>Login</button>} position="right center">
             <div className={"pop-up-container"} >
                 <div className={"image-container"}>
-                    <img src={Login} alt={"Login-image"}/>
+                    <img src={Login} alt={"Login"} />
                 </div>
                 <div className={"info-container"}>
                     <span className={"close-icon"}>X</span>

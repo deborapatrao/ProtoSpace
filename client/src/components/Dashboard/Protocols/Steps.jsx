@@ -15,7 +15,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { HOST_URL } from '../../../data/data';
 
 const Steps = () => {
-    const { steps, setSteps, handlePublish, conditionState } = useOutletContext();
+    const { steps, setSteps, handlePublish, conditionState, publishedProtocol } = useOutletContext();
     const [components, setComponents] = useState([]);
 
     const [activeStep, setActiveStep] = useState(null);
@@ -99,7 +99,7 @@ const Steps = () => {
             <div className='section-body'>
                 {steps ? steps.map((item, index) => {
                     // console.log(index);
-                    return <SingleStep activeStep={activeStep} setActiveStep={setActiveStep} key={index} step={item} index={index} handleTextChange={handleTextChange} steps={steps} setSteps={setSteps} />
+                    return <SingleStep activeStep={activeStep} setActiveStep={setActiveStep} key={index} step={item} index={index} handleTextChange={handleTextChange} steps={steps} setSteps={setSteps} publishedProtocol={publishedProtocol} />
                 }) : ''}
 
                 <Button onClick={handleDataChange} className={"add-step-btn"}>+ New Step</Button>
