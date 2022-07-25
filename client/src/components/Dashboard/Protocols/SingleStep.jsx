@@ -246,53 +246,53 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                     </div>
                 </AccordionDetails>
             </Accordion>
-            <Modal
-                open={openModal}
-                onClose={() => setOpenModal(!openModal)}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style}>
+            {/*<Modal*/}
+            {/*    open={openModal}*/}
+            {/*    onClose={() => setOpenModal(!openModal)}*/}
+            {/*    aria-labelledby="modal-modal-title"*/}
+            {/*    aria-describedby="modal-modal-description"*/}
+            {/*>*/}
+            {/*    <Box sx={style}>*/}
 
-                    <div style={{ color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <h4>so many things</h4>
-                        <div></div>
-                        <label htmlFor="demo-simple-select"></label>
-                        <FormControl sx={{ m: 1, width: 300 }}>
-                            <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
-                            <Select
-                                labelId="demo-multiple-checkbox-label"
-                                id="demo-multiple-checkbox"
-                                multiple
-                                value={chosenUsers}
-                                onChange={handleChange}
-                                input={<OutlinedInput label="Tag" />}
-                                renderValue={(selected) => {
-                                    console.log(selected);
-                                    const newArr = selected.map(item => item.user_name)
-                                    return newArr.join(', ')
+            {/*        <div style={{ color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>*/}
+            {/*            <h4>so many things</h4>*/}
+            {/*            <div></div>*/}
+            {/*            <label htmlFor="demo-simple-select"></label>*/}
+            {/*            <FormControl sx={{ m: 1, width: 300 }}>*/}
+            {/*                <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>*/}
+            {/*                <Select*/}
+            {/*                    labelId="demo-multiple-checkbox-label"*/}
+            {/*                    id="demo-multiple-checkbox"*/}
+            {/*                    multiple*/}
+            {/*                    value={chosenUsers}*/}
+            {/*                    onChange={handleChange}*/}
+            {/*                    input={<OutlinedInput label="Tag" />}*/}
+            {/*                    renderValue={(selected) => {*/}
+            {/*                        console.log(selected);*/}
+            {/*                        const newArr = selected.map(item => item.user_name)*/}
+            {/*                        return newArr.join(', ')*/}
 
-                                }}
-                            >
-                                {users ? users.map((item, index) => (
-                                    <MenuItem key={index} value={item}>
-                                        <Checkbox checked={chosenUsers.indexOf(item) > -1} />
-                                        <ListItemText primary={item.user_name} />
-                                    </MenuItem>
-                                )) : ''}
-                            </Select>
-                        </FormControl>
-                    </div>
-                    <div>
-                        {chosenUsers ? chosenUsers.map((item, index) => {
-                            return <div key={index}>{item.user_name} and {item.workspace_id}</div>
-                        }) : ''}
-                    </div>
-                    <div>
-                        <Button onClick={handleShare}>Share</Button>
-                    </div>
-                </Box>
-            </Modal>
+            {/*                    }}*/}
+            {/*                >*/}
+            {/*                    {users ? users.map((item, index) => (*/}
+            {/*                        <MenuItem key={index} value={item}>*/}
+            {/*                            <Checkbox checked={chosenUsers.indexOf(item) > -1} />*/}
+            {/*                            <ListItemText primary={item.user_name} />*/}
+            {/*                        </MenuItem>*/}
+            {/*                    )) : ''}*/}
+            {/*                </Select>*/}
+            {/*            </FormControl>*/}
+            {/*        </div>*/}
+            {/*        <div>*/}
+            {/*            {chosenUsers ? chosenUsers.map((item, index) => {*/}
+            {/*                return <div key={index}>{item.user_name} and {item.workspace_id}</div>*/}
+            {/*            }) : ''}*/}
+            {/*        </div>*/}
+            {/*        <div>*/}
+            {/*            <Button onClick={handleShare}>Share</Button>*/}
+            {/*        </div>*/}
+            {/*    </Box>*/}
+            {/*</Modal>*/}
         </section>
     );
 }

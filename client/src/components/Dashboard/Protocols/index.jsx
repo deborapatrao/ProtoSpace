@@ -6,9 +6,11 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { HOST_URL } from '../../../data/data';
+import CircularProgress from '@mui/material/CircularProgress';
 import Sidebar from "../Sidebar";
 import Drawer from '@mui/material/Drawer';
 import NewModal from "../Utils/Modal/NewModal";
+import ShareModal from "../Utils/Modal/ShareModal";
 
 
 
@@ -115,7 +117,7 @@ const Protocols = () => {
                         <Button variant="text" sx={{ color: 'red' }}>Delete</Button>
                         <Button variant="outlined">Export</Button>
                         <Button variant="outlined">Preview</Button>
-                        <Button variant="outlined" onClick={togglePublishModal}>Save Draft</Button>
+                        <Button variant="outlined" >Save Draft</Button>
                         <Button variant="contained" disabled={conditionState ? false : true} onClick={togglePublishModal}>Publish</Button>
                     </div>
                     : <Button sx={{ alignSelf: 'flex-end', marginRight: 2 }} variant="outlined" onClick={() => setDrawerOpen(!drawerOpen)}>...</Button>
@@ -145,17 +147,13 @@ const Protocols = () => {
                     </div>
                 </form>
             </NewModal>
-
-            <NewModal
-                open={shareModal}
-                handleClose={toggleShareModal}
-                modalHeader={'Publish Protocol'}
-            >
-                <div className={'publish-modal-info'}>
-                    different children
-                </div>
-            </NewModal>
-
+            <ShareModal
+                    open={shareModal}
+                    handleClose={toggleShareModal}
+                    modalHeader={'Publish Protocol'}
+                    protocolName={publishedProtocol.name}
+                >
+            </ShareModal>
 
             <div>
                 {width < 1000 && !location.pathname.includes('/summary') ? <Sidebar width={width} /> : ''}
