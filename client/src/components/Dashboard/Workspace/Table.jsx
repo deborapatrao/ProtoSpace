@@ -3,10 +3,13 @@ import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { HOST_URL } from '../../../data/data';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../features/auth/useSlice';
 
 const TableComponent = () => {
     const [protocols, setProtocols] = useState([]);
     const [protocolsRun, setProtocolsRun] = useState([]);
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
@@ -46,6 +49,8 @@ const TableComponent = () => {
 
             } catch (error) {
                 console.log(error);
+                // good practice???
+                dispatch(logout());
             }
         }
 
