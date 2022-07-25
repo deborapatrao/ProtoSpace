@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
 
         },
-        shared:{
+        shared_status:{
             type: Sequelize.STRING
         }
     },{  timestamps: false})

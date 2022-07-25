@@ -2,15 +2,19 @@ module.exports = (sequelize, Sequelize) => {
 
     return sequelize.define("user_protocol", {
 
+        workspace_id: {
+            type: Sequelize.INTEGER,
+
+        },
         protocol_id: {
             type: Sequelize.INTEGER,
 
         },
-        user_id: {
-            type: Sequelize.INTEGER,
+        start_run: {
+            type: Sequelize.DATE,
 
         },
-        run_protocol: {
+        end_run: {
             type: Sequelize.DATE,
 
         },

@@ -85,10 +85,3 @@ exports.endStep = async (req, res) => {
         res.send(e)
     }
 }
-
-exports.uploadImg = async (req, res) => {
-    uploadImg(req.body.path, req.body.img).then(data => {
-        res.send(data)
-    })
-        .catch(err => res.send(err))
-}

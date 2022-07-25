@@ -18,23 +18,29 @@ exports.findProtocol = (req, res) => {
 exports.findProtocolWorkspace = async (req, res) => {
 
     /* A query to find the protocol that is associated with the workspace. */
-    const query = `select name,
-                          abstract,
-                          disclaimer,
-                          external_link,
-                          guideline,
-                          before_start,
-                          safety_warning,
-                          author,
-                          materials,
-                          shared,
-                          published,
-                          workspace_id,
-                          protocol_id,
-                          created_at,
-                          updated_at
-                   from protocol
-                            right join workspace_protocol wp on protocol.id = wp.protocol_id
+    const query = `select p.name
+                        , (case when up.start_run is not null then 1 else 0 end) as start_run
+                        , (case when up.end_run is not null then 1 else 0 end)   as end_run
+                        , end_run as end_run_date
+                        , up.start_run as start_run_date
+                        , p.abstract
+                        , p.disclaimer
+                        , p.external_link
+                        , p.guideline
+                        , p.before_start
+                        , p.safety_warning
+                        , p.author
+                        , p.materials
+                        , p.created_at
+                        , p.updated_at
+                        , p.published
+                        , wp.workspace_id
+                        , wp.protocol_id
+                        , wp.shared_status
+
+                   from protocol p
+                            join workspace_protocol wp on p.id = wp.protocol_id
+                            left join user_protocol up on wp.workspace_id = up.workspace_id and p.id = up.protocol_id
                    where 1 = 1
                      and status = 'A'
                      and wp.workspace_id = ${req.body.workspaceId}`
@@ -50,21 +56,50 @@ exports.findProtocolWorkspace = async (req, res) => {
     }
 }
 
-exports.runProtocol = async = (req, res) => {
+exports.runProtocol = async (req, res) => {
+    const Protocol_id = req.body.protocol_id
+    const Workspace_id = req.body.workspace_id
+
+    const data = {
+        protocol_id: Protocol_id,
+        workspace_id: Workspace_id,
+    }
 
     try {
-        UserProtocol.create({
-            protocol_id: req.body.protocol_id,
-            user_id: req.body.user_id,
-            run_protocol: Date()
-        })
-            .then(data => {
-                res.status(200).send(data.run_protocol)
-            }).catch(error => res.send(error))
+        const runProtocol = await UserProtocol.findOne({attributes: ["start_run"]},
+            {
+                where:
+                    {
+                        workspace_id: Workspace_id, protocol_id: Protocol_id
+                    }
+            })
+        if (runProtocol) {
+            data.end_run = Date()
+            UserProtocol.update(data
+                , {
+                    where: {
+                        workspace_id: Workspace_id, protocol_id: Protocol_id
+                    }
+                })
+                .then(
+                    data => {
+                        res.send(data)
+                    }
+                ).catch(error => res.send(error))
+        } else {
+            data.start_run = Date()
+            UserProtocol.create(data)
+                .then(
+                    data => {
+                        res.send(data)
+                    }
+                ).catch(error => res.send(error))
+        }
 
     } catch (e) {
         res.status(500).send(e)
     }
+
 
 }
 
@@ -106,7 +141,7 @@ exports.createProtocol = async (req, res) => {
             if (findProtocol) {
                 try {
 
-                    await Protocol.update(data, { where: { id: protocol_id } });
+                    await Protocol.update(data, {where: {id: protocol_id}});
 
                     for (const step of stepsRequest) {
 
@@ -122,7 +157,7 @@ exports.createProtocol = async (req, res) => {
                         });
 
                         let stepFind = await Step.findOne(
-                            { attributes: ['id'] },
+                            {attributes: ['id']},
                             {
                                 where: {
                                     protocol_id: protocol_id,
@@ -141,7 +176,7 @@ exports.createProtocol = async (req, res) => {
                             }
 
                             if (stepUpdate) {
-                                await StepComponents.update(componentData, { where: { step_id: stepFind.id } })
+                                await StepComponents.update(componentData, {where: {step_id: stepFind.id}})
                             }
                         }
                     }
@@ -169,7 +204,7 @@ exports.createProtocol = async (req, res) => {
 
                         const StepCreate = await Step.create(stepData)
                         // const photo = await UploadImage.profilePhoto(file, fileName, protocolCreated.id)
-                        steps_ids.push({ "step_id": StepCreate.id })
+                        steps_ids.push({"step_id": StepCreate.id})
                         const stepImage = {}
                         // await StepImages.create()
                         for (components of step.components) {
@@ -198,7 +233,6 @@ exports.createProtocol = async (req, res) => {
                 workspaceId.addProtocol(protocolCreated, workspaceId)
                     .then(data => res.status(200).send([...data, [...steps_ids]]))
                     .catch(error => {
-                        console.log('this: ', error);
                         res.status(500).send(error)
                     })
             } catch (error) {
@@ -218,10 +252,11 @@ exports.statusProtocol = async (req, res) => {
         status: status
     }
     try {
-        await Protocol.update(data, { where: { id: req.body.protocol_id } })
+        await Protocol.update(data, {where: {id: req.body.protocol_id}})
             .then(res.status(200).send(`${status === "A" ? "Protocol Activated" : "Protocol Inactivated"}`))
     } catch (e) {
         res.status(501).send('Something went wrong!')
     }
 
 }
+
