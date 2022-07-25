@@ -3,16 +3,15 @@ const db = require("../models")
 const fs = require("fs");
 const Raw = db.sequelize;
 const Protocol = db.protocol
-const Step = db.step_protocol
-const StepComponents = db.step_component
-const StepUserProtocol = db.step_user_protocol
-
+const blobStream = require('blob-stream');
 const doc = new PDFDocument;
+const stream = doc.pipe(blobStream());
 
 exports.exportPDF = async (req, res) => {
     const Protocol_id = req.body.protocol_id;
     const Workspace_id = req.body.workspace_id
-    doc.pipe(fs.createWriteStream('temp/test.pdf'));
+
+
     const ProtocolInfo = await Protocol.findByPk(Protocol_id, {
         attributes: [
             'name',
@@ -26,20 +25,21 @@ exports.exportPDF = async (req, res) => {
             'safety_warning'
         ]
     });
+    doc.pipe(fs.createWriteStream(`${ProtocolInfo.author}.pdf`));
     //Query for Steps
-    const steps_query = `select sp.id                                                    as step_id
-                        , sp.description                                           as step_description
-                        , sup.note                                                 as step_note
-                        , sp.step_number
-                        , sup.end_step
-                        , sup.start_step
-                   from step_user_protocol sup
-                            join protocol p on p.id = sup.protocol_id
-                            join step_protocol sp on sp.id = sup.step_protocol_id
+    const steps_query = `select sp.id          as step_id
+                              , sp.description as step_description
+                              , sup.note       as step_note
+                              , sp.step_number
+                              , sup.end_step
+                              , sup.start_step
+                         from step_user_protocol sup
+                                  join protocol p on p.id = sup.protocol_id
+                                  join step_protocol sp on sp.id = sup.step_protocol_id
 
-                   where 1 = 1
-                     and p.id = ${Protocol_id}
-                     and sup.workspace_id = ${Workspace_id}`
+                         where 1 = 1
+                           and p.id = ${Protocol_id}
+                           and sup.workspace_id = ${Workspace_id}`
 
     const [steps] = await Raw.query(steps_query);
 
@@ -116,28 +116,28 @@ exports.exportPDF = async (req, res) => {
     doc.moveDown()
         .fillColor('black')
         .fontSize(22)
-        .text(`Steps:`);
+        .text(`Steps`, {align: 'center'});
 
 
-    for(const step of steps){
+    for (const step of steps) {
 
         const components_query = `select c.name         as component_name,
-                          sc.name        as step_component_name,
-                          sc.information as component_information,
-                          sc.value       as component_value,
-                          u.name         as unit_name,
-                          u.symbol       as symbol
-                   from step_component as sc
-                            join component c on c.id = sc.component_id
-                            join unit u on sc.unit_id = u.id
-                   where step_id = ${step.step_id}`
+                                         sc.name        as step_component_name,
+                                         sc.information as component_information,
+                                         sc.value       as component_value,
+                                         u.name         as unit_name,
+                                         u.symbol       as symbol
+                                  from step_component as sc
+                                           join component c on c.id = sc.component_id
+                                           join unit u on sc.unit_id = u.id
+                                  where step_id = ${step.step_id}`
 
         const [components] = await Raw.query(components_query);
 
 
         doc.moveDown()
             .fontSize(16)
-            .text(`Step ${step.step_number}`,{align:'center'});
+            .text(`Step ${step.step_number}`, {align: 'center'});
         doc.moveDown(2)
             .fontSize(16)
             .text(`Description:`);
@@ -146,7 +146,7 @@ exports.exportPDF = async (req, res) => {
             .text(step.step_description);
 
 
-        for(const component of components){
+        for (const component of components) {
             doc.moveDown()
                 .fontSize(16)
                 .text(`Name`);
@@ -170,11 +170,15 @@ exports.exportPDF = async (req, res) => {
     }
 
 
-
-
-
     doc.end();
-    res.end()
 
+    stream.on('finish', function () {
+        // get a blob you can do whatever you like with
+        const blob = stream.toBlob('application/pdf');
+
+        // or get a blob URL for display in the browser
+        // iframe.src = stream.toBlobURL('application/pdf');
+        res.send(blob)
+    });
 
 }
