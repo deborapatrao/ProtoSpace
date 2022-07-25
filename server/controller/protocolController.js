@@ -19,8 +19,8 @@ exports.findProtocolWorkspace = async (req, res) => {
 
     /* A query to find the protocol that is associated with the workspace. */
     const query = `select p.name
-                        , (case when up.start_run is not null then 1 else 0 end) as start_run
-                        , (case when up.end_run is not null then 1 else 0 end)   as end_run
+                        , (case when up.start_run is not null then 1 else 0 end) as start_run_status
+                        , (case when up.end_run is not null then 1 else 0 end)   as end_run_status
                         , end_run as end_run_date
                         , up.start_run as start_run_date
                         , p.abstract
