@@ -1,41 +1,88 @@
 import "./header.scss";
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import { Link } from 'react-router-dom';
 import PopUp from "../../components/PopUp/PopUp";
-import icon from "./Logo.png";
+import LogoMobile from "./logo-mobile.png";
+import LogoDesktop from "./logo-desktop.png";
+import MenuIcon from "./menu.png";
 
+import { AppBar, Toolbar, Container, IconButton, Drawer, List, ListItem } from "@mui/material";
+import { Box } from "@mui/system";
 
 const HeaderNav = () => {
-
+    const [open, setOpen] = useState(false)
 
 
     return (<>
         {/* // <section className={"header-container"}> */}
-        <div className="site-identity">
-            <img src={icon} alt="logo" className="logo"/>
-            <h1 className="site-title">ProtoSpace</h1>
-        </div>
-        <nav>
-            <ul>
-                <li>
-                    <Link to={"/"}>Home</Link>
-                </li>
-                <li>
-                    <Link to={"/about"}>About</Link>
-                </li>
-                <li>
-                    <Link to={"/contact"}>Contact</Link>
-                </li>
-                <li>
-                    <button className={"demo-header"}><Link to={"/demo"}>Book a Demo</Link></button>
-                </li>
-                <li className={"login"}>
-                    <Avatar src="/broken-image.jpg" />
-                    <PopUp />
-                </li>
-            </ul>
-        </nav>
+        
+        {/* <div className="navigation-container"> */}
+            {/* <nav>
+                <ul>
+                    <li>
+                        <Link to={"/"}>Home</Link>
+                    </li>
+                    <li>
+                        <Link to={"/about"}>About</Link>
+                    </li>
+                    <li>
+                        <Link to={"/contact"}>Contact</Link>
+                    </li>
+                </ul>
+            </nav> */}
+
+            <AppBar position="sticky">
+            <Container>
+                <Toolbar>
+                    <Box>
+                    <div className="site-identity">
+                    <img src={LogoMobile} alt="logo" className="logo-mobile"/>
+                    <img src={LogoDesktop} alt="logo" className="logo-desktop"/>
+                    </div>
+                    </Box>
+
+                    <div className="navigation-container">
+                        <Box sx={{ display: {xs:'none', md:'block'}}}
+                        className="navigation-links">
+                        <Link to={"/"}>Home</Link>
+                        <Link to={"/about"}>About</Link>
+                        <Link to={"/contact"}>Contact</Link>
+                        </Box>
+
+                        <Box>
+                        <button className={"demo-header"}><Link to={"/demo"}>Book a Demo</Link></button>
+                        </Box>
+                        <Box>
+                        <div className={"login"}>
+                        <Avatar src="/broken-image.jpg" />
+                        <PopUp />
+                        </div>
+                        </Box>
+                        <Box sx={{ display: {xs:'block', md:'none'}}}>
+                            <IconButton onClick={() => setOpen(true)}>
+                            <img src={MenuIcon}/>
+                            </IconButton>
+                        </Box>
+                    </div>
+
+                </Toolbar>
+                </Container>
+
+                <Drawer anchor='right' open={open} 
+                    onOpen={() => setOpen(true)} 
+                    onClose={() => setOpen(false)}
+                    className="menu-drawer">
+                    <List>
+                        <ListItem><Link to={"/"}>Home</Link></ListItem>
+                        <ListItem><Link to={"/about"}>About</Link></ListItem>
+                        <ListItem><Link to={"/contact"}>Contact</Link></ListItem>
+                    </List>
+                </Drawer>
+            </AppBar>
+
+        {/* </div> */}
+
 
         {/* // </section> */}
 

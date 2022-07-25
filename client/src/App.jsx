@@ -16,7 +16,8 @@ import Guidelines from './components/Dashboard/Protocols/Guidelines';
 import Materials from './components/Dashboard/Protocols/Materials';
 import Steps from './components/Dashboard/Protocols/Steps';
 import PreviewCreate from "./components/Dashboard/Protocols/PreviewCreate";
-import TableComponent from './components/Dashboard/Workspace/Table';
+import MyProtocols from './components/Dashboard/Workspace/MyProtocols';
+import SharedProtocols from './components/Dashboard/Workspace/SharedProtocols';
 
 import ProtocolRun from './components/Dashboard/Protocols/Run';
 import PreviewRun from './components/Dashboard/Protocols/Run/PreviewRun';
@@ -50,9 +51,9 @@ function App() {
               <Route path='/register' element={<Register />} />
             </Route>
             <Route path='about' element={<About />} />
-            <Route path='demo' element={<Demo />}/>
+            <Route path='demo' element={<Demo />} />
 
-            <Route path='contact' element={<Contact />}/>
+            <Route path='contact' element={<Contact />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </>
@@ -62,7 +63,13 @@ function App() {
 
           <Route path="/" element={<Dashboard />}>
 
-            <Route index element={<TableComponent />} />
+            <Route index element={<MyProtocols />} />
+            <Route path='shared' element={<SharedProtocols />}>
+              <Route path=':protocolId'>
+                <Route path="data-visualization" element={<DataVisualization />} />
+              </Route>
+
+            </Route>
 
             <Route path='protocols' element={<Protocols />}>
               <Route path="description" element={<Description />} />
@@ -84,11 +91,11 @@ function App() {
 
               <Route path=':protocolId'>
                 <Route path='summary' element={<Summary />} />
+                {/* <Route path="data-visualization" element={<DataVisualization />} /> */}
               </Route>
 
             </Route>
             <Route path="profile" element={<Profile />} />
-            <Route path="data-visualization" element={<DataVisualization />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
