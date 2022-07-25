@@ -10,10 +10,42 @@ const StepUserProtocol = db.step_user_protocol
 const UploadImage = require('../images/uploadImages')
 
 exports.findProtocol = (req, res) => {
-    Protocol.findByPk(req.body.protocolId)
-        .then(response => {
-            res.status(200).send(response)
-        })
+
+    const query = `select p.name
+                        , (case when up.start_run is not null then 1 else 0 end) as start_run_status
+                        , (case when up.end_run is not null then 1 else 0 end)   as end_run_status
+                        , end_run as end_run_date
+                        , up.start_run as start_run_date
+                        , p.abstract
+                        , p.disclaimer
+                        , p.external_link
+                        , p.guideline
+                        , p.before_start
+                        , p.safety_warning
+                        , p.author
+                        , p.materials
+                        , p.created_at
+                        , p.updated_at
+                        , p.published
+                        , wp.workspace_id
+                        , wp.protocol_id
+                        , wp.shared_status
+
+                   from protocol p
+                            join workspace_protocol wp on p.id = wp.protocol_id
+                            left join user_protocol up on wp.workspace_id = up.workspace_id and p.id = up.protocol_id
+                   where 1 = 1
+                     and status = 'A'
+                     and wp.workspace_id = ${req.body.workspace_id}
+                     and p.id = ${req.body.protocolId}`
+
+
+    Raw.query(query).then(data => {res.status(200).send(data)})
+        .catch(error=>{res.status(400).send('Protocol not found')})
+    // Protocol.findByPk(req.body.protocolId)
+    //     .then(response => {
+    //         res.status(200).send(response)
+    //     })
 }
 exports.findProtocolWorkspace = async (req, res) => {
 
