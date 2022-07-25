@@ -22,3 +22,22 @@ exports.profilePhoto = async (file, fileName) => {
 
     }
 }
+exports.protocolImages = async (file, fileName,protocolID) => {
+    let photoURL = ''
+    const fileStream = fs.createReadStream(file.path);
+
+    const uploadParams = {
+        Bucket: AWS_S3_BUCKET_NAME,
+        Body: fileStream,
+        Key: `protocols/${protocolID}/${fileName}.jpg`,
+        ContentType: 'image/jpg',
+    }
+    const upload = await s3.upload(uploadParams).promise().then(data => photoURL = data.Location)
+    if (upload) {
+
+        await unlinkFile(file.path)
+
+        return photoURL
+
+    }
+}

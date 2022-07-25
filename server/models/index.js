@@ -30,7 +30,7 @@ db.unit = require('./unitModel')(sequelize, Sequelize);
 db.step_protocol = require('./protocolStepModel')(sequelize, Sequelize);
 db.step_component = require('./stepComponentModel')(sequelize, Sequelize);
 db.step_user_protocol = require('./stepUserProtocol')(sequelize, Sequelize);
-
+db.step_images = require('./stepImagesModel')(sequelize, Sequelize);
 
 
 db.protocol.belongsToMany(db.workspace,{through: db.workspace_protocol, as: 'user_workspace', foreignKey: 'protocol_id'})
