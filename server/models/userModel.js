@@ -4,9 +4,6 @@ module.exports = (sequelize, Sequelize) => {
         name: {
             type: Sequelize.STRING,
             allowNull: false,
-            validate: {
-                isAlpha: true
-            }
         },
         email: {
             type: Sequelize.STRING,
