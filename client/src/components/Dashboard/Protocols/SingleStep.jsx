@@ -36,7 +36,7 @@ const style = {
 
 const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, steps, setSteps, publishedProtocol }) => {
     const [expanded, setExpanded] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
+    const [openModal, setOpenModal] = useState(true);
     const [chosenUsers, setChosenUsers] = useState([]);
     const [users, setUsers] = useState([]);
 
@@ -112,40 +112,41 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
+        console.log(chosenUsers);
     };
 
     const handleShare = async () => {
-        const chosenWorkspaces = chosenUsers.map((item) => item.workspace_id);
-        // const stepsForPublish = publishedProtocol.map(item => {
-        //     if (item.step_id) {
-        //         return item.step_id
-        //     }
-        // })
-        // console.log(stepsForPublish);
-        // const user = JSON.parse(localStorage.getItem('user'));
+        const chosenWorkspaces = chosenUsers.map((item) => {
+            const newObj = {
+                workspace_id: item.workspace_id
+            }
+            return newObj
+        });
+        const stepsForPublish = publishedProtocol[1];
+        console.log(chosenWorkspaces);
+        const user = JSON.parse(localStorage.getItem('user'));
 
-        // const params = {
-        //     protocol_id: publishedProtocol.protocol_id,
-        //     workspace_id: chosenWorkspaces,
-        //     steps: []
-        // }
+        const params = {
+            protocol_id: publishedProtocol[0].protocol_id,
+            workspaces: chosenWorkspaces,
+            steps: stepsForPublish
+        }
 
-        // try {
-        //     const resp = await axios.post(`${HOST_URL}/api/share/`, {
-        //         ...params
-        //     }, {
-        //         headers: {
-        //             "x-access-token": user.accessToken
-        //         }
-        //     });
+        try {
+            const resp = await axios.post(`${HOST_URL}/api/share/`, {
+                ...params
+            }, {
+                headers: {
+                    "x-access-token": user.accessToken
+                }
+            });
 
-        //     console.log(resp);
+            console.log(resp);
 
-        // } catch (error) {
-        //     console.log(error);
-        //     // good practice???
+        } catch (error) {
+            console.log(error);
 
-        // }
+        }
         console.log(publishedProtocol);
     }
 
@@ -263,14 +264,19 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                                 labelId="demo-multiple-checkbox-label"
                                 id="demo-multiple-checkbox"
                                 multiple
-                                value={chosenUsers.map(item => item.user_name)}
+                                value={chosenUsers}
                                 onChange={handleChange}
                                 input={<OutlinedInput label="Tag" />}
-                                renderValue={(selected) => selected.join(', ')}
+                                renderValue={(selected) => {
+                                    console.log(selected);
+                                    const newArr = selected.map(item => item.user_name)
+                                    return newArr.join(', ')
+
+                                }}
                             >
                                 {users ? users.map((item, index) => (
                                     <MenuItem key={index} value={item}>
-                                        <Checkbox checked={chosenUsers.indexOf(item.user_name) > -1} />
+                                        <Checkbox checked={chosenUsers.indexOf(item) > -1} />
                                         <ListItemText primary={item.user_name} />
                                     </MenuItem>
                                 )) : ''}

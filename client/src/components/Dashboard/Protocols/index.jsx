@@ -8,14 +8,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import { HOST_URL } from '../../../data/data';
 import Sidebar from "../Sidebar";
 import Drawer from '@mui/material/Drawer';
-import FirstModal from "../Utils/Modal/NestedModal";
-import ChildModal from "../Utils/Modal/Modal";
+import NewModal from "../Utils/Modal/NewModal";
+
 
 
 const Protocols = () => {
     let location = useLocation();
+
     const [drawerOpen, setDrawerOpen] = useState(false)
-    console.log(location.pathname.includes('/summary'));
+    const [publishModal, setPublishModal] = useState(false);
+    const [shareModal, setShareModal] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     const [publishedProtocol, setPublishedProtocol] = useState('')
     const [data, setData] = useState({
         name: '',
@@ -27,7 +31,6 @@ const Protocols = () => {
         safety_warning: '',
         materials: ''
     });
-
     const [steps, setSteps] = useState([{ step_number: 1, step_description: '', components: [] }]);
 
     const { width } = useOutletContext();
@@ -45,6 +48,11 @@ const Protocols = () => {
     }
 
     const handlePublish = async () => {
+        //  Spinner appears
+        setLoading(true);
+
+        togglePublishModal();
+
         const condition = data.name && data.abstract && data.author && data.guideline && data.before_start && data.safety_warning && data.materials ? true : false;
         console.log(condition);
 
@@ -75,11 +83,14 @@ const Protocols = () => {
                         "x-access-token": user.accessToken
                     }
                 });
-
+                //  Spinner disappears
+                setLoading(false);
                 publishSuccess();
 
                 console.log(resp);
                 setPublishedProtocol(resp.data);
+
+                toggleShareModal();
 
             } catch (error) {
                 console.log('EEERRR: ', error);
@@ -88,9 +99,12 @@ const Protocols = () => {
             publishWarning();
         }
     }
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => {
-        setOpen(true);
+
+    const togglePublishModal = () => {
+        setPublishModal(!publishModal);
+    };
+    const toggleShareModal = () => {
+        setShareModal(!shareModal);
     };
 
     return (
@@ -101,19 +115,19 @@ const Protocols = () => {
                         <Button variant="text" sx={{ color: 'red' }}>Delete</Button>
                         <Button variant="outlined">Export</Button>
                         <Button variant="outlined">Preview</Button>
-                        <Button variant="outlined">Save Draft</Button>
-                        <Button variant="contained" disabled={conditionState ? false : true} onClick={handlePublish}>Publish</Button>
+                        <Button variant="outlined" onClick={togglePublishModal}>Save Draft</Button>
+                        <Button variant="contained" disabled={conditionState ? false : true} onClick={togglePublishModal}>Publish</Button>
                     </div>
                     : <Button sx={{ alignSelf: 'flex-end', marginRight: 2 }} variant="outlined" onClick={() => setDrawerOpen(!drawerOpen)}>...</Button>
                 : ''}
-            <FirstModal
-                disInfo={conditionState ? false : true}
-                clickAction={handleOpen}
-                variantType={'contained'}
-                buttonName={'Publish'}
+
+
+            <NewModal
+                open={publishModal}
+                handleClose={togglePublishModal}
                 modalHeader={'Publish Protocol'}
-                modalInfo=
-                {
+            >
+                <form onSubmit={handlePublish}>
                     <div className={'publish-modal-info'}>
                         <label>
                             <input type={"checkbox"} required />
@@ -124,15 +138,30 @@ const Protocols = () => {
                             <span className={"mandatory"}>*</span> I understand that by sharing to others, I am making this protocol permanently available
                         </label>
                     </div>
-                }
 
+                    <div className={"bottom-btn"}>
+                        <button className={"close-btn"} onClick={togglePublishModal}> Cancel</button>
+                        <Button variant={'clear'} className={'modal-btn'} type="submit">Publish</Button>
+                    </div>
+                </form>
+            </NewModal>
+
+            <NewModal
+                open={shareModal}
+                handleClose={toggleShareModal}
+                modalHeader={'Publish Protocol'}
             >
-            </FirstModal>
+                <div className={'publish-modal-info'}>
+                    different children
+                </div>
+            </NewModal>
+
+
             <div>
                 {width < 1000 && !location.pathname.includes('/summary') ? <Sidebar width={width} /> : ''}
             </div>
             <div>
-                <Outlet context={{ data, handleDataChange, steps, setSteps, handlePublish, conditionState, publishedProtocol }} />
+                <Outlet context={{ data, handleDataChange, steps, setSteps, handlePublish, conditionState, publishedProtocol, width }} />
                 {/* <Button onClick={handlePublish}>Publish</Button> */}
             </div>
             <ToastContainer />

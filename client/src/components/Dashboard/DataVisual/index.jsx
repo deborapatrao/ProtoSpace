@@ -11,6 +11,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import { HOST_URL } from '../../../data/data';
+import { useParams } from 'react-router-dom'
 
 ChartJS.register(
     CategoryScale,
@@ -24,6 +25,7 @@ ChartJS.register(
 const Index = () => {
     const [labels, setLabels] = useState([]);
     const [steps, setSteps] = useState([]);
+    const { protocolId } = useParams();
 
     useEffect(() => {
         async function fetchData() {
@@ -96,6 +98,7 @@ const Index = () => {
 
     return (
         <div>
+            <div>protocol ID: {protocolId}</div>
             <Bar options={options} data={data} />
         </div>
     );

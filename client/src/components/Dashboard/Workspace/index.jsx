@@ -12,8 +12,9 @@ const Workspace = ({ width }) => {
     return (
         <div className='workspace'>
 
-            <FolderBreadcrumbs />
+            {location.pathname === '/' || location.pathname === '/shared' ? '' : <FolderBreadcrumbs />}
             {location.pathname === '/' ? <h1>My Workspace</h1> : ''}
+            {location.pathname === '/shared' ? <h1>Shared Protocols</h1> : ''}
             <Outlet context={{ width }} />
             {/* <img src='https://protospace-app.s3.amazonaws.com/profile.jpg' alt='ss' /> */}
         </div>
