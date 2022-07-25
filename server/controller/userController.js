@@ -1,5 +1,5 @@
 const db = require("../models");
-const upload = require('../images/uploadImages')
+const UploadImage = require('../images/uploadImages')
 const Users = db.users;
 const Op = db.Sequelize.Op;
 
@@ -42,7 +42,7 @@ exports.update = async (req, res) => {
     const file = req.file;
     const fileName = req.body.fileName;
 
-    const photo = await upload.profilePhoto(file, fileName)
+    const photo = await UploadImage.profilePhoto(file, fileName)
 
     const user = await Users.findByPk(req.body.id);
     Users.update(

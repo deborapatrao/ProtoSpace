@@ -6,15 +6,20 @@ const StepUserProtocol = db.step_user_protocol
 exports.findStepsProtocol = async (req, res) => {
 
     /* A query to find the steps of a protocol. */
-    const query = `select sp.id       as step_id,
-                          description as step_description,
-                          sup.note    as step_note,
-                          step_number
-
+    const query = `select sp.id                                                    as step_id
+                        , sp.description                                           as step_description
+                        , sup.note                                                 as step_note
+                        , sp.step_number
+                        , (case when sup.end_step is not null then 1 else 0 end)   as end_step_status
+                        , (case when sup.start_step is not null then 1 else 0 end) as start_step_status
+                        , sup.end_step
+                        , sup.start_step
                    from step_user_protocol sup
                             join protocol p on p.id = sup.protocol_id
                             join step_protocol sp on sp.id = sup.step_protocol_id
-                   where p.id = ${req.body.protocolId}
+
+                   where 1 = 1
+                     and p.id = ${req.body.protocolId}
                      and sup.workspace_id = ${req.body.workspace_id}`
     try {
         const [results] = await Raw.query(query);
@@ -38,10 +43,10 @@ exports.stepNote = async (req, res) => {
             note: req.body.note
         }
         await StepUserProtocol.update(data, {where: {step_protocol_id: req.body.step_id}})
-        res.send(findStep)
+        res.status(200).send(findStep)
 
     } else {
-        res.send('Step not found!')
+        res.status(400).send('Step not found!')
     }
 
 }
@@ -60,7 +65,7 @@ exports.startStep = async (req, res) => {
             })
             .then(data => {
                 res.status(200).send('Step started!')
-            }).catch(error => res.send(error))
+            }).catch(error => res.status(500).send(error))
     } catch (e) {
         res.send(e)
     }
@@ -84,11 +89,4 @@ exports.endStep = async (req, res) => {
     } catch (e) {
         res.send(e)
     }
-}
-
-exports.uploadImg = async (req, res) => {
-    uploadImg(req.body.path, req.body.img).then(data => {
-        res.send(data)
-    })
-        .catch(err => res.send(err))
 }

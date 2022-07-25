@@ -27,58 +27,53 @@ const ContactForm = () => {
                         </button>
                         <button>
                             <Link to='#'>Get a quote </Link>
-
                             <span>We’ll help you find the right plans and pricing for you.</span>
                             <ArrowForwardIosIcon />
                         </button>
                         <button>
                             <Link to='#'>Partnership with us</Link>
-
                             <span>We’d love to talk about how we can work together.</span>
                             <ArrowForwardIosIcon />
                         </button>
                     </div>
                     <div className={"contact-us form-container"}>
                         <form>
-                        <label>
-                            Name<span className={"mandatory"}>*</span>
-                        </label>
-                            <input type={"text"} name={"name"} className={"name-input"} placeholder={"Your name"}/>
+                            <label>
+                                Name<span className={"mandatory"}>*</span>
+                                <input type={"text"} name={"first-name"} />
+                            </label>
+                            <label>
+                                Email<span className={"mandatory"}>*</span>
+                                <input type={"email"} name={"email"} />
+                            </label>
+                            <label>
+                                    Type of Inquiry<span className={"mandatory"}>*</span>
+                                    <input type={"text"} name={"type-inquiry"} />
+                            </label>
+                            <label>
+                                Phone number<span className={"mandatory"}>*</span>
 
-                        <label>
-                            Email<span className={"mandatory"}>*</span>
-                        </label>
-                            <input type={"email"} name={"email"} className={"email-input"} placeholder={"Your email"}/>
+                                <div className={"phone-number-inputs"}>
+                                    <select>
+                                        <option value={"Canada"}>Canada</option>
+                                        <option value={"Philippines"}>Philippines</option>
+                                        <option value={"Brazil"}>Brazil</option>
+                                        <option value={"Russia"}>Russia</option>
+                                        <option value={"Mexico"}>Mexico</option>
+                                    </select>
 
-                        <label>
-                                Type of Inquiry<span className={"mandatory"}>*</span>
-                        </label>
-                                <input type={"text"} name={"type-inquiry"} placeholder={"Select"}/>
+                                    <input type={"tel"} name={"phone-number"} className={"phone-number-input"} placeholder={"123456789"}/>
+                                </div>
+                            </label>
 
-                        <label>
-                            Phone number<span className={"mandatory"}>*</span>
-                        </label>
+                            <label>
+                                Message
+                            </label>
+                                <textarea type={"text"} name={"message"} className={"message-input"}placeholder={"Write here"}/>
 
-                            <div className={"phone-number-inputs"}>
-                                <select>
-                                    <option value={"Canada"}>Canada</option>
-                                    <option value={"Philippines"}>Philippines</option>
-                                    <option value={"Brazil"}>Brazil</option>
-                                    <option value={"Russia"}>Russia</option>
-                                    <option value={"Mexico"}>Mexico</option>
-                                </select>
+                           <input type="submit" value="Send" className={"submit-btn"}/>
 
-                                <input type={"tel"} name={"phone-number"} className={"phone-number-input"} placeholder={"123456789"}/>
-                            </div>
-
-                        <label>
-                            Message
-                        </label>
-                            <textarea type={"text"} name={"message"} className={"message-input"}placeholder={"Write here"}/>
-
-                       <input type="submit" value="Send" className={"submit-btn"}/>
-
-                    </form>
+                        </form>
                     </div>
                 </div>
             </div>

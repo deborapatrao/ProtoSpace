@@ -3,10 +3,13 @@ import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { HOST_URL } from '../../../data/data';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../features/auth/useSlice';
 
-const TableComponent = () => {
+const MyProtocol = () => {
     const [protocols, setProtocols] = useState([]);
     const [protocolsRun, setProtocolsRun] = useState([]);
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
@@ -41,11 +44,19 @@ const TableComponent = () => {
                 });
 
                 console.log(resp);
+                const myProtocols = [];
+                resp.data.map(item => {
+                    if (item.shared === 0) {
+                        myProtocols.push(item)
+                    }
 
-                setProtocols(resp.data)
+                })
+                setProtocols(myProtocols)
 
             } catch (error) {
                 console.log(error);
+                // good practice???
+                dispatch(logout());
             }
         }
 
@@ -63,7 +74,7 @@ const TableComponent = () => {
                                 <TableCell align="left">Owner</TableCell>
                                 <TableCell align="left">Last Modified</TableCell>
                                 {/* <TableCell align="left">Completed</TableCell> */}
-                                <TableCell align="left">Chart</TableCell>
+                                {/* <TableCell align="left">Chart</TableCell> */}
                                 <TableCell align="left">Version</TableCell>
                             </TableRow>
                         </TableHead>
@@ -74,7 +85,7 @@ const TableComponent = () => {
                                         <TableCell align="left"><Link to={protocolsRun.includes(item.protocol_id) ? `protocols/${item.protocol_id}/summary` : `protocols/run/${item.protocol_id}`}>{item.name}</Link></TableCell>
                                         <TableCell align="left">{item.author}</TableCell>
                                         <TableCell align="left">{new Date(item.created_at).toLocaleString("en-US")}</TableCell>
-                                        <TableCell align="left"><Link to={'/data-visualization'}>Chart</Link></TableCell>
+                                        {/* <TableCell align="left"><Link to={'/data-visualization'}>Chart</Link></TableCell> */}
                                         <TableCell align="left">v1.0</TableCell>
                                     </TableRow>
                                 )
@@ -93,4 +104,4 @@ const TableComponent = () => {
     );
 }
 
-export default TableComponent;
+export default MyProtocol;

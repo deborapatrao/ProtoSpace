@@ -25,7 +25,6 @@ function useWindowSize() {
 const Dashboard = () => {
   const [width, height] = useWindowSize();
 
-
   return (
     <div className='container'>
       <div className='container__navbar'>

@@ -2,6 +2,9 @@
 @use '../../styles/mixins.scss' as mi;
 
 .home{
+  img{
+    max-width: 100%;
+  }
   .demo-container{
   background: linear-gradient(120deg, #0085FF, #00E0FF);
   min-height: 60vh;

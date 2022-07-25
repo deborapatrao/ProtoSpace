@@ -1,4 +1,4 @@
-const controller = require("../controller/dataVisualization");
+const controller = require("../controller/dataVisualizationController");
 const {authJwt} = require("../middleware");
 let router = require("express").Router();
 

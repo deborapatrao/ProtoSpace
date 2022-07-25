@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     TextareaAutosize,
     Accordion,
@@ -9,9 +9,67 @@ import {
 import ImageIcon from '@mui/icons-material/Image';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SingleComponent from './SingleComponent';
+import Modal from '@mui/material/Modal';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+import Checkbox from '@mui/material/Checkbox';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import axios from 'axios';
+import FormControl from '@mui/material/FormControl';
+import { HOST_URL } from '../../../data/data';
 
-const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, steps, setSteps }) => {
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+
+const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, steps, setSteps, publishedProtocol }) => {
     const [expanded, setExpanded] = useState(false);
+    const [openModal, setOpenModal] = useState(true);
+    const [chosenUsers, setChosenUsers] = useState([]);
+    const [users, setUsers] = useState([]);
+
+
+    useEffect(() => {
+        async function fetchData() {
+            const user = JSON.parse(localStorage.getItem('user'));
+
+            const params = {}
+
+            try {
+                const resp = await axios.post(`${HOST_URL}/api/share/users`, {
+                    ...params
+                }, {
+                    headers: {
+                        "x-access-token": user.accessToken
+                    }
+                });
+
+                console.log(resp);
+
+                setUsers(resp.data);
+
+            } catch (error) {
+                console.log(error);
+                // good practice???
+
+            }
+        }
+
+        fetchData();
+    }, [])
+
     const [images, setImages] = useState([
         {
             img: ''
@@ -46,6 +104,51 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
         // console.log(event.target.files[0]);
     }
 
+    const handleChange = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setChosenUsers(
+            // On autofill we get a stringified value.
+            typeof value === 'string' ? value.split(',') : value,
+        );
+        console.log(chosenUsers);
+    };
+
+    const handleShare = async () => {
+        const chosenWorkspaces = chosenUsers.map((item) => {
+            const newObj = {
+                workspace_id: item.workspace_id
+            }
+            return newObj
+        });
+        const stepsForPublish = publishedProtocol[1];
+        console.log(chosenWorkspaces);
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        const params = {
+            protocol_id: publishedProtocol[0].protocol_id,
+            workspaces: chosenWorkspaces,
+            steps: stepsForPublish
+        }
+
+        try {
+            const resp = await axios.post(`${HOST_URL}/api/share/`, {
+                ...params
+            }, {
+                headers: {
+                    "x-access-token": user.accessToken
+                }
+            });
+
+            console.log(resp);
+
+        } catch (error) {
+            console.log(error);
+
+        }
+        console.log(publishedProtocol);
+    }
 
     return (
         <section onClick={(e) => handleClick(e, index)} className={`single-step`}>
@@ -143,6 +246,53 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                     </div>
                 </AccordionDetails>
             </Accordion>
+            <Modal
+                open={openModal}
+                onClose={() => setOpenModal(!openModal)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+
+                    <div style={{ color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <h4>so many things</h4>
+                        <div></div>
+                        <label htmlFor="demo-simple-select"></label>
+                        <FormControl sx={{ m: 1, width: 300 }}>
+                            <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+                            <Select
+                                labelId="demo-multiple-checkbox-label"
+                                id="demo-multiple-checkbox"
+                                multiple
+                                value={chosenUsers}
+                                onChange={handleChange}
+                                input={<OutlinedInput label="Tag" />}
+                                renderValue={(selected) => {
+                                    console.log(selected);
+                                    const newArr = selected.map(item => item.user_name)
+                                    return newArr.join(', ')
+
+                                }}
+                            >
+                                {users ? users.map((item, index) => (
+                                    <MenuItem key={index} value={item}>
+                                        <Checkbox checked={chosenUsers.indexOf(item) > -1} />
+                                        <ListItemText primary={item.user_name} />
+                                    </MenuItem>
+                                )) : ''}
+                            </Select>
+                        </FormControl>
+                    </div>
+                    <div>
+                        {chosenUsers ? chosenUsers.map((item, index) => {
+                            return <div key={index}>{item.user_name} and {item.workspace_id}</div>
+                        }) : ''}
+                    </div>
+                    <div>
+                        <Button onClick={handleShare}>Share</Button>
+                    </div>
+                </Box>
+            </Modal>
         </section>
     );
 }
