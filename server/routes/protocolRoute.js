@@ -14,6 +14,6 @@ module.exports = function (app) {
 
     router.post('/find/byworkspace', controller.findProtocolWorkspace);
 
-    app.use('/api/protocol',  router);
+    app.use('/api/protocol', [authJwt.verifyToken],  router);
 };
 
