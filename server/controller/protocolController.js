@@ -9,13 +9,13 @@ const StepComponents = db.step_component
 const StepUserProtocol = db.step_user_protocol
 const UploadImage = require('../images/uploadImages')
 
-exports.findProtocol = (req, res) => {
+exports.findProtocol = async (req, res) => {
 
     const query = `select p.name
                         , (case when up.start_run is not null then 1 else 0 end) as start_run_status
                         , (case when up.end_run is not null then 1 else 0 end)   as end_run_status
-                        , end_run as end_run_date
-                        , up.start_run as start_run_date
+                        , end_run                                                as end_run_date
+                        , up.start_run                                           as start_run_date
                         , p.abstract
                         , p.disclaimer
                         , p.external_link
@@ -39,13 +39,15 @@ exports.findProtocol = (req, res) => {
                      and wp.workspace_id = ${req.body.workspace_id}
                      and p.id = ${req.body.protocolId}`
 
-
-    Raw.query(query).then(data => {res.status(200).send(data)})
-        .catch(error=>{res.status(400).send('Protocol not found')})
-    // Protocol.findByPk(req.body.protocolId)
-    //     .then(response => {
-    //         res.status(200).send(response)
-    //     })
+    try {
+        const [results] = await Raw.query(query);
+        /* Checking if the results are not empty. If it is not empty, it will send the results. */
+        if (results) {
+            res.status(200).send(results);
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
 exports.findProtocolWorkspace = async (req, res) => {
 
@@ -53,8 +55,8 @@ exports.findProtocolWorkspace = async (req, res) => {
     const query = `select p.name
                         , (case when up.start_run is not null then 1 else 0 end) as start_run_status
                         , (case when up.end_run is not null then 1 else 0 end)   as end_run_status
-                        , end_run as end_run_date
-                        , up.start_run as start_run_date
+                        , end_run                                                as end_run_date
+                        , up.start_run                                           as start_run_date
                         , p.abstract
                         , p.disclaimer
                         , p.external_link
