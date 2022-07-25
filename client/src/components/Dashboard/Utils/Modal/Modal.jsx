@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Close from "./X.png";
 import axios from "axios";
-import {HOST_URL} from "../../../../data/data";
+import { HOST_URL } from "../../../../data/data";
 
 
 const ChildModal = (props) => {
@@ -29,10 +29,10 @@ const ChildModal = (props) => {
                 <Box className={'child-modal'} sx={{ width: 200 }}>
                     <header>
                         <h5>{props.childModalHeader}</h5>
-                        <button className={"close-btn"} onClick={handleClose}><img className={"close-btn"}  onClick={handleClose} src={Close}/></button>
+                        <button className={"close-btn"} onClick={handleClose}><img className={"close-btn"} onClick={handleClose} src={Close} /></button>
                     </header>
 
-                        {props.childModalInfo}
+                    {props.childModalInfo}
 
                 </Box>
             </Modal>

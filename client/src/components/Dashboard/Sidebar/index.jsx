@@ -43,12 +43,12 @@ const Sidebar = ({ width }) => {
 
                     <div className={`${classForSidebar}__container`}>
                         <div className={`${classForSidebar}__btn`}>
-                            <PersonIcon />
-                            <div>Shared with me</div>
+                            {/* <PersonIcon /> */}
+                            <CustomLink to={`/shared`}>Shared with me</CustomLink>
                         </div>
                         <div className={`${classForSidebar}__btn`}>
-                            <CreateNewFolderIcon />
-                            <div>My workspace</div>
+                            {/* <CreateNewFolderIcon /> */}
+                            <CustomLink to={`/`}>My workspace</CustomLink>
                         </div>
                     </div>
             }

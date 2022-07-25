@@ -15,7 +15,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { HOST_URL } from '../../../data/data';
 
 const Steps = () => {
-    const { steps, setSteps, handlePublish, conditionState, publishedProtocol } = useOutletContext();
+    const { steps, setSteps, handlePublish, conditionState, publishedProtocol, width } = useOutletContext();
     const [components, setComponents] = useState([]);
 
     const [activeStep, setActiveStep] = useState(null);
@@ -113,8 +113,6 @@ const Steps = () => {
                     <Link className={'previewBtn'} to={"/protocols/preview"}>Preview<ArrowForwardIosIcon /></Link>
                 </div>
             </div>
-
-
 
 
 
