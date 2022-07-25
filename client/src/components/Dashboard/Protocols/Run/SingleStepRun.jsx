@@ -48,21 +48,34 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
 
             setActiveStep(activeStep + 1)
 
-
         } catch (error) {
             console.log(error);
         }
     }
 
-    const handleSubmit = () => {
-        setShowSummary(true);
-        window.scrollTo(0, 0);
-        if (window.confirm('Are you sure you want to submit protocol?')) {
-            handleFinish();
-            const userName = JSON.parse(localStorage.getItem('user')).name;
-            const protocolsRun = localStorage.getItem('protocolsRun') ? JSON.parse(localStorage.getItem('protocolsRun')) : [];
-            localStorage.setItem('protocolsRun', JSON.stringify([...protocolsRun, { userName: userName, protocolId: protocolId }]))
-            navigate(`/protocols/${protocolId}/summary`)
+    const handleSubmit = async () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        const params = {
+            workspace_id: user.workspaceId[0][0].workspaceId,
+            protocol_id: Number(protocolId)
+        }
+
+        console.log(params);
+
+        try {
+            const resp = await axios.post(`${HOST_URL}/api/protocol/run`, {
+                ...params
+            }, {
+                headers: {
+                    "x-access-token": user.accessToken
+                }
+            });
+
+            console.log(resp);
+
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -118,11 +131,11 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
                     <TextareaAutosize placeholder={`Note`} style={{ width: '100%', height: 100 }} name={step.step_id} value={step.step_note ? step.step_note : note} onChange={(e) => setNote(e.target.value)} />
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         {activeStep > 0 ? <Button onClick={handleGoBack}>Go back</Button> : <div></div>}
-                        {activeStep < stepsQnt - 1 ? <Button onClick={handleFinish}>Finish step</Button> : <Button onClick={handleSubmit}>Submit protocol</Button>}
-
+                        <Button onClick={handleFinish}>Finish step</Button>
                     </div>
                 </AccordionDetails>
             </Accordion>
+            <Button onClick={handleSubmit} variant={'contained'}>Submit</Button>
         </section>
     );
 }

@@ -1,5 +1,4 @@
-
-$desktop: 1200px;
+$desktop: 1000px;
 
 @mixin mediaQuery($device) {
   @media only screen and (min-width: $device) {

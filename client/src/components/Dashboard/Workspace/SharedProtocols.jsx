@@ -47,14 +47,14 @@ const SharedProtocols = () => {
                 console.log(resp.data);
                 const sharedProtocols = [];
                 resp.data.map(item => {
-                    if (item.shared === 1) {
+                    if (item.shared_status === 1) {
                         sharedProtocols.push(item)
                     }
 
                 })
 
-                // setProtocols(sharedProtocols)
-                setProtocols(resp.data)
+                setProtocols(sharedProtocols)
+                // setProtocols(resp.data)
 
             } catch (error) {
                 console.log(error);
@@ -98,7 +98,9 @@ const SharedProtocols = () => {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                        : ''}
+                        : <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 50 }}>
+                            <h3>There are no shared protocols</h3>
+                        </div>}
                     {/* <div className="workspace__body">
                 <Button variant="outlined">
                     <Link to={"/protocols/description"}>+ Create protocol</Link>

@@ -1,11 +1,10 @@
 const PDFDocument = require('pdfkit');
 const db = require("../models")
-const fs = require("fs");
+// const fs = require("fs");
 const Raw = db.sequelize;
 const Protocol = db.protocol
-const blobStream = require('blob-stream');
-const doc = new PDFDocument;
-const stream = doc.pipe(blobStream());
+// const blobStream = require('blob-stream');
+
 
 exports.exportPDF = async (req, res) => {
     const Protocol_id = req.body.protocol_id;
@@ -25,7 +24,17 @@ exports.exportPDF = async (req, res) => {
             'safety_warning'
         ]
     });
-    doc.pipe(fs.createWriteStream(`${ProtocolInfo.author}.pdf`));
+
+    const doc = new PDFDocument({ compress: false });
+
+    const stream = res.writeHead(200, {
+        'Content-Type': 'application/pdf',
+    });
+
+    doc.on('data', (chunk) => stream.write(chunk));
+    doc.on('end', () => stream.end());
+
+
     //Query for Steps
     const steps_query = `select sp.id          as step_id
                               , sp.description as step_description
@@ -44,7 +53,7 @@ exports.exportPDF = async (req, res) => {
     const [steps] = await Raw.query(steps_query);
 
 
-//Header
+    //Header
 
     doc
         .fontSize(40)
@@ -116,7 +125,7 @@ exports.exportPDF = async (req, res) => {
     doc.moveDown()
         .fillColor('black')
         .fontSize(22)
-        .text(`Steps`, {align: 'center'});
+        .text(`Steps`, { align: 'center' });
 
 
     for (const step of steps) {
@@ -137,7 +146,7 @@ exports.exportPDF = async (req, res) => {
 
         doc.moveDown()
             .fontSize(16)
-            .text(`Step ${step.step_number}`, {align: 'center'});
+            .text(`Step ${step.step_number}`, { align: 'center' });
         doc.moveDown(2)
             .fontSize(16)
             .text(`Description:`);
@@ -171,14 +180,4 @@ exports.exportPDF = async (req, res) => {
 
 
     doc.end();
-
-    stream.on('finish', function () {
-        // get a blob you can do whatever you like with
-        const blob = stream.toBlob('application/pdf');
-
-        // or get a blob URL for display in the browser
-        // iframe.src = stream.toBlobURL('application/pdf');
-        res.send(blob)
-    });
-
 }
