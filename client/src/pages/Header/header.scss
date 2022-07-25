@@ -3,10 +3,11 @@
 
 
 .static-header{
+  
   .header-container{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: stretch;
   align-items: center;
   // padding: 1rem 2%;
   color: v.$main-dark;
@@ -54,10 +55,10 @@
     }
   }
   // .navigation-container{
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    gap: 1rem;
+    // display: flex;
+    // justify-content: stretch;
+    // align-items: center;
+    // gap: 1rem;
 
     .login{
       display: flex;
@@ -83,5 +84,49 @@
       }
     // }
   }
+  .css-7e0s21-MuiPaper-root-MuiAppBar-root{
+    background-color: unset;
+    box-shadow: none;
+    border-bottom: 1px solid v.$gray-medium;
+    position: sticky;
+    top: 0;
+    padding: 1rem 2%;
+  }
+  .css-hyum1k-MuiToolbar-root{
+    justify-content: space-between;
+  }
+
+  .navigation-container{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: .5rem;
+    align-items: center;
+
+    .navigation-links a{
+      text-decoration: none;
+      color: v.$sec-dark;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 0 1rem;
+    }
+  }
 }
+}
+
+.menu-drawer .css-1160xiw-MuiPaper-root-MuiDrawer-paper{
+  left: 30%;
+  align-items: end;
+  padding: 3rem 2rem 0 0;
+ 
+  li{
+    justify-content: end;
+
+    a{
+      text-decoration: none;
+      color: v.$sec-dark;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 0 1rem;
+    }
+  }
 }
