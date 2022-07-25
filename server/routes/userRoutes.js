@@ -17,7 +17,8 @@ module.exports = function (app) {
 
     router.get("/", controller.findAll);
     router.post("/profile", controller.findOne);
-    router.post("/profile/update",  upload.single('image'), controller.update);
+    router.post("/profile/update",  upload.single('image'), controller.updateProfile);
+    router.post("/profile/update/password",  upload.single('image'), controller.updatePassword);
 
     app.use('/api/users', [authJwt.verifyToken], router);
 };
