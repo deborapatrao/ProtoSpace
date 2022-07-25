@@ -13,14 +13,17 @@ const Summary = () => {
     const [protocolInfo, setProtocolInfo] = useState('');
     const [steps, setSteps] = useState([]);
     const componentRef = useRef();
+    const [pdf, setPdf] = useState('');
 
     useEffect(() => {
         async function fetchData() {
             const user = JSON.parse(localStorage.getItem('user'));
 
             const params = {
-                protocolId: protocolId
+                protocolId: Number(protocolId),
+                workspace_id: user.workspaceId[0][0].workspaceId
             }
+            console.log(params);
 
             try {
                 const resp = await axios.post(`${HOST_URL}/api/protocol/find`, {
@@ -31,7 +34,7 @@ const Summary = () => {
                     }
                 });
 
-                console.log(resp.data);
+                console.log('Gen Info: ', resp.data);
                 setProtocolInfo(resp.data);
 
                 const respSteps = await axios.post(`${HOST_URL}/api/step`, {
@@ -42,7 +45,7 @@ const Summary = () => {
                         "x-access-token": user.accessToken
                     }
                 });
-                console.log(respSteps.data);
+                console.log('Steps: ', respSteps.data);
 
                 setSteps(respSteps.data)
 
@@ -55,21 +58,60 @@ const Summary = () => {
         fetchData();
     }, [])
 
+
+    const generatePdf = async () => {
+
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        const params = {
+            protocol_id: protocolId,
+            workspace_id: user.workspaceId[0][0].workspaceId
+        }
+
+        try {
+            const resp = await axios.post(`${HOST_URL}/api/generates/pdf`, {
+                ...params
+            }, {
+                headers: {
+                    "x-access-token": user.accessToken,
+                    // 'Content-Type': 'application/pdf',
+                }
+            });
+
+            console.log(resp);
+            console.log(resp.data);
+            const url = window.URL.createObjectURL(new Blob([resp.data]));
+            console.log(url);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${protocolInfo.name ? protocolInfo.name : 'YourProtocol'}.pdf`);
+            document.body.appendChild(link);
+            link.click();
+            // setPdf(url);
+
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <section className={"preview"} ref={componentRef}>
             <div style={{ marginBottom: 30, paddingTop: 30 }}>
                 <div className={"description-title"}>
                     <h4 >Summary</h4>
+                    {/* <a download={'test2.pdf'} href={pdf}>Download pdf</a> */}
                 </div>
                 <div>Date run: {new Date().toDateString()}</div>
                 {/* <div>Time: </div> */}
                 <div>Run by: {JSON.parse(localStorage.getItem('user')).name}</div>
                 <div>Owner: {protocolInfo.author ? protocolInfo.author : ''}</div>
                 <div>
-                    <ReactToPrint
+                    {/* <ReactToPrint
                         trigger={() => <Button>Export submission</Button>}
                         content={() => componentRef.current}
-                    />
+                    /> */}
+                    <Button onClick={generatePdf}>Export submission</Button>
                 </div>
             </div>
 

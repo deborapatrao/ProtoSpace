@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './runProtocol.scss';
 import './runPreview.scss';
-import { Link, Outlet, useOutletContext, useParams } from 'react-router-dom';
+import { Link, Outlet, useOutletContext, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { HOST_URL } from '../../../../data/data';
 import axios from 'axios';
 import Button from '@mui/material/Button';
@@ -9,8 +9,12 @@ import Button from '@mui/material/Button';
 const ProtocolRun = () => {
     // const { protocols, setProtocols } = useOutletContext();
     const [protocolInfo, setProtocolInfo] = useState({});
-
+    let navigate = useNavigate();
+    let location = useLocation();
     const { protocolId } = useParams();
+
+
+
 
     useEffect(() => {
         // const protocolNew = protocols.find(item => item.protocol_id === Number(protocolId));
@@ -33,7 +37,7 @@ const ProtocolRun = () => {
                     }
                 });
 
-                // console.log(resp.data);
+                console.log(resp);
 
                 setProtocolInfo(resp.data);
 
@@ -45,6 +49,15 @@ const ProtocolRun = () => {
         fetchData();
 
     }, []);
+
+    // useEffect(() => {
+    //     if (location.pathname.includes('/protocols/run')) {
+    //         console.log('INFO: ', protocolInfo);
+    //         if (protocolInfo.start_run_status === 1) {
+    //             navigate(`/protocols/${protocolId}/summary`)
+    //         }
+    //     }
+    // }, [protocolInfo])
 
     return (
         <section className='section-protocol-run'>

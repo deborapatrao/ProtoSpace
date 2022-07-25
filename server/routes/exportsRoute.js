@@ -1,5 +1,5 @@
 const controller = require("../images/generatePDF");
-const {authJwt} = require("../middleware");
+const { authJwt } = require("../middleware");
 
 let router = require("express").Router();
 
