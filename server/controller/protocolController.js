@@ -43,7 +43,7 @@ exports.findProtocol = async (req, res) => {
         const [results] = await Raw.query(query);
         /* Checking if the results are not empty. If it is not empty, it will send the results. */
         if (results) {
-            res.status(200).send(results);
+            res.status(200).send(results[0]);
         }
     } catch (error) {
         console.log(error)
