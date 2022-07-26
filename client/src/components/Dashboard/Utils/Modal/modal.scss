@@ -19,17 +19,20 @@
       margin-top: 0 !important;
   }
 }
+.css-79ws1d-MuiModal-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   .modal-container {
+
     .mandatory {
       color: v.$support-red;
       padding-left: 12px;
     }
-    margin-left: auto;
     background-color: white;
     border-radius: 6px;
     border-color: unset;
-    margin-right: auto;
-    margin-top: 25%;
     .modal-info{
       padding: 40px 16px 25px 16px;
     }
