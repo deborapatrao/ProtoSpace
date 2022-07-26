@@ -6,7 +6,8 @@ const StepUserProtocol = db.step_user_protocol
 exports.findStepsProtocol = async (req, res) => {
 
     /* A query to find the steps of a protocol. */
-    const query = `select distinct sp.id                                                    as step_id
+    const query = `select distinct sp.id                                                    as step_id 
+                                 , sup.id                                                   as step_user_id
                                  , sp.description                                           as step_description
                                  , sup.note                                                 as step_note
                                  , sp.step_number
@@ -42,7 +43,7 @@ exports.stepNote = async (req, res) => {
             protocol_id: findStep.protocol_id,
             note: req.body.note
         }
-        await StepUserProtocol.update(data, {where: {step_protocol_id: req.body.step_id}})
+        await StepUserProtocol.update(data, {where: {id: req.body.step_user_id }})
         res.status(200).send(findStep)
 
     } else {
@@ -61,7 +62,7 @@ exports.startStep = async (req, res) => {
             },
             {
                 where:
-                    {step_protocol_id: req.body.step_id}
+                    {id: req.body.step_user_id}
             })
             .then(data => {
                 res.status(200).send('Step started!')
@@ -81,7 +82,7 @@ exports.endStep = async (req, res) => {
             },
             {
                 where:
-                    {step_protocol_id: req.body.step_id}
+                    {id: req.body.step_user_id}
             })
             .then(data => {
                 res.status(200).send('Step Ended!')
