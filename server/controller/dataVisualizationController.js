@@ -4,6 +4,8 @@ const Raw = db.sequelize;
 exports.stepPerProtocol = async (req, res) => {
     const query = `select u.name                                                as name_user
                         , sum(case when end_step is not null then 1 else 0 end) as steps
+                        , count(sup.id) as max_steps
+                    
                    from step_user_protocol sup
 
                             join user_workspace uw on sup.workspace_id = uw.id

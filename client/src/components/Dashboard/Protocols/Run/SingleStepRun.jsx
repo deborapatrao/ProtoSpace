@@ -14,12 +14,13 @@ import axios from 'axios';
 import { HOST_URL } from '../../../../data/data';
 import '../protocolsi.scss';
 import { useParams, useNavigate } from 'react-router-dom';
+import Check from '../../../../assets/check.png';
 
 const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setShowSummary }) => {
     const [loading, setLoading] = useState(false)
     const { protocolId } = useParams();
     let navigate = useNavigate();
-    const [note, setNote] = useState('')
+    const [note, setNote] = useState(step.step_note || '')
 
     // const handleGoBack = () => {
     //     setActiveStep(activeStep - 1)
@@ -86,7 +87,7 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
                     expandIcon={<ExpandMoreIcon />}
                 >
                     <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                        {`Step ${step.step_number}`}
+                        { step.end_step_status === 1 ? <img src={Check} alt={'step-completed'} className={'step-completed'} />  : ``}  <span className={'step'}>{`Step ${step.step_number}`}</span>
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -132,7 +133,7 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
 
                     <h4>Components</h4>
                     <SingleComponentRun stepId={step.step_id} />
-                    <TextareaAutosize placeholder={`Note`} style={{ width: '100%', height: 100 }} name={step.step_id} value={step.step_note ? step.step_note : note} onChange={(e) => setNote(e.target.value)} />
+                    <TextareaAutosize placeholder={`Note`} style={{ width: '100%', height: 100 }} name={step.step_id} value={note} onChange={(e) => setNote(e.target.value)} />
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         {/* {activeStep > 0 ? <Button onClick={handleGoBack}>Go back</Button> : <div></div>} */}
                         <div></div>

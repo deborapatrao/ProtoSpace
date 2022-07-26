@@ -1,7 +1,7 @@
 @use './variables.scss';
 @use './typography.scss';
 @use './buttons.scss';
-@use './mixins.scss';
+@use './mixins.scss' as mi;
 
 body {
     padding: 0;
@@ -33,9 +33,11 @@ body {
         gap: 2rem;
         padding: 2rem 2%;
 
-        @media screen and (min-width: 1000px) {
+        @include mi.mediaQuery (mi.$desktop){
             grid-template-columns: 300px 3fr;
+            padding: 0;
         }
+        
 
         .workspace {
             // flex-basis: 70%;
