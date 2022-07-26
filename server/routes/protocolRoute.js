@@ -1,9 +1,9 @@
 const controller = require("../controller/protocolController");
-const {authJwt} = require("../middleware");
+const { authJwt } = require("../middleware");
 const multer = require("multer");
 let router = require("express").Router();
-const upload = multer({dest: 'temp/'})
-let router = require("express").Router();
+const upload = multer({ dest: 'temp/' })
+
 module.exports = function (app) {
 
     router.post("/", controller.createProtocol);
@@ -16,6 +16,6 @@ module.exports = function (app) {
 
     router.post('/find/byworkspace', upload.single('step_1'), controller.findProtocolWorkspace);
 
-    app.use('/api/protocol', [authJwt.verifyToken],  router);
+    app.use('/api/protocol', [authJwt.verifyToken], router);
 };
 

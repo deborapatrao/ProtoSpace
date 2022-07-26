@@ -24,14 +24,7 @@ const ShareModal = (props) => {
                 </header>
                 <div className={'child-modal'}>
                     <div className={'modal-info'}>
-                        <div className={'child-modal-info'}>
-                            <img src={Upload} alt={'upload-image'} className={'upload-image'}/>
-                            <p>{props.protocolName} has successfully been published</p>
-                            {/*<Button className={'run-protocol-btn'}><Link to={`/protocols/run/${publishedProtocol.id}`}>Run Protocol</Link></Button>*/}
-                            <Button className={'run-protocol-btn'}>Run Protocol</Button>
-                            <Button className={'share-btn'}><img src={Share} alt={'share-icon'} className={'share-icon'}/>Share protocol</Button>
-                            <Button className={'dashboard-btn'}> <Link to={'/'}>Back to Dashboard</Link></Button>
-                        </div>
+                        {props.children}
                     </div>
                 </div>
             </Box>
