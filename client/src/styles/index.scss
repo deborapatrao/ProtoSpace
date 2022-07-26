@@ -31,6 +31,7 @@ body {
         display: grid;
         height: 93vh;
         gap: 2rem;
+        padding: 2rem 2%;
 
         @media screen and (min-width: 1000px) {
             grid-template-columns: 300px 3fr;

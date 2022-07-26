@@ -1,21 +1,21 @@
 @use '../../../../styles/variables.scss' as v;
 @use '../../../../styles/typography' as t ;
 
-.modal-header{
-   padding: 16px;
-   display: flex;
-   flex-flow: row nowrap;
-   justify-content: space-between;
-   border-bottom: 1px solid #CDD8E0;
-   align-self: center;
+.modal-container header{
+  padding: 16px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  border-bottom: 1px solid #CDD8E0;
+  align-self: center;
   h5{
     font-size: 18px;
     color: v.$sec-dark;
   }
   button{
-      background-color: unset!important;
-      border: none;
-      width: 24px !important;
+    background-color: unset!important;
+    border: none;
+    width: 24px !important;
       margin-top: 0 !important;
   }
 }

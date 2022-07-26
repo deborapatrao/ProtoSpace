@@ -90,39 +90,43 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <h4 className={'field-title'}>Description</h4>
-                    {/* <TextareaAutosize key={step.name} placeholder={`Step number`} style={{ width: '100%', height: 100 }} value={step.step_description} /> */}
-                    <p>{step.step_description}</p>
+                    <div className="single-step__inner-container">
+                        <h4 className={'field-title'}>Description</h4>
+                        {/* <TextareaAutosize key={step.name} placeholder={`Step number`} style={{ width: '100%', height: 100 }} value={step.step_description} /> */}
+                        <p>{step.step_description}</p>
+                    </div>
                     {/*<button value={data.image} onClick={(e) => handleTextChange(e.target.value, index)}> add photo</button>*/}
-                    <h4>Photos</h4>
-                    <div className={"photo-container"}>
-                        <div className={"photo-btn"} >
-                            <label className={"label-photo"} htmlFor={"photo-image"}>
-                                <span><ImageIcon /></span>
-                                <span>Add photo</span>
-                            </label>
-                            <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
-                        </div>
-                        <div className={"photo-btn"} >
-                            <label className={"label-photo"} htmlFor={"photo-image2"}>
-                                <span><ImageIcon /></span>
-                                <span>Add photo</span>
-                            </label>
-                            <input className={"input-image2 hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
-                        </div>
-                        <div className={"photo-btn"} >
-                            <label className={"label-photo"} htmlFor={"photo-image3"}>
-                                <span><ImageIcon /></span>
-                                <span>Add photo</span>
-                            </label>
-                            <input className={"input-image3 hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
-                        </div>
-                        <div className={"photo-btn"} >
-                            <label className={"label-photo"} htmlFor={"photo-image4"}>
-                                <span><ImageIcon /></span>
-                                <span>Add photo</span>
-                            </label>
-                            <input className={"input-image4 hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
+                    <div className="single-step__inner-container">
+                        <h4>Photos</h4>
+                        <div className={"photo-container"}>
+                            <div className={"photo-btn"} >
+                                <label className={"label-photo"} htmlFor={"photo-image"}>
+                                    <span><ImageIcon /></span>
+                                    <span>Add photo</span>
+                                </label>
+                                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
+                            </div>
+                            <div className={"photo-btn"} >
+                                <label className={"label-photo"} htmlFor={"photo-image2"}>
+                                    <span><ImageIcon /></span>
+                                    <span>Add photo</span>
+                                </label>
+                                <input className={"input-image2 hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
+                            </div>
+                            <div className={"photo-btn"} >
+                                <label className={"label-photo"} htmlFor={"photo-image3"}>
+                                    <span><ImageIcon /></span>
+                                    <span>Add photo</span>
+                                </label>
+                                <input className={"input-image3 hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
+                            </div>
+                            <div className={"photo-btn"} >
+                                <label className={"label-photo"} htmlFor={"photo-image4"}>
+                                    <span><ImageIcon /></span>
+                                    <span>Add photo</span>
+                                </label>
+                                <input className={"input-image4 hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
+                            </div>
                         </div>
                     </div>
 
