@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -8,10 +8,10 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 import axios from 'axios';
-import { HOST_URL } from '../../../data/data';
-import { useParams } from 'react-router-dom'
+import {HOST_URL} from '../../../data/data';
+import {useParams} from 'react-router-dom'
 
 ChartJS.register(
     CategoryScale,
@@ -25,7 +25,8 @@ ChartJS.register(
 const Index = () => {
     const [labels, setLabels] = useState([]);
     const [steps, setSteps] = useState([]);
-    const { protocolId } = useParams();
+    const [maxSteps, setMaxSteps] = useState(0);
+    const {protocolId} = useParams();
 
     useEffect(() => {
         async function fetchData() {
@@ -55,7 +56,7 @@ const Index = () => {
 
                 setLabels(names);
                 setSteps(steps);
-
+                setMaxSteps(resp.data[0].max_steps)
             } catch (error) {
                 console.log(error);
             }
@@ -69,7 +70,7 @@ const Index = () => {
         labels,
         datasets: [
             {
-                label: 'Dataset 1',
+                label: 'Steps',
                 data: labels.map((item, index) => steps[index]),
                 backgroundColor: 'rgb(36, 156, 243)',
                 stack: 'Stack 0',
@@ -93,13 +94,19 @@ const Index = () => {
                 display: true,
                 text: 'Experiment Progress - Section 1',
             },
-        },
+        }, scales: {
+            x: {
+                min: 0,
+                max: maxSteps
+            }
+        }
+
     };
 
     return (
         <div>
             <div>protocol ID: {protocolId}</div>
-            <Bar options={options} data={data} />
+            <Bar options={options} data={data}/>
         </div>
     );
 }

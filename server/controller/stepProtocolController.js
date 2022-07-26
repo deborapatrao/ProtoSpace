@@ -6,7 +6,7 @@ const StepUserProtocol = db.step_user_protocol
 exports.findStepsProtocol = async (req, res) => {
 
     /* A query to find the steps of a protocol. */
-    const query = `select distinct sp.id                                                    as step_id
+    const query = `select distinct sp.id                                                    as step_id 
                                  , sup.id                                                   as step_user_id
                                  , sp.description                                           as step_description
                                  , sup.note                                                 as step_note
