@@ -1,5 +1,6 @@
 @use '../../../../styles/variables.scss' as v;
-@use '../../../../styles/typography' as t;
+@use '../../../../styles/mixins.scss' as mi;
+
 
 .section-protocol-run {
 
@@ -27,11 +28,6 @@
     }
 
     p {
-      font-family: 'Noto Sans';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
       color: v.$sec-dark;
     }
   }
@@ -83,12 +79,58 @@
     }
 
     p {
-      font-family: 'Noto Sans';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
       color: #063554;
+    }
+  }
+
+  .step-run{
+    padding: 2rem 2%;
+  }
+
+  .single-step{
+    .css-15v22id-MuiAccordionDetails-root{
+      display: grid;
+      grid-gap: 1rem;
+    }
+
+    &__buttons{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      justify-content: start;
+
+      &_finish{
+        grid-column: 2/-1;
+        justify-self: end;
+      }
+    }
+
+    &__footer{
+      margin-top: 2rem;
+      border-top: 2px solid v.$gray-light;
+      padding-top: 1rem;
+
+      button{
+        width: 100%;
+        background-color: v.$main-medium;
+      }
+    }
+  }
+
+  .single-component{
+    color: v.$sec-dark;
+    padding: .7rem .5rem;
+    background-color: v.$gray-light;
+    border-radius: 6px;
+
+    &__value{
+      @include mi.mediaQuery(mi.$desktop){
+        display: flex;
+        gap: .75rem;
+      }
+    }
+
+    label{
+      vertical-align: bottom;
     }
   }
 }
