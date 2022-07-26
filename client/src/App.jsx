@@ -1,4 +1,3 @@
-import './styles/index.scss'
 import {
   BrowserRouter,
   Routes,
@@ -33,6 +32,7 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import { useSelector } from 'react-redux';
 import Profile from "./components/Profile/Profile";
+import './styles/index.scss'
 
 
 function App() {
