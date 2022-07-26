@@ -82,6 +82,25 @@ const StepsRun = () => {
         }
     }
 
+    const conditionSubmitBtn = () => {
+        let checkArr = [];
+
+        steps.map((item, index) => {
+            if (item.end_step_status === 0) {
+                checkArr.push(item)
+            }
+        })
+
+        console.log(checkArr);
+        console.log(acStep);
+
+        if (checkArr.length !== 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
     return (
         <section className='stepsRun'>
@@ -121,7 +140,7 @@ const StepsRun = () => {
                     return <SingleStepRun stepsQnt={steps.length} disabled={activeStep === index ? false : true} key={index} step={item} activeStep={acStep ? acStep.step_number : activeStep} setActiveStep={setActiveStep} setShowSummary={setShowSummary} />
                 }) : ''}
             </div>
-            <Button onClick={handleSubmit} variant={'contained'}>Submit</Button>
+            <Button onClick={handleSubmit} variant={'contained'} disabled={acStep == undefined ? false : true}>Submit</Button>
         </section>
     );
 }
