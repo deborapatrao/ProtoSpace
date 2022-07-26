@@ -21,9 +21,9 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
     let navigate = useNavigate();
     const [note, setNote] = useState('')
 
-    const handleGoBack = () => {
-        setActiveStep(activeStep - 1)
-    }
+    // const handleGoBack = () => {
+    //     setActiveStep(activeStep - 1)
+    // }
 
     const handleFinish = async () => {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -53,35 +53,35 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
         }
     }
 
-    const handleSubmit = async () => {
-        const user = JSON.parse(localStorage.getItem('user'));
 
-        const params = {
-            workspace_id: user.workspaceId[0][0].workspaceId,
-            protocol_id: Number(protocolId)
-        }
-
-        console.log(params);
-
-        try {
-            const resp = await axios.post(`${HOST_URL}/api/protocol/run`, {
-                ...params
-            }, {
-                headers: {
-                    "x-access-token": user.accessToken
-                }
-            });
-
-            console.log(resp);
-
-        } catch (error) {
-            console.log(error);
+    const stepExpanded = () => {
+        if (step.end_step_status === 1) {
+            return false;
+        } else {
+            if (activeStep === step.step_number) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
+    const stepDisabled = () => {
+        if (step.end_step_status === 1) {
+            return true;
+        } else {
+            if (activeStep === step.step_number) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+
     return (
         <section className={`single-step`}>
-            <Accordion disabled={disabled} expanded={!disabled ? true : false}>
+            <Accordion disabled={stepDisabled()} expanded={stepExpanded()}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                 >
@@ -130,12 +130,13 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
                     <SingleComponentRun stepId={step.step_id} />
                     <TextareaAutosize placeholder={`Note`} style={{ width: '100%', height: 100 }} name={step.step_id} value={step.step_note ? step.step_note : note} onChange={(e) => setNote(e.target.value)} />
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        {activeStep > 0 ? <Button onClick={handleGoBack}>Go back</Button> : <div></div>}
+                        {/* {activeStep > 0 ? <Button onClick={handleGoBack}>Go back</Button> : <div></div>} */}
+                        <div></div>
                         <Button onClick={handleFinish}>Finish step</Button>
                     </div>
                 </AccordionDetails>
             </Accordion>
-            <Button onClick={handleSubmit} variant={'contained'}>Submit</Button>
+            {/* <Button onClick={handleSubmit} variant={'contained'}>Submit</Button> */}
         </section>
     );
 }
