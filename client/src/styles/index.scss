@@ -35,7 +35,7 @@ body {
 
         @include mi.mediaQuery (mi.$desktop){
             grid-template-columns: 300px 3fr;
-            padding: 2rem 0;
+            padding: 0;
         }
         
 
