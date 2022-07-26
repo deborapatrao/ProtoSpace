@@ -11,12 +11,12 @@ import NewModal from "../Utils/Modal/NewModal";
 import Components from "./Components";
 
 const Steps = () => {
-    const { steps, setSteps, handlePublish, conditionState, publishedProtocol, width } = useOutletContext();
+    const { steps, setSteps, handlePublish, conditionState, publishedProtocol, width, openModal, setOpenModal } = useOutletContext();
     const [components, setComponents] = useState([]);
     const [activeStep, setActiveStep] = useState(null);
     const [componentModal, setComponentModal] = useState(false);
 
-    const toggleComponentModal = () =>{
+    const toggleComponentModal = () => {
         setComponentModal(!componentModal);
     }
 
@@ -98,7 +98,7 @@ const Steps = () => {
             <div className='section-body'>
                 {steps ? steps.map((item, index) => {
                     // console.log(index);
-                    return <SingleStep activeStep={activeStep} setActiveStep={setActiveStep} key={index} step={item} index={index} handleTextChange={handleTextChange} steps={steps} setSteps={setSteps} publishedProtocol={publishedProtocol} />
+                    return <SingleStep openModal={openModal} setOpenModal={setOpenModal} activeStep={activeStep} setActiveStep={setActiveStep} key={index} step={item} index={index} handleTextChange={handleTextChange} steps={steps} setSteps={setSteps} publishedProtocol={publishedProtocol} />
                 }) : ''}
 
                 <Button onClick={handleDataChange} className={"add-step-btn"}>+ New Step</Button>
@@ -115,14 +115,14 @@ const Steps = () => {
 
 
             {width > 1000 ? <Components
-                    component={components}
-                    handleAddComponents={handleAddComponent}
-                    activeSteps={activeStep}
-                    title={'Components'}>
-                </Components>:
+                component={components}
+                handleAddComponents={handleAddComponent}
+                activeSteps={activeStep}
+                title={'Components'}>
+            </Components> :
 
                 <Button variant="contained" onClick={toggleComponentModal}>Components</Button>
-                }
+            }
             <NewModal
                 open={componentModal}
                 handleClose={toggleComponentModal}
