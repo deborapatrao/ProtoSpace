@@ -30,7 +30,7 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
         const user = JSON.parse(localStorage.getItem('user'));
 
         const params = {
-            step_id: step.step_id,
+            step_user_id: step.step_user_id,
             note: note
         }
 
@@ -87,7 +87,7 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
                     expandIcon={<ExpandMoreIcon />}
                 >
                     <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                        { step.end_step_status === 1 ? <img src={Check} alt={'step-completed'} className={'step-completed'} />  : ``}  <span className={'step'}>{`Step ${step.step_number}`}</span>
+                        {step.end_step_status === 1 ? <img src={Check} alt={'step-completed'} className={'step-completed'} /> : ``}  <span className={'step'}>{`Step ${step.step_number}`}</span>
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
