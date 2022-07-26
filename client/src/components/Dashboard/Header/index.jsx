@@ -5,7 +5,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import Avatar from '@mui/material/Avatar';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from './menu.png';
 import Menu from './Menu';
 import { Link } from 'react-router-dom';
 
@@ -41,7 +41,7 @@ const Header = props => {
       <div className='header-navigation'>
         <NotificationsIcon />
         <Link to={'/profile'}><Avatar /></Link>
-        <Button startIcon={<MenuIcon />} onClick={toggleDrawer('right', true)} />
+        <Button startIcon={<img src={MenuIcon} />} onClick={toggleDrawer('right', true)} />
         <Drawer
           anchor='right'
           open={state['right']}
