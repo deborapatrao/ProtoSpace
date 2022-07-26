@@ -6,14 +6,14 @@ const StepUserProtocol = db.step_user_protocol
 exports.findStepsProtocol = async (req, res) => {
 
     /* A query to find the steps of a protocol. */
-    const query = `select sp.id                                                    as step_id
-                        , sp.description                                           as step_description
-                        , sup.note                                                 as step_note
-                        , sp.step_number
-                        , (case when sup.end_step is not null then 1 else 0 end)   as end_step_status
-                        , (case when sup.start_step is not null then 1 else 0 end) as start_step_status
-                        , sup.end_step
-                        , sup.start_step
+    const query = `select distinct sp.id                                                    as step_id
+                                 , sp.description                                           as step_description
+                                 , sup.note                                                 as step_note
+                                 , sp.step_number
+                                 , (case when sup.end_step is not null then 1 else 0 end)   as end_step_status
+                                 , (case when sup.start_step is not null then 1 else 0 end) as start_step_status
+                                 , sup.end_step
+                                 , sup.start_step
                    from step_user_protocol sup
                             join protocol p on p.id = sup.protocol_id
                             join step_protocol sp on sp.id = sup.step_protocol_id
