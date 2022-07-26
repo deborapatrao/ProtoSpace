@@ -14,6 +14,7 @@ import axios from 'axios';
 import { HOST_URL } from '../../../../data/data';
 import '../protocolsi.scss';
 import { useParams, useNavigate } from 'react-router-dom';
+import Check from '../../../../assets/check.png';
 
 const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setShowSummary }) => {
     const [loading, setLoading] = useState(false)
@@ -86,7 +87,7 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
                     expandIcon={<ExpandMoreIcon />}
                 >
                     <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                        {`Step ${step.step_number}`}
+                        { step.end_step_status === 1 ? <img src={Check} alt={'step-completed'} className={'step-completed'} />  : ``}  <span className={'step'}>{`Step ${step.step_number}`}</span>
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>

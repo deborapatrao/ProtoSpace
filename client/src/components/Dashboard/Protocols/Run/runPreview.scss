@@ -95,4 +95,21 @@
       padding: 12px 20px;
     }
   }
+  .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-disabled {
+    opacity: unset ;
+
+    p{
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    img{
+      width: 24px;
+      height: 24px;
+    }
+      span{
+      opacity: 0.38;
+
+    }
+  }
 }
