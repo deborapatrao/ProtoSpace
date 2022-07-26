@@ -49,7 +49,7 @@ const SingleComponentRun = ({ stepId }) => {
 
                 return (
                     // <div key={index}>{item.component_name}</div>
-                    <div key={index} style={{ backgroundColor: 'lightgrey', marginBottom: 10, width: '80%' }}>
+                    <div key={index} className='single-component'>
                         <div>Name: {component.component_name}</div>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <label htmlFor='value'>Value: </label>

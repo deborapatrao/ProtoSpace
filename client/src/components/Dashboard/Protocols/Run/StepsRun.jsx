@@ -68,14 +68,14 @@ const StepsRun = () => {
                 <div>
                     <ReactToPrint
                         trigger={() => <Button>Export submission</Button>}
-                        content={() => componentRef.current}
+                        content={() => componentRef.current} 
                     />
                 </div>
             </div> : ''} */}
             <div>
 
             </div>
-            <div ref={componentRef} id={'forPdf'} style={{ paddingLeft: 30, paddingTop: 50 }}>
+            <div ref={componentRef} id={'forPdf'} className="step-run">
                 {/* {showSummary ?
                     <>
                         <section className={"preview-section"}>

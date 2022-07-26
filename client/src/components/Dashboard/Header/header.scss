@@ -1,3 +1,6 @@
+@use '../../../styles/variables.scss' as v;
+@use '../../../styles/mixins.scss' as mi;
+
 .workspace-header {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -19,4 +22,25 @@
 .container__navbar {
     display: grid;
     align-items: center;
+}
+
+.css-1160xiw-MuiPaper-root-MuiDrawer-paper{
+    left: 30%;
+    align-items: end;
+    padding: 3rem 2rem 0 0;
+    
+    @include mi.mediaQuery (mi.$desktop){
+        left:70%;
+    }
+  li{
+    justify-content: end;
+
+    span{
+      text-align: right;
+      color: v.$sec-dark;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 0 1rem;
+    }
+  }
 }
