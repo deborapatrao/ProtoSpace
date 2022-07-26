@@ -63,14 +63,14 @@ const Register = () => {
                         Password<span className={"mandatory"}>*</span>
                     </label>
                     {/*<InputLabel htmlFor="password-register">Password</InputLabel>*/}
-                    <input id="password-register" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"Password"}/>
+                    <input id="password-register" value={password} type={"password"} onChange={(e) => setPassword(e.target.value)} placeholder={"Password"}/>
                 </FormControl>
                 <FormControl >
                     <label>
                         Confirm Password<span className={"mandatory"}>*</span>
                     </label>
                     {/*<InputLabel htmlFor="password2-register">Confirm Password</InputLabel>*/}
-                    <input id="password2-register" value={password2} onChange={(e) => setPassword2(e.target.value)} placeholder={"Confirm Password"}/>
+                    <input id="password2-register" value={password2} type={"password"} onChange={(e) => setPassword2(e.target.value)} placeholder={"Confirm Password"}/>
                 </FormControl>
 
                 <Button type='submit' variant="contained" style={{ alignSelf: 'center' }}>Sign up</Button>
