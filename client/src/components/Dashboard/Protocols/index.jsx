@@ -1,6 +1,6 @@
 import "./protocolsi.scss";
 import React, { useState } from 'react';
-import { Outlet, useOutletContext, useLocation } from 'react-router-dom';
+import { Outlet, useOutletContext, useLocation, Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -20,6 +20,7 @@ const Protocols = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)
     const [publishModal, setPublishModal] = useState(false);
     const [shareModal, setShareModal] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const [publishedProtocol, setPublishedProtocol] = useState('')
@@ -148,18 +149,30 @@ const Protocols = () => {
                 </form>
             </NewModal>
             <ShareModal
-                    open={shareModal}
-                    handleClose={toggleShareModal}
-                    modalHeader={'Publish Protocol'}
-                    protocolName={publishedProtocol.name}
-                >
+                open={shareModal}
+                handleClose={toggleShareModal}
+                modalHeader={'Publish Protocol'}
+                protocolName={publishedProtocol.name}
+            >
+                <div className={'child-modal-info'}>
+                    {/* <img src={Upload} alt={'upload-image'} className={'upload-image'} /> */}
+                    <p>{publishedProtocol.name} has successfully been published</p>
+                    {/*<Button className={'run-protocol-btn'}><Link to={`/protocols/run/${publishedProtocol.id}`}>Run Protocol</Link></Button>*/}
+                    <Button className={'run-protocol-btn'}>Run Protocol</Button>
+                    <Button className={'share-btn'} onClick={() => {
+                        setShareModal(false);
+                        setOpenModal(!openModal);
+                    }
+                    }>Share protocol</Button>
+                    <Button className={'dashboard-btn'}><Link to={'/'}>Back to Dashboard</Link></Button>
+                </div>
             </ShareModal>
 
             <div>
                 {width < 1000 && !location.pathname.includes('/summary') ? <Sidebar width={width} /> : ''}
             </div>
             <div>
-                <Outlet context={{ data, handleDataChange, steps, setSteps, handlePublish, conditionState, publishedProtocol, width }} />
+                <Outlet context={{ data, handleDataChange, steps, setSteps, handlePublish, conditionState, publishedProtocol, width, openModal, setOpenModal }} />
                 {/* <Button onClick={handlePublish}>Publish</Button> */}
             </div>
             <ToastContainer />

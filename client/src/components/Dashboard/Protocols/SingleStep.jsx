@@ -34,9 +34,9 @@ const style = {
     p: 4,
 };
 
-const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, steps, setSteps, publishedProtocol }) => {
+const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, steps, setSteps, publishedProtocol, openModal, setOpenModal }) => {
     const [expanded, setExpanded] = useState(false);
-    const [openModal, setOpenModal] = useState(true);
+
     const [chosenUsers, setChosenUsers] = useState([]);
     const [users, setUsers] = useState([]);
 
@@ -131,6 +131,8 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
             workspaces: chosenWorkspaces,
             steps: stepsForPublish
         }
+
+        console.log(params);
 
         try {
             const resp = await axios.post(`${HOST_URL}/api/share/`, {

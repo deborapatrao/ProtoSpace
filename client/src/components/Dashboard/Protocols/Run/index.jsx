@@ -25,7 +25,8 @@ const ProtocolRun = () => {
             const user = JSON.parse(localStorage.getItem('user'));
 
             const params = {
-                protocolId: protocolId
+                protocolId: protocolId,
+                workspace_id: user.workspaceId[0][0].workspaceId,
             }
 
             try {
