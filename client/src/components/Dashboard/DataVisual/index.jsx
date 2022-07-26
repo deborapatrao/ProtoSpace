@@ -32,7 +32,7 @@ const Index = () => {
             const user = JSON.parse(localStorage.getItem('user'));
 
             const params = {
-                protocol_id: 1
+                protocol_id: protocolId
             }
 
             try {

@@ -86,7 +86,7 @@ const SharedProtocols = () => {
                                     {protocols ? protocols.map((item, index) => {
                                         return (
                                             <TableRow key={index}>
-                                                <TableCell align="left"><Link to={protocolsRun.includes(item.protocol_id) ? `protocols/${item.protocol_id}/summary` : `protocols/run/${item.protocol_id}`}>{item.name}</Link></TableCell>
+                                                <TableCell align="left"><Link to={protocolsRun.includes(item.protocol_id) ? `/protocols/${item.protocol_id}/summary` : `/protocols/run/${item.protocol_id}`}>{item.name}</Link></TableCell>
                                                 <TableCell align="left">{item.author}</TableCell>
                                                 <TableCell align="left">{new Date(item.created_at).toLocaleString("en-US")}</TableCell>
                                                 <TableCell align="left"><Link to={`${item.protocol_id}/data-visualization`}>Chart</Link></TableCell>
