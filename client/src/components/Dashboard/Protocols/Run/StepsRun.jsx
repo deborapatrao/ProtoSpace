@@ -82,25 +82,6 @@ const StepsRun = () => {
         }
     }
 
-    const conditionSubmitBtn = () => {
-        let checkArr = [];
-
-        steps.map((item, index) => {
-            if (item.end_step_status === 0) {
-                checkArr.push(item)
-            }
-        })
-
-        console.log(checkArr);
-        console.log(acStep);
-
-        if (checkArr.length !== 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
 
     return (
         <section className='stepsRun'>
