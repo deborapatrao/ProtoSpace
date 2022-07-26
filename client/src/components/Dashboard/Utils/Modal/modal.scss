@@ -24,16 +24,14 @@
       color: v.$support-red;
       padding-left: 12px;
     }
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    width: 510px !important;
-    height: 319px !important;
+    margin-left: auto;
     background-color: white;
     border-radius: 6px;
     border-color: unset;
+    margin-right: auto;
+    margin-top: 25%;
     .modal-info{
-      padding: 40px 16px;
+      padding: 40px 16px 25px 16px;
     }
     .publish-modal-info{
       display: flex;
@@ -44,6 +42,15 @@
     .bottom-btn {
       text-align: right;
       padding-right: 16px;
+      margin-top: 25px;
+      .modal-btn{
+        text-transform: capitalize;
+        color: v.$main-medium;
+      }
+      :hover{
+        background-color: v.$main-medium;
+        color: white;
+      }
       .close-btn {
         margin: 16px;
         font-size: 14px;
@@ -54,11 +61,6 @@
     }
   }
 .child-modal{
-  position: absolute;
-  top: 40%;
-  left: 40%;
-  width: 510px !important;
-  height: 527px !important;
   background-color: white;
   border-radius: 6px;
   border-color: unset;
@@ -76,10 +78,18 @@
     border-radius: 6px;
     color: white;
     margin-top: 24px;
-    text-transform: lowercase;
+    text-transform: capitalize;
     display: unset;
     width: 311px;
-    img{
+    :hover{
+      background-color: unset !important;
+    }
+    a{
+      text-decoration: none;
+      color: white;
+    }
+    .share-icon{
+      margin-top: 0;
       padding-right: 10px;
     }
     .dashboard-btn{
