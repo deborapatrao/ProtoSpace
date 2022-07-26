@@ -18,12 +18,12 @@ const HeaderNav = () => {
             <AppBar position="sticky">
             <Container>
                 <Toolbar>
-                    <Box>
+                    <Link to={"/"}>
                     <div className="site-identity">
                     <img src={LogoMobile} alt="logo" className="logo-mobile"/>
                     <img src={LogoDesktop} alt="logo" className="logo-desktop"/>
                     </div>
-                    </Box>
+                    </Link>
 
                     <div className="navigation-container">
                         <Box sx={{ display: {xs:'none', md:'block'}}}
