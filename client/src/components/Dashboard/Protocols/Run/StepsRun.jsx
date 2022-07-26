@@ -11,6 +11,8 @@ import ReactToPrint from "react-to-print";
 const StepsRun = () => {
     const componentRef = useRef();
     const [steps, setSteps] = useState([]);
+    const acStep = steps.find(item => item.end_step_status === 0);
+    console.log(acStep);
     const [activeStep, setActiveStep] = useState(0);
     const [showSummary, setShowSummary] = useState(false)
     const { protocolInfo } = useOutletContext();
@@ -24,11 +26,12 @@ const StepsRun = () => {
 
         async function fetchData() {
             const user = JSON.parse(localStorage.getItem('user'));
-            console.log(user.workspaceId[0][0].workspaceId);
+
             const params = {
-                protocolId: protocolId,
+                protocolId: Number(protocolId),
                 workspace_id: user.workspaceId[0][0].workspaceId
             }
+            console.log(params);
 
             try {
                 const resp = await axios.post(`${HOST_URL}/api/step`, {
@@ -51,8 +54,33 @@ const StepsRun = () => {
 
         fetchData();
 
-    }, []);
+    }, [activeStep]);
 
+    const handleSubmit = async () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        const params = {
+            workspace_id: user.workspaceId[0][0].workspaceId,
+            protocol_id: Number(protocolId)
+        }
+
+        console.log(params);
+
+        try {
+            const resp = await axios.post(`${HOST_URL}/api/protocol/run`, {
+                ...params
+            }, {
+                headers: {
+                    "x-access-token": user.accessToken
+                }
+            });
+
+            console.log(resp);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 
     return (
@@ -68,14 +96,14 @@ const StepsRun = () => {
                 <div>
                     <ReactToPrint
                         trigger={() => <Button>Export submission</Button>}
-                        content={() => componentRef.current}
+                        content={() => componentRef.current} 
                     />
                 </div>
             </div> : ''} */}
             <div>
 
             </div>
-            <div ref={componentRef} id={'forPdf'} style={{ paddingLeft: 30, paddingTop: 50 }}>
+            <div ref={componentRef} id={'forPdf'} className="step-run">
                 {/* {showSummary ?
                     <>
                         <section className={"preview-section"}>
@@ -90,9 +118,10 @@ const StepsRun = () => {
                     :
                 } */}
                 {steps ? steps.map((item, index) => {
-                    return <SingleStepRun stepsQnt={steps.length} disabled={activeStep === index ? false : true} key={index} step={item} activeStep={activeStep} setActiveStep={setActiveStep} setShowSummary={setShowSummary} />
+                    return <SingleStepRun stepsQnt={steps.length} disabled={activeStep === index ? false : true} key={index} step={item} activeStep={acStep ? acStep.step_number : activeStep} setActiveStep={setActiveStep} setShowSummary={setShowSummary} />
                 }) : ''}
             </div>
+            <Button onClick={handleSubmit} variant={'contained'}>Submit</Button>
         </section>
     );
 }

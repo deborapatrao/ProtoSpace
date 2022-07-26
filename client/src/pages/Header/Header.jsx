@@ -15,32 +15,15 @@ const HeaderNav = () => {
 
 
     return (<>
-        {/* // <section className={"header-container"}> */}
-        
-        {/* <div className="navigation-container"> */}
-            {/* <nav>
-                <ul>
-                    <li>
-                        <Link to={"/"}>Home</Link>
-                    </li>
-                    <li>
-                        <Link to={"/about"}>About</Link>
-                    </li>
-                    <li>
-                        <Link to={"/contact"}>Contact</Link>
-                    </li>
-                </ul>
-            </nav> */}
-
             <AppBar position="sticky">
             <Container>
                 <Toolbar>
-                    <Box>
+                    <Link to={"/"}>
                     <div className="site-identity">
                     <img src={LogoMobile} alt="logo" className="logo-mobile"/>
                     <img src={LogoDesktop} alt="logo" className="logo-desktop"/>
                     </div>
-                    </Box>
+                    </Link>
 
                     <div className="navigation-container">
                         <Box sx={{ display: {xs:'none', md:'block'}}}

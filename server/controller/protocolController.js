@@ -89,7 +89,6 @@ exports.findProtocolWorkspace = async (req, res) => {
         console.log(error)
     }
 }
-
 exports.runProtocol = async (req, res) => {
     const Protocol_id = req.body.protocol_id
     const Workspace_id = req.body.workspace_id
@@ -175,8 +174,6 @@ exports.createProtocol = async (req, res) => {
             if (findProtocol) {
                 try {
 
-                    await Protocol.update(data, {where: {id: protocol_id}});
-
                     for (const step of stepsRequest) {
 
                         const stepData = {
@@ -233,13 +230,24 @@ exports.createProtocol = async (req, res) => {
                         description: step.step_description,
                         protocol_id: protocolCreated.id
                     }
+                    if (fileName === 'step_1') {
+                        const stepImage = await UploadImage.protocolImages(file, fileName, protocolCreated.id, step.id)
+                        const dataImg = {
+                            step_id: step.id,
+                            step_number: step.step_number,
+                            image: stepImage
+                        }
 
+                        await StepImages.create(dataImg);
+
+                    }
                     if (stepData) {
 
                         const StepCreate = await Step.create(stepData)
-                        // const photo = await UploadImage.profilePhoto(file, fileName, protocolCreated.id)
+
+
                         steps_ids.push({"step_id": StepCreate.id})
-                        const stepImage = {}
+
                         // await StepImages.create()
                         for (components of step.components) {
                             const componentData = {

@@ -3,23 +3,22 @@ import SingleStep from "./SingleStep";
 import Button from '@mui/material/Button';
 import { Link, useOutletContext } from "react-router-dom";
 import axios from 'axios';
-import SquareFootIcon from '@mui/icons-material/SquareFoot';
-import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
-import ScaleIcon from '@mui/icons-material/Scale';
-import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
-import HubIcon from '@mui/icons-material/Hub';
-import SpeedIcon from '@mui/icons-material/Speed';
-import AddIcon from '@mui/icons-material/Add';
+
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { HOST_URL } from '../../../data/data';
+import NewModal from "../Utils/Modal/NewModal";
+import Components from "./Components";
 
 const Steps = () => {
-    const { steps, setSteps, handlePublish, conditionState, publishedProtocol, width } = useOutletContext();
+    const { steps, setSteps, handlePublish, conditionState, publishedProtocol, width, openModal, setOpenModal } = useOutletContext();
     const [components, setComponents] = useState([]);
-
     const [activeStep, setActiveStep] = useState(null);
+    const [componentModal, setComponentModal] = useState(false);
 
+    const toggleComponentModal = () => {
+        setComponentModal(!componentModal);
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -99,7 +98,7 @@ const Steps = () => {
             <div className='section-body'>
                 {steps ? steps.map((item, index) => {
                     // console.log(index);
-                    return <SingleStep activeStep={activeStep} setActiveStep={setActiveStep} key={index} step={item} index={index} handleTextChange={handleTextChange} steps={steps} setSteps={setSteps} publishedProtocol={publishedProtocol} />
+                    return <SingleStep openModal={openModal} setOpenModal={setOpenModal} activeStep={activeStep} setActiveStep={setActiveStep} key={index} step={item} index={index} handleTextChange={handleTextChange} steps={steps} setSteps={setSteps} publishedProtocol={publishedProtocol} />
                 }) : ''}
 
                 <Button onClick={handleDataChange} className={"add-step-btn"}>+ New Step</Button>
@@ -115,58 +114,27 @@ const Steps = () => {
             </div>
 
 
+            {width > 1000 ? <Components
+                component={components}
+                handleAddComponents={handleAddComponent}
+                activeSteps={activeStep}
+                title={'Components'}>
+            </Components> :
 
-            <div className={"components-container"}>
-                <div className="components">
-                    <h3>Components</h3>
-                    <ul className={"buttons"}>
-                        {components ? components.map((item, index) => {
-                            return <li key={index}>
-                                <div onClick={() => handleAddComponent(item, activeStep)} className={`components-btn`}>
-                                    {(() => {
-                                        if (item.name == "Length") {
-                                            return (
-                                                <SquareFootIcon />
-                                            )
-                                        } else if (item.name == "volume") {
-                                            return (
-                                                <LocalDrinkIcon />
-                                            )
-                                        } else if (item.name == "Mass") {
-                                            return (
-                                                <ScaleIcon />
-                                            )
-                                        } else if (item.name == "Temperature") {
-                                            return (
-                                                <DeviceThermostatIcon />
-                                            )
-                                        } else if (item.name == "Concentration") {
-                                            return (
-                                                <HubIcon />
-                                            )
-                                        } else if (item.name == "Pressure") {
-                                            return (
-                                                <SpeedIcon />
-                                            )
-                                        } else if (item.name == "Time") {
-                                            return (
-                                                <SquareFootIcon />
-                                            )
-                                        } else if (item.name == "Others") {
-                                            return (
-                                                <AddIcon />
-                                            )
-                                        }
-                                    }
-                                    )()}
-                                    <button>{item.name}</button>
-                                </div>
-                            </li>
-                        }) : ''}
-                    </ul>
-                </div>
+                <Button variant="contained" onClick={toggleComponentModal}>Components</Button>
+            }
+            <NewModal
+                open={componentModal}
+                handleClose={toggleComponentModal}
+                modalHeader={'Components'}>
+                <Components
+                    component={components}
+                    handleAddComponents={handleAddComponent}
+                    activeSteps={activeStep}
+                    closeModal={toggleComponentModal}>
+                </Components>
+            </NewModal>
 
-            </div>
             <div className='btns'>
                 <Button className='btn_left' variant='outlined'>Preview</Button>
                 <Button className='btn_right' variant='contained' onClick={handlePublish} disabled={conditionState ? false : true}>Publish</Button>

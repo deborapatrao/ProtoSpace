@@ -1,10 +1,13 @@
 const controller = require("../controller/protocolController");
 const {authJwt} = require("../middleware");
+const multer = require("multer");
 let router = require("express").Router();
+const upload = multer({dest: 'temp/'})
+
 
 module.exports = function (app) {
 
-    router.post("/", controller.createProtocol);
+    router.post("/", upload.single('step_1'), controller.createProtocol);
 
     router.post('/find', controller.findProtocol);
 

@@ -43,10 +43,10 @@ const MyProtocol = () => {
                     }
                 });
 
-                console.log(resp);
+                console.log(resp.data);
                 const myProtocols = [];
                 resp.data.map(item => {
-                    if (item.shared === 0) {
+                    if (item.shared_status === 0) {
                         myProtocols.push(item)
                     }
 
@@ -82,7 +82,7 @@ const MyProtocol = () => {
                             {protocols ? protocols.map((item, index) => {
                                 return (
                                     <TableRow key={index}>
-                                        <TableCell align="left"><Link to={protocolsRun.includes(item.protocol_id) ? `protocols/${item.protocol_id}/summary` : `protocols/run/${item.protocol_id}`}>{item.name}</Link></TableCell>
+                                        <TableCell align="left"><Link to={item.end_run_status === 1 ? `protocols/${item.protocol_id}/summary` : `protocols/run/${item.protocol_id}`}>{item.name}</Link></TableCell>
                                         <TableCell align="left">{item.author}</TableCell>
                                         <TableCell align="left">{new Date(item.created_at).toLocaleString("en-US")}</TableCell>
                                         {/* <TableCell align="left"><Link to={'/data-visualization'}>Chart</Link></TableCell> */}

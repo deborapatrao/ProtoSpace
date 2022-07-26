@@ -248,6 +248,10 @@
         }
       }
     }
+
+    .modal-container {
+      color: Red;
+    }
   }
 
   .stepsRun {
@@ -413,4 +417,51 @@
 
   }
 
+}
+.modal-container{
+
+  .components-container{
+    .components {
+      border-radius: 6px;
+      background-color: v.$gray-light;
+      padding: 2rem 1rem 3rem 1rem;
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+
+        .components-btn {
+          width: 142px;
+          height: 94px;
+          background-color: white;
+          display: flex;
+          flex-flow: column nowrap;
+          justify-content: center;
+          align-items: center;
+          border: solid 1px v.$gray-medium;
+          border-radius: 6px;
+          gap: 8px;
+
+          svg {
+            width: 24px;
+            height: 24px;
+            color: v.$sec-dark;
+          }
+
+          button {
+            border: none;
+            background-color: white;
+            color: v.$sec-dark;
+          }
+        }
+      }
+    }
+  }
 }
