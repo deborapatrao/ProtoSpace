@@ -5,7 +5,19 @@
     @include mi.mediaQuery(mi.$desktop) {
         padding: 2rem 2rem 0 0;
     }
-
+    thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root {
+        background-color: v.$gray-light;
+        th {
+            font-weight: 600;
+            color: v.$sec-dark;
+        }
+    }
+    a{
+        text-decoration: none;
+        color: v.$sec-dark;
+        font-weight: 400;
+        font-size: 16px;
+    }
 
     h1 {
         margin-bottom: 2rem;
@@ -29,6 +41,11 @@
             gap: 2px;
             line-height: 16px;
             padding: 4px 0;
+        }
+    }
+    .workspace__body{
+        button{
+                margin-bottom: 3rem !important;
         }
     }
     .empty-workspace{
