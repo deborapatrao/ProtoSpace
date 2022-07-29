@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../../features/auth/useSlice';
 import SvgIcon from '@mui/material/SvgIcon';
 import { ReactComponent as Plus} from '../../../assets/add-icon.svg';
+import { ReactComponent as Empty} from '../../../assets/Empty.svg';
+
 
 
 const MyProtocol = () => {
@@ -97,7 +99,10 @@ const MyProtocol = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                : ''}
+                : <div className={'empty-workspace'}>
+                    <Empty/>
+                    <span>You have empty workspace</span>
+                </div>}
             <div className="workspace__body">
                 <Button variant="outlined">
                     <Link to={"/protocols/description"}><Plus/> Create protocol</Link>
