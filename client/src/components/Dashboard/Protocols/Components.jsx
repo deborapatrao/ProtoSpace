@@ -1,12 +1,4 @@
 import React from 'react';
-// import SquareFootIcon from '@mui/icons-material/SquareFoot';
-// import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
-// import ScaleIcon from '@mui/icons-material/Scale';
-// import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
-// import HubIcon from '@mui/icons-material/Hub';
-// import SpeedIcon from '@mui/icons-material/Speed';
-// import AddIcon from '@mui/icons-material/Add';
-
 import SvgIcon from '@mui/material/SvgIcon';
 import { ReactComponent as Volume} from '../../../assets/volume-icon.svg';
 import { ReactComponent as Mass} from '../../../assets/mass-icon.svg';
