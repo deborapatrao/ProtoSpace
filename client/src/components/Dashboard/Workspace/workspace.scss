@@ -25,4 +25,12 @@
             color: v.$main-medium;
         }
     }
+    .empty-workspace{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        margin-top: 10vw;
+        color: v.$gray-dark;
+        gap: 1rem;
+    }
 }
