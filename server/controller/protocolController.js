@@ -99,7 +99,7 @@ exports.runProtocol = async (req, res) => {
     }
 
     try {
-        const runProtocol = await UserProtocol.findOne({attributes: ["start_run"]},
+        const runProtocol = await UserProtocol.findOne(
             {
                 where:
                     {
