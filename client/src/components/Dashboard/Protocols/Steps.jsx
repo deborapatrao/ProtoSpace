@@ -109,7 +109,7 @@ const Steps = () => {
                     <Link to={"/protocols/materials"}><ArrowBackIosNewIcon />Materials</Link>
                 </div>
                 <div className='link-next'>
-                    <Link className={'previewBtn'} to={"/protocols/preview"}>Preview<ArrowForwardIosIcon /></Link>
+                    {/* <Link className={'previewBtn'} to={"/protocols/preview"}>Preview<ArrowForwardIosIcon /></Link> */}
                 </div>
             </div>
 
@@ -136,7 +136,7 @@ const Steps = () => {
             </NewModal>
 
             <div className='btns'>
-                <Button className='btn_left' variant='outlined'>Preview</Button>
+                <Button variant='outlined'><Link className={'previewBtn'} to={"/protocols/preview"}>Preview</Link></Button>
                 <Button className='btn_right' variant='contained' onClick={handlePublish} disabled={conditionState ? false : true}>Publish</Button>
             </div>
 
