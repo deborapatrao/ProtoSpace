@@ -21,6 +21,8 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 import FormControl from '@mui/material/FormControl';
 import { HOST_URL } from '../../../data/data';
+import { Link, useNavigate } from "react-router-dom";
+import NewModal from '../Utils/Modal/NewModal';
 
 const style = {
     position: 'absolute',
@@ -39,6 +41,8 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
 
     const [chosenUsers, setChosenUsers] = useState([]);
     const [users, setUsers] = useState([]);
+    const [modalShare, setModalShare] = useState(false)
+    let navigate = useNavigate();
 
 
     useEffect(() => {
@@ -143,7 +147,9 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                 }
             });
 
+
             console.log(resp);
+            setModalShare(true);
 
         } catch (error) {
             console.log(error);
@@ -151,6 +157,12 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
         }
         console.log(publishedProtocol);
     }
+
+    const closeShareModal = () => {
+        setModalShare(false);
+        navigate("/", { replace: true });
+    };
+
 
     return (
         <section onClick={(e) => handleClick(e, index)} className={`single-step`}>
@@ -277,7 +289,7 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                                 }}
                             >
                                 {users ? users.map((item, index) => (
-                                    <MenuItem key={index} value={item}>
+                                    <MenuItem key={index} value={item} className={'menu-container'}>
                                         <Checkbox checked={chosenUsers.indexOf(item) > -1} />
                                         <ListItemText primary={item.user_name} />
                                     </MenuItem>
@@ -287,7 +299,9 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                     </div>
                     <div>
                         {chosenUsers ? chosenUsers.map((item, index) => {
-                            return <div key={index}>{item.user_name} and {item.workspace_id}</div>
+                            // return <div key={index}>{item.user_name} and {item.workspace_id}</div>
+                            return <div className={'user-selected'} key={index}>{item.user_name}</div>
+
                         }) : ''}
                     </div>
                     <div>
@@ -295,6 +309,18 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                     </div>
                 </Box>
             </Modal>
+            <NewModal open={modalShare}
+                handleClose={closeShareModal}
+                modalHeader={'Share protocol'}>
+                <div style={{ textAlign: 'center' }}>
+                    Protocol has successfully been shared.
+                </div>
+
+                <div className={"bottom-btn"}>
+                    <Button variant={'clear'} className={'modal-btn'} onClick={closeShareModal}>Ok</Button>
+                    {/* <button className={"close-btn"} onClick={closeSubmitModal}>Ok</button> */}
+                </div>
+            </NewModal>
         </section>
     );
 }

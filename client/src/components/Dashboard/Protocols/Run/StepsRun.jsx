@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams, useOutletContext } from 'react-router-dom';
+import { useParams, useOutletContext, useNavigate } from 'react-router-dom';
 import { HOST_URL } from '../../../../data/data';
 import axios from 'axios';
 import SingleStepRun from './SingleStepRun';
@@ -7,8 +7,10 @@ import { Button } from '@mui/material';
 import Preview from '../Preview';
 import '../protocolsi.scss';
 import ReactToPrint from "react-to-print";
+import NewModal from '../../Utils/Modal/NewModal';
 
 const StepsRun = () => {
+    let navigate = useNavigate();
     const componentRef = useRef();
     const [steps, setSteps] = useState([]);
     const acStep = steps.find(item => item.end_step_status === 0);
@@ -16,6 +18,7 @@ const StepsRun = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [showSummary, setShowSummary] = useState(false)
     const { protocolInfo } = useOutletContext();
+    const [modalSubmit, setModalSubmit] = useState(false)
 
     const { protocolId } = useParams();
 
@@ -75,12 +78,20 @@ const StepsRun = () => {
                 }
             });
 
+
             console.log(resp);
+            setModalSubmit(true);
+
 
         } catch (error) {
             console.log(error);
         }
     }
+
+    const closeSubmitModal = () => {
+        setModalSubmit(false);
+        navigate("/", { replace: true });
+    };
 
 
     return (
@@ -103,6 +114,18 @@ const StepsRun = () => {
             <div>
 
             </div>
+            <NewModal open={modalSubmit}
+                handleClose={closeSubmitModal}
+                modalHeader={'Submit protocol'}>
+                <div style={{ textAlign: 'center' }}>
+                    Protocol has successfully been submitted.
+                </div>
+
+                <div className={"bottom-btn"}>
+                    <Button variant={'clear'} className={'modal-btn'} onClick={closeSubmitModal}>Ok</Button>
+                    {/* <button className={"close-btn"} onClick={closeSubmitModal}>Ok</button> */}
+                </div>
+            </NewModal>
             <div ref={componentRef} id={'forPdf'} className="step-run">
                 {/* {showSummary ?
                     <>

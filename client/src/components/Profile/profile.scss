@@ -11,6 +11,32 @@
   form{
     display: grid;
     grid-template-columns: 1fr 4fr;
+    margin-top: 3rem;
+    gap: 1rem;
+    .image-container{
+      text-align: center;
+      .user-image{
+        width:150px;
+        height:150px;
+        object-fit:cover;
+        border-radius:50%;
+      }
+      .upload-btn {
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        color: v.$main-medium;
+        margin-right: 20px;
+        padding: 12px 26px;
+        display: flex;
+        flex-flow: row nowrap;
+        border: v.$main-medium thin solid;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 8px;
+      }
+    }
     .container-header {
       display: grid;
       grid-template-columns: 1fr 1fr;
