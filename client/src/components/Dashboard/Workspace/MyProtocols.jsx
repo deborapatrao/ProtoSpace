@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { HOST_URL } from '../../../data/data';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../features/auth/useSlice';
+import SvgIcon from '@mui/material/SvgIcon';
+import { ReactComponent as Plus} from '../../../assets/add-icon.svg';
+
 
 const MyProtocol = () => {
     const [protocols, setProtocols] = useState([]);
@@ -97,7 +100,7 @@ const MyProtocol = () => {
                 : ''}
             <div className="workspace__body">
                 <Button variant="outlined">
-                    <Link to={"/protocols/description"}>+ Create protocol</Link>
+                    <Link to={"/protocols/description"}><Plus/> Create protocol</Link>
                 </Button>
             </div>
         </>

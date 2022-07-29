@@ -6,6 +6,9 @@ import {
 import PersonIcon from '@mui/icons-material/Person';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import CustomLink from './CustomLink';
+import SvgIcon from '@mui/material/SvgIcon';
+import { ReactComponent as Workspace} from '../../../assets/workspace-icon-unclicked.svg';
+import { ReactComponent as Share} from '../../../assets/share-icon.svg';
 
 
 import './sidebar.scss'
@@ -44,11 +47,11 @@ const Sidebar = ({ width }) => {
                     <div className={`${classForSidebar}__container`}>
                         <div className={`${classForSidebar}__btn`}>
                             {/* <PersonIcon /> */}
-                            <CustomLink to={`/shared`}>Shared with me</CustomLink>
+                            <CustomLink to={`/shared`}><Share />Shared with me</CustomLink>
                         </div>
                         <div className={`${classForSidebar}__btn`}>
                             {/* <CreateNewFolderIcon /> */}
-                            <CustomLink to={`/`}>My workspace</CustomLink>
+                            <CustomLink to={`/`}><Workspace />My workspace</CustomLink>
                         </div>
                     </div>
             }

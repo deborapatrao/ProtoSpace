@@ -2,12 +2,16 @@ import React from 'react'
 import { useState } from 'react';
 import Logo from './Logo.png'
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import Avatar from '@mui/material/Avatar';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
-import MenuIcon from './menu.png';
-import Menu from './Menu';
 import { Link } from 'react-router-dom';
+import SvgIcon from '@mui/material/SvgIcon';
+import { ReactComponent as Notification } from '../../../assets/notification-icon.svg';
+import { ReactComponent as Avatar } from '../../../assets/avatar-icon.svg';
+import { ReactComponent as MenuIcon } from '../../../assets/menu-icon.svg';
+import Menu from './Menu';
+
+
 
 import './header.scss'
 
@@ -39,9 +43,9 @@ const Header = props => {
       </div>
 
       <div className='header-navigation'>
-        <NotificationsIcon />
-        <Link to={'/profile'}><Avatar /></Link>
-        <Button startIcon={<img src={MenuIcon} alt={'menu'} />} onClick={toggleDrawer('right', true)} />
+        <Notification />
+        <Link to={'/profile'} className={'profile-icon'}><Avatar /></Link>
+        <Button startIcon={<MenuIcon />} onClick={toggleDrawer('right', true)} />
         <Drawer
           anchor='right'
           open={state['right']}

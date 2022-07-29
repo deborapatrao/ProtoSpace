@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import Avatar from '@mui/material/Avatar';
 import { Link } from 'react-router-dom';
 import PopUp from "../../components/PopUp/PopUp";
 import LogoMobile from "./logo-mobile.png";
 import LogoDesktop from "./logo-desktop.png";
 import MenuIcon from "./menu.png";
+import SvgIcon from '@mui/material/SvgIcon';
+import { ReactComponent as Avatar } from '../../assets/avatar-icon.svg';
+import { ReactComponent as Menu } from '../../assets/menu-icon.svg';
 
 import { AppBar, Toolbar, Container, IconButton, Drawer, List, ListItem } from "@mui/material";
 import { Box } from "@mui/system";
@@ -38,13 +40,13 @@ const HeaderNav = () => {
                         </Box>
                         <Box>
                             <div className={"login"}>
-                                <Avatar src="/broken-image.jpg" />
+                                <Avatar />
                                 <PopUp />
                             </div>
                         </Box>
                         <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                             <IconButton onClick={() => setOpen(true)}>
-                                <img src={MenuIcon} />
+                                <Menu />
                             </IconButton>
                         </Box>
                     </div>
