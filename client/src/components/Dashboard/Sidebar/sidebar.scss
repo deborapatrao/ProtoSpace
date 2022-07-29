@@ -27,6 +27,10 @@
 
     a {
         text-decoration: none;
+        svg{
+            vertical-align: middle;
+            margin-right: 10px;
+        }
     }
 
     &__btn {
@@ -41,7 +45,13 @@
 
             a {
                 color: white;
+                svg {
+                    path {
+                        fill: white !important;
+                    }
+                }
             }
+
         }
 
         & .inactive-sidebar {
@@ -53,6 +63,7 @@
             a {
                 color: v.$gray-dark;
             }
+
         }
     }
 }
