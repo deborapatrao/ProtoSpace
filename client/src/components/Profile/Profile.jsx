@@ -16,6 +16,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from 'react-redux';
 import { logout } from '../../features/auth/useSlice';
+import SvgIcon from '@mui/material/SvgIcon';
+import { ReactComponent as Camera} from '../../assets/camera-icon.svg';
 
 import { HOST_URL } from "../../data/data";
 
@@ -108,7 +110,12 @@ const Profile = () => {
             <h2>Your Profile</h2>
             <form action={"/"} method={"POST"}>
                 <div className={"image-container"}>
-                    <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} onChange={fileSelectedHandler} src={userInfo.photo} />
+                    <img className={'user-image'} src={userInfo.photo}/>
+                    <Button className={'upload-btn'}>
+                        <Camera/>
+                        {/*<input className={"input-image"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} onChange={fileSelectedHandler} src={userInfo.photo} />*/}
+                        Upload
+                    </Button>
                     {/*<button><CameraAltIcon /> Change profile </button>*/}
                 </div>
                 <div className={"user-info-container"}>
