@@ -21,6 +21,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 import FormControl from '@mui/material/FormControl';
 import { HOST_URL } from '../../../data/data';
+import {Link} from "react-router-dom";
 
 const style = {
     position: 'absolute',
@@ -277,7 +278,7 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                                 }}
                             >
                                 {users ? users.map((item, index) => (
-                                    <MenuItem key={index} value={item}>
+                                    <MenuItem key={index} value={item} className={'menu-container'}>
                                         <Checkbox checked={chosenUsers.indexOf(item) > -1} />
                                         <ListItemText primary={item.user_name} />
                                     </MenuItem>
@@ -287,11 +288,13 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                     </div>
                     <div>
                         {chosenUsers ? chosenUsers.map((item, index) => {
-                            return <div key={index}>{item.user_name} and {item.workspace_id}</div>
+                            // return <div key={index}>{item.user_name} and {item.workspace_id}</div>
+                            return <div className={'user-selected'} key={index}>{item.user_name}</div>
+
                         }) : ''}
                     </div>
                     <div>
-                        <Button onClick={handleShare}>Share</Button>
+                        <Button onClick={handleShare}><Link to={'/'}>Share</Link></Button>
                     </div>
                 </Box>
             </Modal>
