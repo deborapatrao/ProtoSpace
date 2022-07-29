@@ -31,7 +31,7 @@ const PreviewRun = () => {
                 }
             });
 
-            // console.log(resp);
+            console.log(resp);
 
         } catch (error) {
             console.log(error);
