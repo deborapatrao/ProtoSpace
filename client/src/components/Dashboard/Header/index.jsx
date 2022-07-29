@@ -41,7 +41,7 @@ const Header = props => {
       <div className='header-navigation'>
         <NotificationsIcon />
         <Link to={'/profile'}><Avatar /></Link>
-        <Button startIcon={<img src={MenuIcon} />} onClick={toggleDrawer('right', true)} />
+        <Button startIcon={<img src={MenuIcon} alt={'menu'} />} onClick={toggleDrawer('right', true)} />
         <Drawer
           anchor='right'
           open={state['right']}
