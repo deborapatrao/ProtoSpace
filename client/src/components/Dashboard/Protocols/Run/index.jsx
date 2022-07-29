@@ -14,6 +14,23 @@ const ProtocolRun = () => {
     const { protocolId } = useParams();
 
 
+    // useEffect(() => {
+    //     // console.log(protocolInfo);
+
+    //     if (location.pathname.includes('protocols/run/') && protocolInfo.start_run_status === 0
+    //         && (location.pathname.includes('description') ||
+    //             location.pathname.includes('guidelines') ||
+    //             location.pathname.includes('materials') ||
+    //             location.pathname.includes('steps')
+    //         )) {
+    //         navigate(`/protocols/run/${protocolId}`, { replace: true });
+    //         console.log('yes');
+    //     } else if (protocolInfo.start_run_status === 1) {
+    //         console.log('no');
+    //         navigate(`/protocols/run/${protocolId}/description`, { replace: true });
+    //     }
+    //     console.log('change');
+    // }, [location.pathname])
 
 
     useEffect(() => {
@@ -38,7 +55,7 @@ const ProtocolRun = () => {
                     }
                 });
 
-                console.log(resp);
+                console.log(resp.data);
 
                 setProtocolInfo(resp.data);
 

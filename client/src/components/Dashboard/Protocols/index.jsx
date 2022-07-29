@@ -41,7 +41,7 @@ const Protocols = () => {
     const publishWarning = () => toast.error("Fill all required fields!");
     const publishSuccess = () => toast.success("Protocol published!");
 
-    const conditionState = data.name && data.abstract && data.author && data.guideline && data.before_start && data.safety_warning && data.materials ? true : false;
+    const conditionState = data.name && data.abstract && data.author && data.guideline && data.before_start && data.safety_warning && data.materials && steps[0].step_description ? true : false;
 
 
     const handleDataChange = (newValue, type) => {
@@ -56,7 +56,7 @@ const Protocols = () => {
 
         togglePublishModal();
 
-        const condition = data.name && data.abstract && data.author && data.guideline && data.before_start && data.safety_warning && data.materials ? true : false;
+        const condition = data.name && data.abstract && data.author && data.guideline && data.before_start && data.safety_warning && data.materials && steps[0].step_description ? true : false;
         console.log(condition);
 
         if (condition) {
@@ -172,7 +172,7 @@ const Protocols = () => {
                 {width < 1000 && !location.pathname.includes('/summary') ? <Sidebar width={width} /> : ''}
             </div>
             <div>
-                <Outlet context={{ data, handleDataChange, steps, setSteps, handlePublish, conditionState, publishedProtocol, width, openModal, setOpenModal }} />
+                <Outlet context={{ data, handleDataChange, steps, setSteps, handlePublish, conditionState, publishedProtocol, width, openModal, setOpenModal, togglePublishModal }} />
                 {/* <Button onClick={handlePublish}>Publish</Button> */}
             </div>
             <ToastContainer />
