@@ -31,6 +31,9 @@ const PreviewRun = () => {
                 }
             });
 
+            navigate(`/protocols/run/${protocolId}/description`, { replace: true })
+
+
             console.log(resp);
 
         } catch (error) {
@@ -43,13 +46,13 @@ const PreviewRun = () => {
     return (<>
         <div className={"header-preview"}>
             <h2 className={"protocol-title"}>{protocolInfo.name}<span> (Preview)</span></h2>
-            <Link to={"description"}><Button variant="contained" onClick={handleSubmit}>Run Protocol</Button></Link>
+            <Button sx={{ alignSelf: 'center' }} variant="contained" onClick={handleSubmit}>Run Protocol</Button>
         </div>
         <section className={"preview-section"}>
             <Preview protocolInfo={protocolInfo} />
             <div className={"navigation-links-preview"}>
                 <Link to={-1}>Back</Link>
-                <Link to={"description"}><Button variant="contained">Run Protocol</Button></Link>
+                <Button variant="contained" onClick={handleSubmit}>Run Protocol</Button>
             </div>
         </section>
     </>

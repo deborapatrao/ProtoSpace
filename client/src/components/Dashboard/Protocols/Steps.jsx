@@ -11,7 +11,7 @@ import NewModal from "../Utils/Modal/NewModal";
 import Components from "./Components";
 
 const Steps = () => {
-    const { steps, setSteps, handlePublish, conditionState, publishedProtocol, width, openModal, setOpenModal } = useOutletContext();
+    const { steps, setSteps, handlePublish, conditionState, publishedProtocol, width, openModal, setOpenModal, togglePublishModal } = useOutletContext();
     const [components, setComponents] = useState([]);
     const [activeStep, setActiveStep] = useState(null);
     const [componentModal, setComponentModal] = useState(false);
@@ -137,7 +137,7 @@ const Steps = () => {
 
             <div className='btns'>
                 <Button variant='outlined'><Link className={'previewBtn'} to={"/protocols/preview"}>Preview</Link></Button>
-                <Button className='btn_right' variant='contained' onClick={handlePublish} disabled={conditionState ? false : true}>Publish</Button>
+                <Button className='btn_right' variant='contained' onClick={togglePublishModal} disabled={conditionState ? false : true}>Publish</Button>
             </div>
 
         </section>
