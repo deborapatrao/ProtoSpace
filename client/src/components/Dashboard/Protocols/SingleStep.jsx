@@ -268,9 +268,12 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
             >
                 <Box sx={style}>
 
-                    <div style={{ color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <h4>so many things</h4>
-                        <div></div>
+                    {/*<div style={{ color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>*/}
+                    <div >
+                        <header className={'modal-header'}>
+                            <h5>Share protocol </h5>
+                            {/*<button className={"close-btn"}><Link to={'/'}><img className={"close-btn"} src={Close} alt="close" /></Link></button>*/}
+                        </header>
                         <label htmlFor="demo-simple-select"></label>
                         <FormControl sx={{ m: 1, width: 300 }}>
                             <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
@@ -279,6 +282,7 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                                 id="demo-multiple-checkbox"
                                 multiple
                                 value={chosenUsers}
+                                className={'select-container'}
                                 onChange={handleChange}
                                 input={<OutlinedInput label="Tag" />}
                                 renderValue={(selected) => {
@@ -297,15 +301,16 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                             </Select>
                         </FormControl>
                     </div>
-                    <div>
+                    <div className={'user-list'}>
                         {chosenUsers ? chosenUsers.map((item, index) => {
                             // return <div key={index}>{item.user_name} and {item.workspace_id}</div>
                             return <div className={'user-selected'} key={index}>{item.user_name}</div>
 
                         }) : ''}
                     </div>
-                    <div>
-                        <Button onClick={handleShare}>Share</Button>
+                    <div className={'share-btn-container'}>
+                        <Button className={'share-btn'} onClick={handleShare}><Link to={'/'}>Share</Link></Button>
+
                     </div>
                 </Box>
             </Modal>

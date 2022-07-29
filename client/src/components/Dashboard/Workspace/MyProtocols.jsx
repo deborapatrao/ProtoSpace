@@ -3,18 +3,20 @@ import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { HOST_URL } from '../../../data/data';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { logout } from '../../../features/auth/useSlice';
 import SvgIcon from '@mui/material/SvgIcon';
 import { ReactComponent as Plus} from '../../../assets/add-icon.svg';
 import { ReactComponent as Empty} from '../../../assets/Empty.svg';
-
+import { ReactComponent as Chart} from '../../../assets/chart-icon.svg';
 
 
 const MyProtocol = () => {
     const [protocols, setProtocols] = useState([]);
     const [protocolsRun, setProtocolsRun] = useState([]);
     const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth)
+    // console.log(user.roles);
 
 
     useEffect(() => {
@@ -68,6 +70,8 @@ const MyProtocol = () => {
         fetchData();
     }, [])
 
+
+
     return (
         <>
             {protocols.length > 0 ?
@@ -79,7 +83,9 @@ const MyProtocol = () => {
                                 <TableCell align="left">Owner</TableCell>
                                 <TableCell align="left">Last Modified</TableCell>
                                 {/* <TableCell align="left">Completed</TableCell> */}
-                                {/* <TableCell align="left">Chart</TableCell> */}
+                                {user.roles === 'T' ?
+                                 <TableCell align="left">Chart</TableCell>
+                                    : ''}
                                 <TableCell align="left">Version</TableCell>
                             </TableRow>
                         </TableHead>
@@ -91,6 +97,9 @@ const MyProtocol = () => {
                                         <TableCell align="left">{item.author}</TableCell>
                                         <TableCell align="left">{new Date(item.created_at).toLocaleString("en-US")}</TableCell>
                                         {/* <TableCell align="left"><Link to={'/data-visualization'}>Chart</Link></TableCell> */}
+                                        {user.roles === 'T' ?
+                                        <TableCell align="left"><Link to={`shared/${item.protocol_id}/data-visualization`}><Chart /></Link></TableCell>
+                                            : '' }
                                         <TableCell align="left">v1.0</TableCell>
                                     </TableRow>
                                 )
