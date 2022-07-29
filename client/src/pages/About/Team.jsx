@@ -6,6 +6,12 @@ import GabrielImg from './gabriel-cordeiro.jpg'
 import MarkImg from './mark-eco.jpg'
 import PhatImg from './phat-thuan-nguyen.jpg'
 import SiulyImg from './siuly-tamex.jpg'
+import SvgIcon from '@mui/material/SvgIcon';
+import { ReactComponent as Email} from '../../assets/email-icon.svg';
+import { ReactComponent as Behance} from '../../assets/behance -icon.svg';
+import { ReactComponent as Linkedin} from '../../assets/linkedin-icon.svg';
+import { ReactComponent as Github} from '../../assets/github-icon.svg';
+import {Link} from "react-router-dom";
 
 
 const Team = () => {
@@ -27,17 +33,14 @@ const Team = () => {
                     <p>UI/UX Designer</p>
                 </div>
                 <div className="team-member__links">
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={''} target={'_blank'}>
+                        <Email/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={''} target={'_blank'}>
+                        <Behance/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={'https://www.linkedin.com/in/angelineespiritu/'} target={'_blank'}>
+                        <Linkedin/>
                     </a>
                 </div>
                 </div>
@@ -49,17 +52,14 @@ const Team = () => {
                     <p>UI Designer</p>
                 </div>
                 <div className="team-member__links">
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={''} target={'_blank'}>
+                        <Email/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={''} target={'_blank'}>
+                        <Behance/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={'https://www.linkedin.com/in/markeco/'} target={'_blank'}>
+                        <Linkedin/>
                     </a>
                 </div>
                 </div>
@@ -71,17 +71,14 @@ const Team = () => {
                     <p>UX Designer</p>
                 </div>
                 <div className="team-member__links">
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={''} target={'_blank'}>
+                        <Email/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={''} target={'_blank'}>
+                        <Behance/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={'https://www.linkedin.com/in/williamphatnguyen/'} target={'_blank'}>
+                        <Linkedin/>
                     </a>
                 </div>
                 </div>
@@ -93,17 +90,14 @@ const Team = () => {
                     <p>Full-stack Developer</p>
                 </div>
                 <div className="team-member__links">
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={''} target={'_blank'}>
+                       <Email/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={'https://github.com/alexey432'} target={'_blank'}>
+                        <Github/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={'https://www.linkedin.com/in/alexorl432/'} target={'_blank'}>
+                        <Linkedin/>
                     </a>
                 </div>
                 </div>
@@ -114,17 +108,14 @@ const Team = () => {
                     <p>Front-end Developer</p>
                 </div>
                 <div className="team-member__links">
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={''} target={'_blank'}>
+                        <Email/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={'https://github.com/deborapatrao'} target={'_blank'}>
+                        <Github/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={'https://www.linkedin.com/in/deborapcorreia/'} target={'_blank'}>
+                        <Linkedin/>
                     </a>
                 </div>
                 </div>
@@ -135,17 +126,14 @@ const Team = () => {
                     <p>Full-stack Developer</p>
                 </div>
                 <div className="team-member__links">
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={''} target={'_blank'}>
+                        <Email/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={'https://github.com/inadequado'} target={'_blank'}>
+                        <Github/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={'https://www.linkedin.com/in/gpcordeiro/'} target={'_blank'}>
+                        <Linkedin/>
                     </a>
                 </div>
                 </div>
@@ -156,17 +144,14 @@ const Team = () => {
                     <p>Full-stack Developer</p>
                 </div>
                 <div className="team-member__links">
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={''} target={'_blank'}>
+                        <Email/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={'https://github.com/siuly'} target={'_blank'}>
+                        <Github/>
                     </a>
-                    <a href="">
-                        <span className='visually-hidden'>email</span>
-                        <i aria-hidden="true"></i>
+                    <a href={'https://www.linkedin.com/in/siuly-tamez/'} target={'_blank'}>
+                        <Linkedin/>
                     </a>
                 </div>
                 </div>
