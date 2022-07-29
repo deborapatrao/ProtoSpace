@@ -3,14 +3,19 @@ import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 import axios from 'axios';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { HOST_URL } from '../../../data/data';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { logout } from '../../../features/auth/useSlice';
+
+import SvgIcon from '@mui/material/SvgIcon';
+import { ReactComponent as Chart} from '../../../assets/chart-icon.svg';
 
 const SharedProtocols = () => {
     const [protocols, setProtocols] = useState([]);
     const [protocolsRun, setProtocolsRun] = useState([]);
     const dispatch = useDispatch();
     let location = useLocation();
+    const { user } = useSelector((state) => state.auth)
+    console.log(user.role);
 
 
     useEffect(() => {
@@ -78,7 +83,9 @@ const SharedProtocols = () => {
                                         <TableCell align="left">Owner</TableCell>
                                         <TableCell align="left">Last Modified</TableCell>
                                         {/* <TableCell align="left">Completed</TableCell> */}
+                                        { user.roles === 'T' ?
                                         <TableCell align="left">Chart</TableCell>
+                                            : '' }
                                         <TableCell align="left">Version</TableCell>
                                     </TableRow>
                                 </TableHead>
@@ -90,7 +97,9 @@ const SharedProtocols = () => {
                                                 <TableCell align="left"><Link to={item.end_run_status === 1 ? `/protocols/${item.protocol_id}/summary` : `/protocols/run/${item.protocol_id}`}>{item.name}</Link></TableCell>
                                                 <TableCell align="left">{item.author}</TableCell>
                                                 <TableCell align="left">{new Date(item.created_at).toLocaleString("en-US")}</TableCell>
-                                                <TableCell align="left"><Link to={`${item.protocol_id}/data-visualization`}>Chart</Link></TableCell>
+                                                {user.roles === 'T' ?
+                                                <TableCell align="left"><Link to={`${item.protocol_id}/data-visualization`}><Chart/></Link></TableCell>
+                                                : '' }
                                                 <TableCell align="left">v1.0</TableCell>
                                             </TableRow>
                                         )
