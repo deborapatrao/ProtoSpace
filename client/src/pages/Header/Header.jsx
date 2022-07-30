@@ -15,9 +15,9 @@ const HeaderNav = () => {
 
 
     return (<>
-        <AppBar position="sticky">
+        <AppBar position="sticky" className='mui-appbar'>
             <Container>
-                <Toolbar>
+                <Toolbar className='mui-toolbar'>
                     <Link to={"/"}>
                         <div className="site-identity">
                             <img src={LogoMobile} alt="logo" className="logo-mobile" />

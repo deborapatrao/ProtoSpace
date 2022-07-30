@@ -2,68 +2,73 @@
 @use '../../styles/mixins.scss' as mi;
 
 
-.static-header{
+.static-header {
 
-  .header-container{
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: stretch;
-  align-items: center;
-  // padding: 1rem 2%;
-  color: v.$main-dark;
-  // max-width: 1200px;
-  // margin: auto;
-
-  .logo-mobile{
-    @include mi.mediaQuery(mi.$desktop){
-      display: none;
-    }
-  }
-
-  .logo-desktop{
-    display: none;
-    @include mi.mediaQuery(mi.$desktop){
-      display: inline;
-    }
-  }
-
-  ul{
-    list-style: none;
+  .header-container {
     display: flex;
     flex-flow: row nowrap;
-    gap: 32px;
+    justify-content: stretch;
     align-items: center;
-    a{
-      text-decoration: none;
-      color: v.$sec-dark;
-    }
-  }
+    // padding: 1rem 2%;
+    color: v.$main-dark;
+    // max-width: 1200px;
+    // margin: auto;
 
-  .site-identity{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    h1{
-      display: none;
-      margin: 0;
-      padding: 0;
-      font-weight: 400;
-
-      @include mi.mediaQuery(mi.$desktop){
-        display: inline-block;
+    .logo-mobile {
+      @include mi.mediaQuery(mi.$desktop) {
+        display: none;
       }
     }
-  }
-  // .navigation-container{
+
+    .logo-desktop {
+      display: none;
+
+      @include mi.mediaQuery(mi.$desktop) {
+        display: inline;
+      }
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 32px;
+      align-items: center;
+
+      a {
+        text-decoration: none;
+        color: v.$sec-dark;
+      }
+    }
+
+    .site-identity {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      h1 {
+        display: none;
+        margin: 0;
+        padding: 0;
+        font-weight: 400;
+
+        @include mi.mediaQuery(mi.$desktop) {
+          display: inline-block;
+        }
+      }
+    }
+
+    // .navigation-container{
     // display: flex;
     // justify-content: stretch;
     // align-items: center;
     // gap: 1rem;
 
-    .login{
+    .login {
       display: flex;
       flex-flow: row nowrap;
       gap: 4px;
+
       .MuiAvatar-root {
         width: 24px;
         height: 24px;
@@ -71,57 +76,61 @@
       }
     }
 
-    .demo-header{
+    .demo-header {
       padding: 12px 20px;
       height: 44px;
       background: v.$main-dark;
       border-radius: 6px;
       color: white;
       border: none;
-      a{
+
+      a {
         text-decoration: none;
         color: white;
       }
-    // }
-  }
-  .css-7e0s21-MuiPaper-root-MuiAppBar-root{
-    background-color: unset;
-    box-shadow: none;
-    border-bottom: 1px solid v.$gray-medium;
-    position: sticky;
-    top: 0;
-    padding: 1rem 2%;
-  }
-  .css-hyum1k-MuiToolbar-root{
-    justify-content: space-between;
-  }
 
-  .navigation-container{
-    display: flex;
-    flex-flow: row nowrap;
-    gap: .5rem;
-    align-items: center;
+      // }
+    }
 
-    .navigation-links a{
-      text-decoration: none;
-      color: v.$sec-dark;
-      font-weight: 600;
-      text-transform: uppercase;
-      padding: 0 1rem;
+    .mui-appbar {
+      background-color: unset;
+      box-shadow: none;
+      border-bottom: 1px solid v.$gray-medium;
+      position: sticky;
+      top: 0;
+      padding: 1rem 2%;
+    }
+
+    .mui-toolbar {
+      justify-content: space-between;
+    }
+
+    .navigation-container {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: .5rem;
+      align-items: center;
+
+      .navigation-links a {
+        text-decoration: none;
+        color: v.$sec-dark;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 0 1rem;
+      }
     }
   }
 }
-}
 
-.menu-drawer .css-1160xiw-MuiPaper-root-MuiDrawer-paper{
+.menu-drawer {
   left: 30%;
   align-items: end;
   padding: 3rem 2rem 0 0;
- 
-  li{
+
+  li {
     justify-content: end;
 
-    a{
+    a {
       text-decoration: none;
       color: v.$sec-dark;
       font-weight: 600;
