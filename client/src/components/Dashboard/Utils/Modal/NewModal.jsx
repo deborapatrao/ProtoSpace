@@ -13,6 +13,7 @@ const NewModal = (props) => {
             open={props.open}
             aria-labelledby="parent-modal-title"
             aria-describedby="parent-modal-description"
+            className='mui-modal'
         >
             <Box className={'modal-container'} sx={{ width: 400 }}>
                 <header className={'modal-header'}>
