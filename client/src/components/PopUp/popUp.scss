@@ -2,112 +2,152 @@
 @use '../../styles/typography' as t;
 @use '../../styles/mixins.scss' as mi;
 
-.popup-content{
+.popup-content {
   background-color: white;
   position: absolute;
-  top: 25% !important;
   font-size: 18px;
-  right: 25% !important;
-  left: 25% !important;
+  top: 30% !important;
+  font-size: 18px;
+  right: 0% !important;
+  left: 0% !important;
   width: auto;
   font-family: 'Noto Sans';
   font-style: normal;
+  background-color: unset;
+
   svg.popup-arrow {
     display: none;
   }
-  .pop-up-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 596px;
-    .image-container {
-      border-radius: 15px 0 0 15px !important;
-      background-color: #92d1fe;
-      background-image: radial-gradient( white -9%, #92d1fe 89%);
-      img {
-        width: 100%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 60px;
-      }
+
+  .image-container {
+    display: none;
+  }
+
+  .close-icon {
+    display: none;
+  }
+
+  .info-container {
+    background-color: white;
+    padding: 16px 24px 20px 24px;
+
+    .close-icon {
+      position: absolute;
+      right: 16px;
+      top: 8px;
+      font-weight: 900;
     }
 
-    .info-container{
-      background-color: white;
-      padding: 16px 24px 0 24px ;
-      .close-icon{
-        position: absolute;
-        right: 16px;
-        top: 8px;
-        font-weight: 900;
-      }
-      h2{
-        padding-top: 20px;
-        padding-bottom: 12px;
-        font-weight: 700;
-        font-size: 32px;
-        text-align: center;
-        color: #005694;
-      }
-      p.welcome{
-        width: 100%;
-        font-weight: 400;
-        font-size: 16px;
-        text-align: center;
-        color: #063554;
-      }
-      .mandatory {
-        color: v.$support-red;
-      }
-      .sign-up-container, .login-container{
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-around !important;
-        p{
-          font-weight: 400;
-          font-size: 14px;
-          align-self: self-end;
-          color: #063554;
-        }
-        a{
-          text-decoration: none;
-          color: #249CF3;
-          align-self: self-end;
-          font-family: 'Noto Sans';
-          font-style: normal;
-          font-weight: 400;
-          font-size: 14px;
-        }
-      }
-      form{
-        justify-content: space-evenly!important;
-        height: 90%;
-        label{
-          font-weight: 600;
-          font-size: 14px;
-          color: #063554;
-        }
-        input{
-          border: 1.5px solid #CDD8E0 !important;
-          border-radius: 6px;
-          padding-left: 0.4rem;
-          height: 30px;
-        }
-        .MuiInput-root{
-          margin-top: 1px;
-        }
-      }
-      button{
-        color:white;
-        background-color:#249CF3;
-        width: 131px;
-        height: 44px;
+    h2 {
+      padding-top: 20px;
+      padding-bottom: 12px;
+      font-weight: 700;
+      font-size: 32px;
+      text-align: center;
+      color: #005694;
+    }
 
-        align-items: center !important;
-      }
+    p.welcome {
+      width: 100%;
+      font-weight: 400;
+      font-size: 16px;
+      text-align: center;
+      color: #063554;
+    }
+
+    .mandatory {
+      color: v.$support-red;
     }
   }
 }
+
+  @include mi.mediaQuery(mi.$desktop) {
+    .popup-content {
+      top: 25% !important;
+      right: 25% !important;
+      left: 20% !important;
+      gap: 2rem;
+      width: 752px;
+
+      .pop-up-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 596px;
+
+        .image-container {
+          border-radius: 15px 0 0 15px !important;
+          background-color: #92d1fe;
+          background-image: radial-gradient(white -9%, #92d1fe 89%);
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+
+          img {
+            width: 100%;
+          }
+        }
+
+
+        .info-container {
+          .sign-up-container, .login-container {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around !important;
+
+            p {
+              font-weight: 400;
+              font-size: 14px;
+              align-self: self-end;
+              color: #063554;
+            }
+
+            a {
+              text-decoration: none;
+              color: #249CF3;
+              align-self: self-end;
+              font-family: 'Noto Sans';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 14px;
+              background-color: white;
+            }
+          }
+
+          form {
+            justify-content: space-evenly !important;
+            height: 90%;
+
+            label {
+              font-weight: 600;
+              font-size: 14px;
+              color: #063554;
+            }
+
+            input {
+              border: 1.5px solid #CDD8E0 !important;
+              border-radius: 6px;
+              padding-left: 0.4rem;
+              height: 30px;
+            }
+
+            .MuiInput-root {
+              margin-top: 1px;
+            }
+          }
+
+          button {
+            color: white;
+            background-color: #249CF3;
+            width: 131px;
+            height: 44px;
+
+            align-items: center !important;
+          }
+        }
+      }
+    }
+  }
+
 
 .login-btn{
   border-radius: 0 !important;
