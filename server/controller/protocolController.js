@@ -102,9 +102,9 @@ exports.runProtocol = async (req, res) => {
         const runProtocol = await UserProtocol.findOne(
             {
                 where:
-                {
-                    workspace_id: Workspace_id, protocol_id: Protocol_id
-                }
+                    {
+                        workspace_id: Workspace_id, protocol_id: Protocol_id
+                    }
             })
         if (runProtocol) {
             data.end_run = Date()
@@ -188,7 +188,7 @@ exports.createProtocol = async (req, res) => {
                         });
 
                         let stepFind = await Step.findOne(
-                            { attributes: ['id'] },
+                            {attributes: ['id']},
                             {
                                 where: {
                                     protocol_id: protocol_id,
@@ -207,7 +207,7 @@ exports.createProtocol = async (req, res) => {
                             }
 
                             if (stepUpdate) {
-                                await StepComponents.update(componentData, { where: { step_id: stepFind.id } })
+                                await StepComponents.update(componentData, {where: {step_id: stepFind.id}})
                             }
                         }
                     }
@@ -235,7 +235,17 @@ exports.createProtocol = async (req, res) => {
 
                         const StepCreate = await Step.create(stepData)
 
-                        steps_ids.push({ "step_id": StepCreate.id })
+                        steps_ids.push({"step_id": StepCreate.id})
+                        if (step.step_image) {
+                            const imageData = {
+                                step_id: StepCreate.id,
+                                image: step.step_image,
+                                step_number: step.step_number,
+                                protocol_id: protocolCreated.id
+                            }
+
+                            await StepImages.create(imageData)
+                        }
 
                         // await StepImages.create()
                         for (components of step.components) {
@@ -259,7 +269,6 @@ exports.createProtocol = async (req, res) => {
                         await StepUserProtocol.create(stepUserData)
 
                     }
-
                 }
 
                 workspaceId.addProtocol(protocolCreated, workspaceId)
@@ -283,7 +292,7 @@ exports.statusProtocol = async (req, res) => {
         status: status
     }
     try {
-        await Protocol.update(data, { where: { id: req.body.protocol_id } })
+        await Protocol.update(data, {where: {id: req.body.protocol_id}})
             .then(res.status(200).send(`${status === "A" ? "Protocol Activated" : "Protocol Inactivated"}`))
     } catch (e) {
         res.status(501).send('Something went wrong!')
