@@ -45,7 +45,7 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
     const [users, setUsers] = useState([]);
     const [modalShare, setModalShare] = useState(false)
     let navigate = useNavigate();
-
+    const [testImage, setTestImage] = useState('')
 
     useEffect(() => {
         async function fetchData() {
@@ -76,51 +76,23 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
         fetchData();
     }, [])
 
-    const [images, setImages] = useState([
-        {
-            img: ''
-        },
-        {
-            img: ''
-        },
-        {
-            img: ''
-        },
-        {
-            img: ''
-        },
-    ])
-
-
     const handleClick = (e, index) => {
         setActiveStep(index)
     }
 
     const handleImage = async (event, index) => {
-        if (event.target.files && event.target.files[0]) {
-            let reader = new FileReader();
-            reader.onload = (e) => {
-                let newArr = [...images]
-                newArr[index].img = e.target.result
-                setImages(newArr);
-                console.log({ img: e.target.result });
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }
-
-
-
         const user = JSON.parse(localStorage.getItem('user'));
 
         const params = {
             image: event.target.files[0],
-            user_id: user.id,
-            fileName: 'anything',
-
+            fileName: event.target.files[0].name,
+            stepNumber: step.step_number,
         }
 
+        console.log(params);
+
         try {
-            const resp = await axios.post(`${HOST_URL}/api/users/profile/update`, {
+            const resp = await axios.post(`${HOST_URL}/api/protocol/image`, {
                 ...params
             }, {
                 headers: {
@@ -130,16 +102,14 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
             });
 
             console.log(resp.data);
+            setTestImage(resp.data);
+
 
         } catch (error) {
             console.log(error);
         }
 
     }
-
-
-
-
 
 
     const handleChange = (event) => {
@@ -217,7 +187,16 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                     <div className="single-step__inner-container">
                         <h4>Photos</h4>
                         <div className={"photo-container"}>
-                            {
+                            {!testImage ? <div key={index} className='photo-btn'>
+                                <label className={"label-photo"} htmlFor={"photo-image"}>
+                                    <span> <ImageIcon /> </span>
+                                    <span>Add Photo</span>
+                                </label>
+                                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} onChange={(e) => handleImage(e, index)} />
+                            </div> : <div key={index} className='photo-btn' style={{ overflow: 'hidden', backgroundSize: 'cover' }}>
+                                <img src={testImage} alt='image1' />
+                            </div>}
+                            {/* {
                                 images ? images.map((item, index) => {
 
                                     if (item.img == '') {
@@ -238,6 +217,8 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                                         )
                                     }
 
+                                  
+
                                     // <div key={index} className='photo-btn'>
                                     //     {item.pic == '' ?
                                     //         <label className={"label-photo"} htmlFor={"photo-image"}>
@@ -249,28 +230,32 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                                     // </div>
                                 })
                                     : ''
-                            }
-                            {/* <div className={"photo-btn"} >
+                            } */}
+
+
+
+                            <div className={"photo-btn"} >
                                 <label className={"label-photo"} htmlFor={"photo-image"}>
                                     <span><ImageIcon /></span>
                                     <span>Add Photo</span>
                                 </label>
-                                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} onChange={(e) => handleImage(e)} />
+                                {/* <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} onChange={(e) => handleImage(e)} /> */}
                             </div>
                             <div className={"photo-btn"} >
                                 <label className={"label-photo"} htmlFor={"photo-image2"}>
                                     <span><ImageIcon /></span>
                                     <span>Add Photo</span>
                                 </label>
-                                <input className={"input-image2 hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
+                                {/* <input className={"input-image2 hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} /> */}
                             </div>
                             <div className={"photo-btn"} >
                                 <label className={"label-photo"} htmlFor={"photo-image3"}>
                                     <span><ImageIcon /></span>
                                     <span>Add Photo</span>
                                 </label>
-                                <input className={"input-image3 hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
+                                {/* <input className={"input-image3 hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} /> */}
                             </div>
+                            {/* 
                             <div className={"photo-btn"} >
                                 <label className={"label-photo"} htmlFor={"photo-image4"}>
                                     <span><ImageIcon /></span>

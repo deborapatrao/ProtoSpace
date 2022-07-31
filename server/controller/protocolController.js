@@ -102,9 +102,9 @@ exports.runProtocol = async (req, res) => {
         const runProtocol = await UserProtocol.findOne(
             {
                 where:
-                    {
-                        workspace_id: Workspace_id, protocol_id: Protocol_id
-                    }
+                {
+                    workspace_id: Workspace_id, protocol_id: Protocol_id
+                }
             })
         if (runProtocol) {
             data.end_run = Date()
@@ -188,7 +188,7 @@ exports.createProtocol = async (req, res) => {
                         });
 
                         let stepFind = await Step.findOne(
-                            {attributes: ['id']},
+                            { attributes: ['id'] },
                             {
                                 where: {
                                     protocol_id: protocol_id,
@@ -207,7 +207,7 @@ exports.createProtocol = async (req, res) => {
                             }
 
                             if (stepUpdate) {
-                                await StepComponents.update(componentData, {where: {step_id: stepFind.id}})
+                                await StepComponents.update(componentData, { where: { step_id: stepFind.id } })
                             }
                         }
                     }
@@ -235,7 +235,7 @@ exports.createProtocol = async (req, res) => {
 
                         const StepCreate = await Step.create(stepData)
 
-                        steps_ids.push({"step_id": StepCreate.id})
+                        steps_ids.push({ "step_id": StepCreate.id })
 
                         // await StepImages.create()
                         for (components of step.components) {
@@ -283,7 +283,7 @@ exports.statusProtocol = async (req, res) => {
         status: status
     }
     try {
-        await Protocol.update(data, {where: {id: req.body.protocol_id}})
+        await Protocol.update(data, { where: { id: req.body.protocol_id } })
             .then(res.status(200).send(`${status === "A" ? "Protocol Activated" : "Protocol Inactivated"}`))
     } catch (e) {
         res.status(501).send('Something went wrong!')
@@ -294,7 +294,9 @@ exports.statusProtocol = async (req, res) => {
 exports.imgWorkAround = (req, res) => {
     const file = req.file;
     const fileName = req.body.fileName;
-    UploadImage.profilePhoto(file, fileName)
+    const stepNumber = req.body.stepNumber;
+
+    UploadImage.protocolImages(file, fileName, stepNumber)
         .then(results => res.status(200).send(results))
         .catch(e => res.status(500).send(e))
 }
