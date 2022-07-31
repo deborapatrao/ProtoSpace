@@ -3,13 +3,11 @@ import { Link } from 'react-router-dom';
 import PopUp from "../../components/PopUp/PopUp";
 import LogoMobile from "./logo-mobile.png";
 import LogoDesktop from "./logo-desktop.png";
-import MenuIcon from "./menu.png";
-import SvgIcon from '@mui/material/SvgIcon';
 import { ReactComponent as Avatar } from '../../assets/avatar-icon.svg';
 import { ReactComponent as Menu } from '../../assets/menu-icon.svg';
 
-import { AppBar, Toolbar, Container, IconButton, Drawer, List, ListItem } from "@mui/material";
-import { Box } from "@mui/system";
+import { AppBar, Toolbar, Container, IconButton, Drawer, List, ListItem, Box } from "@mui/material";
+// import { Box } from "@mui/system";
 import "./header.scss";
 
 const HeaderNav = () => {
@@ -17,9 +15,9 @@ const HeaderNav = () => {
 
 
     return (<>
-        <AppBar position="sticky">
+        <AppBar position="sticky" className='mui-appbar'>
             <Container>
-                <Toolbar>
+                <Toolbar className='mui-toolbar'>
                     <Link to={"/"}>
                         <div className="site-identity">
                             <img src={LogoMobile} alt="logo" className="logo-mobile" />
@@ -54,17 +52,17 @@ const HeaderNav = () => {
                 </Toolbar>
             </Container>
 
-            <Drawer anchor='right' open={open}
-                onOpen={() => setOpen(true)}
-                onClose={() => setOpen(false)}
-                className="menu-drawer">
-                <List>
-                    <ListItem><Link to={"/"}>Home</Link></ListItem>
-                    <ListItem><Link to={"/about"}>About</Link></ListItem>
-                    <ListItem><Link to={"/contact"}>Contact</Link></ListItem>
-                </List>
-            </Drawer>
         </AppBar>
+        <Drawer anchor='right' open={open}
+            onOpen={() => setOpen(true)}
+            onClose={() => setOpen(false)}
+            className="menu-drawer">
+            <List>
+                <ListItem><Link to={"/"}>Home</Link></ListItem>
+                <ListItem><Link to={"/about"}>About</Link></ListItem>
+                <ListItem><Link to={"/contact"}>Contact</Link></ListItem>
+            </List>
+        </Drawer>
 
         {/* </div> */}
 

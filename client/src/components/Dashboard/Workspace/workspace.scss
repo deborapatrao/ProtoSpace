@@ -1,28 +1,59 @@
 @use '../../../styles/variables.scss' as v;
 @use '../../../styles/mixins.scss' as mi;
 
-.workspace{
-    @include mi.mediaQuery(mi.$desktop){
+.workspace {
+    @include mi.mediaQuery(mi.$desktop) {
         padding: 2rem 2rem 0 0;
     }
-    
+    thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root {
+        background-color: v.$gray-light;
+        th {
+            font-weight: 600;
+            color: v.$sec-dark;
+        }
+    }
+    a{
+        text-decoration: none;
+        color: v.$sec-dark;
+        font-weight: 400;
+        font-size: 16px;
+    }
 
-    h1{
+    h1 {
         margin-bottom: 2rem;
         color: v.$main-dark;
     }
 
-    &__body{
+    &__body {
         padding-top: 2rem;
         display: grid;
         justify-items: center;
     }
-    button{
+
+    button {
         border-color: v.$main-medium;
         text-transform: capitalize;
 
-        a{
+        a {
             color: v.$main-medium;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            line-height: 16px;
+            padding: 4px 0;
         }
+    }
+    .workspace__body{
+        button{
+                margin-bottom: 3rem !important;
+        }
+    }
+    .empty-workspace{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        margin-top: 10vw;
+        color: v.$gray-dark;
+        gap: 1rem;
     }
 }

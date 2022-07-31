@@ -1,11 +1,15 @@
 import React from 'react';
-import SquareFootIcon from '@mui/icons-material/SquareFoot';
-import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
-import ScaleIcon from '@mui/icons-material/Scale';
-import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
-import HubIcon from '@mui/icons-material/Hub';
-import SpeedIcon from '@mui/icons-material/Speed';
-import AddIcon from '@mui/icons-material/Add';
+import SvgIcon from '@mui/material/SvgIcon';
+import { ReactComponent as Volume} from '../../../assets/volume-icon.svg';
+import { ReactComponent as Mass} from '../../../assets/mass-icon.svg';
+import { ReactComponent as Length} from '../../../assets/length-icon.svg';
+import { ReactComponent as Time} from '../../../assets/time-icon.svg';
+import { ReactComponent as Temperature} from '../../../assets/temperature-icon.svg';
+import { ReactComponent as Concentration} from '../../../assets/concentration-icon.svg';
+import { ReactComponent as Pressure} from '../../../assets/pressure-icon.svg';
+import { ReactComponent as Others} from '../../../assets/others-icon.svg';
+
+
 
 const Components = (props)=> {
 
@@ -21,35 +25,35 @@ const Components = (props)=> {
                                 {(() => {
                                         if (item.name == "Length") {
                                             return (
-                                                <SquareFootIcon/>
+                                                <Length />
                                             )
                                         } else if (item.name == "volume") {
                                             return (
-                                                <LocalDrinkIcon/>
+                                                <Volume />
                                             )
                                         } else if (item.name == "Mass") {
                                             return (
-                                                <ScaleIcon/>
+                                                <Mass />
                                             )
                                         } else if (item.name == "Temperature") {
                                             return (
-                                                <DeviceThermostatIcon/>
+                                                <Temperature/>
                                             )
                                         } else if (item.name == "Concentration") {
                                             return (
-                                                <HubIcon/>
+                                                <Concentration />
                                             )
                                         } else if (item.name == "Pressure") {
                                             return (
-                                                <SpeedIcon/>
+                                                <Pressure />
                                             )
                                         } else if (item.name == "Time") {
                                             return (
-                                                <SquareFootIcon/>
+                                                <Time />
                                             )
                                         } else if (item.name == "Others") {
                                             return (
-                                                <AddIcon/>
+                                                <Others />
                                             )
                                         }
                                     }

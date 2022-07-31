@@ -28,13 +28,13 @@ const Description = () => {
             <div className="section-body">
                 <div className='section-field'>
                     <label>Protocol Name<span className={"mandatory"}>*</span></label>
-                    <TextField type={'text'} value={data.protocol}
+                    <TextField type={'text'} value={data.name}
                         onChange={(e) => handleDataChange(e.target.value, 'name')}
                         placeholder={'Enter protocol name'} aria-label="protocol name" sx={{ borderColor: "#9db9ca" }} />
                 </div>
                 <div className='section-field'>
                     <label>Abstract<span className={"mandatory"}>*</span></label>
-                    <TextareaAutosize value={data.abstract}
+                    <TextField multiline value={data.abstract}
                         onChange={(e) => handleDataChange(e.target.value, 'abstract')}
                         placeholder={'Write here'} minRows={10} aria-label="abstract" />
                 </div>
@@ -46,7 +46,7 @@ const Description = () => {
                 </div>
                 <div className='section-field'>
                     <label>Disclaimer</label>
-                    <TextareaAutosize value={data.disclaimer}
+                    <TextField multiline value={data.disclaimer}
                         onChange={(e) => handleDataChange(e.target.value, 'disclaimer')} placeholder={'Write here'} minRows={10} aria-label="disclaimer" />
                 </div>
             </div>

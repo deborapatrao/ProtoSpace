@@ -1,82 +1,106 @@
 @use '../../../../styles/variables.scss' as v;
-@use '../../../../styles/typography' as t ;
+@use '../../../../styles/typography' as t;
 
-.modal-container header{
+
+
+.modal-container header {
   padding: 16px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   border-bottom: 1px solid #CDD8E0;
   align-self: center;
-  h5{
+
+  h5 {
     font-size: 18px;
     color: v.$sec-dark;
   }
-  button{
-    background-color: unset!important;
+
+  button {
+    background-color: unset !important;
     border: none;
     width: 24px !important;
-      margin-top: 0 !important;
+    margin-top: 0 !important;
   }
 }
-.css-79ws1d-MuiModal-root {
+
+.mui-modal {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-  .modal-container {
 
-    .mandatory {
-      color: v.$support-red;
-      padding-left: 12px;
-    }
-    background-color: white;
-    border-radius: 6px;
-    border-color: unset;
-    .modal-info{
-      padding: 40px 16px 25px 16px;
-    }
-    .publish-modal-info{
-      display: flex;
-      flex-flow: column nowrap;
-      gap: 24px;
-      color: v.$sec-dark;
-    }
-    .bottom-btn {
-      text-align: right;
-      padding-right: 16px;
-      margin-top: 25px;
-      .modal-btn{
-        text-transform: capitalize;
-        color: v.$main-medium;
-      }
-      :hover{
-        background-color: v.$main-medium;
-        color: white;
-      }
-      .close-btn {
-        margin: 16px;
-        font-size: 14px;
-        border: none;
-        color: v.$main-medium;
-        background-color: unset;
-      }
-    }
+.modal-container {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+
+  // .css-1z13ce1 {
+  //   margin-top: 15vw;
+  // }
+
+  .mandatory {
+    color: v.$support-red;
+    padding-left: 12px;
   }
-.child-modal{
+
   background-color: white;
   border-radius: 6px;
   border-color: unset;
+
+  .modal-info {
+    padding: 40px 16px 25px 16px;
+  }
+
+  .publish-modal-info {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 24px;
+    color: v.$sec-dark;
+  }
+
+  .bottom-btn {
+    text-align: right;
+    padding-right: 16px;
+    margin-top: 25px;
+
+    .modal-btn {
+      text-transform: capitalize;
+      color: v.$main-medium;
+    }
+
+    :hover {
+      background-color: v.$main-medium;
+      color: white;
+    }
+
+    .close-btn {
+      margin: 16px;
+      font-size: 14px;
+      border: none;
+      color: v.$main-medium;
+      background-color: unset;
+    }
+  }
+}
+
+.child-modal {
+  background-color: white;
+  border-radius: 6px;
+  border-color: unset;
+
   .child-modal-info {
     display: flex;
     flex-flow: column;
     align-items: center;
-    .upload-image{
+
+    .upload-image {
       margin-top: 40px;
       margin-bottom: 16px;
     }
   }
-  button{
+
+  button {
     background-color: v.$main-medium;
     border-radius: 6px;
     color: white;
@@ -84,18 +108,22 @@
     text-transform: capitalize;
     display: unset;
     width: 311px;
-    :hover{
+
+    :hover {
       background-color: unset !important;
     }
-    a{
+
+    a {
       text-decoration: none;
       color: white;
     }
-    .share-icon{
+
+    .share-icon {
       margin-top: 0;
       padding-right: 10px;
     }
-    .dashboard-btn{
+
+    .dashboard-btn {
       background-color: white;
       color: v.$main-medium;
     }
