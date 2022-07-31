@@ -38,7 +38,7 @@ const style = {
     p: 4,
 };
 
-const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, steps, setSteps, publishedProtocol, openModal, setOpenModal }) => {
+const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiveStep, activeStep, steps, setSteps, publishedProtocol, openModal, setOpenModal }) => {
     const [expanded, setExpanded] = useState(false);
 
     const [chosenUsers, setChosenUsers] = useState([]);
@@ -82,7 +82,10 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
 
     const handleImage = async (event, index) => {
         const user = JSON.parse(localStorage.getItem('user'));
+        const fileName = event.target.files[0].name;
+        fileName.substring(0, fileName.length - 4);
 
+        console.log(fileName);
         const params = {
             image: event.target.files[0],
             fileName: event.target.files[0].name,
@@ -102,7 +105,7 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
             });
 
             console.log(resp.data);
-            setTestImage(resp.data);
+            handleImageChange(resp.data, index);
 
 
         } catch (error) {
@@ -187,14 +190,14 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                     <div className="single-step__inner-container">
                         <h4>Photos</h4>
                         <div className={"photo-container"}>
-                            {!testImage ? <div key={index} className='photo-btn'>
+                            {step.step_image === '' ? <div key={index} className='photo-btn'>
                                 <label className={"label-photo"} htmlFor={"photo-image"}>
                                     <span> <ImageIcon /> </span>
                                     <span>Add Photo</span>
                                 </label>
                                 <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} onChange={(e) => handleImage(e, index)} />
                             </div> : <div key={index} className='photo-btn' style={{ overflow: 'hidden', backgroundSize: 'cover' }}>
-                                <img src={testImage} alt='image1' />
+                                <img src={step.step_image} alt='image1' />
                             </div>}
                             {/* {
                                 images ? images.map((item, index) => {
@@ -269,9 +272,9 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                     <div className="single-step__inner-container">
                         <h4>Components</h4>
                         <div className='single-component__wrapper'>
-                            {step.components && step.components.length > 0 ? step.components.map((item, index) => {
+                            {step.components && step.components.length > 0 ? step.components.map((item, i) => {
                                 return (
-                                    <SingleComponent key={index} componentIndex={index} component={item} activeStep={activeStep} steps={steps} setSteps={setSteps} />
+                                    <SingleComponent key={i} componentIndex={i} component={item} activeStep={activeStep} steps={steps} setSteps={setSteps} />
                                 )
                             }) : 'There are no components'}
                         </div>
@@ -311,8 +314,8 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
 
                                 }}
                             >
-                                {users ? users.map((item, index) => (
-                                    <MenuItem key={index} value={item} className={'menu-container'}>
+                                {users ? users.map((item, i) => (
+                                    <MenuItem key={i} value={item} className={'menu-container'}>
                                         <Checkbox checked={chosenUsers.indexOf(item) > -1} />
                                         <ListItemText primary={item.user_name} />
                                     </MenuItem>
@@ -321,9 +324,9 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
                         </FormControl>
                     </div>
                     <div className={'user-list'}>
-                        {chosenUsers ? chosenUsers.map((item, index) => {
+                        {chosenUsers ? chosenUsers.map((item, i) => {
                             // return <div key={index}>{item.user_name} and {item.workspace_id}</div>
-                            return <div className={'user-selected'} key={index}>{item.user_name}</div>
+                            return <div className={'user-selected'} key={i}>{item.user_name}</div>
 
                         }) : ''}
                     </div>
