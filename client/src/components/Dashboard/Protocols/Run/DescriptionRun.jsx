@@ -1,16 +1,19 @@
-import React from 'react';
-import { Link, useOutletContext, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useOutletContext, useParams, useNavigate, useLocation } from 'react-router-dom';
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const DescriptionRun = () => {
+    let navigate = useNavigate();
+    let location = useLocation();
 
     const { protocolId } = useParams();
-
-    const params = {
-        protocolId: protocolId
-    }
-
     const { protocolInfo } = useOutletContext();
+
+    useEffect(() => {
+        if (location.pathname.includes('protocols/run/') && protocolInfo.start_run_status === 0) {
+            navigate(`/protocols/run/${protocolId}`, { replace: true });
+        }
+    }, [])
 
     return (<>
         <h2>{protocolInfo.name}</h2>
@@ -45,7 +48,7 @@ const DescriptionRun = () => {
             </div> */}
             <div className="navigation-links">
                 <div className='link-next'>
-                    <Link className={'previewBtn'} to={`/protocols/run/${params.protocolId}/guidelines`}>Guidelines<ArrowForwardIosIcon /></Link>
+                    <Link className={'previewBtn'} to={`/protocols/run/${protocolId}/guidelines`}>Guidelines<ArrowForwardIosIcon /></Link>
                 </div>
             </div>
 

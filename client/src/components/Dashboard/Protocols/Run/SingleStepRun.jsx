@@ -13,18 +13,14 @@ import SingleComponentRun from './SingleComponentRun';
 import axios from 'axios';
 import { HOST_URL } from '../../../../data/data';
 import '../protocolsi.scss';
-import { useParams, useNavigate } from 'react-router-dom';
+// import { useParams, useNavigate } from 'react-router-dom';
 import Check from '../../../../assets/check.png';
 
-const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setShowSummary }) => {
-    const [loading, setLoading] = useState(false)
-    const { protocolId } = useParams();
-    let navigate = useNavigate();
+const SingleStep = ({ step, activeStep, setActiveStep }) => {
+    // const [loading, setLoading] = useState(false)
+    // const { protocolId } = useParams();
+    // let navigate = useNavigate();
     const [note, setNote] = useState(step.step_note || '')
-
-    // const handleGoBack = () => {
-    //     setActiveStep(activeStep - 1)
-    // }
 
     const handleFinish = async () => {
         const user = JSON.parse(localStorage.getItem('user'));

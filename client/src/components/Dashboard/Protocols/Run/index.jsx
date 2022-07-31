@@ -12,31 +12,10 @@ const ProtocolRun = () => {
     let navigate = useNavigate();
     let location = useLocation();
     const { protocolId } = useParams();
-
-
-    // useEffect(() => {
-    //     // console.log(protocolInfo);
-
-    //     if (location.pathname.includes('protocols/run/') && protocolInfo.start_run_status === 0
-    //         && (location.pathname.includes('description') ||
-    //             location.pathname.includes('guidelines') ||
-    //             location.pathname.includes('materials') ||
-    //             location.pathname.includes('steps')
-    //         )) {
-    //         navigate(`/protocols/run/${protocolId}`, { replace: true });
-    //         console.log('yes');
-    //     } else if (protocolInfo.start_run_status === 1) {
-    //         console.log('no');
-    //         navigate(`/protocols/run/${protocolId}/description`, { replace: true });
-    //     }
-    //     console.log('change');
-    // }, [location.pathname])
+    // const [runStatus, setRunStatus] = useState(protocolInfo.protocolInfo.start_run_status === 0 ? false : true);
 
 
     useEffect(() => {
-        // const protocolNew = protocols.find(item => item.protocol_id === Number(protocolId));
-        // console.log('New: ', protocolNew);
-        // setProtocolInfo(protocolNew);
 
         async function fetchData() {
             const user = JSON.parse(localStorage.getItem('user'));
@@ -80,7 +59,8 @@ const ProtocolRun = () => {
     return (
         <section className='section-protocol-run'>
 
-            <Outlet context={{ protocolInfo }} />
+            <Outlet context={{ protocolInfo, }} />
+            {/* <Outlet context={{ protocolInfo, runStatus, setRunStatus }} /> */}
 
             {/*Name: {protocolInfo.name}*/}
             {/*Author: {protocolInfo.author}*/}

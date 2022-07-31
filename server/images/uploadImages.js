@@ -1,4 +1,4 @@
-const {AWS_S3_BUCKET_NAME} = process.env
+const { AWS_S3_BUCKET_NAME } = process.env
 const fs = require("fs");
 const s3 = require("../config/aws");
 const util = require("util");

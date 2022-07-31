@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams, useOutletContext, useNavigate } from 'react-router-dom';
+import { useParams, useOutletContext, useNavigate, useLocation } from 'react-router-dom';
 import { HOST_URL } from '../../../../data/data';
 import axios from 'axios';
 import SingleStepRun from './SingleStepRun';
@@ -11,6 +11,7 @@ import NewModal from '../../Utils/Modal/NewModal';
 
 const StepsRun = () => {
     let navigate = useNavigate();
+    let location = useLocation();
     const componentRef = useRef();
     const [steps, setSteps] = useState([]);
     const acStep = steps.find(item => item.end_step_status === 0);
@@ -21,6 +22,14 @@ const StepsRun = () => {
     const [modalSubmit, setModalSubmit] = useState(false)
 
     const { protocolId } = useParams();
+
+
+
+    useEffect(() => {
+        if (location.pathname.includes('protocols/run/') && protocolInfo.start_run_status === 0) {
+            navigate(`/protocols/run/${protocolId}`, { replace: true });
+        }
+    }, [])
 
     useEffect(() => {
         // const protocolNew = protocols.find(item => item.protocol_id === Number(protocolId));

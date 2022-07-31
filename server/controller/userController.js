@@ -5,8 +5,8 @@ const Op = db.Sequelize.Op;
 
 exports.findAll = (req, res) => {
     const name = req.query.name;
-    let condition = name ? {name: {[Op.like]: `%${name}%`}} : null;
-    Users.findAll({where: condition})
+    let condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+    Users.findAll({ where: condition })
         .then(data => {
             res.send(data);
         })
@@ -81,11 +81,11 @@ exports.updatePassword = async (req, res) => {
     const confirmPassword = req.body.confirm_password;
     try {
 
-        const passwordUser = await Users.findByPk(user_id, {attributes: ['password']})
+        const passwordUser = await Users.findByPk(user_id, { attributes: ['password'] })
 
         if (passwordUser.password === currentPassword) {
             if (newPassword === confirmPassword) {
-                Users.update({password: newPassword}, {where: {id: user_id}})
+                Users.update({ password: newPassword }, { where: { id: user_id } })
                     .then(res.status(200).send('Password Updated!'))
                     .catch(error => res.status(500).send(error))
             } else {

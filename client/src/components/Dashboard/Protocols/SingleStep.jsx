@@ -24,6 +24,8 @@ import { HOST_URL } from '../../../data/data';
 import { Link, useNavigate } from "react-router-dom";
 import NewModal from '../Utils/Modal/NewModal';
 
+
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -94,7 +96,7 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
         setActiveStep(index)
     }
 
-    const handleImage = (event, index) => {
+    const handleImage = async (event, index) => {
         if (event.target.files && event.target.files[0]) {
             let reader = new FileReader();
             reader.onload = (e) => {
@@ -105,8 +107,40 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
             };
             reader.readAsDataURL(event.target.files[0]);
         }
-        // console.log(event.target.files[0]);
+
+
+
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        const params = {
+            image: event.target.files[0],
+            user_id: user.id,
+            fileName: 'anything',
+
+        }
+
+        try {
+            const resp = await axios.post(`${HOST_URL}/api/users/profile/update`, {
+                ...params
+            }, {
+                headers: {
+                    "x-access-token": user.accessToken,
+                    'content-type': 'multipart/form-data'
+                }
+            });
+
+            console.log(resp.data);
+
+        } catch (error) {
+            console.log(error);
+        }
+
     }
+
+
+
+
+
 
     const handleChange = (event) => {
         const {
