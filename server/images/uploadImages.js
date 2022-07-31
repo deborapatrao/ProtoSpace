@@ -11,8 +11,8 @@ exports.profilePhoto = async (file, fileName) => {
     const uploadParams = {
         Bucket: 'protospace-app',
         Body: fileStream,
-        Key: `profile/${fileName}.jpg`,
-        ContentType: 'image/jpg',
+        Key: `profile/${fileName}`,
+        ContentType: file.type,
     }
     const upload = await s3.upload(uploadParams).promise().then(data => photoURL = data.Location)
     if (upload) {
@@ -27,8 +27,8 @@ exports.protocolImages = async (file, fileName, stepNumber) => {
     const uploadParams = {
         Bucket: 'protospace-app',
         Body: fileStream,
-        Key: `protocols/${stepNumber}/${fileName}.jpg`,
-        ContentType: 'image/jpg',
+        Key: `protocols/${stepNumber}/${fileName}`,
+        ContentType: file.type,
     }
     const upload = await s3.upload(uploadParams).promise().then(data => photoURL = data.Location)
     if (upload) {
