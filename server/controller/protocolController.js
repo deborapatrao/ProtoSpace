@@ -230,21 +230,10 @@ exports.createProtocol = async (req, res) => {
                         description: step.step_description,
                         protocol_id: protocolCreated.id
                     }
-                    if (fileName === 'step_1') {
-                        const stepImage = await UploadImage.protocolImages(file, fileName, protocolCreated.id, step.id)
-                        const dataImg = {
-                            step_id: step.id,
-                            step_number: step.step_number,
-                            image: stepImage
-                        }
 
-                        await StepImages.create(dataImg);
-
-                    }
                     if (stepData) {
 
                         const StepCreate = await Step.create(stepData)
-
 
                         steps_ids.push({"step_id": StepCreate.id})
 
@@ -268,6 +257,7 @@ exports.createProtocol = async (req, res) => {
                             workspace_id: workspaceId.id
                         }
                         await StepUserProtocol.create(stepUserData)
+
                     }
 
                 }
@@ -278,7 +268,6 @@ exports.createProtocol = async (req, res) => {
                         res.status(500).send(error)
                     })
             } catch (error) {
-                console.log('that: ', error);
                 res.status(500).send(error)
             }
         }
@@ -300,5 +289,13 @@ exports.statusProtocol = async (req, res) => {
         res.status(501).send('Something went wrong!')
     }
 
+}
+
+exports.imgWorkAround = (req, res) => {
+    const file = req.file;
+    const fileName = req.body.fileName;
+    UploadImage.profilePhoto(file, fileName)
+        .then(results => res.status(200).send(results))
+        .catch(e => res.status(500).send(e))
 }
 
