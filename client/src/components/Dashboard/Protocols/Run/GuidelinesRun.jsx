@@ -10,11 +10,13 @@ const GuidelinesRun = () => {
 
     const { protocolId } = useParams();
 
-    const { protocolInfo } = useOutletContext();
+    const { protocolInfo, runStatus } = useOutletContext();
 
     useEffect(() => {
-        if (location.pathname.includes('protocols/run/') && protocolInfo.start_run_status === 0) {
-            navigate(`/protocols/run/${protocolId}`, { replace: true });
+        if (!runStatus) {
+            if (location.pathname.includes('protocols/run/') && protocolInfo.start_run_status === 0) {
+                navigate(`/protocols/run/${protocolId}`, { replace: true });
+            }
         }
     }, [])
 

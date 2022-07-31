@@ -12,8 +12,8 @@ const ProtocolRun = () => {
     let navigate = useNavigate();
     let location = useLocation();
     const { protocolId } = useParams();
-    // const [runStatus, setRunStatus] = useState(protocolInfo.protocolInfo.start_run_status === 0 ? false : true);
 
+    const [runStatus, setRunStatus] = useState(false);
 
     useEffect(() => {
 
@@ -37,6 +37,7 @@ const ProtocolRun = () => {
                 console.log(resp.data);
 
                 setProtocolInfo(resp.data);
+                setRunStatus(resp.data.start_run_status === 0 ? false : true)
 
             } catch (error) {
                 console.log(error);
@@ -59,8 +60,8 @@ const ProtocolRun = () => {
     return (
         <section className='section-protocol-run'>
 
-            <Outlet context={{ protocolInfo, }} />
-            {/* <Outlet context={{ protocolInfo, runStatus, setRunStatus }} /> */}
+            {/* <Outlet context={{ protocolInfo }} /> */}
+            <Outlet context={{ protocolInfo, runStatus, setRunStatus }} />
 
             {/*Name: {protocolInfo.name}*/}
             {/*Author: {protocolInfo.author}*/}

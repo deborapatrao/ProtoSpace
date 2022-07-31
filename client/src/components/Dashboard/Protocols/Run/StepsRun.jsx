@@ -17,8 +17,7 @@ const StepsRun = () => {
     const acStep = steps.find(item => item.end_step_status === 0);
     console.log(acStep);
     const [activeStep, setActiveStep] = useState(0);
-    const [showSummary, setShowSummary] = useState(false)
-    const { protocolInfo } = useOutletContext();
+    const { protocolInfo, runStatus } = useOutletContext();
     const [modalSubmit, setModalSubmit] = useState(false)
 
     const { protocolId } = useParams();
@@ -26,8 +25,10 @@ const StepsRun = () => {
 
 
     useEffect(() => {
-        if (location.pathname.includes('protocols/run/') && protocolInfo.start_run_status === 0) {
-            navigate(`/protocols/run/${protocolId}`, { replace: true });
+        if (!runStatus) {
+            if (location.pathname.includes('protocols/run/') && protocolInfo.start_run_status === 0) {
+                navigate(`/protocols/run/${protocolId}`, { replace: true });
+            }
         }
     }, [])
 
@@ -105,21 +106,6 @@ const StepsRun = () => {
 
     return (
         <section className='stepsRun'>
-            {/* {showSummary ? <div style={{ marginBottom: 30, paddingLeft: 30, paddingTop: 30 }}>
-                <div className={"description-title"}>
-                    <h4 >Summary</h4>
-                </div>
-                <div>Date run: {new Date().toDateString()}</div>
-                <div>Time: </div>
-                <div>Run by: {JSON.parse(localStorage.getItem('user')).name}</div>
-                <div>Owner: {protocolInfo.author}</div>
-                <div>
-                    <ReactToPrint
-                        trigger={() => <Button>Export submission</Button>}
-                        content={() => componentRef.current} 
-                    />
-                </div>
-            </div> : ''} */}
             <div>
 
             </div>
@@ -132,25 +118,12 @@ const StepsRun = () => {
 
                 <div className={"bottom-btn"}>
                     <Button variant={'clear'} className={'modal-btn'} onClick={closeSubmitModal}>Ok</Button>
-                    {/* <button className={"close-btn"} onClick={closeSubmitModal}>Ok</button> */}
                 </div>
             </NewModal>
             <div ref={componentRef} id={'forPdf'} className="step-run">
-                {/* {showSummary ?
-                    <>
-                        <section className={"preview-section"}>
 
-                            <Preview protocolInfo={protocolInfo} />
-                        </section>
-                        {steps ? steps.map((item, index) => {
-                            return <SingleStepRun stepsQnt={steps.length} disabled={false} key={index} step={item} activeStep={activeStep} setActiveStep={setActiveStep} setShowSummary={setShowSummary} />
-                        }) : ''}
-                    </>
-
-                    :
-                } */}
                 {steps ? steps.map((item, index) => {
-                    return <SingleStepRun stepsQnt={steps.length} disabled={activeStep === index ? false : true} key={index} step={item} activeStep={acStep ? acStep.step_number : activeStep} setActiveStep={setActiveStep} setShowSummary={setShowSummary} />
+                    return <SingleStepRun key={index} step={item} activeStep={acStep ? acStep.step_number : activeStep} setActiveStep={setActiveStep} />
                 }) : ''}
             </div>
             <Button onClick={handleSubmit} variant={'contained'} disabled={acStep == undefined ? false : true}>Submit</Button>
