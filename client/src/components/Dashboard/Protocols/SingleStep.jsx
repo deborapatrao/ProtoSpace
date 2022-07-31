@@ -82,10 +82,8 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
 
     const handleImage = async (event, index) => {
         const user = JSON.parse(localStorage.getItem('user'));
-        const fileName = event.target.files[0].name;
-        fileName.substring(0, fileName.length - 4);
+        console.log(event.target.files[0]);
 
-        console.log(fileName);
         const params = {
             image: event.target.files[0],
             fileName: event.target.files[0].name,
@@ -195,7 +193,7 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
                                     <span> <ImageIcon /> </span>
                                     <span>Add Photo</span>
                                 </label>
-                                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} onChange={(e) => handleImage(e, index)} />
+                                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/*"} onChange={(e) => handleImage(e, index)} />
                             </div> : <div key={index} className='photo-btn' style={{ overflow: 'hidden', backgroundSize: 'cover' }}>
                                 <img src={step.step_image} alt='image1' />
                             </div>}

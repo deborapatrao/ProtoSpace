@@ -389,50 +389,52 @@
       }
     }
   }
-  .child-modal{
-    .child-modal-info{
-      button{
 
-          & :hover {
-            color: unset;
-            background-color: unset;
+  .child-modal {
+    .child-modal-info {
+      button {
+
+        & :hover {
+          color: unset;
+          background-color: unset;
 
         }
       }
     }
   }
 
-  .single-component{
+  .single-component {
     color: v.$sec-dark;
 
-    &__wrapper{
+    &__wrapper {
       display: grid;
       grid-gap: 1rem;
     }
 
-    &__container{
-    padding: .7rem .5rem;
-    background-color: v.$gray-light;
-    border-radius: 6px;
+    &__container {
+      padding: .7rem .5rem;
+      background-color: v.$gray-light;
+      border-radius: 6px;
     }
 
-    &__value{
-      @include mi.mediaQuery(mi.$desktop){
+    &__value {
+      @include mi.mediaQuery(mi.$desktop) {
         display: flex;
         gap: .75rem;
       }
     }
 
-    label{
+    label {
       vertical-align: bottom;
     }
 
   }
 
 }
-.modal-container{
 
-  .components-container{
+.modal-container {
+
+  .components-container {
     .components {
       border-radius: 6px;
       background-color: v.$gray-light;
@@ -476,34 +478,40 @@
       }
     }
   }
+
   .css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
     text-decoration: none;
-    background-color: v.$main-dark !important;
+    background-color: v.$main-dark  !important;
   }
 }
-.modal-header{
+
+.modal-header {
   padding: 16px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   border-bottom: 1px solid #CDD8E0;
   align-self: center;
-  h5{
+
+  h5 {
     font-size: 18px;
     color: v.$sec-dark;
   }
 }
-.MuiBox-root.css-1wnsr1i{
+
+.MuiBox-root.css-1wnsr1i {
   border: none;
   border-radius: 5px;
   padding: 0 !important;
   width: 500px;
 }
-.MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.select-container.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
+
+.MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.select-container.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
   align-self: flex-start;
   width: 480px;
 }
-.user-list{
+
+.user-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -511,28 +519,33 @@
   margin-right: 10px;
   font-size: 16px;
   color: v.$main-dark;
+
   .user-selected {
     border-bottom: solid thin v.$gray-dark;
     padding: 0 3px;
   }
 }
 
-.css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop{
+.css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop {
   position: unset;
 }
-.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiMenu-paper.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper{
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiMenu-paper.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
   height: 300px;
   top: none !important;
   left: none !important;
 }
-.share-btn-container{
+
+.share-btn-container {
   text-align: right;
   margin-right: 20px;
   margin-bottom: 10px;
   margin-top: 10px;
-  button{
+
+  button {
     border: thin solid v.$main-medium;
-    a{
+
+    a {
       text-transform: capitalize;
       color: v.$main-medium;
     }

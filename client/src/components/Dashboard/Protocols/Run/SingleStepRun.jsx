@@ -96,13 +96,16 @@ const SingleStep = ({ step, activeStep, setActiveStep }) => {
                     <div className="single-step__inner-container">
                         <h4>Photos</h4>
                         <div className={"photo-container"}>
-                            <div className={"photo-btn"} >
+                            {step.step_image === '' ? <div className='photo-btn'>
                                 <label className={"label-photo"} htmlFor={"photo-image"}>
-                                    <span><ImageIcon /></span>
-                                    <span>Add photo</span>
+                                    <span> <ImageIcon /> </span>
+                                    <span>Add Photo</span>
                                 </label>
-                                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
-                            </div>
+                                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} />
+                            </div> : <div className='photo-btn' style={{ overflow: 'hidden', backgroundSize: 'cover' }}>
+                                <img src={step.step_image} alt='image1' />
+                            </div>}
+
                             <div className={"photo-btn"} >
                                 <label className={"label-photo"} htmlFor={"photo-image2"}>
                                     <span><ImageIcon /></span>
@@ -129,7 +132,7 @@ const SingleStep = ({ step, activeStep, setActiveStep }) => {
 
                     <h4>Components</h4>
                     <SingleComponentRun stepId={step.step_id} />
-                    <TextareaAutosize placeholder={`Note`} style={{ width: '100%', height: 100 }} name={step.step_id} value={note} onChange={(e) => setNote(e.target.value)} />
+                    <TextareaAutosize placeholder={`Note`} style={{ width: '100%', height: 100, padding: 10 }} name={step.step_id} value={note} onChange={(e) => setNote(e.target.value)} />
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         {/* {activeStep > 0 ? <Button onClick={handleGoBack}>Go back</Button> : <div></div>} */}
                         <div></div>
