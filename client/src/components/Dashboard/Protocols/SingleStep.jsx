@@ -172,11 +172,11 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
 
     return (
         <section onClick={(e) => handleClick(e, index)} className={`single-step`}>
-            <Accordion  className={'step-box'}  sx={{ border: activeStep === index ? 1 : 0, borderColor: activeStep === index ? '#063554' : 'none' }} key={index} expanded={expanded} onChange={() => setExpanded(!expanded)}>
+            <Accordion className={'step-box'} sx={{ border: activeStep === index ? 1 : 0, borderColor: activeStep === index ? '#063554' : 'none' }} key={index} expanded={expanded} onChange={() => setExpanded(!expanded)}>
                 <AccordionSummary className={'single-step-header'}
                     expandIcon={<ExpandMoreIcon />}
                 >
-                    <Typography  sx={{ width: '33%', flexShrink: 0 }}>
+                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
                         {`Step ${index + 1}`}
                     </Typography>
                 </AccordionSummary>
@@ -190,11 +190,11 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
                         <h4>Photos</h4>
                         <div className={"photo-container"}>
                             {step.step_image === '' ? <div key={index} className='photo-btn' style={{ overflow: 'hidden' }}>
-                                <label className={"label-photo"} htmlFor={"photo-image"}>
+                                <label className={"label-photo"} htmlFor={`photo-image-${index}`}>
                                     <span> <ImageIcon /> </span>
                                     <span>Add Photo</span>
                                 </label>
-                                <input className={"input-image"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/*"} onChange={(e) => handleImage(e, index)} />
+                                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={`photo-image-${index}`} accept={"image/*"} onChange={(e) => handleImage(e, index)} />
                             </div> : <div key={index} className='photo-btn' style={{ overflow: 'hidden', backgroundSize: 'cover' }}>
                                 <img src={step.step_image} alt='image1' />
                             </div>}
@@ -237,21 +237,21 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
 
 
                             <div className={"photo-btn"} >
-                                <label className={"label-photo"} htmlFor={"photo-image"}>
+                                <label className={"label-photo"}>
                                     <span><ImageIcon /></span>
                                     <span>Add Photo</span>
                                 </label>
                                 {/* <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} onChange={(e) => handleImage(e)} /> */}
                             </div>
                             <div className={"photo-btn"} >
-                                <label className={"label-photo"} htmlFor={"photo-image2"}>
+                                <label className={"label-photo"}>
                                     <span><ImageIcon /></span>
                                     <span>Add Photo</span>
                                 </label>
                                 {/* <input className={"input-image2 hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} /> */}
                             </div>
                             <div className={"photo-btn"} >
-                                <label className={"label-photo"} htmlFor={"photo-image3"}>
+                                <label className={"label-photo"}>
                                     <span><ImageIcon /></span>
                                     <span>Add Photo</span>
                                 </label>
@@ -297,7 +297,7 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
                         </header>
                         <label htmlFor="demo-simple-select"></label>
                         <FormControl sx={{ m: 1, width: 300 }}>
-                            <InputLabel  id="demo-multiple-checkbox-label">Select name</InputLabel>
+                            <InputLabel id="demo-multiple-checkbox-label">Select name</InputLabel>
                             <Select
                                 labelId="demo-multiple-checkbox-label"
                                 id="demo-multiple-checkbox"
