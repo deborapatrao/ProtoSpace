@@ -122,12 +122,12 @@
         color: v.$sec-dark;
       }
 
-      .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
+      .single-step-header.Mui-expanded {
         background: v.$gray-light;
         border-radius: 6px 6px 0px 0px;
       }
 
-      .css-1174zjj-MuiPaper-root-MuiAccordion-root:last-of-type {
+      .step-box:last-of-type  {
         border: 1px solid v.$gray-dark;
         box-shadow: none;
       }

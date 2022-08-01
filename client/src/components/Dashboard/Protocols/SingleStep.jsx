@@ -166,11 +166,11 @@ const SingleStep = ({ step, index, handleTextChange, setActiveStep, activeStep, 
 
     return (
         <section onClick={(e) => handleClick(e, index)} className={`single-step`}>
-            <Accordion sx={{ border: activeStep === index ? 1 : 0, borderColor: activeStep === index ? '#063554' : 'none' }} key={index} expanded={expanded} onChange={() => setExpanded(!expanded)}>
-                <AccordionSummary
+            <Accordion  className={'step-box'}  sx={{ border: activeStep === index ? 1 : 0, borderColor: activeStep === index ? '#063554' : 'none' }} key={index} expanded={expanded} onChange={() => setExpanded(!expanded)}>
+                <AccordionSummary className={'single-step-header'}
                     expandIcon={<ExpandMoreIcon />}
                 >
-                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                    <Typography  sx={{ width: '33%', flexShrink: 0 }}>
                         {`Step ${index + 1}`}
                     </Typography>
                 </AccordionSummary>
