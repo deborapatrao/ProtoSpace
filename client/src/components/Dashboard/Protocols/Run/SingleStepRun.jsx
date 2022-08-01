@@ -13,18 +13,14 @@ import SingleComponentRun from './SingleComponentRun';
 import axios from 'axios';
 import { HOST_URL } from '../../../../data/data';
 import '../protocolsi.scss';
-import { useParams, useNavigate } from 'react-router-dom';
+// import { useParams, useNavigate } from 'react-router-dom';
 import Check from '../../../../assets/check.png';
 
-const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setShowSummary }) => {
-    const [loading, setLoading] = useState(false)
-    const { protocolId } = useParams();
-    let navigate = useNavigate();
+const SingleStep = ({ step, activeStep, setActiveStep }) => {
+    // const [loading, setLoading] = useState(false)
+    // const { protocolId } = useParams();
+    // let navigate = useNavigate();
     const [note, setNote] = useState(step.step_note || '')
-
-    // const handleGoBack = () => {
-    //     setActiveStep(activeStep - 1)
-    // }
 
     const handleFinish = async () => {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -100,13 +96,16 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
                     <div className="single-step__inner-container">
                         <h4>Photos</h4>
                         <div className={"photo-container"}>
-                            <div className={"photo-btn"} >
+                            {step.step_image === '' ? <div className='photo-btn'>
                                 <label className={"label-photo"} htmlFor={"photo-image"}>
-                                    <span><ImageIcon /></span>
-                                    <span>Add photo</span>
+                                    <span> <ImageIcon /> </span>
+                                    <span>Add Photo</span>
                                 </label>
-                                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} />
-                            </div>
+                                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} />
+                            </div> : <div className='photo-btn' style={{ overflow: 'hidden', backgroundSize: 'cover' }}>
+                                <img src={step.step_image} alt='image1' />
+                            </div>}
+
                             <div className={"photo-btn"} >
                                 <label className={"label-photo"} htmlFor={"photo-image2"}>
                                     <span><ImageIcon /></span>
@@ -133,7 +132,7 @@ const SingleStep = ({ step, activeStep, setActiveStep, disabled, stepsQnt, setSh
 
                     <h4>Components</h4>
                     <SingleComponentRun stepId={step.step_id} />
-                    <TextareaAutosize placeholder={`Note`} style={{ width: '100%', height: 100 }} name={step.step_id} value={note} onChange={(e) => setNote(e.target.value)} />
+                    <TextareaAutosize placeholder={`Note`} style={{ width: '100%', height: 100, padding: 10 }} name={step.step_id} value={note} onChange={(e) => setNote(e.target.value)} />
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         {/* {activeStep > 0 ? <Button onClick={handleGoBack}>Go back</Button> : <div></div>} */}
                         <div></div>

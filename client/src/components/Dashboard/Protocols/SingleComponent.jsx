@@ -48,7 +48,7 @@ const SingleComponent = ({ component, activeStep, componentIndex, steps, setStep
 
         const currentComponent = newSteps[stepNum].components[componentIndex];
 
-        if (e.target.name == 'component_information') {
+        if (e.target.name == 'component_information' || e.target.name == 'component_name') {
             currentComponent[e.target.name] = e.target.value;
         } else {
             currentComponent[e.target.name] = Number(e.target.value);
@@ -61,8 +61,18 @@ const SingleComponent = ({ component, activeStep, componentIndex, steps, setStep
 
     return (
         <div className='single-component__container'>
-            <div className="single-component">Name: {component.component_name}</div>
-        
+            <div className="single-component">
+                <label htmlFor='value'>Name: </label>
+                <TextField
+                    id="value"
+                    type="text"
+                    variant="standard"
+                    name='component_name'
+                    value={component.component_name}
+                    onChange={(e) => handleDataChange(e)}
+                />
+            </div>
+
 
             <div className="single-component__value">
                 <div className='single-component'>
@@ -106,7 +116,7 @@ const SingleComponent = ({ component, activeStep, componentIndex, steps, setStep
                 />
 
             </div>
-            
+
             {/* <button onClick={handleDataChange}>check</button> */}
         </div>
     );

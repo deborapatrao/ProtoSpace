@@ -17,12 +17,13 @@ import axios from "axios";
 import { useDispatch } from 'react-redux';
 import { logout } from '../../features/auth/useSlice';
 import SvgIcon from '@mui/material/SvgIcon';
-import { ReactComponent as Camera} from '../../assets/camera-icon.svg';
+import { ReactComponent as Camera } from '../../assets/camera-icon.svg';
 
 import { HOST_URL } from "../../data/data";
 
 
 const Profile = () => {
+    const [imgTest, setImgTest] = useState('')
     const dispatch = useDispatch();
 
     const [userInfo, setUserInfo] = useState({
@@ -73,6 +74,8 @@ const Profile = () => {
 
     }
 
+
+
     useEffect(() => {
         async function fetchData() {
             const user = JSON.parse(localStorage.getItem('user'));
@@ -105,14 +108,79 @@ const Profile = () => {
         dispatch(logout())
     }
 
+    const imgChange = (e) => {
+
+        setImgTest(e.target.files[0])
+
+        console.log(e.target.files[0]);
+
+    }
+
+    const submitTest = async (e) => {
+        e.preventDefault()
+        const user = JSON.parse(localStorage.getItem('user'));
+        const newFormData = new FormData();
+        newFormData.append("image", imgTest)
+        newFormData.append("fileName", 'anything')
+        newFormData.append('user_id', user.id)
+
+        const config = {
+            headers: {
+                "x-access-token": user.accessToken,
+                'content-type': 'multipart/form-data'
+            }
+        };
+
+        try {
+            const resp = await axios.post(`${HOST_URL}/api/users/profile/update`, newFormData, config);
+
+            console.log(resp.data);
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    const uploadImage = async () => {
+
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        const params = {
+            image: imgTest,
+            user_id: user.id,
+            fileName: 'anything',
+
+        }
+
+        try {
+            const resp = await axios.post(`${HOST_URL}/api/users/profile/update`, {
+                ...params
+            }, {
+                headers: {
+                    "x-access-token": user.accessToken,
+                    'content-type': 'multipart/form-data'
+                }
+            });
+
+            console.log(resp.data);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return <>
         <section className={"profile-container"}>
             <h2>Your Profile</h2>
-            <form action={"/"} method={"POST"}>
+            {/* <input type="file" name='image' onChange={imgChange} />
+            <button onClick={uploadImage}>Test SUBMIT</button> */}
+
+            <form>
                 <div className={"image-container"}>
-                    <img className={'user-image'} src={userInfo.photo}/>
+                    <img className={'user-image'} src={userInfo.photo} />
                     <Button className={'upload-btn'}>
-                        <Camera/>
+                        <Camera />
                         {/*<input className={"input-image"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/png, image/jpeg"} onChange={fileSelectedHandler} src={userInfo.photo} />*/}
                         Upload
                     </Button>

@@ -1,4 +1,4 @@
-const {AWS_S3_BUCKET_NAME} = process.env
+const { AWS_S3_BUCKET_NAME } = process.env
 const fs = require("fs");
 const s3 = require("../config/aws");
 const util = require("util");
@@ -9,28 +9,26 @@ exports.profilePhoto = async (file, fileName) => {
     const fileStream = fs.createReadStream(file.path);
 
     const uploadParams = {
-        Bucket: AWS_S3_BUCKET_NAME,
+        Bucket: 'protospace-app',
         Body: fileStream,
-        Key: `profile/${fileName}.jpg`,
-        ContentType: 'image/jpg',
+        Key: `profile/${fileName}`,
+        ContentType: file.type,
     }
     const upload = await s3.upload(uploadParams).promise().then(data => photoURL = data.Location)
     if (upload) {
         await unlinkFile(file.path)
-
         return photoURL
-
     }
 }
-exports.protocolImages = async (file, fileName, protocolID, stepNumber) => {
+exports.protocolImages = async (file, fileName, stepNumber) => {
     let photoURL = ''
     const fileStream = fs.createReadStream(file.path);
 
     const uploadParams = {
-        Bucket: AWS_S3_BUCKET_NAME,
+        Bucket: 'protospace-app',
         Body: fileStream,
-        Key: `protocols/${protocolID}/${stepNumber}/${fileName}.jpg`,
-        ContentType: 'image/jpg',
+        Key: `protocols/${stepNumber}/${fileName}`,
+        ContentType: file.type,
     }
     const upload = await s3.upload(uploadParams).promise().then(data => photoURL = data.Location)
     if (upload) {

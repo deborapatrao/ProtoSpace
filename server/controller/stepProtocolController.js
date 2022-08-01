@@ -6,7 +6,7 @@ const StepUserProtocol = db.step_user_protocol
 exports.findStepsProtocol = async (req, res) => {
 
     /* A query to find the steps of a protocol. */
-    const query = `select distinct sp.id                                                    as step_id 
+    const query = `select distinct sp.id                                                    as step_id
                                  , sup.id                                                   as step_user_id
                                  , sp.description                                           as step_description
                                  , sup.note                                                 as step_note
@@ -15,9 +15,11 @@ exports.findStepsProtocol = async (req, res) => {
                                  , (case when sup.start_step is not null then 1 else 0 end) as start_step_status
                                  , sup.end_step
                                  , sup.start_step
+                                 , si.image                                                 as step_image
                    from step_user_protocol sup
                             join protocol p on p.id = sup.protocol_id
                             join step_protocol sp on sp.id = sup.step_protocol_id
+                            join step_images si on p.id = si.protocol_id and sp.id = si.step_id
 
                    where 1 = 1
                      and p.id = ${req.body.protocolId}

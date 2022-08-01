@@ -9,6 +9,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         step_number: {
             type: Sequelize.INTEGER
-        }
+        },
+        protocol_id: {
+            type: Sequelize.INTEGER
+        },
+
     }, {timestamps: false})
 };

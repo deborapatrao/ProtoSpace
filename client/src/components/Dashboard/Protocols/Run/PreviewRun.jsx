@@ -7,7 +7,7 @@ import { HOST_URL } from '../../../../data/data';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const PreviewRun = () => {
-    const { protocolInfo } = useOutletContext();
+    const { protocolInfo, setRunStatus } = useOutletContext();
     // console.log('Info: ', protocolInfo);
     const { protocolId } = useParams();
     let navigate = useNavigate();
@@ -20,8 +20,6 @@ const PreviewRun = () => {
             protocol_id: Number(protocolId)
         }
 
-        // console.log(params);
-
         try {
             const resp = await axios.post(`${HOST_URL}/api/protocol/run`, {
                 ...params
@@ -32,7 +30,7 @@ const PreviewRun = () => {
             });
 
             navigate(`/protocols/run/${protocolId}/description`, { replace: true })
-
+            setRunStatus(true);
 
             console.log(resp);
 

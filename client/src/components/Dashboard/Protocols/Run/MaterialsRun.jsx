@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { Link, useOutletContext, useParams } from "react-router-dom";
+import { Link, useOutletContext, useParams, useNavigate, useLocation } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const MaterialsRun = () => {
+    let navigate = useNavigate();
+    let location = useLocation();
 
     const { protocolId } = useParams();
+    const { protocolInfo, runStatus } = useOutletContext();
 
-    const params = {
-        protocolId: protocolId
-    }
-    const { protocolInfo } = useOutletContext();
+    useEffect(() => {
+        if (!runStatus) {
+            if (location.pathname.includes('protocols/run/') && protocolInfo.start_run_status === 0) {
+                navigate(`/protocols/run/${protocolId}`, { replace: true });
+            }
+        }
+    }, [])
 
     return (
         <section>
@@ -30,10 +36,10 @@ const MaterialsRun = () => {
 
             <div className="navigation-links">
                 <div className='link-previous'>
-                    <Link to={`/protocols/run/${params.protocolId}/guidelines`}><ArrowBackIosNewIcon />Guidelines</Link>
+                    <Link to={`/protocols/run/${protocolId}/guidelines`}><ArrowBackIosNewIcon />Guidelines</Link>
                 </div>
                 <div className='link-next'>
-                    <Link className={'previewBtn'} to={`/protocols/run/${params.protocolId}/steps`}>Steps<ArrowForwardIosIcon /></Link>
+                    <Link className={'previewBtn'} to={`/protocols/run/${protocolId}/steps`}>Steps<ArrowForwardIosIcon /></Link>
                 </div>
             </div>
         </section>

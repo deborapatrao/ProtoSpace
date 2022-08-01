@@ -51,7 +51,7 @@ const Steps = () => {
 
     const handleDataChange = () => {
         let newArr = [...steps, {
-            step_number: steps.length + 1, step_description: '', components: []
+            step_number: steps.length + 1, step_description: '', step_image: '', components: []
         }];
 
         setSteps(newArr)
@@ -62,6 +62,15 @@ const Steps = () => {
         let newArr = [...steps];
 
         newArr[index].step_description = txt;
+
+        setSteps(newArr)
+
+    }
+
+    const handleImageChange = (img, index) => {
+        let newArr = [...steps];
+
+        newArr[index].step_image = img;
 
         setSteps(newArr)
 
@@ -80,7 +89,7 @@ const Steps = () => {
                 unit_id: null,
                 component_id: item.id,
                 component_information: '',
-                component_name: item.name,
+                component_name: '',
                 component_value: '',
             }];
 
@@ -98,7 +107,7 @@ const Steps = () => {
             <div className='section-body'>
                 {steps ? steps.map((item, index) => {
                     // console.log(index);
-                    return <SingleStep openModal={openModal} setOpenModal={setOpenModal} activeStep={activeStep} setActiveStep={setActiveStep} key={index} step={item} index={index} handleTextChange={handleTextChange} steps={steps} setSteps={setSteps} publishedProtocol={publishedProtocol} />
+                    return <SingleStep openModal={openModal} setOpenModal={setOpenModal} activeStep={activeStep} setActiveStep={setActiveStep} key={index} step={item} index={index} handleTextChange={handleTextChange} handleImageChange={handleImageChange} steps={steps} setSteps={setSteps} publishedProtocol={publishedProtocol} />
                 }) : ''}
 
                 <Button onClick={handleDataChange} className={"add-step-btn"}>+ New Step</Button>

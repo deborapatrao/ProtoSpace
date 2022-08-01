@@ -34,7 +34,7 @@ const Protocols = () => {
         safety_warning: '',
         materials: ''
     });
-    const [steps, setSteps] = useState([{ step_number: 1, step_description: '', components: [] }]);
+    const [steps, setSteps] = useState([{ step_number: 1, step_description: '', step_image: '', components: [] }]);
 
     const { width } = useOutletContext();
 
