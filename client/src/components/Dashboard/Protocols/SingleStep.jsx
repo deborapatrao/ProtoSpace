@@ -77,6 +77,7 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
     }, [])
 
     const handleClick = (e, index) => {
+        console.log(index);
         setActiveStep(index)
     }
 
@@ -188,12 +189,12 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
                     <div className="single-step__inner-container">
                         <h4>Photos</h4>
                         <div className={"photo-container"}>
-                            {step.step_image === '' ? <div key={index} className='photo-btn'>
+                            {step.step_image === '' ? <div key={index} className='photo-btn' style={{ overflow: 'hidden' }}>
                                 <label className={"label-photo"} htmlFor={"photo-image"}>
                                     <span> <ImageIcon /> </span>
                                     <span>Add Photo</span>
                                 </label>
-                                <input className={"input-image hidden"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/*"} onChange={(e) => handleImage(e, index)} />
+                                <input className={"input-image"} type={"file"} name={"photo-image"} id={"photo-image"} accept={"image/*"} onChange={(e) => handleImage(e, index)} />
                             </div> : <div key={index} className='photo-btn' style={{ overflow: 'hidden', backgroundSize: 'cover' }}>
                                 <img src={step.step_image} alt='image1' />
                             </div>}
