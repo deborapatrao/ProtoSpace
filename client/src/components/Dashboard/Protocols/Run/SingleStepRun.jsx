@@ -78,8 +78,8 @@ const SingleStep = ({ step, activeStep, setActiveStep }) => {
 
     return (
         <section className={`single-step`}>
-            <Accordion disabled={stepDisabled()} expanded={stepExpanded()}>
-                <AccordionSummary
+            <Accordion className={'step-box'}  disabled={stepDisabled()} expanded={stepExpanded()}>
+                <AccordionSummary className={'single-step-header'}
                     expandIcon={<ExpandMoreIcon />}
                 >
                     <Typography sx={{ width: '33%', flexShrink: 0 }}>
