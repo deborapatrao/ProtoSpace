@@ -78,7 +78,7 @@ const SingleStep = ({ step, activeStep, setActiveStep }) => {
 
     return (
         <section className={`single-step`}>
-            <Accordion className={'step-box'}  disabled={stepDisabled()} expanded={stepExpanded()}>
+            <Accordion className={'step-box'} disabled={stepDisabled()} expanded={stepExpanded()}>
                 <AccordionSummary className={'single-step-header'}
                     expandIcon={<ExpandMoreIcon />}
                 >
@@ -96,7 +96,7 @@ const SingleStep = ({ step, activeStep, setActiveStep }) => {
                     <div className="single-step__inner-container">
                         <h4>Photos</h4>
                         <div className={"photo-container"}>
-                            {step.step_image === '' ? <div className='photo-btn'>
+                            {!step.step_image ? <div className='photo-btn'>
                                 <label className={"label-photo"} htmlFor={"photo-image"}>
                                     <span> <ImageIcon /> </span>
                                     <span>Add Photo</span>

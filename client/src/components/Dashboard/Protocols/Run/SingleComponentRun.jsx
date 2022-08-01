@@ -55,10 +55,9 @@ const SingleComponentRun = ({ stepId }) => {
                             <label htmlFor='value'>Value: </label>
                             <TextField
                                 id="value"
-                                type="number"
                                 variant="standard"
                                 name='component_value'
-                                value={component.component_value}
+                                value={` ${component.component_value}${component.symbol}`}
                             />
 
                         </div>
@@ -72,6 +71,7 @@ const SingleComponentRun = ({ stepId }) => {
                             />
 
                         </div>
+                        {/* 
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <label htmlFor='info'>{`${component.unit_name}: `}</label>
                             <TextField
@@ -80,7 +80,8 @@ const SingleComponentRun = ({ stepId }) => {
                                 name='component_information'
                                 value={`${component.component_value}${component.symbol}`}
                             />
-                        </div>
+                        </div> 
+                        */}
                     </div>
                 )
             }) : 'There are no components'}
