@@ -45,7 +45,8 @@ exports.login = (req, res) => {
 
     Users.findOne({
         where: {
-            email: req.body.email
+            email: req.body.email,
+            active: 'A'
         }
     })
         .then(async user => {
