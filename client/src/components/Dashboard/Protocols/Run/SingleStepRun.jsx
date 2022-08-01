@@ -78,15 +78,15 @@ const SingleStep = ({ step, activeStep, setActiveStep }) => {
 
     return (
         <section className={`single-step`}>
-            <Accordion disabled={stepDisabled()} expanded={stepExpanded()}>
-                <AccordionSummary
+            <Accordion className={'step-box'}  disabled={stepDisabled()} expanded={stepExpanded()}>
+                <AccordionSummary className={'single-step-header'}
                     expandIcon={<ExpandMoreIcon />}
                 >
                     <Typography sx={{ width: '33%', flexShrink: 0 }}>
                         {step.end_step_status === 1 ? <img src={Check} alt={'step-completed'} className={'step-completed'} /> : ``}  <span className={'step'}>{`Step ${step.step_number}`}</span>
                     </Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails className={'accordion-details'}>
                     <div className="single-step__inner-container">
                         <h4 className={'field-title'}>Description</h4>
                         {/* <TextareaAutosize key={step.name} placeholder={`Step number`} style={{ width: '100%', height: 100 }} value={step.step_description} /> */}

@@ -153,6 +153,7 @@ const Protocols = () => {
                 handleClose={toggleShareModal}
                 modalHeader={'Publish Protocol'}
                 protocolName={publishedProtocol.name}
+
             >
                 <div className={'child-modal-info'}>
                     {/* <img src={Upload} alt={'upload-image'} className={'upload-image'} /> */}
