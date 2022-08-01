@@ -52,7 +52,7 @@ const SingleComponentRun = ({ stepId }) => {
                     <div key={index} className='single-component'>
                         <div>Name: {component.component_name}</div>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <label htmlFor='value'>Value: </label>
+                            <label htmlFor='value' className={'component-label'}>Value: </label>
                             <TextField
                                 id="value"
                                 type="number"
@@ -63,7 +63,7 @@ const SingleComponentRun = ({ stepId }) => {
 
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <label htmlFor='info'>Additional info: </label>
+                            <label htmlFor='info' className={'component-label'}>Additional info: </label>
                             <TextField
                                 id="info"
                                 variant="standard"
@@ -73,7 +73,7 @@ const SingleComponentRun = ({ stepId }) => {
 
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <label htmlFor='info'>{`${component.unit_name}: `}</label>
+                            <label htmlFor='info' className={'component-label'}>{`${component.unit_name}: `}</label>
                             <TextField
                                 id="info"
                                 variant="standard"

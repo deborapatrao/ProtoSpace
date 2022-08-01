@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams, useOutletContext, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { HOST_URL } from '../../../data/data';
 import './protocolsi.scss'
-import SingleStep from './Run/SingleStepRun';
 import { Button } from '@mui/material';
-import ReactToPrint from "react-to-print";
+import StepSummary from "./StepSummary";
+import SvgIcon from '@mui/material/SvgIcon';
+import { ReactComponent as Export} from '../../../assets/export-icon.svg';
 
 
 const Summary = () => {
@@ -89,36 +90,35 @@ const Summary = () => {
             link.click();
             // setPdf(url);
 
-
         } catch (error) {
             console.log(error);
         }
     }
 
     return (
-        <section className={"preview"} ref={componentRef}>
+        <section className={"summary"} ref={componentRef}>
+            <h2>{protocolInfo.name}</h2>
             <div style={{ marginBottom: 30, paddingTop: 30 }}>
-                <div className={"description-title"}>
-                    <h4 >Summary</h4>
-                    {/* <a download={'test2.pdf'} href={pdf}>Download pdf</a> */}
+                <div className={"section-header"}>
+                    <h4 className={'section-title'}>Summary</h4>
                 </div>
-                <div>Date run: {new Date().toDateString()}</div>
-                {/* <div>Time: </div> */}
-                <div>Run by: {JSON.parse(localStorage.getItem('user')).name}</div>
-                <div>Owner: {protocolInfo.author ? protocolInfo.author : ''}</div>
-                <div>
+                <div className={'section-body'}>
+                    <div>Date run: {new Date().toDateString()}</div>
+                    <div>Run by: {JSON.parse(localStorage.getItem('user')).name}</div>
+                    <div>Owner: {protocolInfo.author ? protocolInfo.author : ''}</div>
+                    <div>
                     {/* <ReactToPrint
                         trigger={() => <Button>Export submission</Button>}
                         content={() => componentRef.current}
                     /> */}
-                    <Button onClick={generatePdf}>Export submission</Button>
+                        <Button className={'export-btn'} onClick={generatePdf}><Export />Export submission</Button>
+                    </div>
                 </div>
             </div>
-
-            <div className={'sectionTitle'}>
-                <h4>Description</h4>
+            <div className={'section-header'}>
+                <h4 className={'section-title'}>Description</h4>
             </div>
-            <div className={'description'}>
+            <div className={'section-body'}>
                 <h6>Protocol Name</h6>
                 <p type={'text'}>{protocolInfo.name ? protocolInfo.name : ''}</p>
                 <h6>Abstract</h6>
@@ -129,10 +129,10 @@ const Summary = () => {
                 <p type={'text'}>{protocolInfo.disclaimer ? protocolInfo.disclaimer : ''}</p>
             </div>
 
-            <div className={'sectionTitle'}>
-                <h4>Guidelines</h4>
+            <div className={'section-header'}>
+                <h4 className={'section-title'}>Guidelines</h4>
             </div>
-            <div className={'guidelines'}>
+            <div className={'section-body'}>
                 <h6>Guidelines</h6>
                 <p type={'text'}>{protocolInfo.guideline ? protocolInfo.guideline : ''}</p>
                 <h6>Before start</h6>
@@ -148,16 +148,23 @@ const Summary = () => {
                 </div>
             </div>
 
-            <div className={'sectionTitle'}>
-                <h4>Material</h4>
+            <div className={'section-header'}>
+                <h4 className={'section-title'} >Material</h4>
             </div>
-            <div className={'materials'}>
+            <div className={'section-body'}>
                 <h6>List of materials</h6>
                 <p type={'text'}>{protocolInfo.materials}</p>
             </div>
-            {steps ? steps.map((item, index) => {
-                return <SingleStep key={index} step={item} disabled={false} />
-            }) : ''}
+            <div className={'summary steps-container'}>
+                <div className={'section-header'}>
+                    <h4 className={'section-title'}>Steps</h4>
+                </div>
+                <div className={'section-body'}>
+                {steps ? steps.map((item, index) => {
+                return <StepSummary key={index} step={item} />
+                }) : ''}
+                </div>
+            </div>
         </section>
     );
 }

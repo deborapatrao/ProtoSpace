@@ -3,6 +3,7 @@
 
 .profile-container {
   color: v.$sec-dark;
+  width:60vw;
 
   h1 {
     font-size: 32px;
@@ -64,9 +65,6 @@
       font-size: 14px;
     }
     .user-info-container {
-      fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-        border: thin solid #CDD8E0;
-      }
       input{
         background: #FFFFFF;
         border: unset;
@@ -75,6 +73,7 @@
         height: 42px;
         margin: 0;
         padding: 0 16px;
+
       }
       .user-info-fields {
         display: grid;
@@ -85,6 +84,9 @@
         div{
           display: inherit;
         }
+      }
+      input:focus {
+        border: thin solid #CDD8E0;
       }
     }
     .password-fields{
@@ -106,6 +108,9 @@
         label{
           margin-bottom: 4px;
         }
+      }
+      input:focus {
+        border: thin solid #CDD8E0;
       }
     }
     .buttons {
