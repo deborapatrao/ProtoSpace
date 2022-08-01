@@ -96,10 +96,11 @@ const Summary = () => {
     }
 
     return (
-        <section className={"preview"} ref={componentRef}>
+        <section className={"summary"} ref={componentRef}>
+            <h2>{protocolInfo.name}</h2>
             <div style={{ marginBottom: 30, paddingTop: 30 }}>
-                <div className={"description-title"}>
-                    <h4 >Summary</h4>
+                <div className={"section-header"}>
+                    <h4 className={'section-title'}>Summary</h4>
                     {/* <a download={'test2.pdf'} href={pdf}>Download pdf</a> */}
                 </div>
                 <div>Date run: {new Date().toDateString()}</div>
@@ -114,9 +115,8 @@ const Summary = () => {
                     <Button onClick={generatePdf}>Export submission</Button>
                 </div>
             </div>
-
-            <div className={'sectionTitle'}>
-                <h4>Description</h4>
+            <div className={'section-header'}>
+                <h4 className={'section-title'}>Description</h4>
             </div>
             <div className={'description'}>
                 <h6>Protocol Name</h6>
@@ -129,8 +129,8 @@ const Summary = () => {
                 <p type={'text'}>{protocolInfo.disclaimer ? protocolInfo.disclaimer : ''}</p>
             </div>
 
-            <div className={'sectionTitle'}>
-                <h4>Guidelines</h4>
+            <div className={'section-header'}>
+                <h4 className={'section-title'}>Guidelines</h4>
             </div>
             <div className={'guidelines'}>
                 <h6>Guidelines</h6>
@@ -148,16 +148,21 @@ const Summary = () => {
                 </div>
             </div>
 
-            <div className={'sectionTitle'}>
-                <h4>Material</h4>
+            <div className={'section-header'}>
+                <h4 className={'section-title'} >Material</h4>
             </div>
             <div className={'materials'}>
                 <h6>List of materials</h6>
                 <p type={'text'}>{protocolInfo.materials}</p>
             </div>
-            {steps ? steps.map((item, index) => {
+            <div className={'summary steps-container'}>
+                <div className={'section-header'}>
+                    <h4 className={'section-title'}>Steps</h4>
+                </div>
+                {steps ? steps.map((item, index) => {
                 return <SingleStep key={index} step={item} disabled={false} />
-            }) : ''}
+                }) : ''}
+            </div>
         </section>
     );
 }
