@@ -19,7 +19,7 @@ exports.findStepsProtocol = async (req, res) => {
                    from step_user_protocol sup
                             join protocol p on p.id = sup.protocol_id
                             join step_protocol sp on sp.id = sup.step_protocol_id
-                            join step_images si on p.id = si.protocol_id and sp.id = si.step_id
+                            left join step_images si on p.id = si.protocol_id and sp.id = si.step_id
 
                    where 1 = 1
                      and p.id = ${req.body.protocolId}
