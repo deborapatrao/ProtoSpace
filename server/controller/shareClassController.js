@@ -8,7 +8,8 @@ exports.usersShareProtocol = async (req, res) => {
     const query = `select u.id as user_id, u.name as user_name, email, u.role, uw.id as workspace_id
                    from users u
                             join user_workspace uw on u.id = uw.user_id
-                   where 1 = 1`
+                   where 1 = 1
+                   and u.active = 'A'`
 
     try {
         const [results] = await Raw.query(query);
