@@ -172,11 +172,11 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
 
     return (
         <section onClick={(e) => handleClick(e, index)} className={`single-step`}>
-            <Accordion sx={{ border: activeStep === index ? 1 : 0, borderColor: activeStep === index ? '#063554' : 'none' }} key={index} expanded={expanded} onChange={() => setExpanded(!expanded)}>
-                <AccordionSummary
+            <Accordion  className={'step-box'}  sx={{ border: activeStep === index ? 1 : 0, borderColor: activeStep === index ? '#063554' : 'none' }} key={index} expanded={expanded} onChange={() => setExpanded(!expanded)}>
+                <AccordionSummary className={'single-step-header'}
                     expandIcon={<ExpandMoreIcon />}
                 >
-                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                    <Typography  sx={{ width: '33%', flexShrink: 0 }}>
                         {`Step ${index + 1}`}
                     </Typography>
                 </AccordionSummary>
@@ -287,7 +287,7 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
+                <Box className={'share-modal-box'} sx={style}>
 
                     {/*<div style={{ color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>*/}
                     <div >
@@ -297,7 +297,7 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
                         </header>
                         <label htmlFor="demo-simple-select"></label>
                         <FormControl sx={{ m: 1, width: 300 }}>
-                            <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+                            <InputLabel  id="demo-multiple-checkbox-label">Select name</InputLabel>
                             <Select
                                 labelId="demo-multiple-checkbox-label"
                                 id="demo-multiple-checkbox"
@@ -305,7 +305,7 @@ const SingleStep = ({ step, index, handleTextChange, handleImageChange, setActiv
                                 value={chosenUsers}
                                 className={'select-container'}
                                 onChange={handleChange}
-                                input={<OutlinedInput label="Tag" />}
+                                input={<OutlinedInput label="Select name" />}
                                 renderValue={(selected) => {
                                     console.log(selected);
                                     const newArr = selected.map(item => item.user_name)
