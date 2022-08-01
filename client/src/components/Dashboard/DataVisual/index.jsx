@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -8,10 +8,10 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import {Bar} from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
-import {HOST_URL} from '../../../data/data';
-import {useParams} from 'react-router-dom'
+import { HOST_URL } from '../../../data/data';
+import { useParams } from 'react-router-dom'
 
 ChartJS.register(
     CategoryScale,
@@ -26,7 +26,7 @@ const Index = () => {
     const [labels, setLabels] = useState([]);
     const [steps, setSteps] = useState([]);
     const [maxSteps, setMaxSteps] = useState(0);
-    const {protocolId} = useParams();
+    const { protocolId } = useParams();
 
     useEffect(() => {
         async function fetchData() {
@@ -99,6 +99,9 @@ const Index = () => {
                 min: 0,
                 max: maxSteps
             }
+        },
+        ticks: {
+            precision: 0
         }
 
     };
@@ -106,7 +109,7 @@ const Index = () => {
     return (
         <div>
             <div>protocol ID: {protocolId}</div>
-            <Bar options={options} data={data}/>
+            <Bar options={options} data={data} />
         </div>
     );
 }
