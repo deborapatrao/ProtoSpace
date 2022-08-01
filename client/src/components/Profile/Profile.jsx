@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../features/auth/useSlice';
 import SvgIcon from '@mui/material/SvgIcon';
 import { ReactComponent as Camera } from '../../assets/camera-icon.svg';
+import { ReactComponent as Logout } from '../../assets/logout-icon.svg';
 
 import { HOST_URL } from "../../data/data";
 
@@ -195,12 +196,12 @@ const Profile = () => {
                     <div className={"user-info-fields"}>
                         <div>
                             <label>Name<span className={"mandatory"}>*</span></label>
-                            <TextField type={'text'} value={userInfo.name} />
+                            <TextField className={'name-input'} type={'text'} value={userInfo.name} />
                         </div>
 
                         <div>
                             <label>Email<span className={"mandatory"}>*</span></label>
-                            <TextField type={'text'} value={userInfo.email} />
+                            <TextField className={'email-input'} type={'text'} value={userInfo.email} />
                         </div>
                     </div>
                     <div className={"password-fields"}>
@@ -211,11 +212,13 @@ const Profile = () => {
                                 id="outlined-adornment-password-current"
                                 type={'password'}
                                 value={userInfo.password}
+                                className={'current-password-input'}
                             />
                         </div>
                         <div>
                             <InputLabel htmlFor="outlined-adornment-password" >New Password<span className={"mandatory"}>*</span></InputLabel>
                             <OutlinedInput
+                                className={'new-password-input'}
                                 id="outlined-adornment-password-new"
                                 type={newPassword.showPass ? 'text' : 'password'}
                                 onChange={handleChangeN('password')}
@@ -233,8 +236,9 @@ const Profile = () => {
                                 }
                             />
                         </div>
-                        <div>
-                            <InputLabel htmlFor="outlined-adornment-password">Confirm New Password<span className={"mandatory"}>*</span></InputLabel>
+                        <div className={'confirm-new-password-input'}>
+                            <InputLabel
+                                 htmlFor="outlined-adornment-password">Confirm New Password<span className={"mandatory"}>*</span></InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-password-new-confirm"
                                 type={newPasswordConf.showPass2 ? 'text' : 'password'}
@@ -259,7 +263,7 @@ const Profile = () => {
                     <Button variant={"text"} className={"cancel-btn"} type={"reset"}>Cancel</Button>
                     <Button variant={"contained"} className={"update-btn"} type={"submit"}>Update</Button>
                 </div>
-                <div>
+                <div className={'logout-btn'}>
                     <Button type='outlined' onClick={handleLogout}>Log out</Button>
                 </div>
             </form>
