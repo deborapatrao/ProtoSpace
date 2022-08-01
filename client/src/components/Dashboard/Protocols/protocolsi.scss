@@ -1,7 +1,9 @@
 @use '../../../styles/variables.scss' as v;
 @use '../../../styles/mixins.scss' as mi;
+@use '../../../styles/typography' as t;
 
 .workspace {
+  color: v.$main-dark;
   .mandatory {
     color: v.$support-red;
   }
@@ -26,8 +28,6 @@
       display: flex;
       flex-flow: column nowrap;
       gap: 5px;
-
-
     }
   }
 
@@ -444,6 +444,62 @@
 
   }
 
+  .summary{
+    h2{
+      margin-top: 1rem;
+    }
+    .export-btn{
+      padding: 12px 20px;
+      background: v.$main-medium;
+      border-radius: 6px;
+      color: white;
+      align-items: baseline;
+      svg{
+        margin-right: 5px;
+      }
+    }
+    .section-body{
+      gap: .5rem;
+      h6{
+        font-size: 16px;
+        margin-top: 10px;
+      }
+      p{
+        font-size: 16px;
+        font-weight: 400;
+      }
+      .single-step{
+        background-color: white !important;
+        h4{
+          color: v.$main-dark;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+        p{
+          color: v.$main-dark;
+        }
+        .single-step-header{
+          font-weight: 600;
+          background: #F4F7F9;
+        }
+        .accordion-details{
+         background-color: white;
+        }
+        .photo{
+          width: 144.25px;
+          height: 144.25px;
+          border-radius: 6px;
+        }
+        .student-notes{
+          border: solid thin v.$gray-dark;
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+  .single-component label{
+    margin-right: 10px;
+  }
 }
 
 .modal-container {

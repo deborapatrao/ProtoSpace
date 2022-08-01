@@ -5,7 +5,7 @@
     @include mi.mediaQuery(mi.$desktop) {
         padding: 2rem 2rem 0 0;
     }
-    thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root {
+    thead{
         background-color: v.$gray-light;
         th {
             font-weight: 600;

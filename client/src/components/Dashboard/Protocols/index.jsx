@@ -112,7 +112,7 @@ const Protocols = () => {
 
     return (
         <div className="section__protocols">
-            {!location.pathname.includes('protocols/run/') ?
+            {!location.pathname.includes('protocols/run/') && !location.pathname.includes('/summary')?
                 width > 1000 ?
                     <div className="btns__container" style={{ display: 'flex', gap: 10, alignSelf: 'flex-end', marginBottom: 30 }}>
                         <Button variant="text" sx={{ color: 'red' }}>Delete</Button>
